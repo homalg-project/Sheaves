@@ -14,14 +14,6 @@ HOMALG_IO.use_common_stream := true;
 LoadPackage( "GAPDoc" );
 
 list := [
-         "../gap/Modules/RingMaps.gd",
-         "../gap/Modules/RingMaps.gi",
-         "../gap/Modules/Modules.gd",
-         "../gap/Modules/Modules.gi",
-         "../gap/Modules/Tate.gd",
-         "../gap/Modules/Tate.gi",
-         "../gap/Modules/Relative.gd",
-         "../gap/Modules/Relative.gi",
          "../gap/LinearSystems.gd",
          "../gap/LinearSystems.gi",
          "../gap/Sheaves.gd",
@@ -32,10 +24,6 @@ list := [
          "../gap/MorphismsOfSchemes.gi",
          "../gap/Curves.gd",
          "../gap/Curves.gi",
-         "../gap/Modules/Tools.gd",
-         "../gap/Modules/Tools.gi",
-         "../examples/DE-2.2.g",
-         "../examples/DE-Code.g",
          ];
 
 MyTestManualExamples :=
@@ -63,9 +51,8 @@ SizeScreen([80]);
 
 MyTestManualExamples( DirectoriesPackageLibrary( "Sheaves", "doc" )[1]![1], "SheavesForHomalg.xml", list );
 
-GAPDocManualLab("Sheaves");
+GAPDocManualLab( "Sheaves" );
 
 SizeScreen( size );
 
 quit;
-

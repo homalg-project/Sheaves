@@ -28,13 +28,13 @@ Subtitle := "A homalg based Package for Sheaf Algorithms",
 ##  See '?Extending: Version Numbers' in GAP help for an explanation
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
-Version := "2010.08.09",
+Version := "2010.08.15",
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
 
 ##  Release date of the current version in dd/mm/yyyy format.
 # 
-Date := "09/08/2010",
+Date := "15/08/2010",
 
 ##  URL of the archive(s) of the current package release, but *without*
 ##  the format extension(s), like '.zoo', which are given next.
@@ -134,35 +134,20 @@ Persons := [
     Institution   := "University of Kaiserslautern"
   ),
   rec(
-    LastName      := "Lorenz",
-    FirstNames    := "Arne",
+    LastName      := "Lange-Hegermann",
+    FirstNames    := "Markus",
     IsAuthor      := true,
     IsMaintainer  := true,
-    Email         := "arne.lorenz@rwth-aachen.de",
-    WWWHome       := "http://wwwb.math.rwth-aachen.de/~arne/",
+    Email         := "markus.lange.hegermann@rwth-aachen.de",
+    WWWHome       := "http://wwwb.math.rwth-aachen.de/~markus/",
     PostalAddress := Concatenation( [
-                       "Arne Lorenz\n",
+                       "Markus Lange-Hegermann\n",
                        "Lehrstuhl B fuer Mathematik, RWTH Aachen\n",
                        "Templergraben 64\n",
                        "52062 Aachen\n",
                        "Germany" ] ),
     Place         := "Aachen",
     Institution   := "RWTH Aachen University"
-  ),
-  rec(
-    LastName      := "Motsak",
-    FirstNames    := "Oleksandr",
-    IsAuthor      := true,
-    IsMaintainer  := true,
-    Email         := "motsak@mathematik.uni-kl.de",
-    WWWHome       := "http://www.mathematik.uni-kl.de/~motsak/",
-    PostalAddress := Concatenation( [
-                       "Department of Mathematics\n",
-                       "University of Kaiserslautern\n",
-                       "67653 Kaiserslautern\n",
-                       "Germany" ] ),
-    Place         := "Kaiserslautern",
-    Institution   := "University of Kaiserslautern"
   ),
 # provide such a record for each author and/or maintainer ...
   
@@ -276,7 +261,7 @@ Dependencies := rec(
   # list of pairs [package name, (least) version],  package name is case
   # insensitive, least version denoted with '>=' prepended to version string.
   # without these, the package will not load
-  NeededOtherPackages := [ [ "RingsForHomalg", ">= 2010.02.17" ], [ "homalg", ">= 2010.08.09" ], [ "MatricesForHomalg", ">= 2010.06.07" ] ],
+  NeededOtherPackages := [ [ "GradedModules", ">= 2010.08.15" ], [ "RingsForHomalg", ">= 2010.02.17" ], [ "homalg", ">= 2010.08.09" ], [ "MatricesForHomalg", ">= 2010.06.07" ] ],
   # without these the package will issue a warning while loading
   # SuggestedOtherPackages := [],
   SuggestedOtherPackages := [ [ "GAPDoc", ">= 1.0" ] ],
@@ -314,8 +299,6 @@ BannerString := Concatenation(
         " (", ~.Persons[1].WWWHome, ")\n",
   "   ", ~.Persons[2].FirstNames, " ", ~.Persons[2].LastName,
         " (", ~.Persons[2].WWWHome, ")\n",
-  "   ", ~.Persons[3].FirstNames, " ", ~.Persons[3].LastName,
-        " (", ~.Persons[3].WWWHome, ")\n",
   "Type:\n",
   "  ?Sheaves:                   ## for the contents of the manual\n",
   "  ?Sheaves:x                  ## for chapter/section/topic x\n",

@@ -14,8 +14,6 @@
 <Section Label="Tate:Operations">
 <Heading>The Tate Resolution: Operations and Functions</Heading>
 
-<#Include Label="TateResolution">
-
 </Section>
 
 <!-- ############################################################ -->
