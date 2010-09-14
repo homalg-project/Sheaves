@@ -23,7 +23,7 @@ InstallValue( LISHV,
             color := "\033[4;30;46m",
             intrinsic_attributes :=
             [ "RankOfSheaf",
-              "AbsoluteDepth",
+              "Grade",
               "DegreeOfTorsionFreeness",
               "PurityFiltration",
               "CodegreeOfPurity",
@@ -84,11 +84,11 @@ InstallLogicalImplicationsForHomalgObjects( LogicalImplicationsForHomalgSheaves,
 
 ##
 InstallImmediateMethod( IsZero,
-        IsSheafOfModules and HasAbsoluteDepth, 0,
+        IsSheafOfModules and HasGrade, 0,
         
   function( E )
     
-    return AbsoluteDepth( E ) = infinity;
+    return Grade( E ) = infinity;
     
 end );
 
@@ -142,11 +142,11 @@ end );
 
 ##
 InstallImmediateMethod( IsTorsion,
-        IsSheafOfModules and HasAbsoluteDepth, 0,
+        IsSheafOfModules and HasGrade, 0,
         
   function( M )
     
-    if AbsoluteDepth( M ) > 0 then
+    if Grade( M ) > 0 then
         return true;
     elif HasIsZero( M ) and not IsZero( M ) then
         return false;
@@ -333,7 +333,7 @@ InstallMethod( Rank,
 end );
 
 ##
-InstallMethod( AbsoluteDepth,
+InstallMethod( Grade,
         "for sheaves",
         [ IsSheafOfModules ],
         
@@ -342,7 +342,7 @@ InstallMethod( AbsoluteDepth,
     
     M := UnderlyingModule( E );
     
-    depth := AbsoluteDepth( M );
+    depth := Grade( M );
     
     if depth > DimensionOfAmbientSpace( E ) then
        return infinity;

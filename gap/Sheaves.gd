@@ -317,9 +317,9 @@ DeclareAttribute( "RankOfSheaf",
 DeclareAttribute( "DegreeOfTorsionFreeness",
         IsSheafOfModules );
 
-##  <#GAPDoc Label="AbsoluteDepth">
+##  <#GAPDoc Label="Grade">
 ##  <ManSection>
-##    <Attr Arg="E" Name="AbsoluteDepth"/>
+##    <Attr Arg="E" Name="Grade"/>
 ##    <Returns>a nonnegative integer or infinity</Returns>
 ##    <Description>
 ##      The depth of the sheaf <A>E</A>.
