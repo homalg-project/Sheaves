@@ -8,6 +8,13 @@
 ##
 #############################################################################
 
+# our info classes:
+DeclareInfoClass( "InfoSheaves" );
+SetInfoLevel( InfoSheaves, 1 );
+
+# a central place for configurations:
+DeclareGlobalVariable( "HOMALG_SHEAVES" );
+
 ####################################
 #
 # categories:
@@ -379,19 +386,37 @@ DeclareOperation( "HomalgSheaf",
         [ IsHomalgModule ] );
 
 DeclareOperation( "LeftSheaf",
+        [ IsHomalgMatrix, IsList, IsHomalgGradedRing ] );
+
+DeclareOperation( "LeftSheaf",
         [ IsHomalgMatrix, IsList ] );
 
 DeclareOperation( "LeftSheaf",
+        [ IsHomalgMatrix, IsInt, IsHomalgGradedRing ] );
+
+DeclareOperation( "LeftSheaf",
         [ IsHomalgMatrix, IsInt ] );
+
+DeclareOperation( "LeftSheaf",
+        [ IsHomalgMatrix, IsHomalgGradedRing ] );
 
 DeclareOperation( "LeftSheaf",
         [ IsHomalgMatrix ] );
 
 DeclareOperation( "RightSheaf",
+        [ IsHomalgMatrix, IsList, IsHomalgGradedRing ] );
+
+DeclareOperation( "RightSheaf",
         [ IsHomalgMatrix, IsList ] );
 
 DeclareOperation( "RightSheaf",
+        [ IsHomalgMatrix, IsInt, IsHomalgGradedRing ] );
+
+DeclareOperation( "RightSheaf",
         [ IsHomalgMatrix, IsInt ] );
+
+DeclareOperation( "RightSheaf",
+        [ IsHomalgMatrix, IsHomalgGradedRing ] );
 
 DeclareOperation( "RightSheaf",
         [ IsHomalgMatrix ] );
@@ -419,6 +444,7 @@ DeclareOperation( "POW",
 
 DeclareOperation( "POW",
         [ IsSheafOfRings, IsList ] );
+
 
 # basic operations:
 

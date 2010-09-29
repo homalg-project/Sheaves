@@ -32,7 +32,7 @@
 ##
 InstallMethod( ProjectivePlaneCurve,
         "constructor for projective plane curves specified by a degree defining matrix and base locus",
-        [ IsFinitelyPresentedSubmoduleRep, IsHomalgMatrix ],
+        [ IsGradedSubmoduleRep, IsHomalgMatrix ],
         
   function( base_locus, degmat )
     local left, base_locus_gens, base_locus_degs, degmat_degs, l,
@@ -113,7 +113,7 @@ InstallMethod( RandomProjectivePlaneCurve,
     local s, left, base_locus, base_locus_gens, base_locus_degs, sing_pos, sing_locus,
           R, O, degmat, curve, g, adjoint_system, omega, V, D;
     
-    if not ForAll( points, IsFinitelyPresentedSubmoduleRep ) then
+    if not ForAll( points, IsGradedModuleOrGradedSubmoduleRep ) then
         TryNextMethod( );
     fi;
     

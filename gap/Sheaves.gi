@@ -8,6 +8,29 @@
 ##
 #############################################################################
 
+####################################
+#
+# global variables:
+#
+####################################
+
+# a central place for configuration variables:
+
+InstallValue( HOMALG_SHEAVES,
+        rec(
+            category := rec(
+                            description := "sheaves and their maps",
+                            short_description := "_for_sheaves",
+                            )
+           )
+);
+
+####################################
+#
+# representations:
+#
+####################################
+
 # a new representation for the GAP-category IsSheafOfRings
 
 ##  <#GAPDoc Label="IsSheafOfRingsRep">
@@ -300,7 +323,7 @@ end );
 ##
 InstallMethod( StructureSheafOfProj,
         "constructor for structure sheaves",
-        [ IsHomalgRing and ContainsAField ],
+        [ IsHomalgGradedRingRep and ContainsAField ],
         
   function( S )
     local O, J;
@@ -346,8 +369,8 @@ end );
 
 ##
 InstallMethod( HomalgSheaf,
-        "constructor",
-        [ IsHomalgModule ],
+        "constructor for sheaves",
+        [ IsGradedModuleOrGradedSubmoduleRep ],
         
   function( M )
     local S, O, E;
@@ -383,12 +406,12 @@ end );
 ##
 InstallMethod( LeftSheaf,
         "constructor",
-        [ IsHomalgMatrix, IsList ],
+        [ IsHomalgMatrix, IsList, IsHomalgGradedRingRep ],
         
-  function( mat, weights )
+  function( mat, weights, S )
     local M;
     
-    M := LeftPresentationWithDegrees( mat, weights );
+    M := LeftPresentationWithDegrees( mat, weights, S );
     
     return HomalgSheaf( M );
     
@@ -397,34 +420,67 @@ end );
 ##
 InstallMethod( LeftSheaf,
         "constructor",
-        [ IsHomalgMatrix, IsInt ],
+        [ IsHomalgHomogeneousMatrixRep, IsList ],
         
-  function( mat, weight )
+  function( mat, weights )
     
-    return LeftSheaf( mat, ListWithIdenticalEntries( NrColumns( mat ), weight ) );
+    return LeftSheaf( mat, weights, HomalgRing( mat ) );
     
 end );
 
 ##
 InstallMethod( LeftSheaf,
         "constructor",
-        [ IsHomalgMatrix ],
+        [ IsHomalgMatrix, IsInt, IsHomalgGradedRingRep ],
+        
+  function( mat, weight, S )
+    
+    return LeftSheaf( mat, ListWithIdenticalEntries( NrColumns( mat ), weight ), S );
+    
+end );
+
+##
+InstallMethod( LeftSheaf,
+        "constructor",
+        [ IsHomalgHomogeneousMatrixRep, IsInt ],
+        
+  function( mat, weight )
+    
+    return LeftSheaf( mat, weight, HomalgRing( mat ) );
+    
+end );
+
+##
+InstallMethod( LeftSheaf,
+        "constructor",
+        [ IsHomalgMatrix, IsHomalgGradedRingRep ],
+        
+  function( mat, S )
+    
+    return LeftSheaf( mat, ListWithIdenticalEntries( NrColumns( mat ), 0 ), S );
+    
+end );
+
+##
+InstallMethod( LeftSheaf,
+        "constructor",
+        [ IsHomalgHomogeneousMatrixRep ],
         
   function( mat )
     
-    return LeftSheaf( mat, ListWithIdenticalEntries( NrColumns( mat ), 0 ) );
+    return LeftSheaf( mat, HomalgRing( mat ) );
     
 end );
 
 ##
 InstallMethod( RightSheaf,
         "constructor",
-        [ IsHomalgMatrix, IsList ],
+        [ IsHomalgMatrix, IsList, IsHomalgGradedRingRep ],
         
-  function( mat, weights )
+  function( mat, weights, S )
     local M;
     
-    M := RightPresentationWithDegrees( mat, weights );
+    M := RightPresentationWithDegrees( mat, weights, S );
     
     return HomalgSheaf( M );
     
@@ -433,29 +489,63 @@ end );
 ##
 InstallMethod( RightSheaf,
         "constructor",
-        [ IsHomalgMatrix, IsInt ],
+        [ IsHomalgHomogeneousMatrixRep, IsList ],
         
-  function( mat, weight )
+  function( mat, weights )
+    local M;
     
-    return RightSheaf( mat, ListWithIdenticalEntries( NrRows( mat ), weight ) );
+    return RightSheaf( mat, weights, HomalgRing( mat ) );
     
 end );
 
 ##
 InstallMethod( RightSheaf,
         "constructor",
-        [ IsHomalgMatrix ],
+        [ IsHomalgMatrix, IsInt, IsHomalgGradedRingRep ],
+        
+  function( mat, weight, S )
+    
+    return RightSheaf( mat, ListWithIdenticalEntries( NrRows( mat ), weight ), S );
+    
+end );
+
+##
+InstallMethod( RightSheaf,
+        "constructor",
+        [ IsHomalgHomogeneousMatrixRep, IsInt ],
+        
+  function( mat, weight )
+    
+    return RightSheaf( mat, weight, HomalgRing( mat ) );
+    
+end );
+
+##
+InstallMethod( RightSheaf,
+        "constructor",
+        [ IsHomalgMatrix, IsHomalgGradedRingRep ],
+        
+  function( mat, S )
+    
+    return RightSheaf( mat, ListWithIdenticalEntries( NrRows( mat ), 0 ), S );
+    
+end );
+
+##
+InstallMethod( RightSheaf,
+        "constructor",
+        [ IsHomalgHomogeneousMatrixRep ],
         
   function( mat )
     
-    return RightSheaf( mat, ListWithIdenticalEntries( NrRows( mat ), 0 ) );
+    return RightSheaf( mat, HomalgRing( mat ) );
     
 end );
 
 ##
 InstallMethod( DirectSumOfLeftLineBundles,
         "constructor",
-        [ IsHomalgRing, IsList ],
+        [ IsHomalgGradedRingRep, IsList ],
         
   function( R, weights )
     
@@ -466,7 +556,7 @@ end );
 ##
 InstallMethod( DirectSumOfLeftLineBundles,
         "constructor",
-        [ IsInt, IsHomalgRing, IsInt ],
+        [ IsInt, IsHomalgGradedRingRep, IsInt ],
         
   function( rank, R, weight )
     
@@ -477,7 +567,7 @@ end );
 ##
 InstallMethod( DirectSumOfLeftLineBundles,
         "constructor",
-        [ IsInt, IsHomalgRing ],
+        [ IsInt, IsHomalgGradedRingRep ],
         
   function( rank, R )
     
@@ -488,7 +578,7 @@ end );
 ##
 InstallMethod( DirectSumOfRightLineBundles,
         "constructor",
-        [ IsHomalgRing, IsList ],
+        [ IsHomalgGradedRingRep, IsList ],
         
   function( R, weights )
     
@@ -499,7 +589,7 @@ end );
 ##
 InstallMethod( DirectSumOfRightLineBundles,
         "constructor",
-        [ IsInt, IsHomalgRing, IsInt ],
+        [ IsInt, IsHomalgGradedRingRep, IsInt ],
         
   function( rank, R, weight )
     
@@ -510,7 +600,7 @@ end );
 ##
 InstallMethod( DirectSumOfRightLineBundles,
         "constructor",
-        [ IsInt, IsHomalgRing ],
+        [ IsInt, IsHomalgGradedRingRep ],
         
   function( rank, R )
     

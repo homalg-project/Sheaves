@@ -178,13 +178,9 @@ end );
 ##
 InstallMethod( Scheme,
         "constructor for Proj schemes",
-        [ IsFinitelyPresentedSubmoduleRep and ConstructedAsAnIdeal ],
+        [ IsGradedSubmoduleRep and ConstructedAsAnIdeal ],
         
   function( J )
-    
-    if not IsList( DegreesOfGenerators( J ) ) then
-        TryNextMethod( );
-    fi;
     
     return Proj( HomalgRing( J ) / J );
     
