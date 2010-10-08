@@ -18,14 +18,14 @@
 ##      The &GAP; representation of &homalg; sheaves of rings. <P/>
 ##      (It is a representation of the &GAP; category <Ref Filt="IsSheafOfRings"/>,
 ##       which is a subrepresentation of the &GAP; representation
-##      <C>IsHomalgRingOrFinitelyPresentedObjectRep</C>.)
+##      <C>IsStructureObjectOrFinitelyPresentedObjectRep</C>.)
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
 DeclareRepresentation( "IsSheafOfRingsRep",
         IsSheafOfRings and
-        IsHomalgRingOrFinitelyPresentedObjectRep,
+        IsStructureObjectOrFinitelyPresentedObjectRep,
         [ "graded_ring" ] );
 
 # a new representation for the GAP-category IsSetOfUnderlyingModules:
