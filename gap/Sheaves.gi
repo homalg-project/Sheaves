@@ -28,10 +28,10 @@ DeclareRepresentation( "IsSheafOfRingsRep",
         IsStructureObjectOrFinitelyPresentedObjectRep,
         [ "graded_ring" ] );
 
-# a new representation for the GAP-category IsSetOfUnderlyingModules:
-DeclareRepresentation( "IsSetOfUnderlyingModulesRep",
-        IsSetOfUnderlyingModules,
-        [ "ListOfPositionsOfKnownUnderlyingModules" ] );
+# a new representation for the GAP-category IsSetOfUnderlyingGradedModules:
+DeclareRepresentation( "IsSetOfUnderlyingGradedModulesRep",
+        IsSetOfUnderlyingGradedModules,
+        [ "ListOfPositionsOfKnownUnderlyingGradedModules" ] );
 
 # a new representation for the GAP-category IsSheafOfModules
 
@@ -51,8 +51,8 @@ DeclareRepresentation( "IsSetOfUnderlyingModulesRep",
 DeclareRepresentation( "IsCoherentSheafRep",
         IsSheafOfModules and
         IsStaticFinitelyPresentedObjectRep,
-        [ "UnderlyingModules",
-          "PositionOfTheDefaultUnderlyingModule" ] );
+        [ "UnderlyingGradedModules",
+          "PositionOfTheDefaultUnderlyingGradedModule" ] );
 
 ##  <#GAPDoc Label="IsCoherentSubsheafRep">
 ##  <ManSection>
@@ -88,13 +88,13 @@ BindGlobal( "TheTypeSheafOfRings",
                 IsSheafOfRingsRep ) );
 
 # a new family:
-BindGlobal( "TheFamilyOfSetsOfUnderlyingModules",
-        NewFamily( "TheFamilyOfSetsOfUnderlyingModules" ) );
+BindGlobal( "TheFamilyOfSetsOfUnderlyingGradedModules",
+        NewFamily( "TheFamilyOfSetsOfUnderlyingGradedModules" ) );
 
 # a new type:
-BindGlobal( "TheTypeSetsOfSetsOfUnderlyingModules",
-        NewType( TheFamilyOfSetsOfUnderlyingModules,
-                IsSetOfUnderlyingModulesRep ) );
+BindGlobal( "TheTypeSetsOfSetsOfUnderlyingGradedModules",
+        NewType( TheFamilyOfSetsOfUnderlyingGradedModules,
+                IsSetOfUnderlyingGradedModulesRep ) );
 
 # a new family:
 BindGlobal( "TheFamilyOfHomalgSheaves",
@@ -175,14 +175,14 @@ InstallMethod( HomalgRing,
 end );
 
 ##
-InstallMethod( PositionOfTheDefaultUnderlyingModule,
+InstallMethod( PositionOfTheDefaultUnderlyingGradedModule,
         "for sheaves",
         [ IsSheafOfModules ],
         
   function( E )
     
-    if IsBound(E!.PositionOfTheDefaultUnderlyingModule) then
-        return E!.PositionOfTheDefaultUnderlyingModule;
+    if IsBound(E!.PositionOfTheDefaultUnderlyingGradedModule) then
+        return E!.PositionOfTheDefaultUnderlyingGradedModule;
     fi;
     
     return fail;
@@ -190,25 +190,25 @@ InstallMethod( PositionOfTheDefaultUnderlyingModule,
 end );
 
 ##
-InstallMethod( SetPositionOfTheDefaultUnderlyingModule,
+InstallMethod( SetPositionOfTheDefaultUnderlyingGradedModule,
         "for sheaves",
         [ IsSheafOfModules, IsPosInt ],
         
   function( E, pos )
     
-    E!.PositionOfTheDefaultUnderlyingModule := pos;
+    E!.PositionOfTheDefaultUnderlyingGradedModule := pos;
     
 end );
 
 ##
-InstallMethod( SetOfUnderlyingModules,
+InstallMethod( SetOfUnderlyingGradedModules,
         "for sheaves",
         [ IsSheafOfModules ],
         
   function( E )
     
-    if IsBound(E!.SetOfUnderlyingModules) then
-        return E!.SetOfUnderlyingModules;
+    if IsBound(E!.SetOfUnderlyingGradedModules) then
+        return E!.SetOfUnderlyingGradedModules;
     fi;
     
     return fail;
@@ -216,14 +216,14 @@ InstallMethod( SetOfUnderlyingModules,
 end );
 
 ##
-InstallMethod( UnderlyingModule,
+InstallMethod( UnderlyingGradedModule,
         "for sheaves",
         [ IsSheafOfModules, IsPosInt ],
         
   function( E, pos )
     
-    if IsBound(SetOfUnderlyingModules(E)!.(pos)) then;
-        return SetOfUnderlyingModules(E)!.(pos);
+    if IsBound(SetOfUnderlyingGradedModules(E)!.(pos)) then;
+        return SetOfUnderlyingGradedModules(E)!.(pos);
     fi;
     
     return fail;
@@ -231,13 +231,13 @@ InstallMethod( UnderlyingModule,
 end );
 
 ##
-InstallMethod( UnderlyingModule,
+InstallMethod( UnderlyingGradedModule,
         "for sheaves",
         [ IsSheafOfModules ],
         
   function( E )
     
-    return UnderlyingModule( E, PositionOfTheDefaultUnderlyingModule( E ) );
+    return UnderlyingGradedModule( E, PositionOfTheDefaultUnderlyingGradedModule( E ) );
     
 end );
 
@@ -249,7 +249,7 @@ InstallMethod( GlobalSections,
   function( E )
     local M, p, Gamma;
     
-    M := UnderlyingModule( E );
+    M := UnderlyingGradedModule( E );
     
     p := PositionOfTheDefaultSetOfGenerators( M );
     
@@ -326,7 +326,7 @@ InstallMethod( StructureSheafOfProj,
 end );
 
 ##
-InstallMethod( CreateSetOfUnderlyingModulesOfSheaf,
+InstallMethod( CreateSetOfUnderlyingGradedModulesOfSheaf,
         "constructor",
         [ IsHomalgModule ],
         
@@ -334,11 +334,11 @@ InstallMethod( CreateSetOfUnderlyingModulesOfSheaf,
     local set;
     
     set := rec(
-               ListOfPositionsOfKnownUnderlyingModules := [ 1 ],
+               ListOfPositionsOfKnownUnderlyingGradedModules := [ 1 ],
                1 := M
                );
     
-    Objectify( TheTypeSetsOfSetsOfUnderlyingModules, set );
+    Objectify( TheTypeSetsOfSetsOfUnderlyingGradedModules, set );
     
     return set;
     
@@ -357,8 +357,8 @@ InstallMethod( HomalgSheaf,
     O := StructureSheafOfProj( S );
     
     E := rec(
-             SetOfUnderlyingModules := CreateSetOfUnderlyingModulesOfSheaf( M ),
-             PositionOfTheDefaultUnderlyingModule := 1,
+             SetOfUnderlyingGradedModules := CreateSetOfUnderlyingGradedModulesOfSheaf( M ),
+             PositionOfTheDefaultUnderlyingGradedModule := 1,
              string := "sheaf", string_plural := "sheaves"
              );
     
@@ -593,12 +593,12 @@ end );
 ##
 InstallMethod( ViewObj,
         "for sets of relations",
-        [ IsSetOfUnderlyingModulesRep ],
+        [ IsSetOfUnderlyingGradedModulesRep ],
         
   function( o )
     local l;
     
-    l := Length( o!.ListOfPositionsOfKnownUnderlyingModules );
+    l := Length( o!.ListOfPositionsOfKnownUnderlyingGradedModules );
     
     if l = 1 then
         Print( "<A set containing a single graded module underlying a sheaf>" );
@@ -948,7 +948,7 @@ InstallMethod( Display,
         
   function( E )
     
-    Display( UnderlyingModule( E ) );
+    Display( UnderlyingGradedModule( E ) );
     
 end );
 

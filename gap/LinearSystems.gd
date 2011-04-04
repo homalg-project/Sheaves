@@ -170,7 +170,7 @@ DeclareOperation( "AsLinearSystem",
 
 # basic operations:
 
-DeclareOperation( "UnderlyingModule",
+DeclareOperation( "UnderlyingGradedModule",
         [ IsLinearSystem ] );
 
 DeclareOperation( "HomalgRing",

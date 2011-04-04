@@ -16,7 +16,7 @@
 
 # a new GAP-category:
 
-DeclareCategory( "IsSetOfUnderlyingModules",
+DeclareCategory( "IsSetOfUnderlyingGradedModules",
         IsComponentObjectRep );
 
 # four new GAP-categories:
@@ -372,7 +372,7 @@ DeclareAttribute( "CastelnuovoMumfordRegularity",
 
 # constructors:
 
-DeclareOperation( "CreateSetOfUnderlyingModulesOfSheaf",
+DeclareOperation( "CreateSetOfUnderlyingGradedModulesOfSheaf",
         [ IsHomalgModule ] );
 
 DeclareOperation( "HomalgSheaf",
@@ -431,19 +431,19 @@ DeclareOperation( "DimensionOfAmbientSpace",
 DeclareOperation( "HomalgRing",
         [ IsSheafOfRings ] );
 
-DeclareOperation( "PositionOfTheDefaultUnderlyingModule",
+DeclareOperation( "PositionOfTheDefaultUnderlyingGradedModule",
         [ IsSheafOfModules ] );
 
-DeclareOperation( "SetPositionOfTheDefaultUnderlyingModule",
+DeclareOperation( "SetPositionOfTheDefaultUnderlyingGradedModule",
         [ IsSheafOfModules, IsInt ] );
 
-DeclareOperation( "SetOfUnderlyingModules",
+DeclareOperation( "SetOfUnderlyingGradedModules",
         [ IsSheafOfModules ] );
 
-DeclareOperation( "UnderlyingModule",
+DeclareOperation( "UnderlyingGradedModule",
         [ IsSheafOfModules, IsInt ] );
 
-DeclareOperation( "UnderlyingModule",
+DeclareOperation( "UnderlyingGradedModule",
         [ IsSheafOfModules ] );
 
 DeclareOperation( "homalgProjString",

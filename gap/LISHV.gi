@@ -99,7 +99,7 @@ InstallImmediateMethod( IsTorsion,
   function( E )
     local M;
     
-    M := UnderlyingModule( E );
+    M := UnderlyingGradedModule( E );
     
     if HasIsTorsion( M ) then
         return IsTorsion( M );
@@ -200,7 +200,7 @@ InstallImmediateMethod( RankOfSheaf,
   function( E )
     local M;
     
-    M := UnderlyingModule( E );
+    M := UnderlyingGradedModule( E );
     
     if HasRankOfObject( M ) then
         return RankOfObject( M );
@@ -224,7 +224,7 @@ InstallMethod( IsZero,
   function( E )
     local M;
     
-    M := UnderlyingModule( E );
+    M := UnderlyingGradedModule( E );
     
     return IsArtinian( M );
     
@@ -238,7 +238,7 @@ InstallMethod( IsTorsion,
   function( E )
     local M;
     
-    M := UnderlyingModule( E );
+    M := UnderlyingGradedModule( E );
     
     return IsTorsion( M );
     
@@ -252,7 +252,7 @@ InstallMethod( IsTorsionFree,
   function( E )
     local M;
     
-    M := UnderlyingModule( E );
+    M := UnderlyingGradedModule( E );
     
     return IsArtinian( TorsionObject( M ) );
     
@@ -266,7 +266,7 @@ InstallMethod( IsReflexive,
   function( E )
     local M;
     
-    M := UnderlyingModule( E );
+    M := UnderlyingGradedModule( E );
     
     return IsTorsionFree( E ) and IsArtinian( Ext( 2, AuslanderDual( M ) ) );
     
@@ -301,7 +301,7 @@ InstallMethod( Support,
   function( E )
     local M;
     
-    M := UnderlyingModule( E );
+    M := UnderlyingGradedModule( E );
     
     return Scheme( Annihilator( M ) );
     
@@ -315,7 +315,7 @@ InstallMethod( RankOfSheaf,
   function( E )
     local M;
     
-    M := UnderlyingModule( E );
+    M := UnderlyingGradedModule( E );
     
     return RankOfObject( M );
     
@@ -340,7 +340,7 @@ InstallMethod( Grade,
   function( E )
     local M, depth;
     
-    M := UnderlyingModule( E );
+    M := UnderlyingGradedModule( E );
     
     depth := Grade( M );
     

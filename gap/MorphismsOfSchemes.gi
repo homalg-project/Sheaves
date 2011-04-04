@@ -89,7 +89,7 @@ InstallMethod( ImageScheme,
     
     T := Range( phi );
     
-    J := UnderlyingModule( IdealSheaf( X ) );
+    J := UnderlyingGradedModule( IdealSheaf( X ) );
     
     T := T / J;
     

@@ -270,7 +270,7 @@ DeclareOperation( "DimensionOfAmbientSpace",
 DeclareOperation( "VanishingIdeal",
         [ IsScheme ] );
 
-DeclareOperation( "UnderlyingModule",
+DeclareOperation( "UnderlyingGradedModule",
         [ IsScheme ] );
 
 ####################################

@@ -108,7 +108,7 @@ InstallMethod( IsEmpty,
   function( X )
     local J;
     
-    J := UnderlyingModule( X );
+    J := UnderlyingGradedModule( X );
     
     return J = HomalgRing( J );
     
@@ -127,11 +127,11 @@ InstallMethod( DegreeAsSubscheme,
         
   function( X )
     
-    if AffineDimension( UnderlyingModule( X ) ) <= 0 then
+    if AffineDimension( UnderlyingGradedModule( X ) ) <= 0 then
         return 0;
     fi;
     
-    return AffineDegree( UnderlyingModule( X ) );
+    return AffineDegree( UnderlyingGradedModule( X ) );
     
 end );
 
@@ -153,7 +153,7 @@ InstallMethod( Dimension,
         
   function( X )
     
-    return AffineDimension( UnderlyingModule( X ) ) - 1;
+    return AffineDimension( UnderlyingGradedModule( X ) ) - 1;
     
 end );
 
@@ -165,7 +165,7 @@ InstallMethod( ArithmeticGenus,
   function( X )
     local P_0;
     
-    P_0 := ConstantTermOfHilbertPolynomial( UnderlyingModule( X ) );
+    P_0 := ConstantTermOfHilbertPolynomial( UnderlyingGradedModule( X ) );
     
     return (-1)^Dimension( X ) * ( P_0 - 1 );
     
@@ -179,7 +179,7 @@ InstallMethod( IrreducibleComponents,
   function( X )
     local primary_decomposition;
     
-    primary_decomposition := PrimaryDecomposition( UnderlyingModule( X ) );
+    primary_decomposition := PrimaryDecomposition( UnderlyingGradedModule( X ) );
     
     return List( primary_decomposition, J -> Scheme( J[1] ) );
     
@@ -193,7 +193,7 @@ InstallMethod( ReducedScheme,
   function( X )
     local primary_decomposition;
     
-    primary_decomposition := PrimaryDecomposition( UnderlyingModule( X ) );
+    primary_decomposition := PrimaryDecomposition( UnderlyingGradedModule( X ) );
     
     return Scheme( Intersect( List( primary_decomposition, J -> J[2] ) ) );
     

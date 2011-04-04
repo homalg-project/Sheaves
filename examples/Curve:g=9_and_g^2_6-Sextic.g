@@ -34,7 +34,7 @@ imP2 := ImageScheme( f );
 
 ## the module underlying the structure sheaf O_P2, as a module over
 ## the homogeneous coordinate ring of ambient projective space P^{g-1}
-imOP2 := UnderlyingModule( imP2 );
+imOP2 := UnderlyingGradedModule( imP2 );
 
 ## its Betti diagram
 bettiP2 := BettiDiagram( Resolution( Int( g / 2 ) - 1, imOP2 ) );
@@ -44,7 +44,7 @@ imC := ImageScheme( f, C );
 
 ## the module underlying the structure sheaf O_C, as a module over
 ## the homogeneous coordinate ring of ambient projective space P^{g-1}
-imOC := UnderlyingModule( imC );
+imOC := UnderlyingGradedModule( imC );
 
 ## its Betti diagram
 bettiC := BettiDiagram( Resolution( 2, imOC ) );

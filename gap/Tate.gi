@@ -21,7 +21,7 @@ InstallMethod( TateResolution,
         
   function( E, degree_lowest, degree_highest )
     
-    return TateResolution( UnderlyingModule( E ), degree_lowest, degree_highest );
+    return TateResolution( UnderlyingGradedModule( E ), degree_lowest, degree_highest );
     
 end );
 
@@ -43,7 +43,7 @@ InstallMethod( TateResolution,
         
   function( X, degree_lowest, degree_highest )
     
-    return TateResolution( UnderlyingModule( X ), degree_lowest, degree_highest );
+    return TateResolution( UnderlyingGradedModule( X ), degree_lowest, degree_highest );
     
 end );
 

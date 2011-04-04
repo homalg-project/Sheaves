@@ -47,7 +47,7 @@ BindGlobal( "TheTypeLinearSystems",
 ####################################
 
 ##
-InstallMethod( UnderlyingModule,
+InstallMethod( UnderlyingGradedModule,
         "for linear systems",
         [ IsLinearSystem ],
         
@@ -64,7 +64,7 @@ InstallMethod( HomalgRing,
         
   function( L )
     
-    return HomalgRing( UnderlyingModule( L ) );
+    return HomalgRing( UnderlyingGradedModule( L ) );
     
 end );
 
@@ -75,7 +75,7 @@ InstallMethod( GeneratorsOfLinearSystem,
         
   function( L )
     
-    return GeneratorsOfModule( UnderlyingModule( L ) );
+    return GeneratorsOfModule( UnderlyingGradedModule( L ) );
     
 end );
 
@@ -97,7 +97,7 @@ InstallMethod( MatrixOfGenerators,
         
   function( L )
     
-    return MatrixOfGenerators( UnderlyingModule( L ) );
+    return MatrixOfGenerators( UnderlyingGradedModule( L ) );
     
 end );
 
@@ -251,7 +251,7 @@ InstallMethod( Display,
   function( L )
     local M, dim;
     
-    M := UnderlyingModule( L );
+    M := UnderlyingGradedModule( L );
     
     Display( MatrixOfGenerators( M ) );
     

@@ -89,12 +89,12 @@ InstallMethod( VanishingIdeal,
     
     J := IdealSheaf( X );
     
-    return UnderlyingModule( J );
+    return UnderlyingGradedModule( J );
     
 end );
 
 ##
-InstallMethod( UnderlyingModule,
+InstallMethod( UnderlyingGradedModule,
         "for schemes",
         [ IsScheme ],
         
@@ -105,7 +105,7 @@ InstallMethod( UnderlyingModule,
     
     OX := AsModuleOverStructureSheafOfAmbientSpace( OX );
     
-    return UnderlyingModule( OX );
+    return UnderlyingGradedModule( OX );
     
 end );
 
@@ -118,7 +118,7 @@ InstallMethod( EQ,
     local b;
     
     ## TODO: install EQ for ideal sheaves
-    b := UnderlyingModule( IdealSheaf( X ) ) = UnderlyingModule( IdealSheaf( Y ) );
+    b := UnderlyingGradedModule( IdealSheaf( X ) ) = UnderlyingGradedModule( IdealSheaf( Y ) );
     
     if b then
         MatchPropertiesAndAttributes( X, Y, LISCM.intrinsic_properties, LISCM.intrinsic_attributes );

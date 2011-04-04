@@ -2,34 +2,32 @@ LoadPackage( "Sheaves" );
 
 Q := HomalgFieldOfRationalsInDefaultCAS( );
 
-R := Q * "a,b";
+R := Q * "a,b,c";
 
-P1 := Proj( R );
-
-d := 3;
+d := 2;
 
 d_uple_Embedding := function( d )
-    local L, f, imP1, M, S;
+    local L, f, Veronese, M, S;
     
     L := HomalgSheaf( R^d );
     
     f := InducedMorphismToProjectiveSpace( L );
     
-    imP1 := ImageScheme( f );
+    Veronese := ImageScheme( f );
     
-    M := UnderlyingGradedModule( imP1 );
+    M := UnderlyingGradedModule( Veronese );
     
     S := HomalgRing( M );
     
     KoszulDualRing( S, List( [ 0 .. Length( Indeterminates( S ) ) - 1 ], e -> Concatenation( "e", String( e ) ) ) );
     
-    return imP1;
+    return Veronese;
     
 end;
 
-imP1 := d_uple_Embedding( d );
+Veronese := d_uple_Embedding( d );
 
-Degree( imP1 );
-ArithmeticGenus( imP1 );
+Degree( Veronese );
+ArithmeticGenus( Veronese );
 
-T := TateResolution( imP1, -3, 3 );
+T := TateResolution( Veronese, -3, 3 );
