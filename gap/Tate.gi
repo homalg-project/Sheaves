@@ -17,7 +17,7 @@
 ##
 InstallMethod( TateResolution,
         "for a coherent sheaf of modules",
-        [ IsCoherentSheafRep, IsInt, IsInt ],
+        [ IsCoherentSheafOnProjRep, IsInt, IsInt ],
         
   function( E, degree_lowest, degree_highest )
     
@@ -28,7 +28,7 @@ end );
 ##
 InstallMethod( TateResolution,
         "for a sheaf of rings",
-        [ IsSheafOfRingsRep, IsInt, IsInt ],
+        [ IsSheafOfRingsOnProjRep, IsInt, IsInt ],
         
   function( OX, degree_lowest, degree_highest )
     

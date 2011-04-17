@@ -16,11 +16,12 @@
 
 # a central place for configuration variables:
 
-InstallValue( HOMALG_SHEAVES,
+InstallValue( HOMALG_SHEAVES_PROJ,
         rec(
             category := rec(
-                            description := "sheaves and their maps",
-                            short_description := "_for_sheaves",
+                            description := "coherent sheaves of modules and their morphisms over a projective scheme",
+                            short_description := "_for_coherent_sheaves_on_proj",
+                            MorphismConstructor := SheafMorphism
                             )
            )
 );
@@ -33,9 +34,9 @@ InstallValue( HOMALG_SHEAVES,
 
 # a new representation for the GAP-category IsSheafOfRings
 
-##  <#GAPDoc Label="IsSheafOfRingsRep">
+##  <#GAPDoc Label="IsSheafOfRingsOnProjRep">
 ##  <ManSection>
-##    <Filt Type="Representation" Arg="M" Name="IsSheafOfRingsRep"/>
+##    <Filt Type="Representation" Arg="M" Name="IsSheafOfRingsOnProjRep"/>
 ##    <Returns>true or false</Returns>
 ##    <Description>
 ##      The &GAP; representation of &homalg; sheaves of rings. <P/>
@@ -46,16 +47,16 @@ InstallValue( HOMALG_SHEAVES,
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareRepresentation( "IsSheafOfRingsRep",
+DeclareRepresentation( "IsSheafOfRingsOnProjRep",
         IsSheafOfRings and
         IsStructureObjectOrFinitelyPresentedObjectRep,
         [ "graded_ring" ] );
 
 # a new representation for the GAP-category IsSheafOfModules
 
-##  <#GAPDoc Label="IsCoherentSheafRep">
+##  <#GAPDoc Label="IsCoherentSheafOnProjRep">
 ##  <ManSection>
-##    <Filt Type="Representation" Arg="M" Name="IsCoherentSheafRep"/>
+##    <Filt Type="Representation" Arg="M" Name="IsCoherentSheafOnProjRep"/>
 ##    <Returns>true or false</Returns>
 ##    <Description>
 ##      The &GAP; representation of coherent sheaves. <P/>
@@ -66,14 +67,14 @@ DeclareRepresentation( "IsSheafOfRingsRep",
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareRepresentation( "IsCoherentSheafRep",
+DeclareRepresentation( "IsCoherentSheafOnProjRep",
         IsSheafOfModules and
         IsStaticFinitelyPresentedObjectRep,
         [ "GradedModuleModelingTheSheaf" ] );
 
-##  <#GAPDoc Label="IsCoherentSubsheafRep">
+##  <#GAPDoc Label="IsCoherentSubsheafOnProjRep">
 ##  <ManSection>
-##    <Filt Type="Representation" Arg="M" Name="IsCoherentSubsheafRep"/>
+##    <Filt Type="Representation" Arg="M" Name="IsCoherentSubsheafOnProjRep"/>
 ##    <Returns>true or false</Returns>
 ##    <Description>
 ##      The &GAP; representation of coherent sheaves. <P/>
@@ -84,7 +85,7 @@ DeclareRepresentation( "IsCoherentSheafRep",
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareRepresentation( "IsCoherentSubsheafRep",
+DeclareRepresentation( "IsCoherentSubsheafOnProjRep",
         IsSheafOfModules and
         IsStaticFinitelyPresentedSubobjectRep,
         [ "map_having_subobject_as_its_image" ] );
@@ -102,7 +103,7 @@ BindGlobal( "TheFamilyOfSheavesOfRings",
 # a new type:
 BindGlobal( "TheTypeSheafOfRings",
         NewType( TheFamilyOfSheavesOfRings,
-                IsSheafOfRingsRep ) );
+                IsSheafOfRingsOnProjRep ) );
 
 # a new family:
 BindGlobal( "TheFamilyOfHomalgSheaves",
@@ -111,11 +112,11 @@ BindGlobal( "TheFamilyOfHomalgSheaves",
 # two new types:
 BindGlobal( "TheTypeHomalgLeftCoherentSheaf",
         NewType( TheFamilyOfHomalgSheaves,
-                IsCoherentSheafRep and IsHomalgLeftObjectOrMorphismOfLeftObjects ) );
+                IsCoherentSheafOnProjRep and IsHomalgLeftObjectOrMorphismOfLeftObjects ) );
 
 BindGlobal( "TheTypeHomalgRightCoherentSheaf",
         NewType( TheFamilyOfHomalgSheaves,
-                IsCoherentSheafRep and IsHomalgRightObjectOrMorphismOfRightObjects ) );
+                IsCoherentSheafOnProjRep and IsHomalgRightObjectOrMorphismOfRightObjects ) );
 
 ####################################
 #
@@ -618,7 +619,7 @@ end );
 ##
 InstallMethod( ViewObj,
         "for sheaves of rings",
-        [ IsSheafOfRingsRep ],
+        [ IsSheafOfRingsOnProjRep ],
         
   function( O )
     local S, weights;
@@ -662,7 +663,7 @@ end );
 ##
 InstallMethod( ViewObj,
         "for coherent sheaves",
-        [ IsCoherentSheafRep ],
+        [ IsCoherentSheafOnProjRep ],
         
   function( E )
     local O, S, weights, is_subobject, M, R, left_sheaf, properties, nz;
@@ -875,7 +876,7 @@ end );
 ##
 InstallMethod( ViewObj,
         "for free sheaves",
-        [ IsCoherentSheafRep and IsFree ], 1001, ## since we don't use the filter IsHomalgLeftObjectOrMorphismOfLeftObjects it is good to set the ranks high
+        [ IsCoherentSheafOnProjRep and IsFree ], 1001, ## since we don't use the filter IsHomalgLeftObjectOrMorphismOfLeftObjects it is good to set the ranks high
         
   function( M )
     local r, rk;
@@ -910,7 +911,7 @@ end );
 ##
 InstallMethod( ViewObj,
         "for zero sheaves",
-        [ IsCoherentSheafRep and IsZero ], 1001, ## since we don't use the filter IsHomalgLeftObjectOrMorphismOfLeftObjects we need to set the ranks high
+        [ IsCoherentSheafOnProjRep and IsZero ], 1001, ## since we don't use the filter IsHomalgLeftObjectOrMorphismOfLeftObjects we need to set the ranks high
         
   function( M )
     
@@ -963,7 +964,7 @@ end );
 ##
 InstallMethod( Display,
         "for sheaves of rings",
-        [ IsSheafOfRingsRep ],
+        [ IsSheafOfRingsOnProjRep ],
         
   function( O )
     local S, weights;
@@ -995,7 +996,7 @@ end );
 ##
 InstallMethod( Display,
         "for sheaves of rings",
-        [ IsCoherentSheafRep ],
+        [ IsCoherentSheafOnProjRep ],
         
   function( E )
     

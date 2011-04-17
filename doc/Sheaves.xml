@@ -17,8 +17,8 @@
 <#Include Label="IsHomalgSheaf">
 <#Include Label="IsSheafOfRings">
 <#Include Label="IsSheafOfModules">
-<#Include Label="IsSheafMap">
-<#Include Label="IsSheafSelfMap">
+<#Include Label="IsMorphismOfSheavesOfModules">
+<#Include Label="IsEndomorphismOfSheavesOfModules">
 
 </Section>
 

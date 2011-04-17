@@ -16,6 +16,8 @@ list := [
          "../gap/LinearSystems.gi",
          "../gap/Sheaves.gd",
          "../gap/Sheaves.gi",
+         "../gap/SheafMap.gd",
+         "../gap/SheafMap.gi",
          "../gap/Schemes.gd",
          "../gap/Schemes.gi",
          "../gap/MorphismsOfSchemes.gd",

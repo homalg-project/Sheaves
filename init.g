@@ -14,6 +14,9 @@ ReadPackage( "Sheaves", "gap/LinearSystems.gd" );
 ReadPackage( "Sheaves", "gap/Sheaves.gd" );
 
 ##
+ReadPackage( "Sheaves", "gap/SheafMap.gd" );
+
+##
 ReadPackage( "Sheaves", "gap/Schemes.gd" );
 
 ##

@@ -13,7 +13,7 @@ DeclareInfoClass( "InfoSheaves" );
 SetInfoLevel( InfoSheaves, 1 );
 
 # a central place for configurations:
-DeclareGlobalVariable( "HOMALG_SHEAVES" );
+DeclareGlobalVariable( "HOMALG_SHEAVES_PROJ" );
 
 ####################################
 #
@@ -67,36 +67,6 @@ DeclareCategory( "IsSheafOfRings",
 ##
 DeclareCategory( "IsSheafOfModules",
         IsHomalgSheaf and IsHomalgObject );
-
-##  <#GAPDoc Label="IsSheafMap">
-##  <ManSection>
-##    <Filt Type="Category" Arg="phi" Name="IsSheafOfModulesMap"/>
-##    <Returns>true or false</Returns>
-##    <Description>
-##      The &GAP; category of sheaf maps. <P/>
-##      (It is a subcategory of the &GAP; category <C>IsHomalgMorphism</C>.)
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-##
-DeclareCategory( "IsSheafOfModulesMap",
-        IsHomalgMorphism );
-
-##  <#GAPDoc Label="IsSheafSelfMap">
-##  <ManSection>
-##    <Filt Type="Category" Arg="phi" Name="IsSheafSelfMap"/>
-##    <Returns>true or false</Returns>
-##    <Description>
-##      The &GAP; category of sheaf self-maps. <P/>
-##      (It is a subcategory of the &GAP; categories
-##       <C>IsSheafOfModulesMap</C> and <C>IsHomalgEndomorphism</C>.)
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-##
-DeclareCategory( "IsSheafSelfMap",
-        IsSheafOfModulesMap and
-        IsHomalgEndomorphism );
 
 ####################################
 #
