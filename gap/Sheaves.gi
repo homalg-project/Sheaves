@@ -146,6 +146,17 @@ InstallMethod( StructureSheafOfAmbientSpace,
 end );
 
 ##
+InstallMethod( StructureObject,
+        "for homalg modules",
+        [ IsSheafOfModules ],
+        
+  function( M )
+    
+    return StructureSheafOfAmbientSpace( M );
+    
+end );
+
+##
 InstallMethod( DimensionOfAmbientSpace,
         "for sheaves of rings",
         [ IsSheafOfModules ],
@@ -179,6 +190,54 @@ InstallMethod( HomalgRing,
   function( E )
     
     return HomalgRing( StructureSheafOfAmbientSpace( E ) );
+    
+end );
+
+##
+InstallMethod( AsLeftObject,
+        "for homalg sheaf of rings",
+        [ IsSheafOfRings ],
+        
+  function( R )
+    local left;
+    
+    if IsBound(R!.AsLeftObject) then
+        return R!.AsLeftObject;
+    fi;
+    
+    left := Sheafify( 1 * HomalgRing( R ) );
+    
+    left!.distinguished := true;
+    
+    left!.not_twisted := true;
+    
+    R!.AsLeftObject := left;
+    
+    return left;
+    
+end );
+
+##
+InstallMethod( AsRightObject,
+        "for homalg sheaf of rings",
+        [ IsSheafOfRings ],
+        
+  function( R )
+    local right;
+    
+    if IsBound(R!.AsRightObject) then
+        return R!.AsRightObject;
+    fi;
+    
+    right := Sheafify( HomalgRing( R ) * 1 );
+    
+    right!.distinguished := true;
+    
+    right!.not_twisted := true;
+    
+    R!.AsRightObject := right;
+    
+    return right;
     
 end );
 
