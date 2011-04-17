@@ -126,4 +126,3 @@ InstallMethod( AssociatedGradedPolynomialRing,
     return HomalgRing( L ) * x;
     
 end );
-

@@ -254,7 +254,7 @@ DeclareAttribute( "Dimension",
 # constructors:
 
 DeclareOperation( "Proj",
-        [ IsHomalgRing ] );
+        [ IsHomalgGradedRing ] );
 
 DeclareOperation( "Scheme",
         [ IsHomalgModule ] );

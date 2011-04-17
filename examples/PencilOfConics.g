@@ -1,6 +1,6 @@
 LoadPackage( "Sheaves" );
 
-R := HomalgFieldOfRationalsInDefaultCAS( ) * "x,y,z";
+R := GradedRing( HomalgFieldOfRationalsInDefaultCAS( ) * "x,y,z" );
 
 p1 := GradedLeftSubmodule( "[ x, y ]", R );
 

@@ -20,7 +20,7 @@
 
 LoadPackage( "Sheaves" );
 
-R := HomalgRingOfIntegersInSingular( 41 ) * "a,b,c";
+R := GradedRing( HomalgRingOfIntegersInSingular( 41 ) * "a,b,c" );
 
 ## p[1] := (0:0:1),
 ## p[2] := (0:1:0), p[3] := (1:0:0), p[4] := (0:1:1), p[5] := (1:0:1), p[6] := (1:1:0), p[7] := (0:1:-1), p[8] := (1:0:-1),

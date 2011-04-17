@@ -179,7 +179,7 @@ DeclareOperation( "HomalgRing",
 DeclareOperation( "GeneratorsOfLinearSystem",
         [ IsLinearSystem ] );
 
-DeclareOperation( "HomalgRingOfGenerators",
+DeclareOperation( "HomalgRingOfUnderlyingGradedModule",
         [ IsLinearSystem ] );
 
 DeclareOperation( "MatrixOfGenerators",

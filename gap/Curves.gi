@@ -172,7 +172,7 @@ InstallMethod( RandomProjectivePlaneCurve,
     SetPrimaryDecomposition( adjoint_system, ListN( points{ sing_pos }, mults{ sing_pos } - 1, function ( p, r ) return [ p, r ]; end ) );
     
     ## the canonical sheaf of the curve as a sheaf on the ambient projective space P^{g-1}
-    omega := HomalgSheaf( adjoint_system );
+    omega := Sheafify( adjoint_system );
     
     ## the global sections of omega
     V := GlobalSections( omega );

@@ -114,7 +114,7 @@ DeclareOperation( "Proj",
 
 # basic operations:
 
-DeclareOperation( "AssociatedRingMap",
+DeclareOperation( "UnderlyingRingMap",
         [ IsMorphismOfSchemes ] );
 
 DeclareOperation( "ImageScheme",

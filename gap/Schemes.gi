@@ -137,7 +137,7 @@ end );
 ##
 InstallMethod( Proj,
         "constructor for Proj schemes",
-        [ IsHomalgRing ],
+        [ IsHomalgGradedRing ],
         
   function( S )
     local R, X, O, J;
@@ -165,7 +165,7 @@ InstallMethod( Proj,
     
     if HasDefiningIdeal( S ) then
         J := DefiningIdeal( S );
-        SetIdealSheaf( X, HomalgSheaf( J ) );
+        SetIdealSheaf( X, Sheafify( J ) );
     fi;
     
     ## save the proj scheme in the graded ring

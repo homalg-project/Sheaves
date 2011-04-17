@@ -294,6 +294,20 @@ end );
 ####################################
 
 ##
+InstallMethod( TruncatedModuleOfGlobalSections,
+        "for sheaves",
+        [ IsSheafOfModules ],
+        
+  function( E )
+    local M;
+    
+    M := E!.GradedModuleModelingTheSheaf;
+    
+    return StandardModule( M );
+    
+end );
+
+##
 InstallMethod( Support,
         "for sheaves",
         [ IsSheafOfModules ],

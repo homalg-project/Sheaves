@@ -47,7 +47,7 @@ BindGlobal( "TheTypeMorphismOfProjSchemes",
 ####################################
 
 ##
-InstallMethod( AssociatedRingMap,
+InstallMethod( UnderlyingRingMap,
         "for morphisms of Proj schemes",
         [ IsMorphismOfProjSchemesRep ],
         
@@ -65,7 +65,7 @@ InstallMethod( ImageScheme,
   function( f )
     local phi, ker;
     
-    phi := AssociatedRingMap( f );
+    phi := UnderlyingRingMap( f );
     
     ker := KernelSubobject( phi );
     
@@ -81,7 +81,7 @@ InstallMethod( ImageScheme,
   function( f, X )
     local phi, images, S, T, J, g;
     
-    phi := AssociatedRingMap( f );
+    phi := UnderlyingRingMap( f );
     
     images := ImagesOfRingMap( phi );
     
@@ -181,7 +181,7 @@ InstallMethod( Display,
   function( f )
     local phi;
     
-    phi := AssociatedRingMap( f );
+    phi := UnderlyingRingMap( f );
     
     Display( Source( f ) );
     Print( "  |\n  |\n" );

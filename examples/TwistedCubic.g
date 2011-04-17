@@ -1,6 +1,6 @@
 LoadPackage( "Sheaves" );
 
-R := HomalgFieldOfRationalsInSingular() * "x,y,z,w";
+R := GradedRing( HomalgFieldOfRationalsInSingular() * "x,y,z,w" );
 CL := GradedRightSubmodule( "y*w-x^2,z*w^2-x^3", R );
 C := Saturate( CL, GradedRightSubmodule( "x,w", R ) );
 CL := Scheme( CL );

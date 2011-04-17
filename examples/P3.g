@@ -1,8 +1,12 @@
-LoadPackage( "Sheaves" );
+LoadPackage( "GradedRingForHomalg" );
 
-S := HomalgFieldOfRationalsInDefaultCAS( ) * "x0..x3";
+R := HomalgFieldOfRationalsInDefaultCAS( ) * "x0..x3";
+
+S := GradedRing( R );
 
 A := KoszulDualRing( S, "e0..e3" );
+
+LoadPackage( "GradedModules" );
 
 ## the residue class field (i.e. S modulo the maximal homogeneous ideal)
 k := HomalgMatrix( Indeterminates( S ), Length( Indeterminates( S ) ), 1, S );
@@ -27,3 +31,9 @@ cotangent := SyzygiesObject( 2, k );
 
 ## the canonical bundle
 omega := S^(-3-1);
+
+tate := TateResolution( cotangent, -5, 5 );
+
+betti := BettiDiagram( tate );
+
+Display( betti );

@@ -1,6 +1,6 @@
 LoadPackage( "Sheaves" );
 
-R := HomalgFieldOfRationalsInDefaultCAS( ) * "a,b,c";
+R := GradedRing( HomalgFieldOfRationalsInDefaultCAS( ) * "a,b,c" );
 
 ## p[1] := (0:0:1), p[2] := (0:1:0), p[3] := (1:0:0), p[4] := (0:1:1), p[5] := (1:0:1)
 p := [ "[ a, b ]", "[ a, c ]", "[ b, c ]", "[ a, b - c ]", "[ a - c, b ]" ];

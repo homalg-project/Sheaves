@@ -1,6 +1,6 @@
 LoadPackage( "Sheaves" );
 
-Q := HomalgFieldOfRationalsInDefaultCAS( );
+Q := GradedRing( HomalgFieldOfRationalsInDefaultCAS( ) );
 
 R := Q * "a,b,c";
 
@@ -9,7 +9,7 @@ d := 2;
 d_uple_Embedding := function( d )
     local L, f, Veronese, M, S;
     
-    L := HomalgSheaf( R^d );
+    L := Sheafify( R^d );
     
     f := InducedMorphismToProjectiveSpace( L );
     

@@ -21,11 +21,6 @@ DeclareGlobalVariable( "HOMALG_SHEAVES" );
 #
 ####################################
 
-# a new GAP-category:
-
-DeclareCategory( "IsSetOfUnderlyingGradedModules",
-        IsComponentObjectRep );
-
 # four new GAP-categories:
 
 ##  <#GAPDoc Label="IsHomalgSheaf">
@@ -250,7 +245,7 @@ DeclareProperty( "HasConstantRank",
 ##  <#/GAPDoc>
 ##
 DeclareAttribute( "StructureSheafOfProj",
-        IsHomalgRing );
+        IsHomalgGradedRing );
 
 ##  <#GAPDoc Label="IdealSheaf:sheaf">
 ##  <ManSection>
@@ -277,6 +272,19 @@ DeclareAttribute( "IdealSheaf",
 ##
 DeclareAttribute( "AsModuleOverStructureSheafOfAmbientSpace",
         IsSheafOfRings );
+
+##  <#GAPDoc Label="TruncatedModuleOfGlobalSections">
+##  <ManSection>
+##    <Attr Arg="E" Name="TruncatedModuleOfGlobalSections"/>
+##    <Returns>a sheaf</Returns>
+##    <Description>
+##      The truncated (at zero) module of global sections of the sheaf <A>E</A>.
+##   </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "TruncatedModuleOfGlobalSections",
+        IsHomalgSheaf );
 
 ##  <#GAPDoc Label="Support">
 ##  <ManSection>
@@ -379,11 +387,11 @@ DeclareAttribute( "CastelnuovoMumfordRegularity",
 
 # constructors:
 
-DeclareOperation( "CreateSetOfUnderlyingGradedModulesOfSheaf",
-        [ IsHomalgModule ] );
+DeclareOperation( "Sheafify",
+        [ IsHomalgGradedModule ] );
 
-DeclareOperation( "HomalgSheaf",
-        [ IsHomalgModule ] );
+DeclareOperation( "Proj",
+        [ IsHomalgGradedModule ] );
 
 DeclareOperation( "LeftSheaf",
         [ IsHomalgMatrix, IsList, IsHomalgGradedRing ] );
@@ -422,22 +430,22 @@ DeclareOperation( "RightSheaf",
         [ IsHomalgMatrix ] );
 
 DeclareOperation( "DirectSumOfLeftLineBundles",
-        [ IsHomalgRing, IsList ] );
+        [ IsHomalgGradedRing, IsList ] );
 
 DeclareOperation( "DirectSumOfLeftLineBundles",
-        [ IsInt, IsHomalgRing, IsInt ] );
+        [ IsInt, IsHomalgGradedRing, IsInt ] );
 
 DeclareOperation( "DirectSumOfLeftLineBundles",
-        [ IsInt, IsHomalgRing ] );
+        [ IsInt, IsHomalgGradedRing ] );
 
 DeclareOperation( "DirectSumOfRightLineBundles",
-        [ IsHomalgRing, IsList ] );
+        [ IsHomalgGradedRing, IsList ] );
 
 DeclareOperation( "DirectSumOfRightLineBundles",
-        [ IsInt, IsHomalgRing, IsInt ] );
+        [ IsInt, IsHomalgGradedRing, IsInt ] );
 
 DeclareOperation( "DirectSumOfRightLineBundles",
-        [ IsInt, IsHomalgRing ] );
+        [ IsInt, IsHomalgGradedRing ] );
 
 DeclareOperation( "POW",
         [ IsSheafOfRings, IsInt ] );
@@ -457,23 +465,11 @@ DeclareOperation( "DimensionOfAmbientSpace",
 DeclareOperation( "HomalgRing",
         [ IsSheafOfRings ] );
 
-DeclareOperation( "PositionOfTheDefaultUnderlyingGradedModule",
-        [ IsSheafOfModules ] );
-
-DeclareOperation( "SetPositionOfTheDefaultUnderlyingGradedModule",
-        [ IsSheafOfModules, IsInt ] );
-
-DeclareOperation( "SetOfUnderlyingGradedModules",
-        [ IsSheafOfModules ] );
-
-DeclareOperation( "UnderlyingGradedModule",
-        [ IsSheafOfModules, IsInt ] );
-
 DeclareOperation( "UnderlyingGradedModule",
         [ IsSheafOfModules ] );
 
 DeclareOperation( "homalgProjString",
-        [ IsHomalgRing ] );
+        [ IsHomalgGradedRing ] );
 
 DeclareOperation( "GlobalSections",
         [ IsSheafOfModules ] );

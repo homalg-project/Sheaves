@@ -1,7 +1,7 @@
 LoadPackage( "Sheaves" );
 
 ##
-R := HomalgFieldOfRationalsInDefaultCAS( ) * "a,b,c";
+R := GradedRing( HomalgFieldOfRationalsInDefaultCAS( ) * "a,b,c" );
 
 param := Length( Indeterminates( R ) );
 

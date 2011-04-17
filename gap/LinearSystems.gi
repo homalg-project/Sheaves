@@ -23,7 +23,7 @@
 ##
 DeclareRepresentation( "IsLinearSystemRep",
         IsLinearSystem,
-        [ "module" ] );
+        [ "module", "HomalgRingOfUnderlyingGradedModule" ] );
 
 ####################################
 #
@@ -80,13 +80,13 @@ InstallMethod( GeneratorsOfLinearSystem,
 end );
 
 ##
-InstallMethod( HomalgRingOfGenerators,
+InstallMethod( HomalgRingOfUnderlyingGradedModule,
         "for linear systems",
         [ IsLinearSystem ],
         
   function( L )
     
-    return HomalgRing( GeneratorsOfLinearSystem( L ) );
+    return L!.HomalgRingOfUnderlyingGradedModule;
     
 end );
 
@@ -124,10 +124,14 @@ InstallMethod( InducedRingMap,
     S := AssociatedGradedPolynomialRing( L );
     
     ## the target ring
-    T := HomalgRingOfGenerators( L );
+    T := HomalgRingOfUnderlyingGradedModule( L );
     
     ## the substitutions
     images := MatrixOfGenerators( L );
+    
+    if NrRows( images ) <> 1 and NrColumns( images ) <> 1 then
+        Error( "the matrix of images is neither a one-row nor a one-column matrix\n" );
+    fi;
     
     images := EntriesOfHomalgMatrix( images );
     
@@ -159,12 +163,17 @@ end );
 ##
 InstallMethod( AsLinearSystem,
         "constructor for linear systems",
-        [ IsHomalgModule, IsString ],
+        [ IsGradedModuleRep and
+          HasEmbeddingOfSubmoduleGeneratedByHomogeneousPart, IsString ],
         
   function( M, x )
-    local L, dim;
+    local S, L, dim;
     
-    L := rec( module := M );
+    S := HomalgRing( EmbeddingOfSubmoduleGeneratedByHomogeneousPart( M ) );
+    
+    L := rec( module := M,
+              HomalgRingOfUnderlyingGradedModule := S,
+              );
     
     dim := NrGenerators( M );
     
@@ -182,7 +191,7 @@ end );
 ##
 InstallMethod( AsLinearSystem,
         "constructor for linear systems",
-        [ IsHomalgModule ],
+        [ IsGradedModuleRep ],
         
   function( M )
     

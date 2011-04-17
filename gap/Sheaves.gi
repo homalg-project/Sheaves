@@ -51,11 +51,6 @@ DeclareRepresentation( "IsSheafOfRingsRep",
         IsStructureObjectOrFinitelyPresentedObjectRep,
         [ "graded_ring" ] );
 
-# a new representation for the GAP-category IsSetOfUnderlyingGradedModules:
-DeclareRepresentation( "IsSetOfUnderlyingGradedModulesRep",
-        IsSetOfUnderlyingGradedModules,
-        [ "ListOfPositionsOfKnownUnderlyingGradedModules" ] );
-
 # a new representation for the GAP-category IsSheafOfModules
 
 ##  <#GAPDoc Label="IsCoherentSheafRep">
@@ -74,8 +69,7 @@ DeclareRepresentation( "IsSetOfUnderlyingGradedModulesRep",
 DeclareRepresentation( "IsCoherentSheafRep",
         IsSheafOfModules and
         IsStaticFinitelyPresentedObjectRep,
-        [ "UnderlyingGradedModules",
-          "PositionOfTheDefaultUnderlyingGradedModule" ] );
+        [ "GradedModuleModelingTheSheaf" ] );
 
 ##  <#GAPDoc Label="IsCoherentSubsheafRep">
 ##  <ManSection>
@@ -109,15 +103,6 @@ BindGlobal( "TheFamilyOfSheavesOfRings",
 BindGlobal( "TheTypeSheafOfRings",
         NewType( TheFamilyOfSheavesOfRings,
                 IsSheafOfRingsRep ) );
-
-# a new family:
-BindGlobal( "TheFamilyOfSetsOfUnderlyingGradedModules",
-        NewFamily( "TheFamilyOfSetsOfUnderlyingGradedModules" ) );
-
-# a new type:
-BindGlobal( "TheTypeSetsOfSetsOfUnderlyingGradedModules",
-        NewType( TheFamilyOfSetsOfUnderlyingGradedModules,
-                IsSetOfUnderlyingGradedModulesRep ) );
 
 # a new family:
 BindGlobal( "TheFamilyOfHomalgSheaves",
@@ -198,69 +183,17 @@ InstallMethod( HomalgRing,
 end );
 
 ##
-InstallMethod( PositionOfTheDefaultUnderlyingGradedModule,
-        "for sheaves",
-        [ IsSheafOfModules ],
-        
-  function( E )
-    
-    if IsBound(E!.PositionOfTheDefaultUnderlyingGradedModule) then
-        return E!.PositionOfTheDefaultUnderlyingGradedModule;
-    fi;
-    
-    return fail;
-    
-end );
-
-##
-InstallMethod( SetPositionOfTheDefaultUnderlyingGradedModule,
-        "for sheaves",
-        [ IsSheafOfModules, IsPosInt ],
-        
-  function( E, pos )
-    
-    E!.PositionOfTheDefaultUnderlyingGradedModule := pos;
-    
-end );
-
-##
-InstallMethod( SetOfUnderlyingGradedModules,
-        "for sheaves",
-        [ IsSheafOfModules ],
-        
-  function( E )
-    
-    if IsBound(E!.SetOfUnderlyingGradedModules) then
-        return E!.SetOfUnderlyingGradedModules;
-    fi;
-    
-    return fail;
-    
-end );
-
-##
-InstallMethod( UnderlyingGradedModule,
-        "for sheaves",
-        [ IsSheafOfModules, IsPosInt ],
-        
-  function( E, pos )
-    
-    if IsBound(SetOfUnderlyingGradedModules(E)!.(pos)) then;
-        return SetOfUnderlyingGradedModules(E)!.(pos);
-    fi;
-    
-    return fail;
-    
-end );
-
-##
 InstallMethod( UnderlyingGradedModule,
         "for sheaves",
         [ IsSheafOfModules ],
         
   function( E )
     
-    return UnderlyingGradedModule( E, PositionOfTheDefaultUnderlyingGradedModule( E ) );
+    if HasTruncatedModuleOfGlobalSections( E ) then;
+        return TruncatedModuleOfGlobalSections( E );
+    fi;
+    
+    return E!.GradedModuleModelingTheSheaf;
     
 end );
 
@@ -336,8 +269,8 @@ InstallMethod( StructureSheafOfProj,
     
     if HasDefiningIdeal( S ) then
         J := DefiningIdeal( S );
-        SetIdealSheaf( O, HomalgSheaf( J ) );
-        SetAsModuleOverStructureSheafOfAmbientSpace( O, HomalgSheaf( FactorObject( J ) ) );
+        SetIdealSheaf( O, Sheafify( J ) );
+        SetAsModuleOverStructureSheafOfAmbientSpace( O, Sheafify( FactorObject( J ) ) );
     fi;
     
     if HasKrullDimension( S ) then
@@ -349,27 +282,15 @@ InstallMethod( StructureSheafOfProj,
 end );
 
 ##
-InstallMethod( CreateSetOfUnderlyingGradedModulesOfSheaf,
-        "constructor",
-        [ IsHomalgModule ],
+InstallMethod( Sheafify,
+        "constructor for coherent sheaves over a projective scheme",
+        [ IsGradedModuleOrGradedSubmoduleRep ],
         
-  function( M )
-    local set;
-    
-    set := rec(
-               ListOfPositionsOfKnownUnderlyingGradedModules := [ 1 ],
-               1 := M
-               );
-    
-    Objectify( TheTypeSetsOfSetsOfUnderlyingGradedModules, set );
-    
-    return set;
-    
-end );
+  Proj );
 
 ##
-InstallMethod( HomalgSheaf,
-        "constructor for sheaves",
+InstallMethod( Proj,
+        "constructor for coherent sheaves over a projective scheme",
         [ IsGradedModuleOrGradedSubmoduleRep ],
         
   function( M )
@@ -380,8 +301,7 @@ InstallMethod( HomalgSheaf,
     O := StructureSheafOfProj( S );
     
     E := rec(
-             SetOfUnderlyingGradedModules := CreateSetOfUnderlyingGradedModulesOfSheaf( M ),
-             PositionOfTheDefaultUnderlyingGradedModule := 1,
+             GradedModuleModelingTheSheaf := M,
              string := "sheaf", string_plural := "sheaves"
              );
     
@@ -413,7 +333,7 @@ InstallMethod( LeftSheaf,
     
     M := LeftPresentationWithDegrees( mat, weights, S );
     
-    return HomalgSheaf( M );
+    return Sheafify( M );
     
 end );
 
@@ -482,7 +402,7 @@ InstallMethod( RightSheaf,
     
     M := RightPresentationWithDegrees( mat, weights, S );
     
-    return HomalgSheaf( M );
+    return Sheafify( M );
     
 end );
 
@@ -676,24 +596,6 @@ InstallMethod( ViewObj,
         
         Print( "<A sheaf of rings>" );
         
-    fi;
-    
-end );
-
-##
-InstallMethod( ViewObj,
-        "for sets of relations",
-        [ IsSetOfUnderlyingGradedModulesRep ],
-        
-  function( o )
-    local l;
-    
-    l := Length( o!.ListOfPositionsOfKnownUnderlyingGradedModules );
-    
-    if l = 1 then
-        Print( "<A set containing a single graded module underlying a sheaf>" );
-    else
-        Print( "<A set of ", l, " graded modules underlying a sheaf>" );
     fi;
     
 end );
@@ -974,7 +876,7 @@ end );
 ##
 InstallMethod( homalgProjString,
         "for sheaves of rings",
-        [ IsHomalgRing and IsFreePolynomialRing ],
+        [ IsHomalgGradedRing and IsFreePolynomialRing ],
         
   function( S )
     local proj, weights;

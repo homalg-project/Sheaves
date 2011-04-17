@@ -1,4 +1,4 @@
-LoadPackage( "Sheaves" );
+LoadPackage( "GradedRingForHomalg" );
 
 ##
 R := HomalgFieldOfRationalsInDefaultCAS( ) * "a";
@@ -6,7 +6,9 @@ R := HomalgFieldOfRationalsInDefaultCAS( ) * "a";
 param := Length( Indeterminates( R ) );
 
 ##
-S := R * "x,y";
+RR := R * "x,y";
+
+S := GradedRing( RR );
 
 n := Length( Indeterminates( S ) ) - param - 1;
 
@@ -22,20 +24,17 @@ A := KoszulDualRing( S, "e,f" );
 
 A!.ByASmallerPresentation := true;
 
-SetWeightsOfIndeterminates( A, weights );
-
 ##
 m := HomalgMatrix( "[\
 -a*x,  0, \
    y,  0, \
   -x,  y, \
    0, -x  \
-]", 4, 2, S ); ##
+]", 4, 2, S );
 
-##
-degrees := ListWithIdenticalEntries( NrRows( m ), 0 );
+LoadPackage( "GradedModules" );
 
-M := RightPresentationWithDegrees( m, degrees );
+M := RightPresentationWithDegrees( m );
 
 phi := RelativeRepresentationMapOfKoszulId( M );
 
@@ -44,6 +43,6 @@ N := Kernel( phi );
 fN := Resolution( 3, N );
 
 ##
-sfN := A^(2+1) * Shift( fN, 2 );
+sfN := A^(-2-1) * Shift( fN, 2 );
 
 Rpi := DegreeZeroSubcomplex( sfN, R );

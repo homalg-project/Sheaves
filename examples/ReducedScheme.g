@@ -1,8 +1,8 @@
 LoadPackage( "Sheaves" );
 
-R := HomalgFieldOfRationalsInSingular( ) * "x";
+R := GradedRing( HomalgFieldOfRationalsInSingular( ) * "x,y" );
 
-S := Scheme( GradedLeftSubmodule( "x^3*(x-1)^2", R ) );
+S := Scheme( GradedLeftSubmodule( "x^3*(x-y)^2", R ) );
 
 irrS := IrreducibleComponents( S );
 
