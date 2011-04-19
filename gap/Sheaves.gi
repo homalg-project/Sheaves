@@ -258,6 +258,123 @@ InstallMethod( UnderlyingGradedModule,
 end );
 
 ##
+InstallMethod( HasCurrentResolution,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep ],
+
+  function( F )
+    local M, p;
+    
+    M := UnderlyingGradedModule( F );
+    
+    p := PositionOfTheDefaultPresentation( M );
+    
+    return 
+        HasCurrentResolution( M ) and 
+        IsBound( F!.Resolutions ) and
+        IsBound( F!.Resolutions!.(p) ) and 
+        IsIdenticalObj( Cokernel( LowestDegreeMorphism( F!.Resolutions!.(p) ) ), M );
+
+end );
+
+##
+InstallMethod( SetCurrentResolution,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep, IsHomalgComplex ],
+
+  function( F, sheaf_res )
+
+    if not IsBound( F!.Resolutions ) then
+        F!.Resolutions := rec( );
+    fi;
+    
+    F!.Resolutions!.(PositionOfTheDefaultPresentation( UnderlyingGradedModule( F ) ) ) := sheaf_res;
+
+end );
+
+##
+InstallMethod( CurrentResolution,
+        "for sheaves of modules on proj",
+        [ IsInt, IsCoherentSheafOnProjRep ],
+        
+  function( q, F )
+  local res, degrees, deg, len, CEpi, d_j, F_j, sheaf_res, j;
+    
+    res := Resolution( q, UnderlyingGradedModule( F ) );
+    degrees := ObjectDegreesOfComplex( res );
+    len := Length( degrees );
+    
+    if HasCurrentResolution( F ) then
+        sheaf_res := CurrentResolution( F );
+        deg := ObjectDegreesOfComplex( sheaf_res );
+        j := Length( deg );
+        j := deg[j];
+        d_j := CertainMorphism( sheaf_res, j );
+    else
+        j := res!.degrees[2];
+        CEpi := SheafMorphism( CokernelEpi( res!.(j) ), "create", F );
+        d_j := SheafMorphism( res!.(j), "create", Source( CEpi ) );
+        SetCokernelEpi( d_j, CEpi );
+        sheaf_res := HomalgComplex( d_j );
+        SetCurrentResolution( F, sheaf_res ); #we possibly overwrite the CurrentResolution of the module which is not build from global sections
+    fi;
+
+    F_j := Source( d_j );
+    
+    if len >= j+2 then
+        for j in [ res!.degrees[j+2] .. res!.degrees[len] ] do
+#             if IsIdenticalObj( F_j, 0 * S ) or IsIdenticalObj( F_j, S * 0 ) then
+#                 # take care not to create the graded zero morphism between distinguished zero modules again each step
+#                 d_j := TheZeroMorphism( F_j, F_j );
+#                 Add( sheaf_res, d_j );
+#                 # no need for resetting F_j, since all other modules will be zero, too
+#             else
+                d_j := SheafMorphism( res!.(j), "create", F_j );
+                Add( sheaf_res, d_j );
+                F_j := Source( d_j );
+#             fi;
+        od;
+    fi;
+
+    if HasIsAcyclic( res ) and IsAcyclic( res ) then
+        SetIsAcyclic( sheaf_res, true );
+    fi;
+    if HasIsRightAcyclic( res ) and HasIsRightAcyclic( res ) then
+        SetIsRightAcyclic( sheaf_res, true );
+    fi;
+    
+    if IsBound( res!.LengthOfResolution ) then
+        sheaf_res!.LengthOfResolution := res!.LengthOfResolution;
+    fi;
+    
+    return sheaf_res;
+    
+end );
+
+##
+InstallMethod( Resolution,
+        "for homalg modules",
+        [ IsInt, IsCoherentSheafOnProjRep ],
+
+  function( _q, F )
+    local q, d, rank;
+
+    if _q < 0 then
+        F!.MaximumNumberOfResolutionSteps := BoundForResolution( F );
+        q := _q;
+    elif _q = 0 then
+        q := 1;         ## this is the minimum
+    else
+        q := _q;
+    fi;
+
+    d := CurrentResolution( q, F );
+
+    return d;
+
+end );
+
+##
 InstallMethod( GlobalSections,
         "for sheaves",
         [ IsSheafOfModules ],

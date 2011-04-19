@@ -53,9 +53,20 @@ DeclareCategory( "IsEndomorphismOfSheavesOfModules",
 
 ##
 DeclareAttribute( "CastelnuovoMumfordRegularity",
-        IsMorphismOfSheavesOfModules  );
+         IsMorphismOfSheavesOfModules );
 
-DeclareAttribute( "UnderlyingMorphism",
+
+##  <#GAPDoc Label="TruncatedModuleOfGlobalSections">
+##  <ManSection>
+##    <Attr Arg="phi" Name="TruncatedModuleOfGlobalSections"/>
+##    <Returns>a morphism of sheaves</Returns>
+##    <Description>
+##      The version of global sections of the sheaf morphism truncated (at zero) <A>phi</A>.
+##   </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "TruncatedModuleOfGlobalSections",
         IsMorphismOfSheavesOfModules );
 
 ####################################
@@ -63,6 +74,9 @@ DeclareAttribute( "UnderlyingMorphism",
 # global functions and operations:
 #
 ####################################
+
+DeclareOperation( "UnderlyingGradedMap",
+                 [ IsMorphismOfSheavesOfModules ] );
 
 DeclareOperation( "NormalizeGradedMorphism",
                  [ IsMorphismOfSheavesOfModules ] );
