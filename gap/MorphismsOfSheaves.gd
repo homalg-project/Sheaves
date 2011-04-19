@@ -86,3 +86,24 @@ DeclareOperation( "SheafMorphism" ,
 
 DeclareOperation( "SheafZeroMorphism" ,
                  [ IsSheafOfModules, IsSheafOfModules ] );
+
+DeclareOperation( "OnALocallyFreeSource",
+                 [ IsMorphismOfSheavesOfModules ] );
+
+DeclareOperation( "SyzygiesGenerators",
+                 [ IsMorphismOfSheavesOfModules ] );
+
+DeclareOperation( "ReducedSyzygiesGenerators",
+                 [ IsMorphismOfSheavesOfModules ] );
+
+DeclareOperation( "MatrixOfMap",
+                 [ IsMorphismOfSheavesOfModules ] );
+
+DeclareOperation( "MatrixOfMap",
+                 [ IsMorphismOfSheavesOfModules, IsInt ] );
+
+DeclareOperation( "MatrixOfMap",
+                 [ IsMorphismOfSheavesOfModules, IsInt, IsInt ] );
+
+DeclareOperation( "MatrixOfMap",
+                 [ IsMorphismOfSheavesOfModules, IsInt, IsInt, IsInt ] );
