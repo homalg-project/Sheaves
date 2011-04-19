@@ -35,5 +35,11 @@ ReadPackage( "Sheaves", "gap/LILIN.gd" );
 ReadPackage( "Sheaves", "gap/LISHV.gd" );
 
 ##
+ReadPackage( "Sheaves", "gap/LISHVMOR.gd" );
+
+##
 ReadPackage( "Sheaves", "gap/LISCM.gd" );
+
+##
+ReadPackage( "Sheaves", "gap/BasicFunctors.gd" );
 

@@ -36,6 +36,9 @@ ReadPackage( "Sheaves", "gap/LILIN.gi" );
 ReadPackage( "Sheaves", "gap/LISHV.gi" );
 
 ##
+ReadPackage( "Sheaves", "gap/LISHVMOR.gi" );
+
+##
 ReadPackage( "Sheaves", "gap/LISCM.gi" );
 
 ##
@@ -43,4 +46,7 @@ ReadPackage( "Sheaves", "gap/UnderlyingMap.gi" );
 
 ##
 ReadPackage( "Sheaves", "gap/UnderlyingModule.gi" );
+
+##
+ReadPackage( "Sheaves", "gap/BasicFunctors.gi" );
 
