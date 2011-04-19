@@ -447,6 +447,67 @@ DeclareOperation( "GlobalSections",
 DeclareOperation( "InducedMorphismToProjectiveSpace",
         [ IsSheafOfModules ] );
 
+DeclareOperation( "SetsOfGenerators",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "SetsOfRelations",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "ListOfPositionsOfKnownSetsOfRelations",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "GeneratorsOfSheaf",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "RelationsOfSheaf",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "BasisOfSheaf",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "MatrixOfGenerators",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "MatrixOfRelations",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "HasNrGenerators",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "NrGenerators",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "HasNrRelations",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "CertainGenerators",
+        [ IsSheafOfModules, IsList ] );
+
+DeclareOperation( "CertainGenerator",
+        [ IsSheafOfModules, IsPosInt ] );
+
+DeclareOperation( "NrRelations",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "DecideZero",
+        [ IsHomalgMatrix, IsSheafOfModules ] );
+
+DeclareOperation( "UnionOfRelations",
+        [ IsHomalgMatrix, IsSheafOfModules ] );
+
+DeclareOperation( "SyzygiesGenerators",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "SyzygiesGenerators",
+        [ IsHomalgMatrix, IsSheafOfModules ] );
+
+DeclareOperation( "ReducedSyzygiesGenerators",
+        [ IsSheafOfModules ] );
+
+DeclareOperation( "ReducedSyzygiesGenerators",
+        [ IsHomalgMatrix, IsSheafOfModules ] );
+
+
 ####################################
 #
 # synonyms:

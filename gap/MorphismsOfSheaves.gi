@@ -156,12 +156,12 @@ InstallMethod( SheafMorphism,
     if HasTruncatedModuleOfGlobalSections( F ) and 
        IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) and 
        not ( HasTruncatedModuleOfGlobalSections( G ) and IsIdenticalObj( UnderlyingGradedModule( G ), Range( phi ) ) ) then
-        Error( "the source of the morphism is a truncated module of global sections, but the range is not" );
+        TruncatedModuleOfGlobalSections( G );
     fi;
     if HasTruncatedModuleOfGlobalSections( G ) and 
        IsIdenticalObj( UnderlyingGradedModule( G ), Range( phi ) ) and 
        not ( HasTruncatedModuleOfGlobalSections( F ) and IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) ) then
-        Error( "the range of the morphism is a truncated module of global sections, but the source is not" );
+        TruncatedModuleOfGlobalSections( F );
     fi;
 
     if IsHomalgLeftObjectOrMorphismOfLeftObjects( phi ) then
