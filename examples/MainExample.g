@@ -16,4 +16,6 @@ LoadPackage( "GradedModules" );
 
 LoadPackage( "Sheaves" );
 
+wmor := SheafMorphism( GradedMap( wmat, "free", "free", "left", S ), "create", "create" );
+
 W := Sheafify( LeftPresentationWithDegrees( wmat ) );
