@@ -52,7 +52,25 @@ DeclareRepresentation( "IsSheafOfRingsOnProjRep",
         IsStructureObjectOrFinitelyPresentedObjectRep,
         [ "graded_ring" ] );
 
-# a new representation for the GAP-category IsSheafOfModules
+# new representations for the GAP-category IsSheafOfModules
+
+##  <#GAPDoc Label="IsCoherentSheafOrSubsheafOnProjRep">
+##  <ManSection>
+##    <Filt Type="Representation" Arg="M" Name="IsCoherentSheafOrSubsheafOnProjRep"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      The &GAP; representation of coherent sheaves. <P/>
+##      (It is a representation of the &GAP; category <Ref Filt="IsSheafOfModules"/>,
+##       which is a subrepresentation of the &GAP; representation
+##      <C>IsStaticFinitelyPresentedObjectRep</C>.)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareRepresentation( "IsCoherentSheafOrSubsheafOnProjRep",
+        IsSheafOfModules and
+        IsStaticFinitelyPresentedObjectOrSubobjectRep,
+        [ ] );
 
 ##  <#GAPDoc Label="IsCoherentSheafOnProjRep">
 ##  <ManSection>
@@ -68,7 +86,7 @@ DeclareRepresentation( "IsSheafOfRingsOnProjRep",
 ##  <#/GAPDoc>
 ##
 DeclareRepresentation( "IsCoherentSheafOnProjRep",
-        IsSheafOfModules and
+        IsCoherentSheafOrSubsheafOnProjRep and
         IsStaticFinitelyPresentedObjectRep,
         [ "GradedModuleModelingTheSheaf" ] );
 
@@ -86,9 +104,9 @@ DeclareRepresentation( "IsCoherentSheafOnProjRep",
 ##  <#/GAPDoc>
 ##
 DeclareRepresentation( "IsCoherentSubsheafOnProjRep",
-        IsSheafOfModules and
+        IsCoherentSheafOrSubsheafOnProjRep and
         IsStaticFinitelyPresentedSubobjectRep,
-        [ "map_having_subobject_as_its_image" ] );
+        [ "GradedModuleModelingTheSheaf", "map_having_subobject_as_its_image" ] );
 
 ####################################
 #
@@ -780,7 +798,7 @@ end );
 ##
 InstallMethod( ViewObj,
         "for coherent sheaves",
-        [ IsCoherentSheafOnProjRep ],
+        [ IsCoherentSheafOrSubsheafOnProjRep ],
         
   function( E )
     local O, S, weights, is_subobject, M, R, left_sheaf, properties, nz;
@@ -789,7 +807,7 @@ InstallMethod( ViewObj,
     
     S := HomalgRing( O );
     
-    is_subobject := IsStaticFinitelyPresentedSubobjectRep( E );
+    is_subobject := IsCoherentSubsheafOnProjRep( E );
     
     if is_subobject then
         M := UnderlyingObject( E );
@@ -993,10 +1011,10 @@ end );
 ##
 InstallMethod( ViewObj,
         "for free sheaves",
-        [ IsCoherentSheafOnProjRep and IsFree ], 1001, ## since we don't use the filter IsHomalgLeftObjectOrMorphismOfLeftObjects it is good to set the ranks high
+        [ IsCoherentSheafOrSubsheafOnProjRep and IsFree ], 1001, ## since we don't use the filter IsHomalgLeftObjectOrMorphismOfLeftObjects it is good to set the ranks high
         
   function( M )
-    local r, rk;
+    local sub, r, rk;
     
     if IsBound( M!.distinguished ) then
         Print( "<The" );
@@ -1004,7 +1022,13 @@ InstallMethod( ViewObj,
         Print( "<A" );
     fi;
     
-    Print( " free sheaf of " );
+    if IsCoherentSubsheafOnProjRep( M ) then
+        sub := "sub";
+    else
+        sub := "";
+    fi;
+    
+    Print( " free ", sub, "sheaf of " );
     
     if IsHomalgLeftObjectOrMorphismOfLeftObjects( M ) then
         Print( "left" );
@@ -1028,9 +1052,10 @@ end );
 ##
 InstallMethod( ViewObj,
         "for zero sheaves",
-        [ IsCoherentSheafOnProjRep and IsZero ], 1001, ## since we don't use the filter IsHomalgLeftObjectOrMorphismOfLeftObjects we need to set the ranks high
+        [ IsCoherentSheafOrSubsheafOnProjRep and IsZero ], 1001, ## since we don't use the filter IsHomalgLeftObjectOrMorphismOfLeftObjects we need to set the ranks high
         
   function( M )
+    local sub;
     
     if IsBound( M!.distinguished ) then
         Print( "<The" );
@@ -1038,7 +1063,13 @@ InstallMethod( ViewObj,
         Print( "<A" );
     fi;
     
-    Print( " zero sheaf of " );
+    if IsCoherentSubsheafOnProjRep( M ) then
+        sub := "sub";
+    else
+        sub := "";
+    fi;
+    
+    Print( " zero ", sub, "sheaf of " );
     
     if IsHomalgLeftObjectOrMorphismOfLeftObjects( M ) then
         Print( "left" );
@@ -1112,12 +1143,18 @@ end );
 
 ##
 InstallMethod( Display,
-        "for sheaves of rings",
-        [ IsCoherentSheafOnProjRep ],
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOrSubsheafOnProjRep ],
         
   function( E )
     
     Display( UnderlyingGradedModule( E ) );
+    
+    if HasTruncatedModuleOfGlobalSections( E ) then
+        Print( "the sheaf modeled is truncated graded module of global sections\n" );
+    else
+        Print( "the sheaf modeled by above graded module\n" );
+    fi;
     
 end );
 

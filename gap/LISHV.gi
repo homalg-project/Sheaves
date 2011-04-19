@@ -396,3 +396,50 @@ InstallMethod( CodegreeOfPurity,
     
 end );
 
+##
+## This can be done faster by just having a look at the (linear strand of the) Tate resolution
+##
+InstallMethod( CastelnuovoMumfordRegularity,
+        "for coherent sheafs on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    
+    return CastelnuovoMumfordRegularity( TruncatedModuleOfGlobalSections( F ) );
+    
+end );
+
+##
+InstallMethod( FullSubobject,
+        "for homalg graded modules",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    local subobject;
+    
+    subobject := ImageSubobject( SheafMorphism( FullSubobject( UnderlyingGradedModule( F ) )!.map_having_subobject_as_its_image, "create",  F) );
+    
+    SetEmbeddingInSuperObject( subobject, TheIdentityMorphism( F ) );
+    
+    return subobject;
+    
+end );
+
+##
+InstallMethod( ZeroSubobject,
+        "for homalg graded modules",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    local alpha, subobject;
+    
+    alpha := ZeroSubobject( UnderlyingGradedModule( F ) )!.map_having_subobject_as_its_image;
+    
+    subobject := UnderlyingSubobject( ImageObject( SheafMorphism( alpha, "create", F ) ) );
+    
+    SetIsZero( subobject, true );
+    SetIsZero( UnderlyingObject( subobject ), true );
+    
+    return subobject;
+    
+end );

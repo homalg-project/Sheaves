@@ -146,10 +146,10 @@ InstallMethod( SheafMorphism,
   function( phi, F, G )
     local type, morphism;
 
-    if not IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) or not IsIdenticalObj( F!.GradedModuleModelingTheSheaf, Source( phi ) ) then
+    if not IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) and not IsIdenticalObj( F!.GradedModuleModelingTheSheaf, Source( phi ) ) then
         Error( "the underlying graded modules for the source and second parameter do not match" );
     fi;
-    if not IsIdenticalObj( UnderlyingGradedModule( G ), Range( phi ) ) or not IsIdenticalObj( G!.GradedModuleModelingTheSheaf, Range( phi ) ) then
+    if not IsIdenticalObj( UnderlyingGradedModule( G ), Range( phi ) ) and not IsIdenticalObj( G!.GradedModuleModelingTheSheaf, Range( phi ) ) then
         Error( "the underlying graded modules for the range and third parameter do not match" );
     fi;
     

@@ -111,3 +111,84 @@ functor_Cokernel_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasic
 
 ##
 InstallFunctor( functor_Cokernel_ForCoherentSheafOnProj );
+
+##
+## ImageObject
+##
+
+InstallGlobalFunction( _Functor_ImageObject_OnCoherentSheafOnProj,  ### defines: ImageObject(Emb)
+  function( phi )
+    local emb, img, coker_epi, img_submodule;
+    
+    if HasImageObjectEmb( phi ) then
+        return Source( ImageObjectEmb( phi ) );
+    fi;
+    
+    emb := SheafMorphism( ImageObjectEmb( UnderlyingGradedMap( phi ) ), "create", Range( phi ) );
+    
+    ## set the attribute ImageObjectEmb (specific for ImageObject):
+    ## (since ImageObjectEmb is listed below as a natural transformation
+    ##  for the functor ImageObject, a method will be automatically installed
+    ##  by InstallFunctor to fetch it by first invoking the main operation ImageObject)
+    SetImageObjectEmb( phi, emb );
+    
+    if HasIsEpimorphism( phi ) and IsEpimorphism( phi ) then
+        SetIsIsomorphism( emb, true );
+    else
+        SetIsMonomorphism( emb, true );
+    fi;
+
+    ## get the image module from its embedding
+    img := Source( emb );
+    
+    #=====# end of the core procedure #=====#
+    
+    ## abelian category: [HS, Prop. II.9.6]
+    if HasCokernelEpi( phi ) then
+        coker_epi := CokernelEpi( phi );
+        SetCokernelEpi( emb, coker_epi );
+        if not HasKernelEmb( coker_epi ) then
+            SetKernelEmb( coker_epi, emb );
+        fi;
+    fi;
+    
+    ## at last define the image submodule
+    img_submodule := ImageSubobject( phi );
+    
+    SetUnderlyingSubobject( img, img_submodule );
+    SetEmbeddingInSuperObject( img_submodule, emb );
+    
+    ## save the natural embedding in the image (thanks GAP):
+    img!.NaturalGeneralizedEmbedding := emb;
+    
+    if HasTruncatedModuleOfGlobalSections( phi ) then
+        SetTruncatedModuleOfGlobalSections( emb, UnderlyingGradedMap( emb ) );
+        SetTruncatedModuleOfGlobalSections( img_submodule, UnderlyingGradedModule( img_submodule ) );
+        SetTruncatedModuleOfGlobalSections( img, UnderlyingGradedModule( img ) );
+    fi;
+    
+    return img;
+    
+end );
+
+##  <#GAPDoc Label="functor_ImageObject:code">
+##      <Listing Type="Code"><![CDATA[
+InstallValue( functor_ImageObject_ForCoherentSheafOnProj,
+        CreateHomalgFunctor(
+                [ "name", "ImageObject" ],
+                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "operation", "ImageObject" ],
+                [ "natural_transformation", "ImageObjectEmb" ],
+                [ "number_of_arguments", 1 ],
+                [ "1", [ [ "covariant" ],
+                        [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
+                [ "OnObjects", _Functor_ImageObject_OnCoherentSheafOnProj ]
+                )
+        );
+##  ]]></Listing>
+##  <#/GAPDoc>
+
+functor_ImageObject_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=
+  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+
+InstallFunctorOnObjects( functor_ImageObject_ForCoherentSheafOnProj );

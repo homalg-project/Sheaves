@@ -18,6 +18,9 @@ ReadPackage( "Sheaves", "gap/Sheaves.gi" );
 ReadPackage( "Sheaves", "gap/MorphismsOfSheaves.gi" );
 
 ##
+ReadPackage( "Sheaves", "gap/Subsheaves.gi" );
+
+##
 ReadPackage( "Sheaves", "gap/Schemes.gi" );
 
 ##
