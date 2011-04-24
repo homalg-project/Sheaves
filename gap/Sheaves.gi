@@ -535,7 +535,7 @@ end );
 ##
 InstallMethod( LeftSheaf,
         "constructor",
-        [ IsHomalgHomogeneousMatrixRep, IsList ],
+        [ IsHomalgMatrixOverGradedRingRep, IsList ],
         
   function( mat, weights )
     
@@ -557,7 +557,7 @@ end );
 ##
 InstallMethod( LeftSheaf,
         "constructor",
-        [ IsHomalgHomogeneousMatrixRep, IsInt ],
+        [ IsHomalgMatrixOverGradedRingRep, IsInt ],
         
   function( mat, weight )
     
@@ -579,7 +579,7 @@ end );
 ##
 InstallMethod( LeftSheaf,
         "constructor",
-        [ IsHomalgHomogeneousMatrixRep ],
+        [ IsHomalgMatrixOverGradedRingRep ],
         
   function( mat )
     
@@ -604,7 +604,7 @@ end );
 ##
 InstallMethod( RightSheaf,
         "constructor",
-        [ IsHomalgHomogeneousMatrixRep, IsList ],
+        [ IsHomalgMatrixOverGradedRingRep, IsList ],
         
   function( mat, weights )
     local M;
@@ -627,7 +627,7 @@ end );
 ##
 InstallMethod( RightSheaf,
         "constructor",
-        [ IsHomalgHomogeneousMatrixRep, IsInt ],
+        [ IsHomalgMatrixOverGradedRingRep, IsInt ],
         
   function( mat, weight )
     
@@ -649,7 +649,7 @@ end );
 ##
 InstallMethod( RightSheaf,
         "constructor",
-        [ IsHomalgHomogeneousMatrixRep ],
+        [ IsHomalgMatrixOverGradedRingRep ],
         
   function( mat )
     
