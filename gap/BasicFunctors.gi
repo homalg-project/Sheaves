@@ -26,35 +26,29 @@ InstallGlobalFunction( _Functor_Cokernel_OnCoherentSheafOnProj, ### defines: Cok
       return Range( CokernelEpi( phi ) );
     fi;
     
-    psi := TruncatedModuleOfGlobalSections( phi );
+    psi := UnderlyingGradedMap( phi );
     
     coker_psi := Cokernel( psi );
+
+    ## the generalized inverse of the natural epimorphism
+    ## (cf. [Bar, Cor. 4.8])
+    gen_iso := GeneralizedMorphism(
+        SheafMorphism( GeneralizedInverse( CokernelEpi( psi ) ), "create", Range( phi ) ),
+        phi );
     
-    nat := NaturalMapToModuleOfGlobalSections( coker_psi );
-    Assert( 1, IsMonomorphism( nat ) );
-    SetIsMonomorphism( nat, true );
+    coker := Source( gen_iso );
     
-    epi := SheafMorphism( PreCompose( CokernelEpi( psi ), nat ), Range( phi ), "create" );
+    ## we cannot check this assertion, since
+    ## checking it would cause an infinite loop
+    SetIsGeneralizedIsomorphism( gen_iso, true );
+    
+    epi := SheafMorphism( CokernelEpi( psi ), Range( phi ), coker );
     
     ## set the attribute CokernelEpi (specific for Cokernel):
     SetCokernelEpi( phi, epi );
     
-    coker := Range( epi );
-
-#     todo:
-#     ## the generalized inverse of the natural epimorphism
-#     ## (cf. [Bar, Cor. 4.8])
-#     gen_iso := SheafMorphism( GeneralizedInverse( CokernelEpi( psi ) ), coker, Range( phi ) );
-#     
-#     ## set the morphism aid map
-#     SetMorphismAid( gen_iso, phi );
-#     
-#     ## set the generalized inverse of the natural epimorphism
-#     SetGeneralizedInverse( epi, gen_iso );
-#     
-#     ## we cannot check this assertion, since
-#     ## checking it would cause an infinite loop
-#     SetIsGeneralizedIsomorphism( gen_iso, true );
+    ## set the generalized inverse of the natural epimorphism
+    SetGeneralizedInverse( epi, gen_iso );
     
     #=====# end of the core procedure #=====#
     
@@ -69,19 +63,19 @@ InstallGlobalFunction( _Functor_Cokernel_OnCoherentSheafOnProj, ### defines: Cok
         SetKernelEmb( epi, phi );
     fi;
     
-#     todo
-#     ## this is in general NOT a morphism,
-#     ## BUT it is one modulo the image of phi in T, and then even a monomorphism:
-#     ## this is enough for us since we will always view it this way (cf. [BR08, 3.1.1,(2), 3.1.2] )
-#     emb := SheafMorphism( NaturalGeneralizedEmbedding( TruncatedModuleOfGlobalSections( coker ) ), coker, Range( phi ) );
-#     SetMorphismAid( emb, phi );
-#     
-#     ## we cannot check this assertion, since
-#     ## checking it would cause an infinite loop
-#     SetIsGeneralizedIsomorphism( emb, true );
-#     
-#     ## save the natural embedding in the cokernel (thanks GAP):
-#     coker!.NaturalGeneralizedEmbedding := emb;
+    ## this is in general NOT a morphism,
+    ## BUT it is one modulo the image of phi in T, and then even a monomorphism:
+    ## this is enough for us since we will always view it this way (cf. [BR08, 3.1.1,(2), 3.1.2] )
+    emb := GeneralizedMorphism(
+        SheafMorphism( NaturalGeneralizedEmbedding( coker_psi ), coker, Range( phi ) ),
+        phi );
+    
+    ## we cannot check this assertion, since
+    ## checking it would cause an infinite loop
+    SetIsGeneralizedIsomorphism( emb, true );
+    
+    ## save the natural embedding in the cokernel (thanks GAP):
+    coker!.NaturalGeneralizedEmbedding := emb;
     
     return coker;
     

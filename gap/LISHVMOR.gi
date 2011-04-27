@@ -62,6 +62,8 @@ InstallMethod( TruncatedModuleOfGlobalSections,
   function( phi )
     local psi;
     
+    Assert( 0, not HasMorphismAid( phi ) );
+    
     psi := phi!.GradedModuleMapModelingTheSheaf;
     
     return ModuleOfGlobalSections( psi );
@@ -99,6 +101,17 @@ InstallMethod( IsAutomorphism,
         
   function( phi )
     
-    return IsAutomorphism( UnderlyingGradedMap( phi ) ) and IsEndomorphismOfSheavesOfModules( phi );
+    return IsAutomorphism( TruncatedModuleOfGlobalSections( phi ) ) and IsEndomorphismOfSheavesOfModules( phi );
+    
+end );
+
+##
+InstallMethod( IsZero,
+        "for coherent sheaves on proj morphism",
+        [ IsMorphismOfCoherentSheavesOnProjRep ],
+        
+  function( phi )
+    
+    return IsZero( TruncatedModuleOfGlobalSections( phi ) );
     
 end );

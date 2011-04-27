@@ -17,6 +17,9 @@ ReadPackage( "Sheaves", "gap/Sheaves.gd" );
 ReadPackage( "Sheaves", "gap/MorphismsOfSheaves.gd" );
 
 ##
+ReadPackage( "Sheaves", "gap/GeneralizedSheafMorphisms.gd" );
+
+##
 ReadPackage( "Sheaves", "gap/Subsheaves.gd" );
 
 ##
