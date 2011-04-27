@@ -46,3 +46,10 @@ ReadPackage( "Sheaves", "gap/LISCM.gd" );
 ##
 ReadPackage( "Sheaves", "gap/BasicFunctors.gd" );
 
+##
+ReadPackage( "Sheaves", "gap/ToolFunctors.gd" );
+
+##
+ReadPackage( "Sheaves", "gap/OtherFunctors.gd" );
+
+

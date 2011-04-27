@@ -53,3 +53,9 @@ ReadPackage( "Sheaves", "gap/UnderlyingModule.gi" );
 ##
 ReadPackage( "Sheaves", "gap/BasicFunctors.gi" );
 
+##
+ReadPackage( "Sheaves", "gap/ToolFunctors.gi" );
+
+##
+ReadPackage( "Sheaves", "gap/OtherFunctors.gi" );
+

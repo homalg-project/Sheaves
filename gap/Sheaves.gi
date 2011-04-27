@@ -143,6 +143,26 @@ BindGlobal( "TheTypeHomalgRightCoherentSheaf",
 ####################################
 
 ##
+InstallMethod( CheckIfTheyLieInTheSameCategory,
+        "for two (sub)sheaves of modules on proj",
+        [ IsCoherentSheafOrSubsheafOnProjRep, IsCoherentSheafOrSubsheafOnProjRep ],
+        
+  function( F, G )
+    
+    if AssertionLevel( ) >= HOMALG.AssertionLevel_CheckIfTheyLieInTheSameCategory then
+        if not IsIdenticalObj( HomalgRing( UnderlyingGradedModule( F ) ), HomalgRing( UnderlyingGradedModule( G ) ) ) then
+            Error( "the rings of the two underlying (sub)modules are not identical\n" );
+        elif not ( ( IsHomalgLeftObjectOrMorphismOfLeftObjects( F ) and
+                IsHomalgLeftObjectOrMorphismOfLeftObjects( G ) ) or
+                ( IsHomalgRightObjectOrMorphismOfRightObjects( F ) and
+                  IsHomalgRightObjectOrMorphismOfRightObjects( G ) ) ) then
+            Error( "the two (sub)sheaves must either be both left or both right (sub)sheaves\n" );
+        fi;
+    fi;
+    
+end );
+
+##
 InstallMethod( StructureSheafOfAmbientSpace,
         "for sheaves",
         [ IsSheafOfModules and IsHomalgLeftObjectOrMorphismOfLeftObjects ],

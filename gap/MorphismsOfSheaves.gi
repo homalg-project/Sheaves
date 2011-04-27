@@ -75,6 +75,95 @@ BindGlobal( "TheTypeEndomorphismOfCoherentRightSheavesOnProj",
 ####################################
 
 ##
+InstallMethod( CheckIfTheyLieInTheSameCategory,
+        "for two (sub)sheaves of modules on proj",
+        [ IsCoherentSheafOrSubsheafOnProjRep, IsMorphismOfCoherentSheavesOnProjRep ],
+        
+  function( F, psi )
+    
+    if AssertionLevel( ) >= HOMALG.AssertionLevel_CheckIfTheyLieInTheSameCategory then
+        if not IsIdenticalObj( HomalgRing( UnderlyingGradedModule( F ) ), HomalgRing( UnderlyingGradedMap( psi ) ) ) then
+            Error( "the rings of the underlying graded (sub)module and map of graded modules are not identical\n" );
+        elif not ( ( IsHomalgLeftObjectOrMorphismOfLeftObjects( F ) and
+                IsHomalgLeftObjectOrMorphismOfLeftObjects( psi ) ) or
+                ( IsHomalgRightObjectOrMorphismOfRightObjects( F ) and
+                  IsHomalgRightObjectOrMorphismOfRightObjects( psi ) ) ) then
+            Error( "the (sub)sheaf and morphism of sheaves must either be both in the category of left or right sheaves\n" );
+        fi;
+    fi;
+    
+end );
+
+##
+InstallMethod( CheckIfTheyLieInTheSameCategory,
+        "for two (sub)sheaves of modules on proj",
+        [ IsMorphismOfCoherentSheavesOnProjRep, IsCoherentSheafOrSubsheafOnProjRep ],
+        
+  function( phi, G )
+    
+    if AssertionLevel( ) >= HOMALG.AssertionLevel_CheckIfTheyLieInTheSameCategory then
+        if not IsIdenticalObj( HomalgRing( UnderlyingGradedMap( phi ) ), HomalgRing( UnderlyingGradedModule( G ) ) ) then
+            Error( "the rings of the underlying graded (sub)module and map of graded modules are not identical\n" );
+        elif not ( ( IsHomalgLeftObjectOrMorphismOfLeftObjects( G ) and
+                IsHomalgLeftObjectOrMorphismOfLeftObjects( phi ) ) or
+                ( IsHomalgRightObjectOrMorphismOfRightObjects( G ) and
+                  IsHomalgRightObjectOrMorphismOfRightObjects( phi ) ) ) then
+            Error( "the (sub)sheaf and morphism of sheaves must either be both in the category of left or right sheaves\n" );
+        fi;
+    fi;
+    
+end );
+
+##
+InstallMethod( CheckIfTheyLieInTheSameCategory,
+        "for two (sub)sheaves of modules on proj",
+        [ IsMorphismOfCoherentSheavesOnProjRep, IsMorphismOfCoherentSheavesOnProjRep ],
+        
+  function( phi, psi )
+    
+    if AssertionLevel( ) >= HOMALG.AssertionLevel_CheckIfTheyLieInTheSameCategory then
+        if not IsIdenticalObj( HomalgRing( UnderlyingGradedMap( phi ) ), HomalgRing( UnderlyingGradedMap( psi ) ) ) then
+            Error( "the rings of the underlying maps of graded modules are not identical\n" );
+        elif not ( ( IsHomalgLeftObjectOrMorphismOfLeftObjects( psi ) and
+                IsHomalgLeftObjectOrMorphismOfLeftObjects( phi ) ) or
+                ( IsHomalgRightObjectOrMorphismOfRightObjects( psi ) and
+                  IsHomalgRightObjectOrMorphismOfRightObjects( phi ) ) ) then
+            Error( "the morphisms of sheaves must either be both in the category of left or right sheaves\n" );
+        fi;
+    fi;
+    
+end );
+
+##
+InstallMethod( homalgResetFilters,
+        "for homalg maps",
+        [ IsMorphismOfCoherentSheavesOnProjRep ],
+        
+  function( cm )
+    local property;
+    
+    if not IsBound( HOMALG.PropertiesOfMaps ) then
+        HOMALG.PropertiesOfMaps :=
+          [ IsZero,
+            IsMorphism,
+            IsGeneralizedMorphism,
+            IsSplitMonomorphism,
+            IsMonomorphism,
+            IsGeneralizedMonomorphism,
+            IsSplitEpimorphism,
+            IsEpimorphism,
+            IsGeneralizedEpimorphism,
+            IsIsomorphism,
+            IsGeneralizedIsomorphism ];
+    fi;
+    
+    for property in HOMALG.PropertiesOfMaps do
+        ResetFilterObj( cm, property );
+    od;
+    
+end );
+
+##
 InstallMethod( UnderlyingGradedMap,
         "for sheaves",
         [ IsMorphismOfCoherentSheavesOnProjRep ],
