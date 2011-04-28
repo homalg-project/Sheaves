@@ -143,6 +143,25 @@ BindGlobal( "TheTypeHomalgRightCoherentSheaf",
 ####################################
 
 ##
+InstallMethod( PartOfPresentationRelevantForOutputOfFunctors,
+        "for homalg modules",
+        [ IsCoherentSheafOnProjRep, IsList ],
+        
+  function( F, l )
+    
+    if not ( Length( l ) = 2 and l[1] in [ 0, 1 ] and IsPosInt( l[2] ) ) then
+        Error( "unknown presentation" );
+    fi;
+    
+    if l[1] = 0 then
+        return F!.GradedModuleModelingTheSheaf;
+    else
+        return TruncatedModuleOfGlobalSections( F );
+    fi;
+    
+end );
+
+##
 InstallMethod( PresentationMorphism,
         "for sheaves of modules on proj",
         [ IsCoherentSheafOnProjRep ],
