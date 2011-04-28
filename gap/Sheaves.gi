@@ -143,6 +143,43 @@ BindGlobal( "TheTypeHomalgRightCoherentSheaf",
 ####################################
 
 ##
+InstallMethod( PresentationMorphism,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    
+    return SheafMorphism( PresentationMorphism( UnderlyingGradedModule( F ) ), "create", "create" );
+    
+end );
+
+##
+InstallMethod( SyzygiesObjectEpi,
+        "for sheaves of modules on proj",
+        [ IsInt, IsCoherentSheafOnProjRep ],
+        
+  function( q, M )
+    local d, mu, epi, mat;
+    
+    if q < 0 then
+        Error( "a negative integer does not make sense\n" );
+    elif q = 0 then
+        return CokernelEpi( FirstMorphismOfResolution( M ) );
+    fi;
+    
+    d := Resolution( q, M );
+    
+    mu := SyzygiesObjectEmb( q, M );
+    
+    epi := CertainMorphism( d, q ) / mu;  ## lift
+    
+    SetIsEpimorphism( epi, true );
+    
+    return epi;
+    
+end );
+
+##
 InstallMethod( CheckIfTheyLieInTheSameCategory,
         "for two (sub)sheaves of modules on proj",
         [ IsCoherentSheafOrSubsheafOnProjRep, IsCoherentSheafOrSubsheafOnProjRep ],

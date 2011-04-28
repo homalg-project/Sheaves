@@ -294,6 +294,26 @@ end );
 ####################################
 
 ##
+InstallMethod( TorsionSubobject,
+        "for sheaves",
+        [ IsSheafOfModules ],
+        
+  function( F )
+    local par, emb, tor;
+    
+    if HasIsTorsion( F ) and IsTorsion( F ) then
+        return FullSubobject( F );
+    fi;
+    
+    tor := ImageSubobject( KernelEmb( NatTrIdToHomHom_R( F ) ) );
+    
+    SetIsTorsion( tor, true );
+    
+    return tor;
+    
+end );
+
+##
 InstallMethod( TruncatedModuleOfGlobalSections,
         "for sheaves",
         [ IsSheafOfModules ],

@@ -186,3 +186,212 @@ functor_ImageObject_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBa
   ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
 
 InstallFunctorOnObjects( functor_ImageObject_ForCoherentSheafOnProj );
+
+
+##
+## SheafHom
+##
+
+InstallGlobalFunction( _Functor_SheafHom_OnCoherentSheafOnProj,    ### defines: SheafHom (object part)
+  function( F, G )
+    local hom, emb, HP0N;
+    
+    CheckIfTheyLieInTheSameCategory( F, G );
+    
+    hom := GradedHom( UnderlyingGradedModule( F ), UnderlyingGradedModule( G ) );
+    emb := NaturalGeneralizedEmbedding( hom );
+    
+    HP0N := Proj( Range( emb ) );
+    
+    emb := SheafMorphism( emb, "create", HP0N );
+    hom := Source( emb );
+    
+    hom!.NaturalGeneralizedEmbedding := emb;
+    
+    if HasTruncatedModuleOfGlobalSections( F ) and HasTruncatedModuleOfGlobalSections( G ) then
+        TruncatedModuleOfGlobalSections( hom, UnderlyingGradedModule( hom ) );
+    fi;
+    
+    return hom;
+    
+end );
+
+##
+InstallGlobalFunction( _Functor_SheafHom_OnMorphismsOfCoherentSheafOnProj,     ### defines: SheafHom (morphism part)
+  function( F_source, F_target, arg_before_pos, phi, arg_behind_pos )
+
+    if arg_before_pos = [ ] and Length( arg_behind_pos ) = 1 then
+        
+        return SheafMorphism( GradedHom( UnderlyingGradedMap( phi ), UnderlyingGradedModule( arg_behind_pos[1] ) ), F_source, F_target );
+        
+    elif Length( arg_before_pos ) = 1 and arg_behind_pos = [ ] then
+        
+        return SheafMorphism( GradedHom( UnderlyingGradedModule( arg_before_pos[1] ), UnderlyingGradedMap( phi ) ), F_source, F_target );
+        
+    else
+        Error( "wrong input\n" );
+    fi;
+     
+end );
+
+##  <#GAPDoc Label="Functor_Hom:code">
+##      <Listing Type="Code"><![CDATA[
+InstallValue( Functor_SheafHom_ForCoherentSheafOnProj,
+        CreateHomalgFunctor(
+                [ "name", "SheafHom" ],
+                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "operation", "SheafHom" ],
+                [ "number_of_arguments", 2 ],
+                [ "1", [ [ "contravariant", "right adjoint", "distinguished" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                [ "2", [ [ "covariant", "left exact" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                [ "OnObjects", _Functor_SheafHom_OnCoherentSheafOnProj ],
+                [ "OnMorphisms", _Functor_SheafHom_OnMorphismsOfCoherentSheafOnProj ],
+                [ "MorphismConstructor", HOMALG_SHEAVES_PROJ.category.MorphismConstructor ]
+                )
+        );
+##  ]]></Listing>
+##  <#/GAPDoc>
+
+Functor_SheafHom_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
+  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+
+Functor_SheafHom_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=
+  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+
+InstallFunctor( Functor_SheafHom_ForCoherentSheafOnProj );
+
+InstallMethod( SheafHom, 
+        "for a sheaf of modules and a sheaf of rings over proj",
+        [ IsSheafOfModules, IsSheafOfRings ],
+  function( F, O )
+    
+    if IsHomalgLeftObjectOrMorphismOfLeftObjects( F ) then
+        return SheafHom( F, AsLeftObject( O ) );
+    else
+        return SheafHom( F, AsRightObject( O ) );
+    fi;
+    
+end );
+
+InstallMethod( SheafHom, 
+        "for a sheaf of rings and a sheaf of modules over proj",
+        [ IsSheafOfRings, IsSheafOfModules ],
+  function( O, F )
+    
+    if IsHomalgLeftObjectOrMorphismOfLeftObjects( F ) then
+        return SheafHom( F, AsLeftObject( O ) );
+    else
+        return SheafHom( F, AsRightObject( O ) );
+    fi;
+    
+end );
+
+##
+InstallMethod( NatTrIdToHomHom_R,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    local HHF, nat, epsilon;
+    
+    HHF := SheafHom( SheafHom( F ) );
+    
+    nat := NatTrIdToHomHom_R( UnderlyingGradedModule( F ) );
+    
+    epsilon := SheafMorphism( nat, F, HHF );
+    
+    SetPropertiesIfKernelIsTorsionObject( epsilon );
+    
+    return epsilon;
+    
+end );
+
+##
+InstallMethod( LeftDualizingFunctor,
+        "for homalg graded rings",
+        [ IsSheafOfRings, IsString ],
+        
+  function( O, name )
+    
+    Error( "left\n" );
+    
+    return InsertObjectInMultiFunctor( Functor_SheafHom_ForCoherentSheafOnProj, 2, AsLeftObject( O ), name );
+    
+end );
+
+##
+InstallMethod( LeftDualizingFunctor,
+        "for homalg graded rings",
+        [ IsSheafOfRings ],
+        
+  function( O )
+    
+    if not IsBound( O!.Functor_R_Hom ) then
+        
+        if not IsBound( HomalgRing( O )!.creation_number ) then
+            Error( "the corresponding homalg ring does not have a creation number" );
+        fi;
+        
+        O!.Functor_R_Hom := LeftDualizingFunctor( O, Concatenation( "Sheaf_O", String( HomalgRing( O )!.creation_number ), "_SheafHom" ) );
+    fi;
+    
+    return S!.Functor_R_Hom;
+    
+end );
+
+##
+InstallMethod( RightDualizingFunctor,
+        "for homalg graded rings",
+        [ IsSheafOfRings, IsString ],
+        
+  function( O, name )
+    
+    Error( "right\n" );
+    
+    return InsertObjectInMultiFunctor( Functor_SheafHom_ForCoherentSheafOnProj, 2, AsRightObject( O ), name );
+    
+end );
+
+##
+InstallMethod( RightDualizingFunctor,
+        "for homalg graded rings",
+        [ IsSheafOfRings ],
+        
+  function( O )
+    local cn;
+    
+    if not IsBound( O!.Functor_Hom_R ) then
+        
+        if not IsBound( HomalgRing( O )!.creation_number ) then
+            Error( "the corresponding homalg ring does not have a creation number" );
+        fi;
+        
+        O!.Functor_Hom_R := RightDualizingFunctor( O, Concatenation( "Sheaf_SheafHom_O", String( HomalgRing( O )!.creation_number ) ) );
+    fi;
+    
+    return O!.Functor_Hom_R;
+    
+end );
+
+##
+InstallMethod( Dualize,
+        "for (sub)sheaves of modules on proj",
+        [ IsCoherentSheafOrSubsheafOnProjRep ],
+        
+  SheafHom );
+
+##
+InstallMethod( Dualize,
+        "for morphisms of sheaves of modules on proj",
+        [ IsMorphismOfCoherentSheavesOnProjRep ],
+        
+  SheafHom );
+
+RightDerivedCofunctor( Functor_SheafHom_ForCoherentSheafOnProj );
+
+##
+## SheafExt
+##
+
+##
+RightSatelliteOfCofunctor( Functor_SheafHom_ForCoherentSheafOnProj, "SheafExt" );
