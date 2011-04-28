@@ -209,7 +209,7 @@ InstallGlobalFunction( _Functor_SheafHom_OnCoherentSheafOnProj,    ### defines: 
     hom!.NaturalGeneralizedEmbedding := emb;
     
     if HasTruncatedModuleOfGlobalSections( F ) and HasTruncatedModuleOfGlobalSections( G ) then
-        TruncatedModuleOfGlobalSections( hom, UnderlyingGradedModule( hom ) );
+        SetTruncatedModuleOfGlobalSections( hom, UnderlyingGradedModule( hom ) );
     fi;
     
     return hom;
@@ -313,8 +313,6 @@ InstallMethod( LeftDualizingFunctor,
         
   function( O, name )
     
-    Error( "left\n" );
-    
     return InsertObjectInMultiFunctor( Functor_SheafHom_ForCoherentSheafOnProj, 2, AsLeftObject( O ), name );
     
 end );
@@ -335,7 +333,7 @@ InstallMethod( LeftDualizingFunctor,
         O!.Functor_R_Hom := LeftDualizingFunctor( O, Concatenation( "Sheaf_O", String( HomalgRing( O )!.creation_number ), "_SheafHom" ) );
     fi;
     
-    return S!.Functor_R_Hom;
+    return O!.Functor_R_Hom;
     
 end );
 
@@ -345,8 +343,6 @@ InstallMethod( RightDualizingFunctor,
         [ IsSheafOfRings, IsString ],
         
   function( O, name )
-    
-    Error( "right\n" );
     
     return InsertObjectInMultiFunctor( Functor_SheafHom_ForCoherentSheafOnProj, 2, AsRightObject( O ), name );
     

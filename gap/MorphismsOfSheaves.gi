@@ -232,9 +232,22 @@ end );
 InstallMethod( SheafMorphism,
         "For graded morphisms",
         [ IsHomalgGradedMap, IsCoherentSheafOnProjRep, IsCoherentSheafOnProjRep ],
-  function( phi, F, G )
-    local type, morphism;
-
+  function( psi, F, G )
+    local phi, type, morphism;
+    
+    phi := psi;
+    if HasTruncatedModuleOfGlobalSections( F ) and ( not HasIsModuleOfGlobalSections( Source( phi ) ) or not ( IsModuleOfGlobalSections( Source( phi ) ) ) ) or
+       HasTruncatedModuleOfGlobalSections( G ) and ( not HasIsModuleOfGlobalSections( Range( phi ) ) or not ( IsModuleOfGlobalSections( Range( phi ) ) ) ) then
+        phi := TruncatedModuleOfGlobalSections( psi );
+    fi;
+    
+    if HasIsModuleOfGlobalSections( Source( phi ) ) and IsModuleOfGlobalSections( Source( phi ) ) and not HasTruncatedModuleOfGlobalSections( F ) then
+        TruncatedModuleOfGlobalSections( F );
+    fi;
+    if HasIsModuleOfGlobalSections( Range( phi ) ) and IsModuleOfGlobalSections( Range( phi ) ) and not HasTruncatedModuleOfGlobalSections( G ) then
+        TruncatedModuleOfGlobalSections( F );
+    fi;
+    
     if not IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) and not IsIdenticalObj( F!.GradedModuleModelingTheSheaf, Source( phi ) ) then
         Error( "the underlying graded modules for the source and second parameter do not match" );
     fi;
