@@ -491,40 +491,6 @@ InstallMethod( Resolution,
 end );
 
 ##
-InstallMethod( GlobalSections,
-        "for sheaves",
-        [ IsSheafOfModules ],
-        
-  function( E )
-    local M, p, Gamma;
-    
-    M := UnderlyingGradedModule( E );
-    
-    p := PositionOfTheDefaultSetOfGenerators( M );
-    
-    ## the caching
-    if IsBound( E!.GlobalSections ) then
-        Gamma := E!.GlobalSections;
-        if IsIdenticalObj( M, Gamma[1] ) and p = Gamma[2] then
-            return Gamma[3];
-        fi;
-    fi;
-    
-    Assert( 1, 0 >= CastelnuovoMumfordRegularity( M ) );
-    
-    Gamma := HomogeneousPartOverCoefficientsRing( 0, M );
-    
-    ## save the global sections with context
-    E!.GlobalSections := [ M, p, Gamma ];
-    
-    ## and save the sheaf in the global sections module (thanks GAP)
-    Gamma!.GlobalSectionsOfTheSheaf := E;
-    
-    return Gamma;
-    
-end );
-
-##
 InstallMethod( InducedMorphismToProjectiveSpace,
         "for sheaves",
         [ IsSheafOfModules ],
