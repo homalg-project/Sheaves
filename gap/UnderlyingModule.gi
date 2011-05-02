@@ -278,8 +278,10 @@ InstallMethod( IsZero,
         [ IsCoherentSheafOrSubsheafOnProjRep ],
         
   function( F )
+    local M;
     
-    return IsZero( TruncatedModuleOfGlobalSections( F ) );
+    M := UnderlyingGradedModule( F );
+    return IsZero( HomogeneousPartOverCoefficientsRing( CastelnuovoMumfordRegularity( M ) + 1, M ) );
     
 end );
 
