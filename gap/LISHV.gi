@@ -321,9 +321,9 @@ InstallMethod( TruncatedModuleOfGlobalSections,
   function( E )
     local M;
     
-    M := E!.GradedModuleModelingTheSheaf;
+    M := UnderlyingGradedModule( E );
     
-    return StandardModule( M );
+    return ModuleOfGlobalSections( M );
     
 end );
 

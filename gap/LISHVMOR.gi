@@ -60,13 +60,15 @@ InstallMethod( TruncatedModuleOfGlobalSections,
         [ IsMorphismOfCoherentSheavesOnProjRep ],
         
   function( phi )
-    local psi;
+    local psi, result;
     
     Assert( 0, not HasMorphismAid( phi ) );
     
-    psi := phi!.GradedModuleMapModelingTheSheaf;
+    psi := UnderlyingGradedMap( phi );
     
-    return ModuleOfGlobalSections( psi );
+    result := ModuleOfGlobalSections( psi );
+    
+    return result;
     
 end );
 
