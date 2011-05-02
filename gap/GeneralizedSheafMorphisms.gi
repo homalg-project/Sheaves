@@ -12,6 +12,7 @@ InstallMethod( TruncatedModuleOfGlobalSections,
     if IsIdenticalObj( Range( UnderlyingGradedMap( phi ) ), TruncatedModuleOfGlobalSections( Range( phi ) ) ) then
         psi := UnderlyingGradedMap( phi );
     else
+        psi := UnderlyingGradedMap( phi );
         psi := PreCompose( psi, NaturalMapToModuleOfGlobalSections( Range( psi ) ) );
     fi;
     

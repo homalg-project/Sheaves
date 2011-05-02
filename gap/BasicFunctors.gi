@@ -155,11 +155,11 @@ InstallGlobalFunction( _Functor_ImageObject_OnCoherentSheafOnProj,  ### defines:
     ## save the natural embedding in the image (thanks GAP):
     img!.NaturalGeneralizedEmbedding := emb;
     
-    if HasTruncatedModuleOfGlobalSections( phi ) then
-        SetTruncatedModuleOfGlobalSections( emb, UnderlyingGradedMap( emb ) );
-        SetTruncatedModuleOfGlobalSections( img_submodule, UnderlyingGradedModule( img_submodule ) );
-        SetTruncatedModuleOfGlobalSections( img, UnderlyingGradedModule( img ) );
-    fi;
+#     if HasTruncatedModuleOfGlobalSections( phi ) then
+#         SetTruncatedModuleOfGlobalSections( emb, UnderlyingGradedMap( emb ) );
+#         SetTruncatedModuleOfGlobalSections( img_submodule, UnderlyingGradedModule( img_submodule ) );
+#         SetTruncatedModuleOfGlobalSections( img, UnderlyingGradedModule( img ) );
+#     fi;
     
     return img;
     

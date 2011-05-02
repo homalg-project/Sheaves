@@ -123,7 +123,20 @@ InstallGlobalFunction( _Functor_PreCompose_OnMorphismsOfCoherentSheafOnProj,  ##
       Error( "Morphisms are not compatible for composition" );
     fi;
     
-    phi := SheafMorphism( PreCompose( UnderlyingGradedMap( pre ), UnderlyingGradedMap( post ) ), Source( pre ), Range( post ) );
+    if HasMorphismAid( pre ) or HasMorphismAid( post ) then
+    
+        phi := SheafMorphism( PreCompose( pre!.GradedModuleMapModelingTheSheaf, post!.GradedModuleMapModelingTheSheaf ), Source( pre ), Range( post ) );
+    
+    elif HasTruncatedModuleOfGlobalSections( Source( pre ) ) or HasTruncatedModuleOfGlobalSections( Source( post ) ) or HasTruncatedModuleOfGlobalSections( Range( post ) ) then
+    
+        phi := SheafMorphism( PreCompose( TruncatedModuleOfGlobalSections( pre ), TruncatedModuleOfGlobalSections( post ) ), Source( pre ), Range( post ) );
+        SetTruncatedModuleOfGlobalSections( phi, phi );
+    
+    else
+    
+        phi := SheafMorphism( PreCompose( UnderlyingGradedMap( pre ), UnderlyingGradedMap( post ) ), Source( pre ), Range( post ) );
+    
+    fi;
     
     return SetPropertiesOfComposedMorphism( pre, post, phi );
     

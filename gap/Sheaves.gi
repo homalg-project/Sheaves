@@ -342,12 +342,21 @@ InstallMethod( UnderlyingGradedModule,
         [ IsSheafOfModules ],
         
   function( E )
+    local M, HM;
     
     if HasTruncatedModuleOfGlobalSections( E ) then;
         return TruncatedModuleOfGlobalSections( E );
     fi;
     
-    return E!.GradedModuleModelingTheSheaf;
+    M := E!.GradedModuleModelingTheSheaf;
+    
+    HM := GetFunctorObjCachedValue( Functor_ModuleOfGlobalSections_ForGradedModules, [ M ] );
+    
+    if HM <> fail then
+       return HM;
+    fi;
+    
+    return M;
     
 end );
 
@@ -367,7 +376,7 @@ InstallMethod( HasCurrentResolution,
         HasCurrentResolution( M ) and 
         IsBound( F!.Resolutions ) and
         IsBound( F!.Resolutions!.(p) ) and 
-        IsIdenticalObj( Cokernel( LowestDegreeMorphism( F!.Resolutions!.(p) ) ), M );
+        IsIdenticalObj( Cokernel( LowestDegreeMorphism( F!.Resolutions!.(p) ) ), F );
 
 end );
 
@@ -383,6 +392,17 @@ InstallMethod( SetCurrentResolution,
     fi;
     
     F!.Resolutions!.(PositionOfTheDefaultPresentation( UnderlyingGradedModule( F ) ) ) := sheaf_res;
+
+end );
+
+##
+InstallMethod( CurrentResolution,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep ],
+
+  function( F )
+    
+    return F!.Resolutions!.(PositionOfTheDefaultPresentation( UnderlyingGradedModule( F ) ) );
 
 end );
 
@@ -412,21 +432,23 @@ InstallMethod( CurrentResolution,
         sheaf_res := HomalgComplex( d_j );
         SetCurrentResolution( F, sheaf_res ); #we possibly overwrite the CurrentResolution of the module which is not build from global sections
     fi;
+    
+    F!.res := true;
 
     F_j := Source( d_j );
     
     if len >= j+2 then
         for j in [ res!.degrees[j+2] .. res!.degrees[len] ] do
-#             if IsIdenticalObj( F_j, 0 * S ) or IsIdenticalObj( F_j, S * 0 ) then
-#                 # take care not to create the graded zero morphism between distinguished zero modules again each step
-#                 d_j := TheZeroMorphism( F_j, F_j );
-#                 Add( sheaf_res, d_j );
-#                 # no need for resetting F_j, since all other modules will be zero, too
-#             else
+            if IsBound( F_j!.distinguished ) and F_j!.distinguished and HasIsZero( UnderlyingGradedModule( F_j ) ) and IsZero( UnderlyingGradedModule( F_j ) ) then
+                # take care not to create the graded zero morphism between distinguished zero modules again each step
+                d_j := TheZeroMorphism( F_j, F_j );
+                Add( sheaf_res, d_j );
+                # no need for resetting F_j, since all other modules will be zero, too
+            else
                 d_j := SheafMorphism( res!.(j), "create", F_j );
                 Add( sheaf_res, d_j );
                 F_j := Source( d_j );
-#             fi;
+            fi;
         od;
     fi;
 
@@ -532,6 +554,10 @@ InstallMethod( StructureSheafOfProj,
   function( S )
     local O, J;
     
+    if IsBound( S!.StructureSheafOfProj ) then
+        return S!.StructureSheafOfProj;
+    fi;
+    
     O := rec( graded_ring := S );
     
     ObjectifyWithAttributes(
@@ -547,6 +573,8 @@ InstallMethod( StructureSheafOfProj,
     if HasKrullDimension( S ) then
        SetDimension( O, KrullDimension( S ) - 1 );
     fi;
+    
+    S!.StructureSheafOfProj := 0;
     
     return O;
     
@@ -571,6 +599,22 @@ InstallMethod( Proj,
     
     O := StructureSheafOfProj( S );
     
+    if IsBound( M!.distinguished ) and M!.distinguished and HasIsZero( M ) and IsZero( M ) then
+        if IsHomalgLeftObjectOrMorphismOfLeftObjects( M ) then
+            if IsBound( O!.ZeroLeftSheaf ) then
+                return O!.ZeroLeftSheaf;
+            fi;
+        else
+            if IsBound( O!.ZeroRightSheaf) then
+                return O!.ZeroRightSheaf;
+            fi;
+        fi;
+    fi;
+    
+    if IsBound( M!.Proj ) then
+        return M!.Proj;
+    fi;
+    
     E := rec(
              GradedModuleModelingTheSheaf := M,
              string := "sheaf", string_plural := "sheaves"
@@ -589,6 +633,18 @@ InstallMethod( Proj,
                 RightActingDomain, O );
         
     fi;
+    
+    if IsBound( M!.distinguished ) and M!.distinguished and HasIsZero( M ) and IsZero( M ) then
+        if IsHomalgLeftObjectOrMorphismOfLeftObjects( M ) then
+            E!.distinguished := true;
+            O!.ZeroLeftSheaf := E;
+        else
+            E!.distinguished := true;
+            O!.ZeroRightSheaf := E;
+        fi;
+    fi;
+    
+    M!.Proj := E;
     
     return E;
     

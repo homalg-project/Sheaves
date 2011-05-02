@@ -256,8 +256,9 @@ InstallMethod( SheafMorphism,
     
     phi := psi;
     if HasTruncatedModuleOfGlobalSections( F ) and ( not HasIsModuleOfGlobalSections( Source( phi ) ) or not ( IsModuleOfGlobalSections( Source( phi ) ) ) ) or
-       HasTruncatedModuleOfGlobalSections( G ) and ( not HasIsModuleOfGlobalSections( Range( phi ) ) or not ( IsModuleOfGlobalSections( Range( phi ) ) ) ) then
-        phi := TruncatedModuleOfGlobalSections( psi );
+       HasTruncatedModuleOfGlobalSections( G ) and ( not HasIsModuleOfGlobalSections( Range( phi ) ) or not ( IsModuleOfGlobalSections( Range( phi ) ) ) ) and
+       not HasMorphismAid( phi ) then
+        phi := ModuleOfGlobalSections( phi );
     fi;
     
     if HasIsModuleOfGlobalSections( Source( phi ) ) and IsModuleOfGlobalSections( Source( phi ) ) and not HasTruncatedModuleOfGlobalSections( F ) then
@@ -299,7 +300,7 @@ InstallMethod( SheafMorphism,
         fi;
     fi;
 
-    morphism := rec( );
+    morphism := rec( GradedModuleMapModelingTheSheaf := phi );
 
     ## Objectify:
     ObjectifyWithAttributes(
@@ -307,8 +308,6 @@ InstallMethod( SheafMorphism,
         Source, F,
         Range, G
     );
-    
-    morphism!.GradedModuleMapModelingTheSheaf := phi;
     
     if HasTruncatedModuleOfGlobalSections( F ) and 
        IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) then
