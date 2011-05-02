@@ -75,6 +75,25 @@ BindGlobal( "TheTypeEndomorphismOfCoherentRightSheavesOnProj",
 ####################################
 
 ##
+InstallMethod( PairOfPositionsOfTheDefaultPresentations,
+        "for morphisms of coherent sheaves on proj",
+        [ IsMorphismOfCoherentSheavesOnProjRep ],
+        
+  function( phi )
+    local pos_s, pos_t;
+    
+    pos_s := PositionOfTheDefaultPresentation( Source( phi ) );
+    pos_t := PositionOfTheDefaultPresentation( Range( phi ) );
+    
+    if IsHomalgLeftObjectOrMorphismOfLeftObjects( phi ) then
+        return [ pos_s, pos_t ];
+    else
+        return [ pos_t, pos_s ];
+    fi;
+    
+end );
+
+##
 InstallMethod( CheckIfTheyLieInTheSameCategory,
         "for two (sub)sheaves of modules on proj",
         [ IsCoherentSheafOrSubsheafOnProjRep, IsMorphismOfCoherentSheavesOnProjRep ],
@@ -308,3 +327,23 @@ InstallMethod( SheafZeroMorphism,
     return SheafMorphism( GradedZeroMap( UnderlyingGradedModule( F ), UnderlyingGradedModule( G ) ), F, G );
   
 end );
+
+####################################
+#
+# View, Print, and Display methods:
+#
+####################################
+
+##
+InstallMethod( Display,
+        "for morphisms of coherent sheaves on proj",
+        [ IsMorphismOfCoherentSheavesOnProjRep ], ## since we don't use the filter IsHomalgLeftObjectOrMorphismOfLeftObjects we need to set the ranks high
+        
+  function( o )
+    
+    Display( UnderlyingGradedMap( o ) );
+    
+    Print( "The morphism of coherent sheaves on the projective space given by the above graded map\n" );
+    
+end );
+

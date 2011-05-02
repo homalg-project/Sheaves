@@ -117,3 +117,14 @@ InstallMethod( IsZero,
     return IsZero( TruncatedModuleOfGlobalSections( phi ) );
     
 end );
+
+##
+InstallMethod( IsMorphism,
+        "for coherent sheaves on proj morphism",
+        [ IsMorphismOfCoherentSheavesOnProjRep ],
+        
+  function( phi )
+    
+    return IsMorphism( UnderlyingGradedMap( phi ) );
+    
+end );
