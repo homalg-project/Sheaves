@@ -103,23 +103,21 @@ InstallMethod( AdditiveInverse,
         [ IsMorphismOfCoherentSheavesOnProjRep ],
         
   function( phi )
-    local result;
+    local psi;
     
-    result := SheafMorphism( -UnderlyingGradedMap( phi ), Source( phi ), Range( phi ) );
+    psi := SheafMorphism( -UnderlyingGradedMap( phi ), Source( phi ), Range( phi ) );
     
-    if HasIsMorphism( phi ) then
-        SetIsMorphism( result, IsMorphism( phi ) );
-    fi;
-    if HasIsEpimorphism( phi )  then
-        SetIsEpimorphism( result, IsEpimorphism( phi ) );
-    fi;
-    if HasIsMonomorphism( phi )  then
-        SetIsMonomorphism( result, IsMonomorphism( phi ) );
-    fi;
+    SetPropertiesOfAdditiveInverse( psi, phi );
     
-    return result;
+    return psi;
     
 end );
+
+####################################
+#
+# methods for properties:
+#
+####################################
 
 ##
 InstallMethod( IsAutomorphism,
