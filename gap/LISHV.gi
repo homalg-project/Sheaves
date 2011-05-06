@@ -93,6 +93,23 @@ InstallImmediateMethod( IsZero,
 end );
 
 ##
+InstallImmediateMethod( IsZero,
+        IsSheafOfModules, -10,
+        
+  function( E )
+    local M;
+    
+    M := UnderlyingGradedModule;
+    
+    if HasIsZero( M ) and IsZero( M ) then
+        return true;
+    fi;
+    
+    TryNextMethod( );
+    
+end );
+
+##
 InstallImmediateMethod( IsTorsion,
         IsSheafOfModules, 0,
         

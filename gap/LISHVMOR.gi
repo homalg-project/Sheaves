@@ -9,7 +9,28 @@
 ##
 #############################################################################
 
+####################################
+#
+# immediate methods for properties:
+#
+####################################
 
+##
+InstallImmediateMethod( IsZero,
+        IsMorphismOfCoherentSheavesOnProjRep, -10,
+        
+  function( phi )
+    local psi;
+    
+    psi := UnderlyingGradedMap;
+    
+    if HasIsZero( psi ) and IsZero( psi ) then
+        return true;
+    fi;
+    
+    TryNextMethod( );
+    
+end );
 
 ####################################
 #

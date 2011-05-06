@@ -273,19 +273,6 @@ InstallMethod( DecideZero,
 end );
 
 ##
-InstallMethod( IsZero,
-        "for coherent sheaves on proj",
-        [ IsCoherentSheafOrSubsheafOnProjRep ],
-        
-  function( F )
-    local M;
-    
-    M := UnderlyingGradedModule( F );
-    return IsZero( HomogeneousPartOverCoefficientsRing( CastelnuovoMumfordRegularity( M ) + 1, M ) );
-    
-end );
-
-##
 InstallMethod( UnionOfRelations,
         "for coherent sheaves on proj",
         [ IsHomalgMatrix, IsCoherentSheafOnProjRep ],
