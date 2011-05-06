@@ -53,7 +53,7 @@ InstallMethod( KernelSubobject,
     emb := EmbeddingInSuperObject( ker );
 
     if HasIsMonomorphism( phi ) and IsMonomorphism( phi ) then
-        emb := SheafMorphism( emb, UnderlyingObject( ZeroSubobject( Source( phi ) ) ), Source( phi ) );
+        emb := SheafMorphism( emb, ZeroSubobject( Source( phi ) ), Source( phi ) );
     else
         emb := SheafMorphism( emb, "create", Source( phi ) );
     fi;
