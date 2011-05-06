@@ -255,17 +255,12 @@ InstallMethod( SheafMorphism,
     local phi, type, morphism;
     
     phi := psi;
-    if HasTruncatedModuleOfGlobalSections( F ) and ( not HasIsModuleOfGlobalSections( Source( phi ) ) or not ( IsModuleOfGlobalSections( Source( phi ) ) ) ) or
-       HasTruncatedModuleOfGlobalSections( G ) and ( not HasIsModuleOfGlobalSections( Range( phi ) ) or not ( IsModuleOfGlobalSections( Range( phi ) ) ) ) and
-       not HasMorphismAid( phi ) then
-        phi := ModuleOfGlobalSections( phi );
-    fi;
     
     if HasIsModuleOfGlobalSections( Source( phi ) ) and IsModuleOfGlobalSections( Source( phi ) ) and not HasTruncatedModuleOfGlobalSections( F ) then
         TruncatedModuleOfGlobalSections( F );
     fi;
     if HasIsModuleOfGlobalSections( Range( phi ) ) and IsModuleOfGlobalSections( Range( phi ) ) and not HasTruncatedModuleOfGlobalSections( G ) then
-        TruncatedModuleOfGlobalSections( F );
+        TruncatedModuleOfGlobalSections( G );
     fi;
     
     if not IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) and not IsIdenticalObj( F!.GradedModuleModelingTheSheaf, Source( phi ) ) then
@@ -273,17 +268,6 @@ InstallMethod( SheafMorphism,
     fi;
     if not IsIdenticalObj( UnderlyingGradedModule( G ), Range( phi ) ) and not IsIdenticalObj( G!.GradedModuleModelingTheSheaf, Range( phi ) ) then
         Error( "the underlying graded modules for the range and third parameter do not match" );
-    fi;
-    
-    if HasTruncatedModuleOfGlobalSections( F ) and 
-       IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) and 
-       not ( HasTruncatedModuleOfGlobalSections( G ) and IsIdenticalObj( UnderlyingGradedModule( G ), Range( phi ) ) ) then
-        TruncatedModuleOfGlobalSections( G );
-    fi;
-    if HasTruncatedModuleOfGlobalSections( G ) and 
-       IsIdenticalObj( UnderlyingGradedModule( G ), Range( phi ) ) and 
-       not ( HasTruncatedModuleOfGlobalSections( F ) and IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) ) then
-        TruncatedModuleOfGlobalSections( F );
     fi;
 
     if IsHomalgLeftObjectOrMorphismOfLeftObjects( phi ) then
@@ -309,9 +293,8 @@ InstallMethod( SheafMorphism,
         Range, G
     );
     
-    if HasTruncatedModuleOfGlobalSections( F ) and 
-       IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) then
-        SetTruncatedModuleOfGlobalSections( morphism, phi );
+    if HasIsGeneralizedMorphism( psi ) then
+        SetIsGeneralizedMorphism( morphism, IsGeneralizedMorphism( psi ) );
     fi;
     
     return morphism;
