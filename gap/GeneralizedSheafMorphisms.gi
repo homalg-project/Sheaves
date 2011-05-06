@@ -60,8 +60,22 @@ InstallMethod( RemoveMorphismAid,
         [ IsMorphismOfCoherentSheavesOnProjRep ],
         
   function( phi )
+    local morphism, psi;
     
-    return SheafMorphism( RemoveMorphismAid( UnderlyingGradedMap( phi ) ), Source( phi ), Range( phi ) );
+    if ( not HasMorphismAid( phi ) or ( HasIsZero( MorphismAid( phi ) ) and IsZero( MorphismAid( phi ) ) )
+       and HasIsGeneralizedMorphism( phi ) and IsGeneralizedMorphism( phi ) )
+       then
+        morphism := true;
+    fi;
+    
+    psi := RemoveMorphismAid( UnderlyingGradedMap( phi ) );
+    psi := SheafMorphism( psi, Source( phi ), Range( phi ) );
+    
+    if IsBound( morphism ) then
+        SetIsMorphism( psi, true );
+    fi;
+    
+    return psi;
     
 end );
 
