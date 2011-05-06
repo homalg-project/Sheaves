@@ -131,19 +131,3 @@ InstallMethod( AddToMorphismAid,
     return GeneralizedMorphism( phi, morphism_aid_map1 );
     
 end );
-
-##
-InstallMethod( AssociatedMorphism,
-        "for homalg maps",
-        [ IsMorphismOfCoherentSheavesOnProjRep ],
-        
-  function( phi )
-    local mat, S, T;
-    
-    if not HasMorphismAid( phi ) then
-        return phi;
-    fi;
-    
-    SheafMorphism( AssociatedMorphism( UnderlyingGradedMap( phi ) ), Source( phi ), Range( phi ) );
-    
-end );
