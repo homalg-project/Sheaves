@@ -42,11 +42,10 @@ InstallMethod( GeneralizedMorphism,
     morphism_aid_map1 := OnALocallyFreeSource( morphism_aid_map );
     
     ## prepare a copy of phi
-    psi := SheafMorphism( GeneralizedMorphism( UnderlyingGradedMap( phi ), UnderlyingGradedMap( morphism_aid_map1 ) ), Source( phi ), Range( phi ) );
+    psi := GeneralizedMorphism( UnderlyingGradedMap( phi ), UnderlyingGradedMap( morphism_aid_map1 ) );
+    psi := SheafMorphism( psi, Source( phi ), Range( phi ) );
     
     SetMorphismAid( psi, morphism_aid_map1 );
-    
-    SetIsGeneralizedMorphism( psi, true );
     
     ## some properties of the morphism phi imply
     ## properties for the generalized morphism psi
