@@ -137,7 +137,7 @@ InstallMethod( IsZero,
         
   function( phi )
     
-    return IsZero( TruncatedModuleOfGlobalSections( phi ) );
+    return IsZero( ImageObject( UnderlyingGradedMap( phi ) ) );
     
 end );
 
