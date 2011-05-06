@@ -167,7 +167,12 @@ InstallGlobalFunction( _Functor_CoproductMorphism_OnMorphismsOfCoherentSheafOnPr
   function( phi, psi )
     local phi_psi;
     
-    phi_psi := CoproductMorphism( UnderlyingGradedMap( phi ), UnderlyingGradedMap( psi ) );
+    if HasTruncatedModuleOfGlobalSections( phi ) and HasTruncatedModuleOfGlobalSections( psi ) or
+       not IsIdenticalObj( Range( phi!.GradedModuleMapModelingTheSheaf ), Range( psi!.GradedModuleMapModelingTheSheaf ) ) then
+        phi_psi := CoproductMorphism( TruncatedModuleOfGlobalSections( phi ), TruncatedModuleOfGlobalSections( psi ) );
+    else
+        phi_psi := CoproductMorphism( phi!.GradedModuleMapModelingTheSheaf, psi!.GradedModuleMapModelingTheSheaf );
+    fi;
     
     phi_psi := SheafMorphism( phi_psi, Source( phi ) + Source( psi ), Range( phi ) );
     
@@ -200,7 +205,12 @@ InstallGlobalFunction( _Functor_ProductMorphism_OnMorphismsOfCoherentSheafOnProj
   function( phi, psi )
     local phi_psi;
     
-    phi_psi := ProductMorphism( UnderlyingGradedMap( phi ), UnderlyingGradedMap( psi ) );
+    if HasTruncatedModuleOfGlobalSections( phi ) and HasTruncatedModuleOfGlobalSections( psi ) or
+       not IsIdenticalObj( Range( phi!.GradedModuleMapModelingTheSheaf ), Range( psi!.GradedModuleMapModelingTheSheaf ) ) then
+        phi_psi := ProductMorphism( TruncatedModuleOfGlobalSections( phi ), TruncatedModuleOfGlobalSections( psi ) );
+    else
+        phi_psi := ProductMorphism( phi!.GradedModuleMapModelingTheSheaf, psi!.GradedModuleMapModelingTheSheaf );
+    fi;
     
     phi_psi := SheafMorphism( phi_psi, Source( phi ), Range( phi ) + Range( psi ) );
     
@@ -222,6 +232,8 @@ InstallValue( functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj,
 
 #functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
 #  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+
+InstallFunctorOnObjects( functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj );
 
 #=======================================================================
 # PostDivide
