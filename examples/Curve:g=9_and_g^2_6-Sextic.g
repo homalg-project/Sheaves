@@ -55,3 +55,10 @@ imOC := UnderlyingGradedModule( imC );
 ## its Betti diagram
 bettiC := BettiDiagram( Resolution( 2, imOC ) );
 
+Display( bettiC );
+
+Assert( 0,
+        MatrixOfDiagram( bettiC ) =
+        [ [ 1, 0, 0 ],
+          [ 0, 21, 64 ],
+          [ 0, 0, 20 ] ] );

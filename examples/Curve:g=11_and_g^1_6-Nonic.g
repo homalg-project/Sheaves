@@ -80,3 +80,12 @@ imOC := UnderlyingGradedModule( imC );
 ## its Betti diagram
 bettiC := BettiDiagram( Resolution( Int( g / 2 ) - 1, imOC ) );
 
+Display( bettiC );
+
+Assert( 0,
+        MatrixOfDiagram( bettiC ) =
+        [ [ 1, 0, 0, 0, 0 ],
+          [ 0, 36, 160, 315, 288 ],
+          [ 0, 0, 0, 0, 5 ] ] );
+
+## Singular time: 2:22 minutes
