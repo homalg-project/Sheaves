@@ -1,6 +1,6 @@
 LoadPackage( "Sheaves" );
 
-R := GradedRing( HomalgFieldOfRationalsInSingular( ) * "x,y" );
+R := GradedRing( HomalgFieldOfRationalsInDefaultCAS( ) * "x,y" );
 
 S := Scheme( GradedLeftSubmodule( "x^3*(x-y)^2", R ) );
 

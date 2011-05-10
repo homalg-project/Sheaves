@@ -1,6 +1,12 @@
-LoadPackage( "Sheaves" );
+LoadPackage( "RingsForHomalg" );
 
-R := GradedRing( HomalgFieldOfRationalsInDefaultCAS( ) * "a,b,c" );
+R := HomalgFieldOfRationalsInDefaultCAS( ) * "a,b,c";
+
+LoadPackage( "GradedRingForHomalg" );
+
+R := GradedRing( R );
+
+LoadPackage( "Sheaves" );
 
 ## no singular points (a smooth curve)
 p := [  ];
