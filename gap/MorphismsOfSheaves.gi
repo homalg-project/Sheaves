@@ -75,6 +75,19 @@ BindGlobal( "TheTypeEndomorphismOfCoherentRightSheavesOnProj",
 ####################################
 
 ##
+InstallMethod( UpdateObjectsByMorphism,
+        "for graded maps",
+        [ IsMorphismOfCoherentSheavesOnProjRep and IsIsomorphism ],
+        
+  function( phi )
+    
+    UpdateObjectsByMorphism( UnderlyingGradedMap( phi ) );
+    
+    MatchPropertiesAndAttributes( Source( phi ), Range( phi ), LISHV.intrinsic_properties, LISHV.intrinsic_attributes );
+    
+end );
+
+##
 InstallMethod( PairOfPositionsOfTheDefaultPresentations,
         "for morphisms of coherent sheaves on proj",
         [ IsMorphismOfCoherentSheavesOnProjRep ],
