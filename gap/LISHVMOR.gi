@@ -51,12 +51,8 @@ InstallMethod( KernelSubobject,
     ker := KernelSubobject( UnderlyingGradedMap( phi ) );
     
     emb := EmbeddingInSuperObject( ker );
-
-    if HasIsMonomorphism( phi ) and IsMonomorphism( phi ) then
-        emb := SheafMorphism( emb, ZeroSubobject( Source( phi ) ), Source( phi ) );
-    else
-        emb := SheafMorphism( emb, "create", Source( phi ) );
-    fi;
+    
+    emb := SheafMorphism( emb, "create", Source( phi ) );
     
     Assert( 1, IsMorphism( emb ) );
     SetIsMorphism( emb, true );
