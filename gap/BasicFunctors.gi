@@ -208,9 +208,7 @@ InstallGlobalFunction( _Functor_SheafHom_OnCoherentSheafOnProj,    ### defines: 
     
     hom!.NaturalGeneralizedEmbedding := emb;
     
-    if HasTruncatedModuleOfGlobalSections( F ) and HasTruncatedModuleOfGlobalSections( G ) then
-        SetTruncatedModuleOfGlobalSections( hom, UnderlyingGradedModule( hom ) );
-    fi;
+    # we can not set TruncatedModuleOfGlobalSections, because negative degrees would have to be truncated
     
     return hom;
     
