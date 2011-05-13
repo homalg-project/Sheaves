@@ -27,7 +27,9 @@ InstallValue( LISHV,
               "DegreeOfTorsionFreeness",
               "PurityFiltration",
               "CodegreeOfPurity",
-              "CastelnuovoMumfordRegularity" ]
+              "CastelnuovoMumfordRegularity" ],
+            intrinsic_properties :=
+            [ ]
             )
         );
 
