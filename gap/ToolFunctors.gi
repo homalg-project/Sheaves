@@ -265,43 +265,14 @@ InstallFunctorOnObjects( functor_ProductMorphism_ForMorphismsOfCoherentSheafOnPr
 
 InstallGlobalFunction( _Functor_PostDivide_OnMorphismsOfCoherentSheafOnProj,  ### defines: PostDivide
   function( gamma, beta )
-    local alpha, Cepi, gamma2, beta2, psi, M_;
+    local gamma2, beta2, psi, M_;
     
-    # for generalized morphisms we compute PostDivide in the cokernel of the morphism aids
     if HasMorphismAid( gamma ) or HasMorphismAid( beta ) then
-        
-        if HasMorphismAid( gamma ) and HasMorphismAid( beta ) then
-            alpha := CoproductMorphism( MorphismAid( beta ), MorphismAid( gamma ) );
-        elif HasMorphismAid( gamma ) then
-            alpha := MorphismAid( gamma );
-        elif HasMorphismAid( beta ) then
-            alpha := MorphismAid( beta );
-        fi;
-        Cepi := CokernelEpi( alpha );
-        
-        if HasMorphismAid( gamma ) then
-            IsZero( PreCompose( MorphismAid( gamma ), Cepi ) );
-        fi;
-        if HasMorphismAid( beta ) then
-            IsZero( PreCompose( MorphismAid( beta ), Cepi ) );
-        fi;
-        
-        gamma2 := PreCompose( gamma, Cepi );
-        beta2 := PreCompose( beta, Cepi );
-        
-        gamma2 := RemoveMorphismAid( gamma2 );
-        beta2 := RemoveMorphismAid( beta2 );
-        
-        SetIsMorphism( gamma2, true );
-        SetIsMorphism( beta2, true );
-        
-        return PostDivide( gamma2, beta2 );
-    
+        TryNextMethod();
     fi;
     
     gamma2 := TruncatedModuleOfGlobalSections( gamma );
     beta2 := TruncatedModuleOfGlobalSections( beta );
-    
     
     psi := PostDivide( gamma2, beta2 );
     
@@ -309,23 +280,7 @@ InstallGlobalFunction( _Functor_PostDivide_OnMorphismsOfCoherentSheafOnProj,  ##
     
     psi := SheafMorphism( psi, M_, Source( beta ) );
     
-    if HasIsMorphism( gamma ) and IsMorphism( gamma ) and
-       ( ( HasIsFree( UnderlyingGradedModule( M_ ) ) ) or    ## [BR08, Subsection 3.1.1,(1)]
-         ( HasIsMonomorphism( beta ) and IsMonomorphism( beta ) ) or  ## [BR08, Subsection 3.1.1,(2)]
-         ( HasIsGeneralizedMonomorphism( beta ) and IsGeneralizedMonomorphism( beta ) ) ) then  ## "generalizes" [BR08, Subsection 3.1.1,(2)]
-        
-        Assert( 2, IsMorphism( psi ) );
-        
-        SetIsMorphism( psi, true );
-        
-    elif HasMorphismAid( gamma ) and not HasMorphismAid( beta ) then
-        
-        #### we cannot activate the following lines, since MorphismAid( gamma ) / beta fails in general (cf. the example Grothendieck.g)
-        #### instead one should activate them where they make sense (cf. SpectralSequences.gi)
-        #SetMorphismAid( psi, MorphismAid( gamma ) / beta );
-        #SetIsGeneralizedMorphism( psi, true );
-        
-    fi;
+    SetPropertiesOfPostDivide( gamma, beta, psi );
     
     return psi;
     
