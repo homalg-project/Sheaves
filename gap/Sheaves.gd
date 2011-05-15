@@ -243,9 +243,9 @@ DeclareAttribute( "IdealSheaf",
 DeclareAttribute( "AsModuleOverStructureSheafOfAmbientSpace",
         IsSheafOfRings );
 
-##  <#GAPDoc Label="TruncatedModuleOfGlobalSections">
+##  <#GAPDoc Label="TruncatedModuleOfGlobalSections:sheaves">
 ##  <ManSection>
-##    <Attr Arg="E" Name="TruncatedModuleOfGlobalSections"/>
+##    <Attr Arg="E" Name="TruncatedModuleOfGlobalSections" Label="for sheaves"/>
 ##    <Returns>a sheaf</Returns>
 ##    <Description>
 ##      The truncated (at zero) module of global sections of the sheaf <A>E</A>.

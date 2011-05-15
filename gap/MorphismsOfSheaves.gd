@@ -56,9 +56,9 @@ DeclareAttribute( "CastelnuovoMumfordRegularity",
          IsMorphismOfSheavesOfModules );
 
 
-##  <#GAPDoc Label="TruncatedModuleOfGlobalSections">
+##  <#GAPDoc Label="TruncatedModuleOfGlobalSections:morphisms">
 ##  <ManSection>
-##    <Attr Arg="phi" Name="TruncatedModuleOfGlobalSections"/>
+##    <Attr Arg="phi" Name="TruncatedModuleOfGlobalSections" Label="for morphisms"/>
 ##    <Returns>a morphism of sheaves</Returns>
 ##    <Description>
 ##      The version of global sections of the sheaf morphism truncated (at zero) <A>phi</A>.
