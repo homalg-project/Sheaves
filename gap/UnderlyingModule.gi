@@ -25,11 +25,32 @@ InstallMethod( PositionOfTheDefaultPresentation,
         
   function( F )
     
+    if IsBound( F!.PositionOfTheDefaultPresentation ) then
+        return F!.PositionOfTheDefaultPresentation;
+    fi;
+    
     if HasTruncatedModuleOfGlobalSections( F ) then
         return [ 1, PositionOfTheDefaultPresentation( UnderlyingGradedModule( F ) ) ];
     else
         return [ 0, PositionOfTheDefaultPresentation( UnderlyingGradedModule( F ) ) ];
     fi;
+    
+end );
+
+##
+InstallMethod( SetPositionOfTheDefaultPresentation,
+        "for homalg graded modules",
+        [ IsCoherentSheafOnProjRep, IsList ],
+        
+  function( F, p )
+    
+    if not ( Length( p ) = 2 and IsPosInt( p[2] ) and p[1] in [ 0, 1 ] ) then
+        Error( "expected a list of two entries in the sets { 0, 1 } and the positive integers" );
+    fi;
+    
+    F!.PositionOfTheDefaultPresentation := p;
+    
+    SetPositionOfTheDefaultPresentation( UnderlyingGradedModule( F ), p[2] );
     
 end );
 

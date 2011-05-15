@@ -143,8 +143,72 @@ BindGlobal( "TheTypeHomalgRightCoherentSheaf",
 ####################################
 
 ##
+InstallMethod( LockObjectOnCertainPresentation,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep, IsList ],
+        
+  function( M, p )
+    
+    ## first save the current setting
+    if IsBound( M!.PositionOfTheDefaultPresentation ) then
+        M!.LockObjectOnCertainPresentation := PositionOfTheDefaultPresentation( M );
+    else
+        M!.LockObjectOnCertainPresentation := [ ];
+    fi;
+    
+    SetPositionOfTheDefaultPresentation( M, p );
+    
+    LockObjectOnCertainPresentation( UnderlyingGradedModule( M ), p[2] );
+    
+end );
+
+##
+InstallMethod( LockObjectOnCertainPresentation,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( M )
+    
+    LockObjectOnCertainPresentation( M, PositionOfTheDefaultPresentation( M ) );
+    
+end );
+
+##
+InstallMethod( UnlockObject,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( M )
+    
+    UnlockObject( UnderlyingGradedModule( M ) );
+    
+    ## first restore the saved settings
+    if IsBound( M!.LockObjectOnCertainPresentation ) then
+        if M!.LockObjectOnCertainPresentation = [ ] then
+            Unbind( M!.PositionOfTheDefaultPresentation );
+            Unbind( M!.LockObjectOnCertainPresentation );
+        else
+            SetPositionOfTheDefaultPresentation( M, M!.LockObjectOnCertainPresentation );
+            Unbind( M!.LockObjectOnCertainPresentation );
+        fi;
+    fi;
+    
+end );
+
+##
+InstallMethod( IsLockedObject,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( M )
+    
+    return IsBound( M!.LockObjectOnCertainPresentation );
+    
+end );
+
+##
 InstallMethod( PartOfPresentationRelevantForOutputOfFunctors,
-        "for homalg modules",
+        "for sheaves of modules on proj",
         [ IsCoherentSheafOnProjRep, IsList ],
         
   function( F, l )
@@ -343,6 +407,14 @@ InstallMethod( UnderlyingGradedModule,
         
   function( E )
     local M, HM;
+    
+    if IsBound( E!.PositionOfTheDefaultPresentation ) then
+        if E!.PositionOfTheDefaultPresentation[1] = 0 then
+            return E!.GradedModuleModelingTheSheaf;
+        elif E!.PositionOfTheDefaultPresentation[1] = 1 then
+            return TruncatedModuleOfGlobalSections( E );
+        fi;
+    fi;
     
     if HasTruncatedModuleOfGlobalSections( E ) then;
         return TruncatedModuleOfGlobalSections( E );
