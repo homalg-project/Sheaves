@@ -11,6 +11,27 @@
 
 ####################################
 #
+# Twitter
+#
+####################################
+
+##
+InstallMethodToPullPropertiesOrAttributes(
+        IsMorphismOfCoherentSheavesOnProjRep, IsMorphismOfCoherentSheavesOnProjRep,
+        [ "IsMonomorphism", "IsEpimorphism", "IsIsomorphism",
+          "IsGeneralizedMorphism", "IsGeneralizedMonomorphism",
+          "IsGeneralizedEpimorphism", "IsGeneralizedIsomorphism",
+          "IsSplitMonomorphism", "IsSplitEpimorphism",
+          "IsOne", "IsZero" ],
+        UnderlyingGradedMap );
+
+InstallImmediateMethodToTwitterPropertiesOrAttributes(
+        Twitter, IsMorphismOfCoherentSheavesOnProjRep, 
+        [ "IsMonomorphism", "IsGeneralizedMorphism", "IsGeneralizedMonomorphism",
+          "IsSplitMonomorphism", "IsOne" ], UnderlyingGradedMap );
+
+####################################
+#
 # immediate methods for properties:
 #
 ####################################
