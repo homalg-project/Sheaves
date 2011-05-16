@@ -499,7 +499,13 @@ InstallMethod( CurrentResolution,
     else
         j := res!.degrees[2];
         CEpi := SheafMorphism( CokernelEpi( res!.(j) ), "create", F );
+        Assert( 2, IsMorphism( CEpi ) );
+        SetIsMorphism( CEpi, true );
+        Assert( 2, IsEpimorphism( CEpi ) );
+        SetIsEpimorphism( CEpi, true );
         d_j := SheafMorphism( res!.(j), "create", Source( CEpi ) );
+        Assert( 2, IsMorphism( d_j ) );
+        SetIsMorphism( d_j, true );
         SetCokernelEpi( d_j, CEpi );
         sheaf_res := HomalgComplex( d_j );
         SetCurrentResolution( F, sheaf_res ); #we possibly overwrite the CurrentResolution of the module which is not build from global sections
@@ -518,6 +524,8 @@ InstallMethod( CurrentResolution,
                 # no need for resetting F_j, since all other modules will be zero, too
             else
                 d_j := SheafMorphism( res!.(j), "create", F_j );
+                Assert( 2, IsMorphism( d_j ) );
+                SetIsMorphism( d_j, true );
                 Add( sheaf_res, d_j );
                 F_j := Source( d_j );
             fi;
