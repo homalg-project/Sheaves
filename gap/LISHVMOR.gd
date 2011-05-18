@@ -8,3 +8,7 @@
 ##                       Markus Lange-Hegermann, RWTH Aachen
 ##
 #############################################################################
+
+
+# a central place for configurations:
+DeclareGlobalVariable( "LISHVMOR" );

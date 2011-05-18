@@ -29,7 +29,30 @@ InstallValue( LISHV,
               "CodegreeOfPurity",
               "CastelnuovoMumfordRegularity" ],
             intrinsic_properties :=
-            [ ]
+            [ "IsZero",
+              "IsPure",
+              "IsTorsion",
+              "IsTorsionFree",
+              "IsReflexive"
+              ],
+            pullable_properties :=
+                                    [
+                                      "IsZero",
+                                      "IsTorsion",
+#                                       "IsPure",
+                                      "IsReflexive",
+                                      "IsTorsionFree",
+                                      ],
+            pullable_attributes :=
+                                    [
+                                      ],
+            pushable_properties :=
+                                    [
+                                      "IsTorsion",
+                                      ],
+            pushable_attributes :=
+                                    [
+                                      ]
             )
         );
 
@@ -85,6 +108,20 @@ InstallLogicalImplicationsForHomalgObjects( LogicalImplicationsForHomalgSheaves,
 ####################################
 
 ##
+InstallImmediateMethodToPullPropertiesOrAttributes(
+        IsSheafOfModules,
+        IsSheafOfModules,
+        Concatenation( LISHV.pullable_properties, LISHV.pullable_attributes ),
+        Concatenation( LISHV.intrinsic_properties, LISHV.intrinsic_attributes ),
+        UnderlyingGradedModule );
+
+##
+InstallImmediateMethodToPushPropertiesOrAttributes( Twitter,
+        IsSheafOfModules,
+        Concatenation( LISHV.pushable_properties, LISHV.pushable_attributes ),
+        UnderlyingGradedModule );
+
+##
 InstallImmediateMethod( IsZero,
         IsSheafOfModules and HasGrade, 0,
         
@@ -101,10 +138,16 @@ InstallImmediateMethod( IsZero,
   function( E )
     local M;
     
-    M := UnderlyingGradedModule;
+    M := UnderlyingGradedModule( E );
     
     if HasIsZero( M ) and IsZero( M ) then
         return true;
+    fi;
+    if HasIsArtinian( M ) and IsArtinian( M ) then
+        return true;
+    fi;
+    if HasIsZero( M ) and not IsZero( M ) and HasTrivialArtinianSubmodule( M ) and not TrivialArtinianSubmodule( M ) then
+        return false;
     fi;
     
     TryNextMethod( );

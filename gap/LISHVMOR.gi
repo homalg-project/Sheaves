@@ -9,26 +9,58 @@
 ##
 #############################################################################
 
+InstallValue( LISHVMOR,
+        rec(
+            color := "\033[4;30;46m",
+            intrinsic_properties := LIGrHOM.intrinsic_properties,
+            intrinsic_attributes := LIGrHOM.intrinsic_attributes,
+            pullable_properties :=
+                                    [ "IsZero",
+                                      "IsOne",
+                                      "IsGeneralizedMorphism",
+                                      "IsGeneralizedEpimorphism",
+                                      "IsGeneralizedMonomorphism",
+                                      "IsGeneralizedIsomorphism",
+                                      "IsMonomorphism",
+                                      "IsEpimorphism",
+                                      "IsSplitMonomorphism",
+                                      "IsSplitEpimorphism",
+                                      "IsIsomorphism"
+                                      ],
+            pullable_attributes :=
+                                    [
+                                      ],
+            pushable_properties :=
+                                    [ "IsGeneralizedMorphism",
+                                      "IsGeneralizedMonomorphism",
+                                      "IsMonomorphism",
+                                      "IsSplitMonomorphism"
+                                      ],
+            pushable_attributes :=
+                                    [
+                                      ],
+            )
+        );
+
 ####################################
 #
-# Twitter
+# immediate methods for properties:
 #
 ####################################
 
 ##
-InstallMethodToPullPropertiesOrAttributes(
-        IsMorphismOfCoherentSheavesOnProjRep, IsMorphismOfCoherentSheavesOnProjRep,
-        [ "IsMonomorphism", "IsEpimorphism", "IsIsomorphism",
-          "IsGeneralizedMorphism", "IsGeneralizedMonomorphism",
-          "IsGeneralizedEpimorphism", "IsGeneralizedIsomorphism",
-          "IsSplitMonomorphism", "IsSplitEpimorphism",
-          "IsOne", "IsZero" ],
+InstallImmediateMethodToPullPropertiesOrAttributes(
+        IsMorphismOfCoherentSheavesOnProjRep,
+        IsMorphismOfCoherentSheavesOnProjRep,
+        LISHVMOR.pullable_properties,
+        Concatenation( LIGrHOM.intrinsic_properties, LIGrHOM.intrinsic_attributes ),
         UnderlyingGradedMap );
 
-InstallImmediateMethodToTwitterPropertiesOrAttributes(
-        Twitter, IsMorphismOfCoherentSheavesOnProjRep, 
-        [ "IsMonomorphism", "IsGeneralizedMorphism", "IsGeneralizedMonomorphism",
-          "IsSplitMonomorphism", "IsOne" ], UnderlyingGradedMap );
+##
+InstallImmediateMethodToPushPropertiesOrAttributes( Twitter,
+        IsMorphismOfCoherentSheavesOnProjRep,
+       LISHVMOR.pushable_properties,
+        UnderlyingGradedMap );
 
 ####################################
 #
