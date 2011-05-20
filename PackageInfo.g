@@ -29,7 +29,7 @@ Subtitle := "A homalg based Package for Sheaf Algorithms",
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
 Version := Maximum( [
-  "2011.05.15", ## Markus' version
+  "2011.05.20", ## Markus' version
 ## this line prevents merge conflicts
   "2011.04.24", ## Mohamed's version
 ] ),
@@ -38,7 +38,7 @@ Version := Maximum( [
 
 ##  Release date of the current version in dd/mm/yyyy format.
 # 
-Date := "15/05/2011",
+Date := "20/05/2011",
 
 ##  URL of the archive(s) of the current package release, but *without*
 ##  the format extension(s), like '.zoo', which are given next.

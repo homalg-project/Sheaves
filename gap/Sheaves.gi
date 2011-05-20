@@ -1006,6 +1006,10 @@ InstallMethod( ViewObj,
     
     properties := "";
     
+    if IsLockedObject( M ) then
+        Append( properties, " (locked)" );
+    fi;
+    
     if HasIsStablyFree( M ) and IsStablyFree( M ) then
         Append( properties, " stably free" );
         if HasIsFree( M ) and not IsFree( M ) then	## the "not"s are obsolete but kept for better readability
