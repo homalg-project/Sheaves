@@ -425,6 +425,7 @@ InstallMethod( UnderlyingGradedModule,
     HM := GetFunctorObjCachedValue( Functor_ModuleOfGlobalSections_ForGradedModules, [ M ] );
     
     if HM <> fail then
+       SetTruncatedModuleOfGlobalSections( E, HM );
        return HM;
     fi;
     

@@ -24,15 +24,25 @@ InstallMethod( PositionOfTheDefaultPresentation,
         [ IsCoherentSheafOnProjRep ],
         
   function( F )
+    local M, HM;
     
     if IsBound( F!.PositionOfTheDefaultPresentation ) then
         return F!.PositionOfTheDefaultPresentation;
     fi;
     
+    M := UnderlyingGradedModule( F );
+    
+    HM := GetFunctorObjCachedValue( Functor_ModuleOfGlobalSections_ForGradedModules, [ M ] );
+    
+    if HM <> fail then
+       SetTruncatedModuleOfGlobalSections( F, HM );
+       M := HM;
+    fi;
+    
     if HasTruncatedModuleOfGlobalSections( F ) then
-        return [ 1, PositionOfTheDefaultPresentation( UnderlyingGradedModule( F ) ) ];
+        return [ 1, PositionOfTheDefaultPresentation( M ) ];
     else
-        return [ 0, PositionOfTheDefaultPresentation( UnderlyingGradedModule( F ) ) ];
+        return [ 0, PositionOfTheDefaultPresentation( M ) ];
     fi;
     
 end );

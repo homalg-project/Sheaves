@@ -269,13 +269,6 @@ InstallMethod( SheafMorphism,
     
     phi := psi;
     
-    if HasIsModuleOfGlobalSections( Source( phi ) ) and IsModuleOfGlobalSections( Source( phi ) ) and not HasTruncatedModuleOfGlobalSections( F ) then
-        TruncatedModuleOfGlobalSections( F );
-    fi;
-    if HasIsModuleOfGlobalSections( Range( phi ) ) and IsModuleOfGlobalSections( Range( phi ) ) and not HasTruncatedModuleOfGlobalSections( G ) then
-        TruncatedModuleOfGlobalSections( G );
-    fi;
-    
     if not IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) and not IsIdenticalObj( F!.GradedModuleModelingTheSheaf, Source( phi ) )
        and not ( HasTruncatedModuleOfGlobalSections( F ) and IsIdenticalObj( TruncatedModuleOfGlobalSections( F ), Source( phi ) ) ) then
         Error( "the underlying graded modules for the source and second parameter do not match" );
