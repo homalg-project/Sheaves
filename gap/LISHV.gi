@@ -288,7 +288,7 @@ InstallMethod( IsZero,
     
     M := UnderlyingGradedModule( E );
     
-    return IsArtinian( M );
+    return IsZero( HomogeneousPartOverCoefficientsRing( CastelnuovoMumfordRegularity( M ), M ) );
     
 end );
 
