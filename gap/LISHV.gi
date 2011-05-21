@@ -35,23 +35,23 @@ InstallValue( LISHV,
               "IsTorsionFree",
               "IsReflexive"
               ],
-            pullable_properties :=
+            exchangeable_properties :=
                                     [
-                                      "IsZero",
+                                      [ "IsZero", "IsArtinian" ],
                                       "IsTorsion",
-#                                       "IsPure",
+                                      ],
+            exchangeable_true_properties :=
+                                    [
+                                      "IsPure",
                                       "IsReflexive",
                                       "IsTorsionFree",
                                       ],
-            pullable_attributes :=
+            exchangeable_false_properties :=
                                     [
                                       ],
-            pushable_properties :=
+            exchangeable_attributes :=
                                     [
-                                      "IsTorsion",
-                                      ],
-            pushable_attributes :=
-                                    [
+                                      "RankOfObject",
                                       ]
             )
         );
@@ -109,16 +109,44 @@ InstallLogicalImplicationsForHomalgObjects( LogicalImplicationsForHomalgSheaves,
 
 ##
 InstallImmediateMethodToPullPropertiesOrAttributes(
-        IsSheafOfModules,
-        IsSheafOfModules,
-        Concatenation( LISHV.pullable_properties, LISHV.pullable_attributes ),
+        IsCoherentSheafOnProjRep,
+        IsCoherentSheafOnProjRep,
+        LISHV.exchangeable_properties,
+        Concatenation( LISHV.intrinsic_properties, LISHV.intrinsic_attributes ),
+        UnderlyingGradedModule );
+
+##
+InstallImmediateMethodToPullTrueProperties(
+        IsCoherentSheafOnProjRep,
+        IsCoherentSheafOnProjRep,
+        LISHV.exchangeable_true_properties,
+        Concatenation( LISHV.intrinsic_properties, LISHV.intrinsic_attributes ),
+        UnderlyingGradedModule );
+
+##
+InstallImmediateMethodToPullFalseProperties(
+        IsCoherentSheafOnProjRep,
+        IsCoherentSheafOnProjRep,
+        LISHV.exchangeable_false_properties,
         Concatenation( LISHV.intrinsic_properties, LISHV.intrinsic_attributes ),
         UnderlyingGradedModule );
 
 ##
 InstallImmediateMethodToPushPropertiesOrAttributes( Twitter,
-        IsSheafOfModules,
-        Concatenation( LISHV.pushable_properties, LISHV.pushable_attributes ),
+        IsCoherentSheafOnProjRep,
+        LISHV.exchangeable_properties,
+        UnderlyingGradedModule );
+
+##
+InstallImmediateMethodToPushFalseProperties( Twitter,
+        IsCoherentSheafOnProjRep,
+        LISHV.exchangeable_true_properties,
+        UnderlyingGradedModule );
+
+##
+InstallImmediateMethodToPushTrueProperties( Twitter,
+        IsCoherentSheafOnProjRep,
+        LISHV.exchangeable_false_properties,
         UnderlyingGradedModule );
 
 ##
@@ -133,38 +161,15 @@ end );
 
 ##
 InstallImmediateMethod( IsZero,
-        IsSheafOfModules, -10,
+        IsCoherentSheafOnProjRep, 0,
         
   function( E )
     local M;
     
     M := UnderlyingGradedModule( E );
     
-    if HasIsZero( M ) and IsZero( M ) then
-        return true;
-    fi;
-    if HasIsArtinian( M ) and IsArtinian( M ) then
-        return true;
-    fi;
     if HasIsZero( M ) and not IsZero( M ) and HasTrivialArtinianSubmodule( M ) and not TrivialArtinianSubmodule( M ) then
         return false;
-    fi;
-    
-    TryNextMethod( );
-    
-end );
-
-##
-InstallImmediateMethod( IsTorsion,
-        IsSheafOfModules, 0,
-        
-  function( E )
-    local M;
-    
-    M := UnderlyingGradedModule( E );
-    
-    if HasIsTorsion( M ) then
-        return IsTorsion( M );
     fi;
     
     TryNextMethod( );
@@ -256,21 +261,18 @@ end );
 ####################################
 
 ##
-InstallImmediateMethod( RankOfSheaf,
-        IsSheafOfModules, 0,
-        
-  function( E )
-    local M;
-    
-    M := UnderlyingGradedModule( E );
-    
-    if HasRankOfObject( M ) then
-        return RankOfObject( M );
-    fi;
-    
-    TryNextMethod( );
-    
-end );
+InstallImmediateMethodToPullPropertiesOrAttributes(
+        IsCoherentSheafOnProjRep,
+        IsCoherentSheafOnProjRep,
+        LISHV.exchangeable_attributes,
+        Concatenation( LISHV.intrinsic_properties, LISHV.intrinsic_attributes ),
+        UnderlyingGradedModule );
+
+##
+InstallImmediateMethodToPushPropertiesOrAttributes( Twitter,
+        IsCoherentSheafOnProjRep,
+        LISHV.exchangeable_attributes,
+        UnderlyingGradedModule );
 
 ####################################
 #
@@ -279,51 +281,9 @@ end );
 ####################################
 
 ##
-InstallMethod( IsZero,
-        "for sheaves",
-        [ IsSheafOfModules ],
-        
-  function( E )
-    local M;
-    
-    M := UnderlyingGradedModule( E );
-    
-    return IsZero( HomogeneousPartOverCoefficientsRing( CastelnuovoMumfordRegularity( M ), M ) );
-    
-end );
-
-##
-InstallMethod( IsTorsion,
-        "for sheaves",
-        [ IsSheafOfModules ],
-        
-  function( E )
-    local M;
-    
-    M := UnderlyingGradedModule( E );
-    
-    return IsTorsion( M );
-    
-end );
-
-##
-InstallMethod( IsTorsionFree,
-        "for sheaves",
-        [ IsSheafOfModules ],
-        
-  function( E )
-    local M;
-    
-    M := UnderlyingGradedModule( E );
-    
-    return IsArtinian( TorsionObject( M ) );
-    
-end );
-
-##
 InstallMethod( IsReflexive,
         "for sheaves",
-        [ IsSheafOfModules ],
+        [ IsCoherentSheafOnProjRep ],
         
   function( E )
     local M;
@@ -337,7 +297,7 @@ end );
 ## FIXME: why can't HasCodegreeOfPurity be put in the header?
 InstallMethod( IsReflexive,
         "for sheaves",
-        [ IsSheafOfModules ],
+        [ IsCoherentSheafOnProjRep ],
         
   function( E )
     

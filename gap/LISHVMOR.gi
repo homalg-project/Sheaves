@@ -14,29 +14,28 @@ InstallValue( LISHVMOR,
             color := "\033[4;30;46m",
             intrinsic_properties := LIGrHOM.intrinsic_properties,
             intrinsic_attributes := LIGrHOM.intrinsic_attributes,
-            pullable_properties :=
-                                    [ "IsZero",
+            exchangeable_properties :=
+                                    [
+                                      "IsMorphism",
+                                      "IsMonomorphism",
+                                      [ "IsGeneralizedEpimorphism", [ "IsGeneralizedMorphism" ] ],
+                                      [ "IsGeneralizedMonomorphism", [ "IsGeneralizedMorphism" ] ],
+                                      [ "IsGeneralizedIsomorphism", [ "IsGeneralizedMorphism" ] ],
+                                      ],
+            exchangeable_true_properties :=
+                                    [
+                                      "IsZero",
                                       "IsOne",
                                       "IsGeneralizedMorphism",
-                                      "IsGeneralizedEpimorphism",
-                                      "IsGeneralizedMonomorphism",
-                                      "IsGeneralizedIsomorphism",
-                                      "IsMonomorphism",
                                       "IsEpimorphism",
                                       "IsSplitMonomorphism",
                                       "IsSplitEpimorphism",
-                                      "IsIsomorphism"
+                                      "IsIsomorphism",
                                       ],
-            pullable_attributes :=
+            exchangeable_false_properties :=
                                     [
                                       ],
-            pushable_properties :=
-                                    [ "IsGeneralizedMorphism",
-                                      "IsGeneralizedMonomorphism",
-                                      "IsMonomorphism",
-                                      "IsSplitMonomorphism"
-                                      ],
-            pushable_attributes :=
+            exchangeable_attributes :=
                                     [
                                       ],
             )
@@ -52,38 +51,63 @@ InstallValue( LISHVMOR,
 InstallImmediateMethodToPullPropertiesOrAttributes(
         IsMorphismOfCoherentSheavesOnProjRep,
         IsMorphismOfCoherentSheavesOnProjRep,
-        LISHVMOR.pullable_properties,
-        Concatenation( LIGrHOM.intrinsic_properties, LIGrHOM.intrinsic_attributes ),
+        LISHVMOR.exchangeable_properties,
+        Concatenation( LISHVMOR.intrinsic_properties, LISHVMOR.intrinsic_attributes ),
+        UnderlyingGradedMap );
+
+##
+InstallImmediateMethodToPullTrueProperties(
+        IsMorphismOfCoherentSheavesOnProjRep,
+        IsMorphismOfCoherentSheavesOnProjRep,
+        LISHVMOR.exchangeable_true_properties,
+        Concatenation( LISHVMOR.intrinsic_properties, LISHVMOR.intrinsic_attributes ),
+        UnderlyingGradedMap );
+
+##
+InstallImmediateMethodToPullFalseProperties(
+        IsMorphismOfCoherentSheavesOnProjRep,
+        IsMorphismOfCoherentSheavesOnProjRep,
+        LISHVMOR.exchangeable_false_properties,
+        Concatenation( LISHVMOR.intrinsic_properties, LISHVMOR.intrinsic_attributes ),
         UnderlyingGradedMap );
 
 ##
 InstallImmediateMethodToPushPropertiesOrAttributes( Twitter,
         IsMorphismOfCoherentSheavesOnProjRep,
-       LISHVMOR.pushable_properties,
+        LISHVMOR.exchangeable_properties,
+        UnderlyingGradedMap );
+
+##
+InstallImmediateMethodToPushFalseProperties( Twitter,
+        IsMorphismOfCoherentSheavesOnProjRep,
+        LISHVMOR.exchangeable_true_properties,
+        UnderlyingGradedMap );
+
+##
+InstallImmediateMethodToPushTrueProperties( Twitter,
+        IsMorphismOfCoherentSheavesOnProjRep,
+        LISHVMOR.exchangeable_false_properties,
         UnderlyingGradedMap );
 
 ####################################
 #
-# immediate methods for properties:
+# immediate methods for attributes:
 #
 ####################################
 
 ##
-InstallImmediateMethod( IsZero,
-        IsMorphismOfCoherentSheavesOnProjRep, -10,
-        
-  function( phi )
-    local psi;
-    
-    psi := UnderlyingGradedMap;
-    
-    if HasIsZero( psi ) and IsZero( psi ) then
-        return true;
-    fi;
-    
-    TryNextMethod( );
-    
-end );
+InstallImmediateMethodToPullPropertiesOrAttributes(
+        IsMorphismOfCoherentSheavesOnProjRep,
+        IsMorphismOfCoherentSheavesOnProjRep,
+        LISHVMOR.exchangeable_attributes,
+        Concatenation( LISHVMOR.intrinsic_properties, LISHVMOR.intrinsic_attributes ),
+        UnderlyingGradedMap );
+
+##
+InstallImmediateMethodToPushPropertiesOrAttributes( Twitter,
+        IsMorphismOfCoherentSheavesOnProjRep,
+        LISHVMOR.exchangeable_attributes,
+        UnderlyingGradedMap );
 
 ####################################
 #
@@ -169,34 +193,12 @@ end );
 ####################################
 
 ##
-InstallMethod( IsAutomorphism,
-        "for coherent sheaves on proj morphism",
-        [ IsMorphismOfCoherentSheavesOnProjRep ],
-        
-  function( phi )
-    
-    return IsAutomorphism( TruncatedModuleOfGlobalSections( phi ) ) and IsEndomorphismOfSheavesOfModules( phi );
-    
-end );
-
-##
 InstallMethod( IsZero,
         "for coherent sheaves on proj morphism",
         [ IsMorphismOfCoherentSheavesOnProjRep ],
         
   function( phi )
     
-    return IsZero( ImageObject( UnderlyingGradedMap( phi ) ) );
-    
-end );
-
-##
-InstallMethod( IsMorphism,
-        "for coherent sheaves on proj morphism",
-        [ IsMorphismOfCoherentSheavesOnProjRep ],
-        
-  function( phi )
-    
-    return IsMorphism( UnderlyingGradedMap( phi ) );
+    return IsZero( ImageObject( phi ) );
     
 end );

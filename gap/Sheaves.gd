@@ -166,8 +166,6 @@ DeclareProperty( "IsLocallyFree",
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareProperty( "IsPure",
-        IsSheafOfModules );
 
 ##  <#GAPDoc Label="FiniteLocallyFreeResolutionExists">
 ##  <ManSection>
