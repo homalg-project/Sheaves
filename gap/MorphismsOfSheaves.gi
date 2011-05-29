@@ -264,17 +264,38 @@ end );
 InstallMethod( SheafMorphism,
         "For graded morphisms",
         [ IsHomalgGradedMap, IsCoherentSheafOnProjRep, IsCoherentSheafOnProjRep ],
-  function( psi, F, G )
-    local phi, type, morphism;
+  function( phi, F, G )
+    local i, M, source, target, type, morphism;
     
-    phi := psi;
+    for i in F!.ListOfKnownUnderlyingModules do
+        M := F!.SetOfUnderlyingModules!.(i);
+        if CheckHasTruncatedModuleOfGlobalSections( F, M ) and 
+           IsIdenticalObj( F!.SetOfUnderlyingModules!.(F!.ListOfKnownUnderlyingModules[Length(F!.ListOfKnownUnderlyingModules)]), Source( phi ) )then
+            source := F!.ListOfKnownUnderlyingModules[Length(F!.ListOfKnownUnderlyingModules)];
+            break;
+        fi;
+        if IsIdenticalObj( M, Source( phi ) ) then
+            source := i;
+            break;
+        fi;
+    od;
+    for i in G!.ListOfKnownUnderlyingModules do
+        M := G!.SetOfUnderlyingModules!.(i);
+        if CheckHasTruncatedModuleOfGlobalSections( G, M ) and 
+           IsIdenticalObj( G!.SetOfUnderlyingModules!.(G!.ListOfKnownUnderlyingModules[Length(G!.ListOfKnownUnderlyingModules)]), Range( phi ) )then
+            target := G!.ListOfKnownUnderlyingModules[Length(G!.ListOfKnownUnderlyingModules)];
+            break;
+        fi;
+        if IsIdenticalObj( M, Range( phi ) ) then
+            target := i;
+            break;
+        fi;
+    od;
     
-    if not IsIdenticalObj( UnderlyingGradedModule( F ), Source( phi ) ) and not IsIdenticalObj( F!.GradedModuleModelingTheSheaf, Source( phi ) )
-       and not ( HasTruncatedModuleOfGlobalSections( F ) and IsIdenticalObj( TruncatedModuleOfGlobalSections( F ), Source( phi ) ) ) then
+    if not IsBound( source ) then
         Error( "the underlying graded modules for the source and second parameter do not match" );
     fi;
-    if not IsIdenticalObj( UnderlyingGradedModule( G ), Range( phi ) ) and not IsIdenticalObj( G!.GradedModuleModelingTheSheaf, Range( phi ) )
-       and not ( HasTruncatedModuleOfGlobalSections( G ) and IsIdenticalObj( TruncatedModuleOfGlobalSections( G ), Range( phi ) ) ) then
+    if not IsBound( target ) then
         Error( "the underlying graded modules for the range and third parameter do not match" );
     fi;
 

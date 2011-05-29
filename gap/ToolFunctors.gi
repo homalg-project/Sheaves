@@ -123,29 +123,14 @@ InstallGlobalFunction( _Functor_PreCompose_OnMorphismsOfCoherentSheafOnProj,  ##
       Error( "Morphisms are not compatible for composition" );
     fi;
     
-    if HasMorphismAid( pre ) or HasMorphismAid( post ) then
+    if IsIdenticalObj( UnderlyingGradedModule( Range( pre ) ), UnderlyingGradedModule( Source( post ) ) ) then
         
-        if HasTruncatedModuleOfGlobalSections( pre ) and HasTruncatedModuleOfGlobalSections( post ) then
-            phi := SheafMorphism( PreCompose( TruncatedModuleOfGlobalSections( pre ), TruncatedModuleOfGlobalSections( post ) ), Source( pre ), Range( post ) );
-        elif HasTruncatedModuleOfGlobalSections( pre ) and IsIdenticalObj( Range( TruncatedModuleOfGlobalSections( pre ) ), Source( post!.GradedModuleMapModelingTheSheaf ) ) then
-            phi := SheafMorphism( PreCompose( TruncatedModuleOfGlobalSections( pre ), post!.GradedModuleMapModelingTheSheaf ), Source( pre ), Range( post ) );
-        elif HasTruncatedModuleOfGlobalSections( post ) and IsIdenticalObj( Range( pre!.GradedModuleMapModelingTheSheaf  ), Source( TruncatedModuleOfGlobalSections( post ) ) ) then
-            phi := SheafMorphism( PreCompose( pre!.GradedModuleMapModelingTheSheaf, TruncatedModuleOfGlobalSections( post ) ), Source( pre ), Range( post ) );
-        elif IsIdenticalObj( Range( pre!.GradedModuleMapModelingTheSheaf ), Source( post!.GradedModuleMapModelingTheSheaf ) ) then
-            phi := SheafMorphism( PreCompose( pre!.GradedModuleMapModelingTheSheaf, post!.GradedModuleMapModelingTheSheaf ), Source( pre ), Range( post ) );
-        else
-            Error( "do not know how to compose these morphisms" );
-        fi;
-        
-    elif HasTruncatedModuleOfGlobalSections( Source( pre ) ) or HasTruncatedModuleOfGlobalSections( Source( post ) ) or HasTruncatedModuleOfGlobalSections( Range( post ) ) then
-    
-        phi := SheafMorphism( PreCompose( TruncatedModuleOfGlobalSections( pre ), TruncatedModuleOfGlobalSections( post ) ), Source( pre ), Range( post ) );
-        SetTruncatedModuleOfGlobalSections( phi, UnderlyingGradedMap( phi ) );
-    
-    else
-    
         phi := SheafMorphism( PreCompose( UnderlyingGradedMap( pre ), UnderlyingGradedMap( post ) ), Source( pre ), Range( post ) );
-    
+        
+    else
+        
+        phi := SheafMorphism( PreCompose( TruncatedModuleOfGlobalSections( pre ), TruncatedModuleOfGlobalSections( post ) ), Source( pre ), Range( post ) );
+        
     fi;
     
     return SetPropertiesOfComposedMorphism( pre, post, phi );

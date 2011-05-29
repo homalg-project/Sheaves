@@ -424,6 +424,12 @@ DeclareOperation( "POW",
 
 # basic operations:
 
+DeclareOperation( "CheckHasTruncatedModuleOfGlobalSections",
+        [ IsSheafOfModules, IsHomalgGradedModule ] );
+
+DeclareOperation( "AddANewPresentation",
+        [ IsSheafOfModules, IsHomalgGradedModule ] );
+
 DeclareOperation( "StructureSheafOfAmbientSpace",
         [ IsSheafOfModules ] );
 

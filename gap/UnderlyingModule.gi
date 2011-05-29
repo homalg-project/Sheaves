@@ -26,24 +26,7 @@ InstallMethod( PositionOfTheDefaultPresentation,
   function( F )
     local M, HM;
     
-    if IsBound( F!.PositionOfTheDefaultPresentation ) then
-        return F!.PositionOfTheDefaultPresentation;
-    fi;
-    
-    M := UnderlyingGradedModule( F );
-    
-    HM := GetFunctorObjCachedValue( Functor_ModuleOfGlobalSections_ForGradedModules, [ M ] );
-    
-    if HM <> fail then
-       SetTruncatedModuleOfGlobalSections( F, HM );
-       M := HM;
-    fi;
-    
-    if HasTruncatedModuleOfGlobalSections( F ) then
-        return [ 1, PositionOfTheDefaultPresentation( M ) ];
-    else
-        return [ 0, PositionOfTheDefaultPresentation( M ) ];
-    fi;
+    return F!.PositionOfTheDefaultPresentation;
     
 end );
 
@@ -54,8 +37,8 @@ InstallMethod( SetPositionOfTheDefaultPresentation,
         
   function( F, p )
     
-    if not ( Length( p ) = 2 and IsPosInt( p[2] ) and p[1] in [ 0, 1 ] ) then
-        Error( "expected a list of two entries in the sets { 0, 1 } and the positive integers" );
+    if not ( Length( p ) = 2 and IsPosInt( p[2] ) and IsPosInt( p[1] ) ) and p[1] in F!.ListOfKnownUnderlyingModules then
+        Error( "unknown presentation" );
     fi;
     
     F!.PositionOfTheDefaultPresentation := p;

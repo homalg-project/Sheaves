@@ -88,7 +88,11 @@ DeclareRepresentation( "IsCoherentSheafOrSubsheafOnProjRep",
 DeclareRepresentation( "IsCoherentSheafOnProjRep",
         IsCoherentSheafOrSubsheafOnProjRep and
         IsStaticFinitelyPresentedObjectRep,
-        [ "GradedModuleModelingTheSheaf" ] );
+        [
+          "SetOfUnderlyingModules",
+          "ListOfKnownUnderlyingModules",
+          "PositionOfTheDefaultPresentation" 
+         ] );
 
 ##  <#GAPDoc Label="IsCoherentSubsheafOnProjRep">
 ##  <ManSection>
@@ -106,7 +110,12 @@ DeclareRepresentation( "IsCoherentSheafOnProjRep",
 DeclareRepresentation( "IsCoherentSubsheafOnProjRep",
         IsCoherentSheafOrSubsheafOnProjRep and
         IsStaticFinitelyPresentedSubobjectRep,
-        [ "GradedModuleModelingTheSheaf", "map_having_subobject_as_its_image" ] );
+        [
+          "SetOfUnderlyingModules",
+          "ListOfKnownUnderlyingModules",
+          "PositionOfTheDefaultPresentation",
+          "map_having_subobject_as_its_image"
+         ] );
 
 ####################################
 #
@@ -143,6 +152,68 @@ BindGlobal( "TheTypeHomalgRightCoherentSheaf",
 ####################################
 
 ##
+InstallMethod( CheckHasTruncatedModuleOfGlobalSections,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep, IsGradedModuleOrGradedSubmoduleRep ],
+        
+  function( E, M )
+    local HM;
+    
+    if not HasTruncatedModuleOfGlobalSections( E ) then
+    
+        if ( HasIsModuleOfGlobalSections( M ) and IsModuleOfGlobalSections( M ) ) then
+            SetTruncatedModuleOfGlobalSections( E, M );
+            return true;
+        else
+            HM := GetFunctorObjCachedValue( Functor_ModuleOfGlobalSections_ForGradedModules, [ M ] );
+            if HM <> fail then
+                AddANewPresentation( E, HM );
+                SetTruncatedModuleOfGlobalSections( E, HM );
+                HM!.Proj := E;
+                return true;
+            fi;
+        fi;
+    fi;
+    
+    return false;
+    
+end );
+
+##
+InstallMethod( AddANewPresentation,
+        "for sheaves of modules on proj",
+        [ IsCoherentSheafOnProjRep, IsGradedModuleRep ],
+        
+  function( F, M )
+    local modules, l;
+    
+    if not ( IsHomalgLeftObjectOrMorphismOfLeftObjects( M ) and IsHomalgLeftObjectOrMorphismOfLeftObjects( F ) )
+       and not ( IsHomalgRightObjectOrMorphismOfRightObjects( M ) and IsHomalgRightObjectOrMorphismOfRightObjects( F ) ) then
+        Error( "the sheaf and the new presentation module must either be both left or both right\n" );
+    fi;
+    
+    modules := F!.SetOfUnderlyingModules;
+    
+    l := F!.ListOfKnownUnderlyingModules[ Length( F!.ListOfKnownUnderlyingModules ) ];
+    
+    ## define the (l+1)st set of generators:
+    modules!.(l+1) := M;
+    
+    ## adjust the list of positions:
+    F!.ListOfKnownUnderlyingModules[ l+1 ] := l+1; ## the list is allowed to contain holes (sparse list)
+    
+    ## adjust the default position:
+    if IsLockedObject( F ) then
+        F!.LockObjectOnCertainPresentation := [ l+1, PositionOfTheDefaultPresentation( M ) ];
+    else
+        SetPositionOfTheDefaultPresentation( F, [ l+1, PositionOfTheDefaultPresentation( M ) ] );
+    fi;
+    
+    return F;
+    
+end );
+
+##
 InstallMethod( LockObjectOnCertainPresentation,
         "for sheaves of modules on proj",
         [ IsCoherentSheafOnProjRep, IsList ],
@@ -150,11 +221,7 @@ InstallMethod( LockObjectOnCertainPresentation,
   function( M, p )
     
     ## first save the current setting
-    if IsBound( M!.PositionOfTheDefaultPresentation ) then
-        M!.LockObjectOnCertainPresentation := PositionOfTheDefaultPresentation( M );
-    else
-        M!.LockObjectOnCertainPresentation := [ ];
-    fi;
+    M!.LockObjectOnCertainPresentation := PositionOfTheDefaultPresentation( M );
     
     SetPositionOfTheDefaultPresentation( M, p );
     
@@ -184,13 +251,8 @@ InstallMethod( UnlockObject,
     
     ## first restore the saved settings
     if IsBound( M!.LockObjectOnCertainPresentation ) then
-        if M!.LockObjectOnCertainPresentation = [ ] then
-            Unbind( M!.PositionOfTheDefaultPresentation );
-            Unbind( M!.LockObjectOnCertainPresentation );
-        else
-            SetPositionOfTheDefaultPresentation( M, M!.LockObjectOnCertainPresentation );
-            Unbind( M!.LockObjectOnCertainPresentation );
-        fi;
+        SetPositionOfTheDefaultPresentation( M, M!.LockObjectOnCertainPresentation );
+        Unbind( M!.LockObjectOnCertainPresentation );
     fi;
     
 end );
@@ -213,15 +275,11 @@ InstallMethod( PartOfPresentationRelevantForOutputOfFunctors,
         
   function( F, l )
     
-    if not ( Length( l ) = 2 and l[1] in [ 0, 1 ] and IsPosInt( l[2] ) ) then
+    if not ( Length( l ) = 2 and IsPosInt( l[1] ) and IsPosInt( l[2] ) ) and l[1] in F!.ListOfKnownUnderlyingModules then
         Error( "unknown presentation" );
     fi;
     
-    if l[1] = 0 then
-        return F!.GradedModuleModelingTheSheaf;
-    else
-        return TruncatedModuleOfGlobalSections( F );
-    fi;
+    return F!.SetOfUnderlyingModules!.l[1];
     
 end );
 
@@ -406,30 +464,12 @@ InstallMethod( UnderlyingGradedModule,
         [ IsSheafOfModules ],
         
   function( E )
-    local M, HM;
+    local pos;
     
-    if IsBound( E!.PositionOfTheDefaultPresentation ) then
-        if E!.PositionOfTheDefaultPresentation[1] = 0 then
-            return E!.GradedModuleModelingTheSheaf;
-        elif E!.PositionOfTheDefaultPresentation[1] = 1 then
-            return TruncatedModuleOfGlobalSections( E );
-        fi;
-    fi;
+    pos := E!.PositionOfTheDefaultPresentation[1];
     
-    if HasTruncatedModuleOfGlobalSections( E ) then;
-        return TruncatedModuleOfGlobalSections( E );
-    fi;
+    return E!.SetOfUnderlyingModules!.(pos);
     
-    M := E!.GradedModuleModelingTheSheaf;
-    
-    HM := GetFunctorObjCachedValue( Functor_ModuleOfGlobalSections_ForGradedModules, [ M ] );
-    
-    if HM <> fail then
-       SetTruncatedModuleOfGlobalSections( E, HM );
-       return HM;
-    fi;
-    
-    return M;
     
 end );
 
@@ -550,7 +590,7 @@ end );
 
 ##
 InstallMethod( Resolution,
-        "for homalg modules",
+        "for sheaves of modules on proj",
         [ IsInt, IsCoherentSheafOnProjRep ],
 
   function( _q, F )
@@ -663,9 +703,14 @@ InstallMethod( Proj,
     fi;
     
     E := rec(
-             GradedModuleModelingTheSheaf := M,
-             string := "sheaf", string_plural := "sheaves"
-             );
+        SetOfUnderlyingModules := rec(
+            1 := M
+        ),
+        ListOfKnownUnderlyingModules := [ 1 ],
+        PositionOfTheDefaultPresentation := [ 1, PositionOfTheDefaultPresentation( M ) ],
+        string := "sheaf",
+        string_plural := "sheaves"
+    );
     
     if IsHomalgLeftObjectOrMorphismOfLeftObjects( M ) then
         
@@ -692,6 +737,8 @@ InstallMethod( Proj,
     fi;
     
     M!.Proj := E;
+    
+    CheckHasTruncatedModuleOfGlobalSections( E, M );
     
     return E;
     

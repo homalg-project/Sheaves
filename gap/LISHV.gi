@@ -341,11 +341,15 @@ InstallMethod( TruncatedModuleOfGlobalSections,
         [ IsSheafOfModules ],
         
   function( E )
-    local M;
+    local M, HM;
     
     M := UnderlyingGradedModule( E );
     
-    return ModuleOfGlobalSections( M );
+    HM := ModuleOfGlobalSections( M );
+    
+    AddANewPresentation( E, HM );
+    
+    return HM;
     
 end );
 
