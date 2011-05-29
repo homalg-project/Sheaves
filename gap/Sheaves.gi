@@ -611,6 +611,32 @@ InstallMethod( Resolution,
 
 end );
 
+# this method is used in Resolution for short exact (co)sequences.
+# It chooses a module presentating F as the image of the graded
+# modulehomomorphism induced by psi. since psi is assumed to be
+# surjective (as morphism of sheaves) the cokernel of the underlying
+# graded module map is artinian. we compute a resolution of the module
+# and sheafify it. This has the advantage, that the underlying graded
+# map of phi is surjective and we can compute a PostDivide of 
+# psi and the HullEpi of M.
+##
+InstallMethod( ResolutionWithRespectToMorphism,
+        "for sheaves of modules on proj",
+        [ IsInt, IsCoherentSheafOnProjRep, IsStaticMorphismOfFinitelyGeneratedObjectsRep ],
+        
+  function( q, F, psi )
+    local psi2;
+    
+    psi2 := UnderlyingGradedMap( psi );
+    
+    if not IsEpimorphism( psi2 ) then
+        AddANewPresentation( F, ImageObject( psi2 ) );
+    fi;
+    
+    return Resolution( q, F );
+    
+ end );
+
 ##
 InstallMethod( InducedMorphismToProjectiveSpace,
         "for sheaves",
