@@ -8,6 +8,102 @@
 #############################################################################
 
 ##
+InstallMethod( EpiOnRightFactor,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    local M, epi;
+    
+    M := UnderlyingGradedModule( F );
+    
+    if HasEpiOnRightFactor( M ) then
+        
+        epi := SheafMorphism( EpiOnRightFactor( M ), F, "create" );
+        
+        SetEpiOnRightFactor( F, epi );
+        
+        return epi;
+        
+    fi;
+     
+     TryNextMethod( );
+     
+end );
+
+##
+InstallMethod( EpiOnLeftFactor,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    local M, epi;
+    
+    M := UnderlyingGradedModule( F );
+    
+    if HasEpiOnLeftFactor( M ) then
+        
+        epi := SheafMorphism( EpiOnLeftFactor( M ), F, "create" );
+        
+        SetEpiOnLeftFactor( F, epi );
+        
+        return epi;
+        
+    fi;
+     
+     TryNextMethod( );
+     
+end );
+
+##
+InstallMethod( MonoOfRightSummand,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    local M, mono;
+    
+    M := UnderlyingGradedModule( F );
+    
+    if HasMonoOfRightSummand( M ) then
+        
+        mono := SheafMorphism( MonoOfRightSummand( M ), "create", F );
+        
+        SetMonoOfRightSummand( F, mono );
+        
+        return mono;
+        
+    fi;
+     
+     TryNextMethod( );
+     
+end );
+
+##
+InstallMethod( MonoOfLeftSummand,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    local M, mono;
+    
+    M := UnderlyingGradedModule( F );
+    
+    if HasMonoOfLeftSummand( M ) then
+        
+        mono := SheafMorphism( MonoOfLeftSummand( M ), "create", F );
+        
+        SetMonoOfLeftSummand( F, mono );
+        
+        return mono;
+        
+    fi;
+     
+     TryNextMethod( );
+     
+end );
+
+##
 InstallMethod( TheMorphismToZero,
         "for coherent sheaves on proj",
         [ IsCoherentSheafOnProjRep ],
