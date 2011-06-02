@@ -806,7 +806,7 @@ InstallMethod( Proj,
     
     M!.Proj := E;
     
-    CheckHasTruncatedModuleOfGlobalSections( E, M );
+#     CheckHasTruncatedModuleOfGlobalSections( E, M );
     
     return E;
     

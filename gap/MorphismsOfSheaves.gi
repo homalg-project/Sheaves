@@ -217,9 +217,10 @@ InstallMethod( PushPresentationByIsomorphism,
         
   function( phi )
     
-    if not HasTruncatedModuleOfGlobalSections( phi ) then
-        Error( "this method only works when the map is given between the truncated modules of global sections" );
-    fi;
+    #!!!!!!!! this is wrong in general !!!!!!!!!
+#     if not HasTruncatedModuleOfGlobalSections( phi ) then
+#         Error( "this method only works when the map is given between the truncated modules of global sections" );
+#     fi;
     
     SetIsIsomorphism( UnderlyingGradedMap( phi ), true );
     
@@ -269,11 +270,11 @@ InstallMethod( SheafMorphism,
     
     for i in F!.ListOfKnownUnderlyingModules do
         M := F!.SetOfUnderlyingModules!.(i);
-        if CheckHasTruncatedModuleOfGlobalSections( F, M ) and 
-           IsIdenticalObj( F!.SetOfUnderlyingModules!.(F!.ListOfKnownUnderlyingModules[Length(F!.ListOfKnownUnderlyingModules)]), Source( phi ) )then
-            source := F!.ListOfKnownUnderlyingModules[Length(F!.ListOfKnownUnderlyingModules)];
-            break;
-        fi;
+#         if CheckHasTruncatedModuleOfGlobalSections( F, M ) and 
+#            IsIdenticalObj( F!.SetOfUnderlyingModules!.(F!.ListOfKnownUnderlyingModules[Length(F!.ListOfKnownUnderlyingModules)]), Source( phi ) )then
+#             source := F!.ListOfKnownUnderlyingModules[Length(F!.ListOfKnownUnderlyingModules)];
+#             break;
+#         fi;
         if IsIdenticalObj( M, Source( phi ) ) then
             source := i;
             break;
@@ -281,11 +282,11 @@ InstallMethod( SheafMorphism,
     od;
     for i in G!.ListOfKnownUnderlyingModules do
         M := G!.SetOfUnderlyingModules!.(i);
-        if CheckHasTruncatedModuleOfGlobalSections( G, M ) and 
-           IsIdenticalObj( G!.SetOfUnderlyingModules!.(G!.ListOfKnownUnderlyingModules[Length(G!.ListOfKnownUnderlyingModules)]), Range( phi ) )then
-            target := G!.ListOfKnownUnderlyingModules[Length(G!.ListOfKnownUnderlyingModules)];
-            break;
-        fi;
+#         if CheckHasTruncatedModuleOfGlobalSections( G, M ) and 
+#            IsIdenticalObj( G!.SetOfUnderlyingModules!.(G!.ListOfKnownUnderlyingModules[Length(G!.ListOfKnownUnderlyingModules)]), Range( phi ) )then
+#             target := G!.ListOfKnownUnderlyingModules[Length(G!.ListOfKnownUnderlyingModules)];
+#             break;
+#         fi;
         if IsIdenticalObj( M, Range( phi ) ) then
             target := i;
             break;
