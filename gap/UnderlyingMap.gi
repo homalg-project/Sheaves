@@ -8,21 +8,6 @@
 #############################################################################
 
 ##
-InstallMethod( PositionOfTheDefaultPresentation,
-        "for coherent sheaves on proj morphism",
-        [ IsMorphismOfCoherentSheavesOnProjRep ],
-        
-  function( psi )
-    
-    if HasTruncatedModuleOfGlobalSections( psi ) then
-        return Concatenation( [ 1 ], PairOfPositionsOfTheDefaultPresentations( UnderlyingGradedMap( psi ) ) );
-    else
-        return Concatenation( [ 0 ], PairOfPositionsOfTheDefaultPresentations( UnderlyingGradedMap( psi ) ) );
-    fi;
-    
-end );
-
-##
 InstallMethod( MatrixOfMap,
         "for coherent sheaves on proj morphism",
         [ IsMorphismOfCoherentSheavesOnProjRep ],

@@ -279,7 +279,7 @@ InstallMethod( PartOfPresentationRelevantForOutputOfFunctors,
         Error( "unknown presentation" );
     fi;
     
-    return F!.SetOfUnderlyingModules!.l[1];
+    return F!.SetOfUnderlyingModules!.(l[1]);
     
 end );
 
@@ -466,7 +466,7 @@ InstallMethod( UnderlyingGradedModule,
   function( E )
     local pos;
     
-    pos := E!.PositionOfTheDefaultPresentation[1];
+    pos := E!.PositionOfTheDefaultPresentation;
     
     return E!.SetOfUnderlyingModules!.(pos);
     
@@ -733,7 +733,7 @@ InstallMethod( Proj,
             1 := M
         ),
         ListOfKnownUnderlyingModules := [ 1 ],
-        PositionOfTheDefaultPresentation := [ 1, PositionOfTheDefaultPresentation( M ) ],
+        PositionOfTheDefaultPresentation := 1,
         string := "sheaf",
         string_plural := "sheaves"
     );

@@ -26,7 +26,7 @@ InstallMethod( PositionOfTheDefaultPresentation,
   function( F )
     local M, HM;
     
-    return F!.PositionOfTheDefaultPresentation;
+    return [ F!.PositionOfTheDefaultPresentation, PositionOfTheDefaultPresentation( UnderlyingGradedModule( F ) ) ];
     
 end );
 
@@ -41,7 +41,7 @@ InstallMethod( SetPositionOfTheDefaultPresentation,
         Error( "unknown presentation" );
     fi;
     
-    F!.PositionOfTheDefaultPresentation := p;
+    F!.PositionOfTheDefaultPresentation := p[1];
     
     SetPositionOfTheDefaultPresentation( UnderlyingGradedModule( F ), p[2] );
     
