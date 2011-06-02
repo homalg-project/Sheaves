@@ -252,13 +252,13 @@ InstallGlobalFunction( _Functor_PostDivide_OnMorphismsOfCoherentSheafOnProj,  ##
     
     # if the underlying modules are "nice", i.e. Source( gamma ) is free, we just compute PostDivide with the underlying modules
     SUgamma := Source( UnderlyingMorphism( UnderlyingGradedMap( gamma ) ) );
-    if HasIsFree( SUgamma ) and IsFree( SUgamma ) and IsIdenticalObj( Range( UnderlyingGradedMap( gamma ) ), Range( UnderlyingGradedMap( beta ) ) ) then
+#     if HasIsFree( SUgamma ) and IsFree( SUgamma ) and IsIdenticalObj( Range( UnderlyingGradedMap( gamma ) ), Range( UnderlyingGradedMap( beta ) ) ) then
         gamma2 := UnderlyingGradedMap( gamma );
         beta2 := UnderlyingGradedMap( beta );
-    else
-        gamma2 := TruncatedModuleOfGlobalSections( gamma );
-        beta2 := TruncatedModuleOfGlobalSections( beta );
-    fi;
+#     else
+#         gamma2 := TruncatedModuleOfGlobalSections( gamma );
+#         beta2 := TruncatedModuleOfGlobalSections( beta );
+#     fi;
     
     psi := PostDivide( gamma2, beta2 );
     
