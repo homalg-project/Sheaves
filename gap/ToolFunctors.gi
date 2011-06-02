@@ -162,14 +162,11 @@ InstallGlobalFunction( _Functor_CoproductMorphism_OnMorphismsOfCoherentSheafOnPr
   function( phi, psi )
     local phi_psi;
     
-    if HasTruncatedModuleOfGlobalSections( phi ) and HasTruncatedModuleOfGlobalSections( psi ) or
-       not IsIdenticalObj( Range( phi!.GradedModuleMapModelingTheSheaf ), Range( psi!.GradedModuleMapModelingTheSheaf ) ) then
-        phi_psi := CoproductMorphism( TruncatedModuleOfGlobalSections( phi ), TruncatedModuleOfGlobalSections( psi ) );
-    else
-        phi_psi := CoproductMorphism( phi!.GradedModuleMapModelingTheSheaf, psi!.GradedModuleMapModelingTheSheaf );
-    fi;
+    phi_psi := CoproductMorphism( UnderlyingGradedMap( phi ), UnderlyingGradedMap( psi ) );
     
-    phi_psi := SheafMorphism( phi_psi, Source( phi ) + Source( psi ), Range( phi ) );
+    # as long as functors dont merge results we are forces to call the next line with "create"
+#     phi_psi := SheafMorphism( phi_psi, Source( phi ) + Source( psi ), Range( phi ) );
+    phi_psi := SheafMorphism( phi_psi, "create", Range( phi ) );
     
     return SetPropertiesOfCoproductMorphism( phi, psi, phi_psi );
     
@@ -200,14 +197,11 @@ InstallGlobalFunction( _Functor_ProductMorphism_OnMorphismsOfCoherentSheafOnProj
   function( phi, psi )
     local phi_psi;
     
-    if HasTruncatedModuleOfGlobalSections( phi ) and HasTruncatedModuleOfGlobalSections( psi ) or
-       not IsIdenticalObj( Range( phi!.GradedModuleMapModelingTheSheaf ), Range( psi!.GradedModuleMapModelingTheSheaf ) ) then
-        phi_psi := ProductMorphism( TruncatedModuleOfGlobalSections( phi ), TruncatedModuleOfGlobalSections( psi ) );
-    else
-        phi_psi := ProductMorphism( phi!.GradedModuleMapModelingTheSheaf, psi!.GradedModuleMapModelingTheSheaf );
-    fi;
+    phi_psi := ProductMorphism( UnderlyingGradedMap( phi ), UnderlyingGradedMap( psi ) );
     
-    phi_psi := SheafMorphism( phi_psi, Source( phi ), Range( phi ) + Range( psi ) );
+    # as long as functors dont merge results we are forces to call the next line with "create"
+#     phi_psi := SheafMorphism( phi_psi, Source( phi ), Range( phi ) + Range( psi ) );
+    phi_psi := SheafMorphism( phi_psi, Source( phi ), "create" );
     
     return SetPropertiesOfProductMorphism( phi, psi, phi_psi );
     
