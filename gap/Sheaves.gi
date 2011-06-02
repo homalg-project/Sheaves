@@ -625,15 +625,57 @@ InstallMethod( ResolutionWithRespectToMorphism,
         [ IsInt, IsCoherentSheafOnProjRep, IsStaticMorphismOfFinitelyGeneratedObjectsRep ],
         
   function( q, F, psi )
-    local psi2;
+    local psi2, res2, CEpi, d_j, res, F_j, j;
     
     psi2 := UnderlyingGradedMap( psi );
     
-    if not IsEpimorphism( psi2 ) then
-        AddANewPresentation( F, ImageObject( psi2 ) );
+    if HasIsEpimorphism( psi2 ) and IsEpimorphism( psi2 ) then
+        return Resolution( q, F );
     fi;
     
-    return Resolution( q, F );
+    res2 := Resolution( q, ImageObject( psi2 ) );
+    
+    CEpi := SheafMorphism( PreCompose( CokernelEpi( CertainMorphism( res2, 1 ) ), ImageObjectEmb( psi2 ) ), "create", F );
+    Assert( 2, IsMorphism( CEpi ) );
+    SetIsMorphism( CEpi, true );
+    Assert( 2, IsEpimorphism( CEpi ) );
+    SetIsEpimorphism( CEpi, true );
+    
+    d_j := SheafMorphism( CertainMorphism( res2, 1 ), "create", Source( CEpi ) );
+    Assert( 2, IsMorphism( d_j ) );
+    SetIsMorphism( d_j, true );
+    SetCokernelEpi( d_j, CEpi );
+    
+    res := HomalgComplex( d_j );
+    F_j := Source( d_j );
+    
+    for j in [ 2 .. q ] do
+        if IsBound( F_j!.distinguished ) and F_j!.distinguished and HasIsZero( UnderlyingGradedModule( F_j ) ) and IsZero( UnderlyingGradedModule( F_j ) ) then
+            # take care not to create the graded zero morphism between distinguished zero modules again each step
+            d_j := TheZeroMorphism( F_j, F_j );
+            Add( res, d_j );
+            # no need for resetting F_j, since all other modules will be zero, too
+        else
+            d_j := SheafMorphism( CertainMorphism( res2, j ), "create", F_j );
+            Assert( 2, IsMorphism( d_j ) );
+            SetIsMorphism( d_j, true );
+            Add( res, d_j );
+            F_j := Source( d_j );
+        fi;
+    od;
+
+    if HasIsAcyclic( res2 ) and IsAcyclic( res2 ) then
+        SetIsAcyclic( res, true );
+    fi;
+    if HasIsRightAcyclic( res2 ) and HasIsRightAcyclic( res2 ) then
+        SetIsRightAcyclic( res, true );
+    fi;
+    
+    #we possibly overwrite a "better" CurrentResolution of the sheaf_res
+    #but setting this is vital for the Cartan-Eilenberg-resolution
+    SetCurrentResolution( F, res );
+    
+    return res;
     
  end );
 
