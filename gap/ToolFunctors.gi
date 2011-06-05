@@ -133,7 +133,7 @@ InstallValue( functor_PreCompose_ForMorphismsOfCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "PreCompose" ],
                 [ "category", HOMALG_SHEAVES_PROJ.category ],
-                [ "operation", "PreComposeMorphisms" ],
+                [ "operation", "PreCompose" ],
                 [ "number_of_arguments", 2 ],
                 [ "1", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
                 [ "2", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],

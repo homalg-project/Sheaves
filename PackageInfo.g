@@ -28,9 +28,10 @@ Subtitle := "A homalg based Package for Sheaf Algorithms",
 ##  See '?Extending: Version Numbers' in GAP help for an explanation
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
-Version := Maximum( [ ##To prevent merge conflicts
+Version := Maximum( [
   "2011.04.26", ## Markus' version
-  "2011.04.22", ## Mohamed's version
+## this line prevents merge conflicts
+  "2011.04.23", ## Mohamed's version
 ] ),
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
