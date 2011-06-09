@@ -57,8 +57,12 @@ InstallMethod( RemoveMorphismAid,
   function( phi )
     local morphism, psi;
     
-    if ( not HasMorphismAid( phi ) or ( HasIsZero( MorphismAid( phi ) ) and IsZero( MorphismAid( phi ) ) )
-       and HasIsGeneralizedMorphism( phi ) and IsGeneralizedMorphism( phi ) )
+    if not HasMorphismAid( phi ) then
+        return phi;
+    fi;
+    
+    if HasIsZero( MorphismAid( phi ) ) and IsZero( MorphismAid( phi ) )
+       and HasIsGeneralizedMorphism( phi ) and IsGeneralizedMorphism( phi )
        then
         morphism := true;
     fi;
