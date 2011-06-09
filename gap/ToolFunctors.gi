@@ -244,23 +244,41 @@ InstallFunctorOnObjects( functor_ProductMorphism_ForMorphismsOfCoherentSheafOnPr
 
 InstallGlobalFunction( _Functor_PostDivide_OnMorphismsOfCoherentSheafOnProj,  ### defines: PostDivide
   function( gamma, beta )
-    local SUgamma, gamma2, beta2, psi, M_;
+    local gamma2, beta2, psi, M_;
     
     if HasMorphismAid( gamma ) or HasMorphismAid( beta ) then
         TryNextMethod();
     fi;
     
-    # if the underlying modules are "nice", i.e. Source( gamma ) is free, we just compute PostDivide with the underlying modules
-    SUgamma := Source( UnderlyingMorphism( UnderlyingGradedMap( gamma ) ) );
-#     if HasIsFree( SUgamma ) and IsFree( SUgamma ) and IsIdenticalObj( Range( UnderlyingGradedMap( gamma ) ), Range( UnderlyingGradedMap( beta ) ) ) then
-        gamma2 := UnderlyingGradedMap( gamma );
-        beta2 := UnderlyingGradedMap( beta );
-#     else
-#         gamma2 := TruncatedModuleOfGlobalSections( gamma );
-#         beta2 := TruncatedModuleOfGlobalSections( beta );
-#     fi;
-    
+    # This is only a heuristic, in general this PostDivide does only work if we dismiss artinian subfactors.
+    gamma2 := UnderlyingGradedMap( gamma );
+    beta2 := UnderlyingGradedMap( beta );
     psi := PostDivide( gamma2, beta2 );
+    
+    # If the heuristic fails...
+    if IsBool( psi ) then
+        
+        # ...we compute via the TruncatedModuleOfGlobalSections...
+        gamma2 := TruncatedModuleOfGlobalSections( gamma );
+        beta2 := TruncatedModuleOfGlobalSections( beta );
+        psi := PostDivide( gamma2, beta2 );
+        
+        # ...and pull the computation back to the original modules.
+        psi := CompleteImageSquare( NaturalMapToModuleOfGlobalSections( Source( psi ) ), psi, NaturalMapToModuleOfGlobalSections( Range( psi ) ) );
+        
+        # This is not possible in general, but possible up to artinian parts.
+        # So if there is a MorphismAid, then it should only have an artinian image.
+        # (the MorphismAid is set by the PostDivide in CompleteImageSquare)
+        if HasMorphismAid( psi ) then
+            Assert( 1, IsArtinian( MorphismAid( psi ) ) );
+            SetIsArtinian( MorphismAid( psi ), true );
+        fi;
+        
+    fi;
+    
+    if IsBool( psi ) then
+        return psi;
+    fi;
     
     M_ := Source( gamma );
     
