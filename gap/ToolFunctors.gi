@@ -256,12 +256,16 @@ InstallGlobalFunction( _Functor_PostDivide_OnMorphismsOfCoherentSheafOnProj,  ##
     psi := PostDivide( gamma2, beta2 );
     
     # If the heuristic fails...
-    if IsBool( psi ) then
+    if IsBool( psi ) and HasIsMorphism( gamma ) and HasIsMorphism( beta ) and IsMorphism( gamma ) and IsMorphism( beta ) then
         
         # ...we compute via the TruncatedModuleOfGlobalSections...
         gamma2 := TruncatedModuleOfGlobalSections( gamma );
         beta2 := TruncatedModuleOfGlobalSections( beta );
         psi := PostDivide( gamma2, beta2 );
+        
+        if IsBool( psi ) then
+            return psi;
+        fi;
         
         # ...and pull the computation back to the original modules.
         psi := CompleteImageSquare( NaturalMapToModuleOfGlobalSections( Source( psi ) ), psi, NaturalMapToModuleOfGlobalSections( Range( psi ) ) );
