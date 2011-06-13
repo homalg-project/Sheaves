@@ -13,6 +13,8 @@ WriteBibXMLextFile( "doc/SheavesBib.xml", bib );
 
 Read( "ListOfDocFiles.g" );
 
+PrintTo( "VERSION", PackageInfo( "Sheaves" )[1].Version );
+
 MakeGAPDocDoc( "doc", "SheavesForHomalg", list, "SheavesForHomalg" );
 
 GAPDocManualLab( "Sheaves" );

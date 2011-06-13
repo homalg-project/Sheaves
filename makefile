@@ -3,7 +3,7 @@ all: doc test
 doc: doc/manual.six
 
 doc/manual.six: makedoc.g maketest.g ListOfDocFiles.g \
-		PackageInfo.g VERSION \
+		PackageInfo.g \
 		doc/Sheaves.bib doc/*.xml \
 		gap/*.gd gap/*.gi examples/*.g
 	        gap makedoc.g
@@ -34,4 +34,3 @@ towww: archive
 	rm -f ${WEBPOS_FINAL}/*.tar.gz
 	cp ${WEBPOS}/* ${WEBPOS_FINAL}
 	ln -s Sheaves-`cat VERSION`.tar.gz ${WEBPOS_FINAL}/Sheaves.tar.gz
-
