@@ -316,25 +316,17 @@ InstallMethod( SheafMorphism,
 
     morphism := rec( GradedModuleMapModelingTheSheaf := phi );
     
+    ## Objectify:
+    ObjectifyWithAttributes(
+        morphism, type,
+        Source, F,
+        Range, G
+    );
+    
     if HasMorphismAid( phi ) then
-    
-        ## Objectify:
-        ObjectifyWithAttributes(
-            morphism, type,
-            MorphismAid, SheafMorphism( MorphismAid( phi ), "create", G ),
-            Source, F,
-            Range, G
-        );
-    
-    else
-    
-        ## Objectify:
-        ObjectifyWithAttributes(
-            morphism, type,
-            Source, F,
-            Range, G
-        );
-    
+       
+       SetMorphismAid( morphism, SheafMorphism( MorphismAid( phi ), "create", G ) );
+       
     fi;
     
     return morphism;
