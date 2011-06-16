@@ -226,6 +226,8 @@ InstallMethod( PushPresentationByIsomorphism,
     
     PushPresentationByIsomorphism( UnderlyingGradedMap( phi ) );
     
+    UpdateObjectsByMorphism( phi );
+    
     return Range( phi );
     
 end );

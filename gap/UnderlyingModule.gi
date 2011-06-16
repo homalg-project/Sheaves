@@ -399,8 +399,14 @@ InstallMethod( AnIsomorphism,
         [ IsCoherentSheafOnProjRep ],
         
   function( F )
+    local psi;
     
-    return SheafMorphism( AnIsomorphism( UnderlyingGradedModule( F ) ), "create", F );
+    psi := SheafMorphism( AnIsomorphism( UnderlyingGradedModule( F ) ), "create", F );
+    
+    SetIsIsomorphism( psi, true );
+    UpdateObjectsByMorphism( psi );
+    
+    return psi;
     
 end );
 
