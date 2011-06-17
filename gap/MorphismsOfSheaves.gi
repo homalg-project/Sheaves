@@ -75,6 +75,30 @@ BindGlobal( "TheTypeEndomorphismOfCoherentRightSheavesOnProj",
 ####################################
 
 ##
+InstallMethod( SheafVersionOfMorphismAid,
+        "for graded maps",
+        [ IsHomalgGradedMap, IsCoherentSheafOnProjRep ],
+        
+  function( phi, range )
+    local aid;
+    
+    if not HasMorphismAid( phi ) then
+        Error( "expected the morphism to have an aid" );
+    fi;
+    
+    aid := phi!.MorphismAid;
+    
+    if IsHomalgGradedMap( aid ) then
+        return SheafMorphism( aid, "create", range );
+    elif IsList( aid ) and Length( aid ) = 1 and IsHomalgGradedMap( aid[1] ) then
+        return [ SheafMorphism( aid[1], range, "create" ) ];
+    else
+        Error( "unexpected data structure for the aid" );
+    fi;
+    
+end );
+
+##
 InstallMethod( UpdateObjectsByMorphism,
         "for graded maps",
         [ IsMorphismOfCoherentSheavesOnProjRep and IsIsomorphism ],
@@ -327,7 +351,7 @@ InstallMethod( SheafMorphism,
     
     if HasMorphismAid( phi ) then
        
-       SetMorphismAid( morphism, SheafMorphism( MorphismAid( phi ), "create", G ) );
+       SetMorphismAid( morphism, SheafVersionOfMorphismAid( phi, G ) );
        
     fi;
     

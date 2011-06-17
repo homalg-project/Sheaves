@@ -107,3 +107,6 @@ DeclareOperation( "MatrixOfMap",
 
 DeclareOperation( "MatrixOfMap",
                  [ IsMorphismOfSheavesOfModules, IsInt, IsInt, IsInt ] );
+
+DeclareOperation( "SheafVersionOfMorphismAid",
+                 [ IsHomalgGradedMap, IsSheafOfModules ] );
