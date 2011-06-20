@@ -389,3 +389,54 @@ RightDerivedCofunctor( Functor_SheafHom_ForCoherentSheafOnProj );
 
 ##
 RightSatelliteOfCofunctor( Functor_SheafHom_ForCoherentSheafOnProj, "SheafExt" );
+
+
+##
+## GlobalSection
+##
+
+InstallGlobalFunction( _Functor_GlobalSections_OnCoherentSheafOnProj,  ### defines: GlobalSection
+  function( F )
+    
+    return HomogeneousPartOfDegreeZeroOverCoefficientsRing( TruncatedModuleOfGlobalSections( F ) );
+    
+end );
+
+InstallGlobalFunction( _Functor_GlobalSections_ForMorphismsOfCoherentSheafOnProj,  ### defines: GlobalSection
+  function( phi )
+    
+    return HomogeneousPartOfDegreeZeroOverCoefficientsRing( TruncatedModuleOfGlobalSections( phi ) );
+    
+end );
+
+InstallValue( Functor_GlobalSections_ForCoherentSheafOnProj,
+        CreateHomalgFunctor(
+                [ "name", "GlobalSections" ],
+                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "operation", "GlobalSections" ],
+                [ "number_of_arguments", 1 ],
+                [ "1", [ [ "covariant", "left exact" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                [ "OnObjects", _Functor_GlobalSections_OnCoherentSheafOnProj ],
+                [ "OnMorphisms", _Functor_GlobalSections_ForMorphismsOfCoherentSheafOnProj ]
+                )
+        );
+
+Functor_GlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
+  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+
+Functor_GlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=
+  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+
+InstallFunctor( Functor_GlobalSections_ForCoherentSheafOnProj );
+
+##
+## Hom
+##
+
+ComposeFunctors( Functor_GlobalSections_ForCoherentSheafOnProj, 1, Functor_SheafHom_ForCoherentSheafOnProj, "Hom", "Hom" );
+
+##
+## Ext
+##
+
+RightSatelliteOfCofunctor( Functor_Hom_for_coherent_sheaves_on_proj, "Ext" );
