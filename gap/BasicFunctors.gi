@@ -435,6 +435,34 @@ InstallFunctor( Functor_GlobalSections_ForCoherentSheafOnProj );
 
 ComposeFunctors( Functor_GlobalSections_ForCoherentSheafOnProj, 1, Functor_SheafHom_ForCoherentSheafOnProj, "Hom", "Hom" );
 
+SetProcedureToReadjustGenerators(
+        Functor_Hom_for_coherent_sheaves_on_proj,
+        function( arg )
+          local mor, S, T;
+          
+          mor := arg[1];
+          
+          S := UnderlyingGradedModule( arg[2] );
+          T := UnderlyingGradedModule( arg[3] );
+          
+          if not IsIdenticalObj( HomalgRing( mor ), HomalgRing( S ) ) then
+              ## give up
+              return mor;
+          fi;
+          
+          mor := GradedMap( mor, S, T );
+          
+          ## check assertion
+          Assert( 1, IsMorphism( mor ) );
+          
+          SetIsMorphism( mor, true );
+          
+          mor := SheafMorphism( mor, arg[2], arg[3] );
+          
+          return mor;
+          
+      end );
+
 ##
 ## Ext
 ##
