@@ -60,13 +60,13 @@ DeclareCategory( "IsSheafOfRings",
 ##    <Description>
 ##      The &GAP; category of sheaves. <P/>
 ##      (It is a subcategory of the &GAP; categories
-##      <C>IsHomalgSheaf</C> and <C>IsHomalgObject</C>.)
+##      <C>IsHomalgSheaf</C> and <C>IsHomalgStaticObject</C>.)
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
 DeclareCategory( "IsSheafOfModules",
-        IsHomalgSheaf and IsHomalgObject );
+        IsHomalgSheaf and IsHomalgStaticObject );
 
 ####################################
 #
