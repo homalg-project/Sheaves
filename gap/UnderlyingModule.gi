@@ -362,6 +362,17 @@ InstallMethod( BasisOfSheaf,
 end );
 
 ##
+InstallMethod( BasisOfSheaf,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOrSubsheafOnProjRep ],
+        
+  function( F )
+    
+    return BasisOfModule( UnderlyingGradedModule( F ) );
+    
+end );
+
+##
 InstallMethod( BasisOfModule,
         "for coherent sheaves on proj",
         [ IsCoherentSheafOrSubsheafOnProjRep ],
