@@ -36,3 +36,17 @@ DeclareOperation( "SheafHom",
 
 DeclareOperation( "SheafExt",
         [ IsInt, IsStructureObjectOrObject, IsStructureObjectOrObject ] );
+
+## SheafHomOnGlobalSections
+
+DeclareGlobalFunction( "_Functor_SheafHomOnGlobalSections_OnCoherentSheafOnProj" );
+
+DeclareGlobalFunction( "_Functor_SheafHomOnGlobalSections_OnMorphismsOfCoherentSheafOnProj" );
+
+DeclareGlobalVariable( "Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj" );
+
+DeclareOperation( "SheafHomOnGlobalSections",
+        [ IsStructureObjectOrObject, IsStructureObjectOrObject ] );
+
+DeclareOperation( "SheafExtOnGlobalSections",
+        [ IsInt, IsStructureObjectOrObject, IsStructureObjectOrObject ] );

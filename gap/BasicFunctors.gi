@@ -390,11 +390,104 @@ RightDerivedCofunctor( Functor_SheafHom_ForCoherentSheafOnProj );
 ##
 RightSatelliteOfCofunctor( Functor_SheafHom_ForCoherentSheafOnProj, "SheafExt" );
 
+##
+## SheafHomOnGlobalSections
+##
+InstallGlobalFunction( _Functor_SheafHomOnGlobalSections_OnCoherentSheafOnProj,
+  function( F, G )
+    local hom, emb, HP0N;
+    
+    CheckIfTheyLieInTheSameCategory( F, G );
+    
+    hom := GradedHom( TruncatedModuleOfGlobalSections( F ), TruncatedModuleOfGlobalSections( G ) );
+    emb := NaturalGeneralizedEmbedding( hom );
+    
+    HP0N := Proj( Range( emb ) );
+    
+    emb := SheafMorphism( emb, "create", HP0N );
+    hom := Source( emb );
+    
+    hom!.NaturalGeneralizedEmbedding := emb;
+    
+    # we can not set TruncatedModuleOfGlobalSections, because negative degrees would have to be truncated
+    # so this is wrong in general!!
+    SetTruncatedModuleOfGlobalSections( hom, UnderlyingGradedModule( hom ) );
+    
+    return hom;
+    
+end );
+
+##
+InstallGlobalFunction( _Functor_SheafHomOnGlobalSections_OnMorphismsOfCoherentSheafOnProj,
+  function( F_source, F_target, arg_before_pos, phi, arg_behind_pos )
+    local psi;
+    
+    if arg_before_pos = [ ] and Length( arg_behind_pos ) = 1 then
+        
+        psi :=  SheafMorphism( GradedHom( TruncatedModuleOfGlobalSections( phi ), TruncatedModuleOfGlobalSections( arg_behind_pos[1] ) ), F_source, F_target );
+        
+    elif Length( arg_before_pos ) = 1 and arg_behind_pos = [ ] then
+        
+        psi :=  SheafMorphism( GradedHom( TruncatedModuleOfGlobalSections( arg_before_pos[1] ), TruncatedModuleOfGlobalSections( phi ) ), F_source, F_target );
+        
+    else
+        Error( "wrong input\n" );
+    fi;
+    
+    if HasIsMorphism( phi ) and IsMorphism( phi ) then
+        Assert( 2, IsMorphism( psi ) );
+        SetIsMorphism( psi, true );
+    fi;
+    
+    # we can not set TruncatedModuleOfGlobalSections, because negative degrees would have to be truncated
+    # so this is wrong in general!!
+    SetTruncatedModuleOfGlobalSections( psi, UnderlyingGradedMap( psi ) );
+    
+    return psi;
+     
+end );
+
+##  <#GAPDoc Label="Functor_Hom:code">
+##      <Listing Type="Code"><![CDATA[
+InstallValue( Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj,
+        CreateHomalgFunctor(
+                [ "name", "SheafHomOnGlobalSections" ],
+                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "operation", "SheafHomOnGlobalSections" ],
+                [ "number_of_arguments", 2 ],
+                [ "1", [ [ "contravariant", "right adjoint", "distinguished" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                [ "2", [ [ "covariant", "left exact" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                [ "OnObjects", _Functor_SheafHomOnGlobalSections_OnCoherentSheafOnProj ],
+                [ "OnMorphisms", _Functor_SheafHomOnGlobalSections_OnMorphismsOfCoherentSheafOnProj ],
+                [ "MorphismConstructor", HOMALG_SHEAVES_PROJ.category.MorphismConstructor ]
+                )
+        );
+##  ]]></Listing>
+##  <#/GAPDoc>
+
+Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
+  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+
+Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=
+  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+
+InstallFunctor( Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj );
+
+RightDerivedCofunctor( Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj );
+
+##
+## SheafExtOnGlobalSections
+##
+
+##
+RightSatelliteOfCofunctor( Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj, "SheafExtOnGlobalSections" );
+
 
 ##
 ## GlobalSection
 ##
 
+# TruncatedModuleOfGlobalSections is an attribute and not a functor, so this is not a composition of functors
 InstallGlobalFunction( _Functor_GlobalSections_OnCoherentSheafOnProj,  ### defines: GlobalSection
   function( F )
     
@@ -433,7 +526,7 @@ InstallFunctor( Functor_GlobalSections_ForCoherentSheafOnProj );
 ## Hom
 ##
 
-ComposeFunctors( Functor_GlobalSections_ForCoherentSheafOnProj, 1, Functor_SheafHom_ForCoherentSheafOnProj, "Hom", "Hom" );
+ComposeFunctors( Functor_GlobalSections_ForCoherentSheafOnProj, 1, Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj, "Hom", "Hom" );
 
 SetProcedureToReadjustGenerators(
         Functor_Hom_for_coherent_sheaves_on_proj,
@@ -442,10 +535,10 @@ SetProcedureToReadjustGenerators(
           
           mor := arg[1];
           
-          S := UnderlyingGradedModule( arg[2] );
-          T := UnderlyingGradedModule( arg[3] );
+          S := TruncatedModuleOfGlobalSections( arg[2] );
+          T := TruncatedModuleOfGlobalSections( arg[3] );
           
-          if not IsIdenticalObj( HomalgRing( mor ), HomalgRing( S ) ) then
+          if not IsIdenticalObj( HomalgRing( mor ), UnderlyingNonGradedRing( HomalgRing( S ) ) ) then
               ## give up
               return mor;
           fi;
@@ -454,10 +547,13 @@ SetProcedureToReadjustGenerators(
           
           ## check assertion
           Assert( 1, IsMorphism( mor ) );
-          
           SetIsMorphism( mor, true );
           
           mor := SheafMorphism( mor, arg[2], arg[3] );
+          
+          ## check assertion
+          Assert( 1, IsMorphism( mor ) );
+          SetIsMorphism( mor, true );
           
           return mor;
           
