@@ -496,7 +496,7 @@ InstallGlobalFunction( _Functor_GlobalSections_OnCoherentSheafOnProj,  ### defin
 end );
 
 InstallGlobalFunction( _Functor_GlobalSections_ForMorphismsOfCoherentSheafOnProj,  ### defines: GlobalSection
-  function( phi )
+  function( F_source, F_target, arg_before_pos, phi, arg_behind_pos )
     
     return HomogeneousPartOfDegreeZeroOverCoefficientsRing( TruncatedModuleOfGlobalSections( phi ) );
     
