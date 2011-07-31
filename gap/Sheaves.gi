@@ -618,7 +618,7 @@ end );
 # graded module map is artinian. we compute a resolution of the module
 # and sheafify it. This has the advantage, that the underlying graded
 # map of phi is surjective and we can compute a PostDivide of 
-# psi and the HullEpi of M.
+# psi and the CoveringEpi of M.
 ##
 InstallMethod( ResolutionWithRespectToMorphism,
         "for sheaves of modules on proj",
