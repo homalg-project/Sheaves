@@ -564,3 +564,132 @@ SetProcedureToReadjustGenerators(
 ##
 
 RightSatelliteOfCofunctor( Functor_Hom_for_coherent_sheaves_on_proj, "Ext" );
+
+##
+## TensorProduct
+##
+
+InstallGlobalFunction( _Functor_TensorProduct_OnCoherentSheafOnProj,
+  function( M, N )
+    local T, alpha, p;
+    
+    T := TensorProduct( UnderlyingGradedModule( M ), UnderlyingGradedModule( N ) );
+    
+    alpha := NaturalGeneralizedEmbedding( T );
+    
+    alpha := SheafMorphism( alpha, "create", "create" );
+    
+    Assert( 2, IsMorphism( alpha ) );
+    SetIsMorphism( alpha, true );
+    
+    T := Source( alpha );
+    
+    T!.NaturalGeneralizedEmbedding := alpha;
+    
+    return T;
+    
+end );
+
+##
+InstallGlobalFunction( _Functor_TensorProduct_OnMorphismsOfCoherentSheafOnProj,
+  function( F_source, F_target, arg_before_pos, phi, arg_behind_pos )
+    local psi;
+    
+    if arg_before_pos = [ ] and Length( arg_behind_pos ) = 1 then
+        
+        psi := SheafMorphism( TensorProduct( UnderlyingGradedMap( phi ), UnderlyingGradedModule( arg_behind_pos[1] ) ), F_source, F_target );
+        
+    elif Length( arg_before_pos ) = 1 and arg_behind_pos = [ ] then
+        
+        psi := SheafMorphism( TensorProduct( UnderlyingGradedModule( arg_before_pos[1] ), UnderlyingGradedMap( phi ) ), F_source, F_target );
+        
+    else
+        Error( "wrong input\n" );
+    fi;
+    
+    if HasIsMorphism( phi ) and IsMorphism( phi ) then
+        Assert( 2, IsMorphism( psi ) );
+        SetIsMorphism( psi, true );
+    fi;
+    
+    return psi;
+    
+end );
+
+if IsOperation( TensorProduct ) then
+    
+    ## GAP 4.4 style
+    InstallValue( Functor_TensorProduct_ForSheaves,
+            CreateHomalgFunctor(
+                    [ "name", "TensorProduct" ],
+                    [ "category", HOMALG_SHEAVES_PROJ.category ],
+                    [ "operation", "TensorProduct" ],
+                    [ "number_of_arguments", 2 ],
+                    [ "1", [ [ "covariant", "left adjoint", "distinguished" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                    [ "2", [ [ "covariant", "left adjoint" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                    [ "OnObjects", _Functor_TensorProduct_OnCoherentSheafOnProj ],
+                    [ "OnMorphisms", _Functor_TensorProduct_OnMorphismsOfCoherentSheafOnProj ],
+                    [ "MorphismConstructor", HOMALG_SHEAVES_PROJ.category.MorphismConstructor ]
+                    )
+            );
+    
+else
+    
+    ## GAP 4.5 style
+    ##  <#GAPDoc Label="Functor_TensorProduct:code">
+    ##      <Listing Type="Code"><![CDATA[
+    InstallValue( Functor_TensorProduct_ForSheaves,
+            CreateHomalgFunctor(
+                    [ "name", "TensorProduct" ],
+                    [ "category", HOMALG_SHEAVES_PROJ.category ],
+                    [ "operation", "TensorProductOp" ],
+                    [ "number_of_arguments", 2 ],
+                    [ "1", [ [ "covariant", "left adjoint", "distinguished" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                    [ "2", [ [ "covariant", "left adjoint" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                    [ "OnObjects", _Functor_TensorProduct_OnCoherentSheafOnProj ],
+                    [ "OnMorphisms", _Functor_TensorProduct_OnMorphismsOfCoherentSheafOnProj ],
+                    [ "MorphismConstructor", HOMALG_SHEAVES_PROJ.category.MorphismConstructor ]
+                    )
+            );
+    ##  ]]></Listing>
+    ##  <#/GAPDoc>
+    
+fi;
+
+Functor_TensorProduct_ForSheaves!.ContainerForWeakPointersOnComputedBasicObjects :=
+  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+
+Functor_TensorProduct_ForSheaves!.ContainerForWeakPointersOnComputedBasicMorphisms :=
+  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+
+InstallFunctor( Functor_TensorProduct_ForSheaves );
+
+## TensorProduct might have been defined elsewhere
+if not IsBound( TensorProduct ) then
+    
+    DeclareGlobalFunction( "TensorProduct" );
+    
+    ##
+    InstallGlobalFunction( TensorProduct,
+      function ( arg )
+        local  d;
+        if Length( arg ) = 0  then
+            Error( "<arg> must be nonempty" );
+        elif Length( arg ) = 1 and IsList( arg[1] )  then
+            if IsEmpty( arg[1] )  then
+                Error( "<arg>[1] must be nonempty" );
+            fi;
+            arg := arg[1];
+        fi;
+        d := TensorProductOp( arg, arg[1] );
+        if ForAll( arg, HasSize )  then
+            if ForAll( arg, IsFinite )  then
+                SetSize( d, Product( List( arg, Size ) ) );
+            else
+                SetSize( d, infinity );
+            fi;
+        fi;
+        return d;
+    end );
+fi;
+

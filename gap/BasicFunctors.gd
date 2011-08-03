@@ -50,3 +50,10 @@ DeclareOperation( "SheafHomOnGlobalSections",
 
 DeclareOperation( "SheafExtOnGlobalSections",
         [ IsInt, IsStructureObjectOrObject, IsStructureObjectOrObject ] );
+
+## TensorProduct
+DeclareGlobalFunction( "_Functor_TensorProduct_OnCoherentSheafOnProj" );
+
+DeclareGlobalFunction( "_Functor_TensorProduct_OnMorphismsOfCoherentSheafOnProj" );
+
+DeclareGlobalVariable( "Functor_TensorProduct_ForSheaves" );
