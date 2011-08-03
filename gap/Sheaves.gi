@@ -1449,9 +1449,9 @@ InstallMethod( Display,
     Display( UnderlyingGradedModule( E ) );
     
     if HasTruncatedModuleOfGlobalSections( E ) then
-        Print( "the sheaf modeled by the above truncated graded module of global sections\n" );
+        Print( "a sheaf modeled by the above truncated graded module of global sections\n" );
     else
-        Print( "the sheaf modeled by the above graded module\n" );
+        Print( "a sheaf modeled by the above graded module\n" );
     fi;
     
 end );

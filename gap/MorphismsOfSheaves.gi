@@ -383,7 +383,7 @@ InstallMethod( Display,
     
     Display( UnderlyingGradedMap( o ) );
     
-    Print( "The morphism of coherent sheaves on the projective space given by the above graded map\n" );
+    Print( "the morphism of coherent sheaves on the projective space is given by the above graded map\n" );
     
 end );
 
