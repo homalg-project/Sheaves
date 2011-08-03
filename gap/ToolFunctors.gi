@@ -53,7 +53,12 @@ InstallGlobalFunction( _Functor_AddMorphisms_OnMorphismsOfCoherentSheafOnProj,  
         return Error( "the two maps are not comparable" );
     fi;
     
-    phi := SheafMorphism( UnderlyingGradedMap( phi1 ) + UnderlyingGradedMap( phi2 ), Source( phi1 ), Range( phi1 ) );
+    if IsIdenticalObj( UnderlyingGradedModule( Source( phi1 ) ), UnderlyingGradedModule( Source( phi2 ) ) ) and
+       IsIdenticalObj( UnderlyingGradedModule( Range( phi1 ) ), UnderlyingGradedModule( Range( phi2 ) ) ) then
+        phi := SheafMorphism( UnderlyingGradedMap( phi1 ) + UnderlyingGradedMap( phi2 ), Source( phi1 ), Range( phi1 ) );
+    else
+        phi := SheafMorphism( TruncatedModuleOfGlobalSections( phi1 ) + TruncatedModuleOfGlobalSections( phi2 ), Source( phi1 ), Range( phi1 ) );
+    fi;
     
     return SetPropertiesOfSumMorphism( phi1, phi2, phi );
     
@@ -88,7 +93,12 @@ InstallGlobalFunction( _Functor_SubMorphisms_OnMorphismsOfCoherentSheafOnProj,  
         return Error( "the two maps are not comparable" );
     fi;
     
-    phi := SheafMorphism( UnderlyingGradedMap( phi1 ) - UnderlyingGradedMap( phi2 ), Source( phi1 ), Range( phi1 ) );
+    if IsIdenticalObj( UnderlyingGradedModule( Source( phi1 ) ), UnderlyingGradedModule( Source( phi2 ) ) ) and
+       IsIdenticalObj( UnderlyingGradedModule( Range( phi1 ) ), UnderlyingGradedModule( Range( phi2 ) ) ) then
+        phi := SheafMorphism( UnderlyingGradedMap( phi1 ) - UnderlyingGradedMap( phi2 ), Source( phi1 ), Range( phi1 ) );
+    else
+        phi := SheafMorphism( TruncatedModuleOfGlobalSections( phi1 ) - TruncatedModuleOfGlobalSections( phi2 ), Source( phi1 ), Range( phi1 ) );
+    fi;
     
     return SetPropertiesOfDifferenceMorphism( phi1, phi2, phi );
     
@@ -129,7 +139,9 @@ InstallGlobalFunction( _Functor_PreCompose_OnMorphismsOfCoherentSheafOnProj,  ##
         
     else
         
-        phi := SheafMorphism( PreCompose( TruncatedModuleOfGlobalSections( pre ), TruncatedModuleOfGlobalSections( post ) ), Source( pre ), Range( post ) );
+        phi := PreCompose( TruncatedModuleOfGlobalSections( pre ), TruncatedModuleOfGlobalSections( post ) );
+        phi := PreCompose( NaturalMapToModuleOfGlobalSections( UnderlyingGradedModule( Source( pre ) ) ), phi );
+        phi := SheafMorphism( phi, Source( pre ), Range( post ) );
         
     fi;
     
@@ -255,7 +267,8 @@ InstallGlobalFunction( _Functor_PostDivide_OnMorphismsOfCoherentSheafOnProj,  ##
     beta2 := UnderlyingGradedMap( beta );
     psi := PostDivide( gamma2, beta2 );
     
-    # If the heuristic fails...
+    # If the heuristic fails, i.e., image( gamma2 ) is not contained in image( beta2 )
+    # even though image( gamma ) <= image( beta )
     if IsBool( psi ) and HasIsMorphism( gamma ) and HasIsMorphism( beta ) and IsMorphism( gamma ) and IsMorphism( beta ) then
         
         # ...we compute via the TruncatedModuleOfGlobalSections...
