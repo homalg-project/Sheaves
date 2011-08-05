@@ -21,8 +21,9 @@ InstallValue( HOMALG_SHEAVES_PROJ,
             category := rec(
                             description := "coherent sheaves of modules and their morphisms over a projective scheme",
                             short_description := "_for_coherent_sheaves_on_proj",
-                            MorphismConstructor := SheafMorphism
-                            )
+                            MorphismConstructor := SheafMorphism,
+                            TryPostDivideWithoutAids := true, # see homalg/ToolFunctors.gi
+                            ),
            )
 );
 
@@ -776,6 +777,7 @@ InstallMethod( Proj,
         ),
         ListOfKnownUnderlyingModules := [ 1 ],
         PositionOfTheDefaultPresentation := 1,
+        category := HOMALG_SHEAVES_PROJ.category,
         string := "sheaf",
         string_plural := "sheaves"
     );
