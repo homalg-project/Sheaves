@@ -287,8 +287,9 @@ InstallGlobalFunction( _Functor_PostDivide_OnMorphismsOfCoherentSheafOnProj,  ##
         # So if there is a MorphismAid, then it should only have an artinian image.
         # (the MorphismAid is set by the PostDivide in CompleteImageSquare)
         if HasMorphismAid( psi ) then
-            Assert( 1, IsArtinian( MorphismAid( psi ) ) );
-            SetIsArtinian( MorphismAid( psi ), true );
+            # we don't want to compute the image object!
+            Assert( 2, IsArtinian( ImageObject( MorphismAid( psi ) ) ) );
+#             SetIsArtinian( ImageObject( MorphismAid( psi ) ), true );
         fi;
         
     fi;
