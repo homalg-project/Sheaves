@@ -22,6 +22,8 @@ InstallValue( HOMALG_SHEAVES_PROJ,
                             description := "coherent sheaves of modules and their morphisms over a projective scheme",
                             short_description := "_for_coherent_sheaves_on_proj",
                             MorphismConstructor := SheafMorphism,
+                            InternalHom := SheafHom,
+                            InternalExt := SheafExt,
                             TryPostDivideWithoutAids := true, # see homalg/ToolFunctors.gi
                             ),
            )
