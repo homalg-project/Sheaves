@@ -47,11 +47,13 @@ InstallMethod( ImageSubobject,
         ## Objectify:
         ObjectifyWithAttributes(
                 N, TheTypeHomalgLeftCoherentSubsheafOnProj,
+                ConstructedAsAnIdeal, ConstructedAsAnIdeal( img ),
                 LeftActingDomain, O );
     else
         ## Objectify:
         ObjectifyWithAttributes(
                 N, TheTypeHomalgRightCoherentSubsheafOnProj,
+                ConstructedAsAnIdeal, ConstructedAsAnIdeal( img ),
                 RightActingDomain, O );
     fi;
     
