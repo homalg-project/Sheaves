@@ -21,20 +21,111 @@
 InstallValue( LISHV,
         rec(
             color := "\033[4;30;46m",
-            intrinsic_attributes :=
-            [ "RankOfObject",
-              "Grade",
-              "DegreeOfTorsionFreeness",
-              "PurityFiltration",
-              "CodegreeOfPurity",
-              "CastelnuovoMumfordRegularity" ],
-            intrinsic_properties :=
-            [ "IsZero",
-              "IsPure",
-              "IsTorsion",
-              "IsTorsionFree",
-              "IsReflexive"
+            
+            ## used in a InstallLogicalImplicationsForHomalgSubobjects call below
+            intrinsic_properties_specific_shared_with_subobjects_and_ideals :=
+            [ 
+              "IsFree",
+              "IsDirectSumOfLineBundles",
+              "IsLocallyFree",
               ],
+            
+            ## used in a InstallLogicalImplicationsForHomalgSubobjects call below
+            intrinsic_properties_specific_shared_with_factors_modulo_ideals :=
+            [ 
+              ],
+            
+            intrinsic_properties_specific_not_shared_with_subobjects :=
+            [ 
+              ],
+            
+            ## used in a InstallLogicalImplicationsForHomalgSubobjects call below
+            intrinsic_properties_specific_shared_with_subobjects_which_are_not_ideals :=
+            Concatenation(
+                    ~.intrinsic_properties_specific_shared_with_subobjects_and_ideals,
+                    ~.intrinsic_properties_specific_shared_with_factors_modulo_ideals ),
+            
+            ## needed to define intrinsic_properties below
+            intrinsic_properties_specific :=
+            Concatenation(
+                    ~.intrinsic_properties_specific_not_shared_with_subobjects,
+                    ~.intrinsic_properties_specific_shared_with_subobjects_which_are_not_ideals ),
+            
+            ## needed for MatchPropertiesAndAttributes in Subsheaf.gi
+            intrinsic_properties_shared_with_subobjects_and_ideals :=
+            Concatenation(
+                    LIOBJ.intrinsic_properties_shared_with_subobjects_and_ideals,
+                    ~.intrinsic_properties_specific_shared_with_subobjects_and_ideals ),
+            
+            ##
+            intrinsic_properties_shared_with_factors_modulo_ideals :=
+            Concatenation(
+                    LIOBJ.intrinsic_properties_shared_with_factors_modulo_ideals,
+                    ~.intrinsic_properties_specific_shared_with_factors_modulo_ideals ),
+            
+            ## needed for MatchPropertiesAndAttributes in Subsheaf.gi
+            intrinsic_properties_shared_with_subobjects_which_are_not_ideals :=
+            Concatenation(
+                    LIOBJ.intrinsic_properties_shared_with_subobjects_which_are_not_ideals,
+                    ~.intrinsic_properties_specific_shared_with_subobjects_which_are_not_ideals ),
+            
+            ## needed for UpdateObjectsByMorphism
+            intrinsic_properties :=
+            Concatenation(
+                    LIOBJ.intrinsic_properties,
+                    ~.intrinsic_properties_specific ),
+            
+            ## used in a InstallLogicalImplicationsForHomalgSubobjects call below
+            intrinsic_attributes_specific_shared_with_subobjects_and_ideals :=
+            [ 
+              "CastelnuovoMumfordRegularity",
+              ],
+            
+            ## used in a InstallLogicalImplicationsForHomalgSubobjects call below
+            intrinsic_attributes_specific_shared_with_factors_modulo_ideals :=
+            [ 
+              ],
+            
+            intrinsic_attributes_specific_not_shared_with_subobjects :=
+            [ 
+              ],
+            
+            ## used in a InstallLogicalImplicationsForHomalgSubobjects call below
+            intrinsic_attributes_specific_shared_with_subobjects_which_are_not_ideals :=
+            Concatenation(
+                    ~.intrinsic_attributes_specific_shared_with_subobjects_and_ideals,
+                    ~.intrinsic_attributes_specific_shared_with_factors_modulo_ideals ),
+            
+            ## needed to define intrinsic_attributes below
+            intrinsic_attributes_specific :=
+            Concatenation(
+                    ~.intrinsic_attributes_specific_not_shared_with_subobjects,
+                    ~.intrinsic_attributes_specific_shared_with_subobjects_which_are_not_ideals ),
+            
+            ## needed for MatchPropertiesAndAttributes in Subsheaf.gi
+            intrinsic_attributes_shared_with_subobjects_and_ideals :=
+            Concatenation(
+                    LIOBJ.intrinsic_attributes_shared_with_subobjects_and_ideals,
+                    ~.intrinsic_attributes_specific_shared_with_subobjects_and_ideals ),
+            
+            ##
+            intrinsic_attributes_shared_with_factors_modulo_ideals :=
+            Concatenation(
+                    LIOBJ.intrinsic_attributes_shared_with_factors_modulo_ideals,
+                    ~.intrinsic_attributes_specific_shared_with_factors_modulo_ideals ),
+            
+            ## needed for MatchPropertiesAndAttributes in Subsheaf.gi
+            intrinsic_attributes_shared_with_subobjects_which_are_not_ideals :=
+            Concatenation(
+                    LIOBJ.intrinsic_attributes_shared_with_subobjects_which_are_not_ideals,
+                    ~.intrinsic_attributes_specific_shared_with_subobjects_which_are_not_ideals ),
+            
+            ## needed for UpdateObjectsByMorphism
+            intrinsic_attributes :=
+            Concatenation(
+                    LIOBJ.intrinsic_attributes,
+                    ~.intrinsic_attributes_specific ),
+            
             exchangeable_properties :=
             [ 
               [ "IsZero", "IsArtinian" ],
@@ -60,6 +151,10 @@ InstallValue( LISHV,
             )
         );
 
+##
+## take care that we distinguish between objects and subobjects:
+## some properties of a subobject might be those of the factor
+## and not of the underlying object
 ##
 InstallValue( LogicalImplicationsForHomalgSheaves,
         [ ## IsTorsionFree:
@@ -90,6 +185,42 @@ InstallValue( LogicalImplicationsForHomalgSheaves,
 ####################################
 
 InstallLogicalImplicationsForHomalgObjects( LogicalImplicationsForHomalgSheaves, IsSheafOfModules );
+
+InstallLogicalImplicationsForHomalgSubobjects(
+        List( LISHV.intrinsic_properties_specific_shared_with_subobjects_which_are_not_ideals, ValueGlobal ),
+        IsCoherentSheafOnProjRep and NotConstructedAsAnIdeal,
+        HasEmbeddingInSuperObject,
+        UnderlyingObject );
+
+InstallLogicalImplicationsForHomalgSubobjects(
+        List( LISHV.intrinsic_properties_specific_shared_with_subobjects_and_ideals, ValueGlobal ),
+        IsCoherentSheafOnProjRep and ConstructedAsAnIdeal,
+        HasEmbeddingInSuperObject,
+        UnderlyingObject );
+
+InstallLogicalImplicationsForHomalgSubobjects(
+        List( LISHV.intrinsic_properties_specific_shared_with_factors_modulo_ideals, ValueGlobal ),
+        IsCoherentSheafOnProjRep and ConstructedAsAnIdeal,
+        HasFactorObject,
+        FactorObject );
+
+InstallLogicalImplicationsForHomalgSubobjects(
+        List( LISHV.intrinsic_attributes_specific_shared_with_subobjects_which_are_not_ideals, ValueGlobal ),
+        IsCoherentSheafOnProjRep and NotConstructedAsAnIdeal,
+        HasEmbeddingInSuperObject,
+        UnderlyingObject );
+
+InstallLogicalImplicationsForHomalgSubobjects(
+        List( LISHV.intrinsic_attributes_specific_shared_with_subobjects_and_ideals, ValueGlobal ),
+        IsCoherentSheafOnProjRep and ConstructedAsAnIdeal,
+        HasEmbeddingInSuperObject,
+        UnderlyingObject );
+
+InstallLogicalImplicationsForHomalgSubobjects(
+        List( LISHV.intrinsic_attributes_specific_shared_with_factors_modulo_ideals, ValueGlobal ),
+        IsCoherentSheafOnProjRep and ConstructedAsAnIdeal,
+        HasFactorObject,
+        FactorObject );
 
 ####################################
 #

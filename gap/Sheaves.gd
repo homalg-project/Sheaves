@@ -199,10 +199,12 @@ DeclareAttribute( "TruncatedModuleOfGlobalSections",
 DeclareAttribute( "Support",
         IsHomalgSheaf );
 
-## intrinsic attributes:
+##
+## the attributes below are intrinsic:
 ##
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-## should all be added by hand to LISHV.intrinsic_attributes
+## should all be added by hand to appear in
+## LISHV.intrinsic_attributes_specific
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ##  <#GAPDoc Label="CastelnuovoMumfordRegularity">

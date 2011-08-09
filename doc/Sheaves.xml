@@ -36,7 +36,7 @@
 <#Include Label="IsLocallyFree">
 <#Include Label="FiniteLocallyFreeResolutionExists">
 
-For more properties see corresponding section <Ref BookName="homalg"
+For more properties see the corresponding section <Ref BookName="homalg"
 Sect="Objects: Properties"/>) in the documentation of the &homalg; package.
 
 </Section>
@@ -55,7 +55,7 @@ Sect="Objects: Properties"/>) in the documentation of the &homalg; package.
 
 <#Include Label="CastelnuovoMumfordRegularity">
 
-For more attributes see corresponding section <Ref BookName="homalg"
+For more attributes see the corresponding section <Ref BookName="homalg"
 Sect="Objects: Attributes"/>) in the documentation of the &homalg; package.
 
 </Section>

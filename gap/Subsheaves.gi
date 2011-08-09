@@ -18,6 +18,38 @@ BindGlobal( "TheTypeHomalgRightCoherentSubsheafOnProj",
 
 ####################################
 #
+# methods for operations:
+#
+####################################
+
+##
+InstallMethod( MatchPropertiesAndAttributesOfSubobjectAndUnderlyingObject,
+        "for a coherent coheresubsheaf and its underlying coherent sheaf",
+        [ IsCoherentSubsheafOnProjRep, IsCoherentSheafOnProjRep ],
+        
+  function( I, M )
+    
+    ## we don't check if M is the underlying object of I
+    ## to avoid infinite loops as EmbeddingInSuperObject
+    ## will be invoked
+    if ConstructedAsAnIdeal( I ) then
+        
+        MatchPropertiesAndAttributes( I, M,
+                LISHV.intrinsic_properties_shared_with_subobjects_and_ideals,
+                LISHV.intrinsic_attributes_shared_with_subobjects_and_ideals );
+        
+    else
+        
+        MatchPropertiesAndAttributes( I, M,
+                LISHV.intrinsic_properties_shared_with_subobjects_which_are_not_ideals,
+                LISHV.intrinsic_attributes_shared_with_subobjects_which_are_not_ideals );
+        
+    fi;
+    
+end );
+
+####################################
+#
 # constructor functions and methods:
 #
 ####################################
