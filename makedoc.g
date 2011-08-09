@@ -5,6 +5,7 @@
 ##
 
 LoadPackage( "GAPDoc" );
+LoadPackage( "homalg" );
 
 SetGapDocLaTeXOptions( "utf8" );
 

@@ -87,19 +87,6 @@ DeclareCategory( "IsSheafOfModules",
 DeclareProperty( "IsFree",
         IsSheafOfModules );
 
-##  <#GAPDoc Label="IsStablyFree">
-##  <ManSection>
-##    <Prop Arg="E" Name="IsStablyFree"/>
-##    <Returns>true or false</Returns>
-##    <Description>
-##      Check if the sheaf <A>E</A> is stably free.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-##
-DeclareProperty( "IsStablyFree",
-        IsSheafOfModules );
-
 ##  <#GAPDoc Label="IsDirectSumOfLineBundles">
 ##  <ManSection>
 ##    <Prop Arg="E" Name="IsDirectSumOfLineBundles"/>
@@ -126,47 +113,6 @@ DeclareProperty( "IsDirectSumOfLineBundles",
 DeclareProperty( "IsLocallyFree",
         IsSheafOfModules );
 
-##  <#GAPDoc Label="IsReflexive">
-##  <ManSection>
-##    <Prop Arg="E" Name="IsReflexive"/>
-##    <Returns>true or false</Returns>
-##    <Description>
-##      Check if the sheaf <A>E</A> is reflexive.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-
-##  <#GAPDoc Label="IsTorsionFree">
-##  <ManSection>
-##    <Prop Arg="E" Name="IsTorsionFree"/>
-##    <Returns>true or false</Returns>
-##    <Description>
-##      Check if the sheaf <A>E</A> is torsion-free.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-
-##  <#GAPDoc Label="IsTorsion">
-##  <ManSection>
-##    <Prop Arg="E" Name="IsTorsion"/>
-##    <Returns>true or false</Returns>
-##    <Description>
-##      Check if the sheaf <A>E</A> is torsion.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-
-##  <#GAPDoc Label="IsPure">
-##  <ManSection>
-##    <Prop Arg="E" Name="IsPure"/>
-##    <Returns>true or false</Returns>
-##    <Description>
-##      Check if the sheaf <A>E</A> is pure.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-##
-
 ##  <#GAPDoc Label="FiniteLocallyFreeResolutionExists">
 ##  <ManSection>
 ##    <Prop Arg="E" Name="FiniteLocallyFreeResolutionExists"/>
@@ -179,20 +125,6 @@ DeclareProperty( "IsLocallyFree",
 ##  <#/GAPDoc>
 ##
 DeclareProperty( "FiniteLocallyFreeResolutionExists",
-        IsSheafOfModules );
-
-##  <#GAPDoc Label="HasConstantRank">
-##  <ManSection>
-##    <Prop Arg="E" Name="HasConstantRank"/>
-##    <Returns>true or false</Returns>
-##    <Description>
-##      Check if the sheaf <A>E</A> has constant rank. <Br/>
-##      (no method installed)
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-##
-DeclareProperty( "HasConstantRank",
         IsSheafOfModules );
 
 ####################################
@@ -272,54 +204,6 @@ DeclareAttribute( "Support",
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ## should all be added by hand to LISHV.intrinsic_attributes
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-##  <#GAPDoc Label="DegreeOfTorsionFreeness">
-##  <ManSection>
-##    <Attr Arg="E" Name="DegreeOfTorsionFreeness"/>
-##    <Returns>a nonnegative integer or infinity</Returns>
-##    <Description>
-##      Auslander's degree of torsion-freeness of the sheaf <A>E</A>.
-##      It is set to infinity only for <A>E</A><M>=0</M>.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-##
-DeclareAttribute( "DegreeOfTorsionFreeness",
-        IsSheafOfModules );
-
-##  <#GAPDoc Label="Grade">
-##  <ManSection>
-##    <Attr Arg="E" Name="Grade"/>
-##    <Returns>a nonnegative integer or infinity</Returns>
-##    <Description>
-##      The depth of the sheaf <A>E</A>.
-##      It is set to infinity only for <A>E</A><M>=0</M>.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-
-##  <#GAPDoc Label="PurityFiltration">
-##  <ManSection>
-##    <Attr Arg="E" Name="PurityFiltration"/>
-##    <Returns>a &homalg; filtration</Returns>
-##    <Description>
-##      The purity filtration of the sheaf <A>E</A>.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-##
-DeclareAttribute( "PurityFiltration",
-        IsSheafOfModules );
-
-##  <#GAPDoc Label="CodegreeOfPurity">
-##  <ManSection>
-##    <Attr Arg="E" Name="CodegreeOfPurity"/>
-##    <Returns>a list of nonnegative integers</Returns>
-##    <Description>
-##      The codegree of purity of the sheaf <A>E</A>.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
 
 ##  <#GAPDoc Label="CastelnuovoMumfordRegularity">
 ##  <ManSection>

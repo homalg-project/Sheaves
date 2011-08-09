@@ -32,15 +32,12 @@
 <Heading>Sheaves: Properties</Heading>
 
 <#Include Label="IsFree">
-<#Include Label="IsStablyFree">
 <#Include Label="IsDirectSumOfLineBundles">
 <#Include Label="IsLocallyFree">
-<#Include Label="IsReflexive">
-<#Include Label="IsTorsionFree">
-<#Include Label="IsTorsion">
-<#Include Label="IsPure">
 <#Include Label="FiniteLocallyFreeResolutionExists">
-<#Include Label="HasConstantRank">
+
+For more properties see corresponding section <Ref BookName="homalg"
+Sect="Objects: Properties"/>) in the documentation of the &homalg; package.
 
 </Section>
 
@@ -56,9 +53,10 @@
 <!-- the following attributes are intrinsic in the sense that
      they can safely be attached to any copy of the sheaf -->
 
-<#Include Label="Grade">
-<#Include Label="CodegreeOfPurity">
 <#Include Label="CastelnuovoMumfordRegularity">
+
+For more attributes see corresponding section <Ref BookName="homalg"
+Sect="Objects: Attributes"/>) in the documentation of the &homalg; package.
 
 </Section>
 

@@ -75,21 +75,7 @@ InstallValue( LogicalImplicationsForHomalgSheaves,
           [ IsLocallyFree,
             "implies", IsReflexive ],
           
-          [ IsReflexive,
-            "implies", IsTorsionFree ],
-          
-          [ IsTorsionFree,
-            "implies", IsPure ],
-          
-          ## IsTorsion:
-          
-          [ IsZero,
-            "implies", IsTorsion ],
-          
-          ## IsZero:
-          
-          [ IsTorsion, "and", IsTorsionFree,
-            "imply", IsZero ]
+          ## see homalg/LIOBJ.gi for more implications
           
           ] );
 
@@ -151,16 +137,6 @@ InstallImmediateMethodToPushTrueProperties( Twitter,
 
 ##
 InstallImmediateMethod( IsZero,
-        IsSheafOfModules and HasGrade, 0,
-        
-  function( E )
-    
-    return Grade( E ) = infinity;
-    
-end );
-
-##
-InstallImmediateMethod( IsZero,
         IsCoherentSheafOnProjRep, 0,
         
   function( E )
@@ -173,74 +149,6 @@ InstallImmediateMethod( IsZero,
     fi;
     
     TryNextMethod( );
-    
-end );
-
-##
-InstallImmediateMethod( IsTorsion,
-        IsSheafOfModules and HasTorsionFreeFactorEpi and HasIsZero, 0,
-        
-  function( M )
-    local F;
-    
-    F := Range( TorsionFreeFactorEpi( M ) );
-    
-    if not IsZero( M ) and HasIsZero( F ) then
-        if IsZero( F ) then
-            return true;
-        else
-            return false;
-        fi;
-    fi;
-    
-    TryNextMethod( );
-    
-end );
-
-##
-InstallImmediateMethod( IsTorsion,
-        IsSheafOfModules and HasGrade, 0,
-        
-  function( M )
-    
-    if Grade( M ) > 0 then
-        return true;
-    elif HasIsZero( M ) and not IsZero( M ) then
-        return false;
-    fi;
-    
-    TryNextMethod( );
-    
-end );
-
-##
-InstallImmediateMethod( IsTorsionFree,
-        IsSheafOfModules and HasTorsionObjectEmb and HasIsZero, 0,
-        
-  function( M )
-    local T;
-    
-    T := Source( TorsionObjectEmb( M ) );
-    
-    if not IsZero( M ) and HasIsZero( T ) then
-        if IsZero( T ) then
-            return true;
-        else
-            return false;
-        fi;
-    fi;
-    
-    TryNextMethod( );
-    
-end );
-
-##
-InstallImmediateMethod( IsReflexive,
-        IsSheafOfModules and IsTorsionFree and HasCodegreeOfPurity, 0,
-        
-  function( M )
-    
-    return CodegreeOfPurity( M ) = [ 0 ];
     
 end );
 
@@ -269,35 +177,6 @@ InstallImmediateMethodToPushPropertiesOrAttributes( Twitter,
 # methods for properties:
 #
 ####################################
-
-##
-InstallMethod( IsReflexive,
-        "for sheaves",
-        [ IsCoherentSheafOnProjRep ],
-        
-  function( E )
-    local M;
-    
-    M := UnderlyingGradedModule( E );
-    
-    return IsTorsionFree( E ) and IsArtinian( Ext( 2, AuslanderDual( M ) ) );
-    
-end );
-
-## FIXME: why can't HasCodegreeOfPurity be put in the header?
-InstallMethod( IsReflexive,
-        "for sheaves",
-        [ IsCoherentSheafOnProjRep ],
-        
-  function( E )
-    
-    if HasCodegreeOfPurity( E ) then
-        return IsTorsionFree( E ) and CodegreeOfPurity( E ) = [ 0 ];
-    fi;
-    
-    TryNextMethod( );
-    
-end );
 
 ####################################
 #
@@ -354,56 +233,6 @@ InstallMethod( Support,
     M := UnderlyingGradedModule( E );
     
     return Scheme( Annihilator( M ) );
-    
-end );
-
-##
-InstallMethod( Grade,
-        "for sheaves",
-        [ IsSheafOfModules ],
-        
-  function( E )
-    local M, depth;
-    
-    M := UnderlyingGradedModule( E );
-    
-    depth := Grade( M );
-    
-    if depth > DimensionOfAmbientSpace( E ) then
-       return infinity;
-    fi;
-    
-    return depth;
-    
-end );
-
-##
-InstallMethod( CodegreeOfPurity,
-        "for sheaves",
-        [ IsSheafOfModules ], 1001,
-        
-  function( E )
-    
-    if IsReflexive( E ) then
-        return [ 0 ];
-    fi;
-    
-    TryNextMethod( );
-    
-end );
-
-##
-InstallMethod( CodegreeOfPurity,
-        "for sheaves",
-        [ IsSheafOfModules ], 1001,
-        
-  function( E )
-    
-    if not IsTorsionFree( E ) and not IsTorsion( E ) then
-        return infinity;
-    fi;
-    
-    TryNextMethod( );
     
 end );
 
