@@ -24,7 +24,7 @@ BindGlobal( "TheTypeHomalgRightCoherentSubsheafOnProj",
 
 ##
 InstallMethod( ImageSubobject,
-        "graded submodule constructor",
+        "subsheaf constructor",
         [ IsMorphismOfCoherentSheavesOnProjRep ],
         
   function( phi )
