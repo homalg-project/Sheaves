@@ -36,23 +36,27 @@ InstallValue( LISHV,
               "IsReflexive"
               ],
             exchangeable_properties :=
-                                    [
-                                      [ "IsZero", "IsArtinian" ],
-                                      "IsTorsion",
-                                      ],
+            [ 
+              [ "IsZero", "IsArtinian" ],
+              "IsTorsion",
+              ],
+            
             exchangeable_true_properties :=
-                                    [
-                                      "IsPure",
-                                      "IsReflexive",
-                                      "IsTorsionFree",
-                                      ],
+            [ 
+              "IsPure",
+              "IsReflexive",
+              "IsTorsionFree",
+              ],
+            
             exchangeable_false_properties :=
-                                    [
-                                      ],
+            [ 
+              ],
+            
             exchangeable_attributes :=
-                                    [
-                                      "RankOfObject",
-                                      ]
+            [ 
+              "RankOfObject",
+              ],
+            
             )
         );
 
