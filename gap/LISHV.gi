@@ -22,7 +22,7 @@ InstallValue( LISHV,
         rec(
             color := "\033[4;30;46m",
             intrinsic_attributes :=
-            [ "RankOfSheaf",
+            [ "RankOfObject",
               "Grade",
               "DegreeOfTorsionFreeness",
               "PurityFiltration",
@@ -173,16 +173,6 @@ InstallImmediateMethod( IsZero,
     fi;
     
     TryNextMethod( );
-    
-end );
-
-##
-InstallImmediateMethod( IsTorsion,
-        IsSheafOfModules and HasRankOfSheaf, 0,
-        
-  function( M )
-    
-    return RankOfSheaf( M ) = 0;
     
 end );
 
@@ -364,31 +354,6 @@ InstallMethod( Support,
     M := UnderlyingGradedModule( E );
     
     return Scheme( Annihilator( M ) );
-    
-end );
-
-##
-InstallMethod( RankOfSheaf,
-        "for sheaves",
-        [ IsSheafOfModules ],
-        
-  function( E )
-    local M;
-    
-    M := UnderlyingGradedModule( E );
-    
-    return RankOfObject( M );
-    
-end );
-
-##
-InstallMethod( Rank,
-        "for sheaves",
-        [ IsSheafOfModules ],
-        
-  function( E )
-    
-    return RankOfSheaf( E );
     
 end );
 

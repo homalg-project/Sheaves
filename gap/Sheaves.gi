@@ -1137,7 +1137,7 @@ InstallMethod( ViewObj,
             nz := true;
         fi;
     elif HasIsDirectSumOfLineBundles( M ) and IsDirectSumOfLineBundles( M ) then
-        if HasRankOfSheaf( M ) and RankOfSheaf( M ) = 1 then
+        if HasRankOfObject( M ) and RankOfObject( M ) = 1 then
             Append( properties, " invertible" );
         else
             Append( properties, " direct sum of line bundles" );
@@ -1171,7 +1171,7 @@ InstallMethod( ViewObj,
             else
                 Append( properties, Concatenation( " codegree-", String( CodegreeOfPurity( M ) ), "-pure" ) );
             fi;
-            if not ( HasRankOfSheaf( M ) and RankOfSheaf( M ) > 0 ) then
+            if not ( HasRankOfObject( M ) and RankOfObject( M ) > 0 ) then
                 Print( " torsion-free" );
             fi;
             nz := true;
@@ -1246,9 +1246,9 @@ InstallMethod( ViewObj,
         if HasIsPure( M ) and not IsPure( M ) then
             Append( properties, " non-pure" );
         fi;
-        if HasRankOfSheaf( M ) then
+        if HasRankOfObject( M ) then
             Append( properties, " rank " );
-            Append( properties, String( RankOfSheaf( M ) ) );
+            Append( properties, String( RankOfObject( M ) ) );
         elif HasIsZero( M ) and not IsZero( M ) and
           not ( HasIsPure( M ) and not IsPure( M ) ) and
           not ( IsBound( nz ) and nz = true ) then
@@ -1342,8 +1342,8 @@ InstallMethod( ViewObj,
     
     r := NrGenerators( M );
     
-    if HasRankOfSheaf( M ) then
-        rk := RankOfSheaf( M );
+    if HasRankOfObject( M ) then
+        rk := RankOfObject( M );
         Print( " of rank ", rk );
     fi;
     

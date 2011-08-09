@@ -273,19 +273,6 @@ DeclareAttribute( "Support",
 ## should all be added by hand to LISHV.intrinsic_attributes
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-##  <#GAPDoc Label="RankOfSheaf">
-##  <ManSection>
-##    <Attr Arg="E" Name="RankOfSheaf"/>
-##    <Returns>a nonnegative integer</Returns>
-##    <Description>
-##      The projective rank of the sheaf <A>E</A>.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-##
-DeclareAttribute( "RankOfSheaf",
-        IsSheafOfModules );
-
 ##  <#GAPDoc Label="DegreeOfTorsionFreeness">
 ##  <ManSection>
 ##    <Attr Arg="E" Name="DegreeOfTorsionFreeness"/>
