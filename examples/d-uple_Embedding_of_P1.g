@@ -6,8 +6,6 @@ R := Q * "a,b";
 
 P1 := Proj( R );
 
-d := 3;
-
 d_uple_Embedding := function( d )
     local L, f, imP1, M, S;
     
@@ -17,19 +15,17 @@ d_uple_Embedding := function( d )
     
     imP1 := ImageScheme( f );
     
-    M := UnderlyingGradedModule( imP1 );
-    
-    S := HomalgRing( M );
-    
-    KoszulDualRing( S, List( [ 0 .. Length( Indeterminates( S ) ) - 1 ], e -> Concatenation( "e", String( e ) ) ) );
-    
     return imP1;
     
 end;
 
+d := 3;
+
+## the d-uple embedding of P^1 in P^d
 imP1 := d_uple_Embedding( d );
 
-Degree( imP1 );
-ArithmeticGenus( imP1 );
+Assert( 0, Dimension( imP1 ) = 1 );
+Assert( 0, Degree( imP1 ) = d );
+Assert( 0, ArithmeticGenus( imP1 ) = 0 );
 
 T := TateResolution( imP1, -3, 3 );
