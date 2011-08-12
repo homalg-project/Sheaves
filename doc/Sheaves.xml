@@ -31,7 +31,6 @@
 <Section Label="Sheaves:Properties">
 <Heading>Sheaves: Properties</Heading>
 
-<#Include Label="IsFree">
 <#Include Label="IsDirectSumOfLineBundles">
 <#Include Label="IsLocallyFree">
 <#Include Label="FiniteLocallyFreeResolutionExists">

@@ -74,19 +74,6 @@ DeclareCategory( "IsSheafOfModules",
 #
 ####################################
 
-##  <#GAPDoc Label="IsFree">
-##  <ManSection>
-##    <Prop Arg="E" Name="IsFree"/>
-##    <Returns>true or false</Returns>
-##    <Description>
-##      Check if the sheaf <A>E</A> is free.
-##    </Description>
-##  </ManSection>
-##  <#/GAPDoc>
-##
-DeclareProperty( "IsFree",
-        IsSheafOfModules );
-
 ##  <#GAPDoc Label="IsDirectSumOfLineBundles">
 ##  <ManSection>
 ##    <Prop Arg="E" Name="IsDirectSumOfLineBundles"/>
