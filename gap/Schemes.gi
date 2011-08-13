@@ -298,9 +298,9 @@ InstallMethod( Display,
         
   function( X )
     
-    Display( HomalgRing( StructureSheaf( X ) ) );
+    ViewObj( HomalgRing( StructureSheaf( X ) ) );
     
-    Print( "\nProj of the above graded ring\n" );
+    Print( "\n\nProj of the above graded ring\n" );
     
 end );
 
