@@ -163,13 +163,47 @@ end );
 ##
 InstallMethod( AsLinearSystem,
         "constructor for linear systems",
-        [ IsGradedModuleRep and
-          HasEmbeddingOfSubmoduleGeneratedByHomogeneousPart, IsString ],
+        [ IsGradedModuleRep and HasEmbeddingOfSubmoduleGeneratedByHomogeneousPart,
+          IsString ],
         
   function( M, x )
     local S, L, dim;
     
     S := HomalgRing( EmbeddingOfSubmoduleGeneratedByHomogeneousPart( M ) );
+    
+    L := rec( module := M,
+              HomalgRingOfUnderlyingGradedModule := S,
+              );
+    
+    dim := NrGenerators( M );
+    
+    ObjectifyWithAttributes(
+            L, TheTypeLinearSystems,
+            Dimension, dim - 1
+            );
+    
+    L!.variable_name := x;
+    
+    return L;
+    
+end );
+
+##
+InstallMethod( AsLinearSystem,
+        "constructor for linear systems",
+        [ IsGradedModuleRep and HasUnderlyingSubobject,
+          IsString ],
+        
+  function( M, x )
+    local V, S, L, dim;
+    
+    V := SuperObject( UnderlyingSubobject( M ) );
+    
+    if not HasEmbeddingOfSubmoduleGeneratedByHomogeneousPart( V ) then
+        TryNextMethod( );
+    fi;
+    
+    S := HomalgRing( EmbeddingOfSubmoduleGeneratedByHomogeneousPart( V ) );
     
     L := rec( module := M,
               HomalgRingOfUnderlyingGradedModule := S,
