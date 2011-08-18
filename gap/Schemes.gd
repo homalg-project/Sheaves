@@ -261,6 +261,9 @@ DeclareOperation( "Scheme",
 
 # basic operations:
 
+DeclareOperation( "HomalgRing",
+        [ IsScheme ] );
+
 DeclareOperation( "StructureSheafOfAmbientSpace",
         [ IsScheme ] );
 

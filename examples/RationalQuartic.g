@@ -25,3 +25,6 @@ C := ImageScheme( f );
 Assert( 0, Dimension( C ) = 1 );
 Assert( 0, Degree( C ) = 4 );
 Assert( 0, ArithmeticGenus( C ) = 0 );
+
+S := HomalgRing( C );
+m := MaximalGradedLeftIdeal( S );

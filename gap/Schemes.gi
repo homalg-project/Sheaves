@@ -47,6 +47,17 @@ BindGlobal( "TheTypeProjSchemes",
 ####################################
 
 ##
+InstallMethod( HomalgRing,
+        "for schemes",
+        [ IsScheme ],
+        
+  function( X )
+    
+    return HomalgRing( StructureSheaf( X ) );
+    
+end );
+
+##
 InstallMethod( StructureSheafOfAmbientSpace,
         "for schemes",
         [ IsScheme ],
