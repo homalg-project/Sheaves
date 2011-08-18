@@ -30,6 +30,8 @@
 <#Include Label="IsProjective:scheme">
 <#Include Label="IsReduced">
 <#Include Label="IsSmooth">
+<#Include Label="IsCohenMacaulay">
+<#Include Label="IsGorenstein">
 
 </Section>
 

@@ -21,3 +21,8 @@ Assert( 0, ArithmeticGenus( C ) = 0 );
 
 S := HomalgRing( C );
 m := MaximalGradedLeftIdeal( S );
+
+M := UnderlyingGradedModule( C );
+
+Assert( 0, IsCohenMacaulay( M ) );
+Assert( 0, IsCohenMacaulay( C ) );

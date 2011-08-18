@@ -114,6 +114,20 @@ InstallMethod( IsEmpty,
     
 end );
 
+##
+InstallMethod( IsCohenMacaulay,
+        "LISCM: for schemes",
+        [ IsScheme ],
+        
+  function( X )
+    local M;
+    
+    M := UnderlyingGradedModule( X );
+    
+    return IsCohenMacaulay( M );
+    
+end );
+
 ####################################
 #
 # methods for attributes:

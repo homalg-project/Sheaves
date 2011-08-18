@@ -90,6 +90,32 @@ DeclareProperty( "IsReduced",
 DeclareProperty( "IsSmooth",
         IsScheme );
 
+##  <#GAPDoc Label="IsCohenMacaulay">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsCohenMacaulay"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the scheme <A>X</A> is Cohen-Macaulay.
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsCohenMacaulay",
+        IsScheme );
+
+##  <#GAPDoc Label="IsGorenstein">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsGorenstein"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the scheme <A>X</A> is Gorenstein.
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsGorenstein",
+        IsScheme );
+
 ####################################
 #
 # attributes:
