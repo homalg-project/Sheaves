@@ -80,18 +80,6 @@ InstallMethod( DecideZero,
     
 end );
 
-
-##
-InstallMethod( \=,
-        "for coherent sheaves on proj morphism",
-        [ IsMorphismOfCoherentSheavesOnProjRep, IsMorphismOfCoherentSheavesOnProjRep ],
-        
-  function( phi, psi )
-    
-    return AreComparableMorphisms( phi, psi ) and ( UnderlyingGradedMap( phi ) = UnderlyingGradedMap( psi ) );
-    
-end );
-
 ##
 InstallMethod( SyzygiesGenerators,
         "for coherent sheaves on proj morphism",

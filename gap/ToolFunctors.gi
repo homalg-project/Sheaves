@@ -112,7 +112,8 @@ InstallValue( functor_SubMorphisms_ForMorphismsOfCoherentSheafOnProj,
                 [ "number_of_arguments", 2 ],
                 [ "1", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
                 [ "2", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
-                [ "OnObjects", _Functor_SubMorphisms_OnMorphismsOfCoherentSheafOnProj ]
+                [ "OnObjects", _Functor_SubMorphisms_OnMorphismsOfCoherentSheafOnProj ],
+                [ "DontCompareEquality", true ]
                 )
         );
 

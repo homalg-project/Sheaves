@@ -29,7 +29,7 @@ Subtitle := "A homalg based Package for Sheaf Algorithms",
 ##  of valid version numbers. For an automatic package distribution update
 ##  you must provide a new version number even after small changes.
 Version := Maximum( [
-  "2011.08.05", ## Markus' version
+  "2011.08.21", ## Markus' version
 ## this line prevents merge conflicts
   "2011.08.14", ## Mohamed's version
 ] ),
@@ -267,7 +267,7 @@ Dependencies := rec(
   # list of pairs [package name, (least) version],  package name is case
   # insensitive, least version denoted with '>=' prepended to version string.
   # without these, the package will not load
-  NeededOtherPackages := [ [ "GradedModules", ">= 2011.08.14" ], [ "GradedRingForHomalg", ">= 2011.08.14" ], [ "RingsForHomalg", ">= 2010.02.17" ], [ "Modules", ">= 2011.08.08" ], [ "homalg", ">= 2011.08.08.20:00" ], [ "MatricesForHomalg", ">= 2011.08.14" ] ],
+  NeededOtherPackages := [ [ "GradedModules", ">= 2011.08.21" ], [ "GradedRingForHomalg", ">= 2011.08.14" ], [ "RingsForHomalg", ">= 2010.02.17" ], [ "Modules", ">= 2011.08.21" ], [ "homalg", ">= 2011.08.21" ], [ "MatricesForHomalg", ">= 2011.08.14" ] ],
   # without these the package will issue a warning while loading
   # SuggestedOtherPackages := [],
   SuggestedOtherPackages := [ [ "GAPDoc", ">= 1.0" ] ],
