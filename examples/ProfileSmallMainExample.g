@@ -1,6 +1,6 @@
 LoadPackage( "GradedRingForHomalg" );
 
-S := GradedRing( HomalgFieldOfRationalsInSingular( ) * "x,y,z,t" );
+S := GradedRing( HomalgFieldOfRationalsInDefaultCAS( ) * "x,y,z,t" );
 
 wmat := HomalgMatrix( "[ \
 x*y,  y*z,    z*t,       \
