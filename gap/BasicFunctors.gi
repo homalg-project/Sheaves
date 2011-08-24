@@ -411,7 +411,8 @@ InstallGlobalFunction( _Functor_SheafHomOnGlobalSections_OnCoherentSheafOnProj,
     
     # we can not set TruncatedModuleOfGlobalSections, because negative degrees would have to be truncated
     # so this is wrong in general!!
-    SetTruncatedModuleOfGlobalSections( hom, UnderlyingGradedModule( hom ) );
+    # furthermore, we need to ensure that all needed natural transformations are set.
+#     SetTruncatedModuleOfGlobalSections( hom, UnderlyingGradedModule( hom ) );
     
     return hom;
     
