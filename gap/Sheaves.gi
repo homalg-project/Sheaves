@@ -164,7 +164,8 @@ InstallMethod( CheckHasTruncatedModuleOfGlobalSections,
     
     if not HasTruncatedModuleOfGlobalSections( E ) then
     
-        if ( HasIsModuleOfGlobalSections( M ) and IsModuleOfGlobalSections( M ) ) then
+        if ( HasIsModuleOfGlobalSectionsTruncatedAtCertainDegree( M ) and 
+           IsModuleOfGlobalSectionsTruncatedAtCertainDegree( M ) = HOMALG_GRADED_MODULES!.LowerTruncationBound ) then
             SetTruncatedModuleOfGlobalSections( E, M );
             return true;
         else
