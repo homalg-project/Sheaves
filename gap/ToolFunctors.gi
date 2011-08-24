@@ -72,7 +72,8 @@ InstallValue( functor_AddMorphisms_ForMorphismsOfCoherentSheafOnProj,
                 [ "number_of_arguments", 2 ],
                 [ "1", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
                 [ "2", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
-                [ "OnObjects", _Functor_AddMorphisms_OnMorphismsOfCoherentSheafOnProj ]
+                [ "OnObjects", _Functor_AddMorphisms_OnMorphismsOfCoherentSheafOnProj ],
+                [ "DontCompareEquality", true ]
                 )
         );
 
