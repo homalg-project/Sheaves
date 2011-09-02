@@ -486,7 +486,12 @@ InstallMethod( TheIdentityMorphism,
         [ IsCoherentSheafOnProjRep ],
         
   function( F )
+    local id;
     
-    return SheafMorphism( TheIdentityMorphism( UnderlyingGradedModule( F ) ), F, F );
+    id := SheafMorphism( TheIdentityMorphism( UnderlyingGradedModule( F ) ), F, F );
+    
+    SetIsOne( id, true );
+    
+    return id;
     
 end );
