@@ -145,7 +145,7 @@ InstallMethod( DegreeAsSubscheme,
         return 0;
     fi;
     
-    return AffineDegree( UnderlyingGradedModule( X ) );
+    return ProjectiveDegree( UnderlyingGradedModule( X ) );
     
 end );
 
