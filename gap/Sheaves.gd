@@ -371,6 +371,8 @@ DeclareOperation( "ReducedSyzygiesGenerators",
 DeclareOperation( "ReducedSyzygiesGenerators",
         [ IsHomalgMatrix, IsSheafOfModules ] );
 
+DeclareOperation( "DegreesOfGenerators",
+        [ IsSheafOfModules ] );
 
 ####################################
 #

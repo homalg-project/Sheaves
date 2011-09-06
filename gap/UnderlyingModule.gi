@@ -495,3 +495,69 @@ InstallMethod( TheIdentityMorphism,
     return id;
     
 end );
+
+##
+InstallMethod( DegreesOfGenerators,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    
+    return DegreesOfGenerators( UnderlyingGradedModule( F ) );
+    
+end );
+
+##
+InstallMethod( SetAsOriginalPresentation,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    
+    SetAsOriginalPresentation( UnderlyingGradedModule( F ) );
+    
+end );
+
+##
+InstallMethod( OnOriginalPresentation,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    
+    return OnOriginalPresentation( UnderlyingGradedModule( F ) );
+    
+end );
+
+##
+InstallMethod( SetAsPreferredPresentation,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    
+    SetAsPreferredPresentation( UnderlyingGradedModule( F ) );
+    
+end );
+
+##
+InstallMethod( OnPreferredPresentation,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    
+    return OnPreferredPresentation( UnderlyingGradedModule( F ) );
+    
+end );
+
+##
+InstallMethod( OnLastStoredPresentation,
+        "for coherent sheaves on proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    
+    return OnLastStoredPresentation( UnderlyingGradedModule( F ) );
+    
+end );
