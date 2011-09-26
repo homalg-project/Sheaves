@@ -27,7 +27,8 @@
 ##  <#/GAPDoc>
 ##
 DeclareCategory( "IsMorphismOfSheavesOfModules",
-        IsHomalgMorphism );
+        IsHomalgMorphism
+        and IsHomalgSheafOrMorphismOfSheaves );
 
 ##  <#GAPDoc Label="IsEndomorphismOfSheavesOfModules">
 ##  <ManSection>

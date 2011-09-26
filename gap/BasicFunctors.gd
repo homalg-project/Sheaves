@@ -32,10 +32,10 @@ DeclareGlobalFunction( "_Functor_SheafHom_OnMorphismsOfCoherentSheafOnProj" );
 DeclareGlobalVariable( "Functor_SheafHom_ForCoherentSheafOnProj" );
 
 DeclareOperation( "SheafHom",
-        [ IsStructureObjectOrObject, IsStructureObjectOrObject ] );
+        [ IsHomalgSheafOrMorphismOfSheaves, IsHomalgSheafOrMorphismOfSheaves ] );
 
 DeclareOperation( "SheafExt",
-        [ IsInt, IsStructureObjectOrObject, IsStructureObjectOrObject ] );
+        [ IsInt, IsHomalgSheafOrMorphismOfSheaves, IsHomalgSheafOrMorphismOfSheaves ] );
 
 ## SheafHomOnGlobalSections
 

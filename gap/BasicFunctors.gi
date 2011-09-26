@@ -258,9 +258,9 @@ Functor_SheafHom_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasic
 
 InstallFunctor( Functor_SheafHom_ForCoherentSheafOnProj );
 
-InstallMethod( SheafHom, 
+InstallMethod( SheafHom,
         "for a sheaf of modules and a sheaf of rings over proj",
-        [ IsSheafOfModules, IsSheafOfRings ],
+        [ IsHomalgSheafOrMorphismOfSheaves, IsSheafOfRings ],
   function( F, O )
     
     if IsHomalgLeftObjectOrMorphismOfLeftObjects( F ) then
@@ -271,9 +271,9 @@ InstallMethod( SheafHom,
     
 end );
 
-InstallMethod( SheafHom, 
+InstallMethod( SheafHom,
         "for a sheaf of rings and a sheaf of modules over proj",
-        [ IsSheafOfRings, IsSheafOfModules ],
+        [ IsSheafOfRings, IsHomalgSheafOrMorphismOfSheaves ],
   function( O, F )
     
     if IsHomalgLeftObjectOrMorphismOfLeftObjects( F ) then

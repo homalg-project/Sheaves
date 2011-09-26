@@ -21,6 +21,9 @@ DeclareGlobalVariable( "HOMALG_SHEAVES_PROJ" );
 #
 ####################################
 
+DeclareCategory( "IsHomalgSheafOrMorphismOfSheaves",
+        IsHomalgStaticObjectOrMorphism );
+
 # four new GAP-categories:
 
 ##  <#GAPDoc Label="IsHomalgSheaf">
@@ -36,7 +39,8 @@ DeclareGlobalVariable( "HOMALG_SHEAVES_PROJ" );
 ##  <#/GAPDoc>
 ##
 DeclareCategory( "IsHomalgSheaf",
-        IsStructureObjectOrObject );
+        IsStructureObjectOrObject
+        and IsHomalgSheafOrMorphismOfSheaves );
 
 ##  <#GAPDoc Label="IsSheafOfRings">
 ##  <ManSection>
@@ -295,9 +299,6 @@ DeclareOperation( "StructureSheafOfAmbientSpace",
 
 DeclareOperation( "DimensionOfAmbientSpace",
         [ IsSheafOfModules ] );
-
-DeclareOperation( "HomalgRing",
-        [ IsSheafOfRings ] );
 
 DeclareOperation( "UnderlyingGradedModule",
         [ IsSheafOfModules ] );
