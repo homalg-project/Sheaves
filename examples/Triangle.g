@@ -14,4 +14,4 @@ ByASmallerPresentation( lehs );
 homalgResetFilters( lehs );
 Assert( 0, IsExactSequence( lehs ) );
 
-Display( TimeToString( homalgTime( S ) ) );
+Display( StringTime( homalgTime( S ) ) );
