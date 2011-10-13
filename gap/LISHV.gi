@@ -146,6 +146,19 @@ InstallValue( LISHV,
             exchangeable_attributes :=
             [ 
               "RankOfObject",
+              "HilbertPolynomial",
+              "ElementOfGrothendieckGroup",
+              "ChernPolynomial",
+              "ChernCharacter",
+              ],
+            
+            exchangeable_attributes_sheaf_of_rings :=
+            [ 
+              "RankOfObject",
+              "HilbertPolynomial",
+              "ElementOfGrothendieckGroup",
+              "ChernPolynomial",
+              "ChernCharacter",
               ],
             
             )
@@ -300,6 +313,14 @@ InstallImmediateMethodToPullPropertiesOrAttributes(
         LISHV.exchangeable_attributes,
         Concatenation( LISHV.intrinsic_properties, LISHV.intrinsic_attributes ),
         UnderlyingGradedModule );
+
+##
+InstallImmediateMethodToPullPropertiesOrAttributes(
+        IsSheafOfRingsOnProjRep,
+        IsSheafOfRingsOnProjRep,
+        LISHV.exchangeable_attributes_sheaf_of_rings,
+        LISHV.exchangeable_attributes_sheaf_of_rings,
+        AsModuleOverStructureSheafOfAmbientSpace );
 
 ##
 InstallImmediateMethodToPushPropertiesOrAttributes( Twitter,
