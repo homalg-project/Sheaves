@@ -57,10 +57,8 @@ InstallValue( Functor_DirectSum_ForCoherentSheafOnProj,
                 )
         );
 
-Functor_DirectSum_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+Functor_DirectSum_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
-Functor_DirectSum_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+Functor_DirectSum_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=true;
 
 InstallFunctor( Functor_DirectSum_ForCoherentSheafOnProj );

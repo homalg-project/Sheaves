@@ -120,6 +120,18 @@ DeclareRepresentation( "IsCoherentSubsheafOnProjRep",
           "map_having_subobject_as_its_image"
          ] );
 
+##
+DeclareRepresentation( "IsCategoryOfCoherentLeftSheavesRep",
+        IsHomalgCategoryOfLeftObjectsRep and
+        IsCategoryOfSheaves,
+        [ ] );
+
+##
+DeclareRepresentation( "IsCategoryOfCoherentRightSheavesRep",
+        IsHomalgCategoryOfRightObjectsRep and
+        IsCategoryOfSheaves,
+        [ ] );
+
 ####################################
 #
 # families and types:
@@ -147,6 +159,15 @@ BindGlobal( "TheTypeHomalgLeftCoherentSheaf",
 BindGlobal( "TheTypeHomalgRightCoherentSheaf",
         NewType( TheFamilyOfHomalgSheaves,
                 IsCoherentSheafOnProjRep and IsHomalgRightObjectOrMorphismOfRightObjects ) );
+
+# two new types:
+BindGlobal( "TheTypeCategoryOfCoherentLeftSheaves",
+        NewType( TheFamilyOfHomalgCategories,
+                IsCategoryOfCoherentLeftSheavesRep ) );
+
+BindGlobal( "TheTypeCategoryOfCoherentRightSheaves",
+        NewType( TheFamilyOfHomalgCategories,
+                IsCategoryOfCoherentRightSheavesRep ) );
 
 ####################################
 #
@@ -706,6 +727,36 @@ end );
 ####################################
 
 ##
+InstallMethod( HomalgCategory,
+        "constructor for sheaf categories",
+        [ IsSheafOfRings, IsString ],
+        
+  function( O, parity )
+    local A;
+    
+    if parity = "right" and IsBound( O!.category_of_coherent_right_sheaves ) then
+        return O!.category_of_coherent_right_sheaves;
+    elif IsBound( O!.category_of_coherent_left_sheaves ) then
+        return O!.category_of_coherent_left_sheaves;
+    fi;
+    
+    A := ShallowCopy( HOMALG_SHEAVES_PROJ.category );
+    A.containers := rec( );
+    A.structure_sheaf := O;
+    
+    if parity = "right" then
+        Objectify( TheTypeCategoryOfCoherentRightSheaves, A );
+        O!.category_of_coherent_right_sheaves := A;
+    else
+        Objectify( TheTypeCategoryOfCoherentLeftSheaves, A );
+        O!.category_of_coherent_left_sheaves := A;
+    fi;
+    
+    return A;
+    
+end );
+
+##
 InstallMethod( StructureSheafOfProj,
         "constructor for structure sheaves",
         [ IsHomalgGradedRingRep and ContainsAField ],
@@ -780,10 +831,15 @@ InstallMethod( Proj,
         ),
         ListOfKnownUnderlyingModules := [ 1 ],
         PositionOfTheDefaultPresentation := 1,
-        category := HOMALG_SHEAVES_PROJ.category,
         string := "sheaf",
         string_plural := "sheaves"
     );
+    
+    if IsHomalgRelationsOfLeftModule( M ) then
+        E.category := HomalgCategory( O, "left" );
+    else
+        E.category := HomalgCategory( O, "right" );
+    fi;
     
     if IsHomalgLeftObjectOrMorphismOfLeftObjects( M ) then
         
@@ -1091,6 +1147,26 @@ InstallMethod( ViewObj,
         Print( "<A sheaf of rings>" );
         
     fi;
+    
+end );
+
+##
+InstallMethod( ViewObj,
+        "for categories of sheaves",
+        [ IsCategoryOfSheaves ],
+        
+  function( C )
+    local parity;
+    
+    if IsCategoryOfCoherentLeftSheavesRep( C ) then
+        parity := "left";
+    else
+        parity := "right";
+    fi;
+    
+    Print( "<The Abelian category of coherent ", parity, " sheaves over " );
+    ViewObj( C!.structure_sheaf );
+    Print( ">" );
     
 end );
 

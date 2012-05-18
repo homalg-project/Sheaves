@@ -100,8 +100,7 @@ InstallValue( functor_Cokernel_ForCoherentSheafOnProj,
 ##  ]]></Listing>
 ##  <#/GAPDoc>
 
-functor_Cokernel_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+functor_Cokernel_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms := true;
 
 ##
 InstallFunctor( functor_Cokernel_ForCoherentSheafOnProj );
@@ -182,8 +181,7 @@ InstallValue( functor_ImageObject_ForCoherentSheafOnProj,
 ##  ]]></Listing>
 ##  <#/GAPDoc>
 
-functor_ImageObject_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+functor_ImageObject_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=true;
 
 InstallFunctorOnObjects( functor_ImageObject_ForCoherentSheafOnProj );
 
@@ -250,11 +248,9 @@ InstallValue( Functor_SheafHom_ForCoherentSheafOnProj,
 ##  ]]></Listing>
 ##  <#/GAPDoc>
 
-Functor_SheafHom_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+Functor_SheafHom_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
-Functor_SheafHom_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+Functor_SheafHom_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=true;
 
 InstallFunctor( Functor_SheafHom_ForCoherentSheafOnProj );
 
@@ -466,11 +462,9 @@ InstallValue( Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj,
 ##  ]]></Listing>
 ##  <#/GAPDoc>
 
-Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
-Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=true;
 
 InstallFunctor( Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj );
 
@@ -515,11 +509,9 @@ InstallValue( Functor_GlobalSections_ForCoherentSheafOnProj,
                 )
         );
 
-Functor_GlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+Functor_GlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
-Functor_GlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+Functor_GlobalSections_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicMorphisms :=true;
 
 InstallFunctor( Functor_GlobalSections_ForCoherentSheafOnProj );
 
@@ -657,11 +649,9 @@ else
     
 fi;
 
-Functor_TensorProduct_ForSheaves!.ContainerForWeakPointersOnComputedBasicObjects :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+Functor_TensorProduct_ForSheaves!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
-Functor_TensorProduct_ForSheaves!.ContainerForWeakPointersOnComputedBasicMorphisms :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+Functor_TensorProduct_ForSheaves!.ContainerForWeakPointersOnComputedBasicMorphisms :=true;
 
 InstallFunctor( Functor_TensorProduct_ForSheaves );
 

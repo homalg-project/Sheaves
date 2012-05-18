@@ -72,6 +72,9 @@ DeclareCategory( "IsSheafOfRings",
 DeclareCategory( "IsSheafOfModules",
         IsHomalgSheaf and IsHomalgStaticObject );
 
+DeclareCategory( "IsCategoryOfSheaves",
+        IsHomalgCategory );
+
 ####################################
 #
 # properties:

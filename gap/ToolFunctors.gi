@@ -36,8 +36,7 @@ InstallValue( functor_TheZeroMorphism_ForCoherentSheafOnProj,
                 )
         );
 
-#functor_TheZeroMorphism_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-#  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+#functor_TheZeroMorphism_ForCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
 InstallFunctorOnObjects( functor_TheZeroMorphism_ForCoherentSheafOnProj );
 
@@ -77,8 +76,7 @@ InstallValue( functor_AddMorphisms_ForMorphismsOfCoherentSheafOnProj,
                 )
         );
 
-functor_AddMorphisms_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+functor_AddMorphisms_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
 InstallFunctorOnObjects( functor_AddMorphisms_ForMorphismsOfCoherentSheafOnProj );
 
@@ -118,8 +116,7 @@ InstallValue( functor_SubMorphisms_ForMorphismsOfCoherentSheafOnProj,
                 )
         );
 
-functor_SubMorphisms_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+functor_SubMorphisms_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
 InstallFunctorOnObjects( functor_SubMorphisms_ForMorphismsOfCoherentSheafOnProj );
 
@@ -163,8 +160,7 @@ InstallValue( functor_PreCompose_ForMorphismsOfCoherentSheafOnProj,
                 )
         );
 
-#functor_PreCompose_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-#  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+#functor_PreCompose_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
 InstallFunctorOnObjects( functor_PreCompose_ForMorphismsOfCoherentSheafOnProj );
 
@@ -198,8 +194,7 @@ InstallValue( functor_CoproductMorphism_ForMorphismsOfCoherentSheafOnProj,
                 )
         );
 
-#functor_CoproductMorphism_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-#  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+#functor_CoproductMorphism_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
 InstallFunctorOnObjects( functor_CoproductMorphism_ForMorphismsOfCoherentSheafOnProj );
 
@@ -233,8 +228,7 @@ InstallValue( functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj,
                 )
         );
 
-#functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-#  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+#functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
 InstallFunctorOnObjects( functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj );
 
@@ -322,7 +316,6 @@ InstallValue( functor_PostDivide_ForMorphismsOfCoherentSheafOnProj,
                 )
         );
 
-#functor_PostDivide_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=
-#  ContainerForWeakPointers( TheTypeContainerForWeakPointersOnComputedValuesOfFunctor );
+#functor_PostDivide_ForMorphismsOfCoherentSheafOnProj!.ContainerForWeakPointersOnComputedBasicObjects :=true;
 
 InstallFunctorOnObjects( functor_PostDivide_ForMorphismsOfCoherentSheafOnProj );
