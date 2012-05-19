@@ -13,7 +13,7 @@ DeclareInfoClass( "InfoSheaves" );
 SetInfoLevel( InfoSheaves, 1 );
 
 # a central place for configurations:
-DeclareGlobalVariable( "HOMALG_SHEAVES_PROJ" );
+DeclareGlobalVariable( "HOMALG_SHEAVES" );
 
 ####################################
 #

@@ -16,7 +16,7 @@
 
 # a central place for configuration variables:
 
-InstallValue( HOMALG_SHEAVES_PROJ,
+InstallValue( HOMALG_SHEAVES,
         rec(
             category := rec(
                             description := "coherent sheaves of modules and their morphisms over a projective scheme",
@@ -740,7 +740,7 @@ InstallMethod( HomalgCategory,
         return O!.category_of_coherent_left_sheaves;
     fi;
     
-    A := ShallowCopy( HOMALG_SHEAVES_PROJ.category );
+    A := ShallowCopy( HOMALG_SHEAVES.category );
     A.containers := rec( );
     A.structure_sheaf := O;
     

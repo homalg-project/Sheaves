@@ -36,7 +36,7 @@ DeclareRepresentation( "IsMorphismOfCoherentSheavesOnProjRep",
 #
 ####################################
 
-HOMALG_SHEAVES_PROJ.FunctorOn :=  [ IsCoherentSheafOnProjRep,
+HOMALG_SHEAVES.FunctorOn :=  [ IsCoherentSheafOnProjRep,
               IsMorphismOfCoherentSheavesOnProjRep,
               [ IsComplexOfFinitelyPresentedObjectsRep, IsCocomplexOfFinitelyPresentedObjectsRep ],
               [ IsChainMorphismOfFinitelyPresentedObjectsRep, IsCochainMorphismOfFinitelyPresentedObjectsRep ] ];

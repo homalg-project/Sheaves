@@ -86,7 +86,7 @@ end );
 InstallValue( functor_Cokernel_ForCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "Cokernel" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "Cokernel" ],
                 [ "natural_transformation", "CokernelEpi" ],
                 [ "special", true ],
@@ -169,7 +169,7 @@ end );
 InstallValue( functor_ImageObject_ForCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "ImageObject" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "ImageObject" ],
                 [ "natural_transformation", "ImageObjectEmb" ],
                 [ "number_of_arguments", 1 ],
@@ -235,14 +235,14 @@ end );
 InstallValue( Functor_SheafHom_ForCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "SheafHom" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "SheafHom" ],
                 [ "number_of_arguments", 2 ],
-                [ "1", [ [ "contravariant", "right adjoint", "distinguished" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
-                [ "2", [ [ "covariant", "left exact" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                [ "1", [ [ "contravariant", "right adjoint", "distinguished" ], HOMALG_SHEAVES.FunctorOn ] ],
+                [ "2", [ [ "covariant", "left exact" ], HOMALG_SHEAVES.FunctorOn ] ],
                 [ "OnObjects", _Functor_SheafHom_OnCoherentSheafOnProj ],
                 [ "OnMorphisms", _Functor_SheafHom_OnMorphismsOfCoherentSheafOnProj ],
-                [ "MorphismConstructor", HOMALG_SHEAVES_PROJ.category.MorphismConstructor ]
+                [ "MorphismConstructor", HOMALG_SHEAVES.category.MorphismConstructor ]
                 )
         );
 ##  ]]></Listing>
@@ -449,14 +449,14 @@ end );
 InstallValue( Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "SheafHomOnGlobalSections" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "SheafHomOnGlobalSections" ],
                 [ "number_of_arguments", 2 ],
-                [ "1", [ [ "contravariant", "right adjoint", "distinguished" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
-                [ "2", [ [ "covariant", "left exact" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                [ "1", [ [ "contravariant", "right adjoint", "distinguished" ], HOMALG_SHEAVES.FunctorOn ] ],
+                [ "2", [ [ "covariant", "left exact" ], HOMALG_SHEAVES.FunctorOn ] ],
                 [ "OnObjects", _Functor_SheafHomOnGlobalSections_OnCoherentSheafOnProj ],
                 [ "OnMorphisms", _Functor_SheafHomOnGlobalSections_OnMorphismsOfCoherentSheafOnProj ],
-                [ "MorphismConstructor", HOMALG_SHEAVES_PROJ.category.MorphismConstructor ]
+                [ "MorphismConstructor", HOMALG_SHEAVES.category.MorphismConstructor ]
                 )
         );
 ##  ]]></Listing>
@@ -500,10 +500,10 @@ end );
 InstallValue( Functor_GlobalSections_ForCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "GlobalSections" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "GlobalSections" ],
                 [ "number_of_arguments", 1 ],
-                [ "1", [ [ "covariant", "left exact" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                [ "1", [ [ "covariant", "left exact" ], HOMALG_SHEAVES.FunctorOn ] ],
                 [ "OnObjects", _Functor_GlobalSections_OnCoherentSheafOnProj ],
                 [ "OnMorphisms", _Functor_GlobalSections_ForMorphismsOfCoherentSheafOnProj ]
                 )
@@ -615,14 +615,14 @@ if IsOperation( TensorProduct ) then
     InstallValue( Functor_TensorProduct_ForSheaves,
             CreateHomalgFunctor(
                     [ "name", "TensorProduct" ],
-                    [ "category", HOMALG_SHEAVES_PROJ.category ],
+                    [ "category", HOMALG_SHEAVES.category ],
                     [ "operation", "TensorProduct" ],
                     [ "number_of_arguments", 2 ],
-                    [ "1", [ [ "covariant", "left adjoint", "distinguished" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
-                    [ "2", [ [ "covariant", "left adjoint" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                    [ "1", [ [ "covariant", "left adjoint", "distinguished" ], HOMALG_SHEAVES.FunctorOn ] ],
+                    [ "2", [ [ "covariant", "left adjoint" ], HOMALG_SHEAVES.FunctorOn ] ],
                     [ "OnObjects", _Functor_TensorProduct_OnCoherentSheafOnProj ],
                     [ "OnMorphisms", _Functor_TensorProduct_OnMorphismsOfCoherentSheafOnProj ],
-                    [ "MorphismConstructor", HOMALG_SHEAVES_PROJ.category.MorphismConstructor ]
+                    [ "MorphismConstructor", HOMALG_SHEAVES.category.MorphismConstructor ]
                     )
             );
     
@@ -634,14 +634,14 @@ else
     InstallValue( Functor_TensorProduct_ForSheaves,
             CreateHomalgFunctor(
                     [ "name", "TensorProduct" ],
-                    [ "category", HOMALG_SHEAVES_PROJ.category ],
+                    [ "category", HOMALG_SHEAVES.category ],
                     [ "operation", "TensorProductOp" ],
                     [ "number_of_arguments", 2 ],
-                    [ "1", [ [ "covariant", "left adjoint", "distinguished" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
-                    [ "2", [ [ "covariant", "left adjoint" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                    [ "1", [ [ "covariant", "left adjoint", "distinguished" ], HOMALG_SHEAVES.FunctorOn ] ],
+                    [ "2", [ [ "covariant", "left adjoint" ], HOMALG_SHEAVES.FunctorOn ] ],
                     [ "OnObjects", _Functor_TensorProduct_OnCoherentSheafOnProj ],
                     [ "OnMorphisms", _Functor_TensorProduct_OnMorphismsOfCoherentSheafOnProj ],
-                    [ "MorphismConstructor", HOMALG_SHEAVES_PROJ.category.MorphismConstructor ]
+                    [ "MorphismConstructor", HOMALG_SHEAVES.category.MorphismConstructor ]
                     )
             );
     ##  ]]></Listing>

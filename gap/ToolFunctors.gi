@@ -27,11 +27,11 @@ end );
 InstallValue( functor_TheZeroMorphism_ForCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "TheZeroMorphism" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "TheZeroMorphism" ],
                 [ "number_of_arguments", 2 ],
-                [ "1", [ [ "contravariant" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
-                [ "2", [ [ "covariant" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                [ "1", [ [ "contravariant" ], HOMALG_SHEAVES.FunctorOn ] ],
+                [ "2", [ [ "covariant" ], HOMALG_SHEAVES.FunctorOn ] ],
                 [ "OnObjects", _Functor_TheZeroMorphism_OnCoherentSheafOnProj ]
                 )
         );
@@ -66,7 +66,7 @@ end );
 InstallValue( functor_AddMorphisms_ForMorphismsOfCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "+" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "+" ],
                 [ "number_of_arguments", 2 ],
                 [ "1", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
@@ -106,7 +106,7 @@ end );
 InstallValue( functor_SubMorphisms_ForMorphismsOfCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "-" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "-" ],
                 [ "number_of_arguments", 2 ],
                 [ "1", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
@@ -151,7 +151,7 @@ end );
 InstallValue( functor_PreCompose_ForMorphismsOfCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "PreCompose" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "PreCompose" ],
                 [ "number_of_arguments", 2 ],
                 [ "1", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
@@ -185,7 +185,7 @@ end );
 InstallValue( functor_CoproductMorphism_ForMorphismsOfCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "CoproductMorphism" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "CoproductMorphism" ],
                 [ "number_of_arguments", 2 ],
                 [ "1", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
@@ -219,7 +219,7 @@ end );
 InstallValue( functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "ProductMorphism" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "ProductMorphism" ],
                 [ "number_of_arguments", 2 ],
                 [ "1", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],
@@ -307,7 +307,7 @@ end );
 InstallValue( functor_PostDivide_ForMorphismsOfCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "PostDivide" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "PostDivide" ],
                 [ "number_of_arguments", 2 ],
                 [ "1", [ [ "covariant" ], [ IsMorphismOfCoherentSheavesOnProjRep ] ] ],

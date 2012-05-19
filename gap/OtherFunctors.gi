@@ -43,15 +43,15 @@ end );
 InstallValue( Functor_DirectSum_ForCoherentSheafOnProj,
         CreateHomalgFunctor(
                 [ "name", "DirectSum" ],
-                [ "category", HOMALG_SHEAVES_PROJ.category ],
+                [ "category", HOMALG_SHEAVES.category ],
                 [ "operation", "DirectSumOp" ],
                 [ "natural_transformation1", "EpiOnLeftFactor" ],
                 [ "natural_transformation2", "EpiOnRightFactor" ],
                 [ "natural_transformation3", "MonoOfLeftSummand" ],
                 [ "natural_transformation4", "MonoOfRightSummand" ],
                 [ "number_of_arguments", 2 ],
-                [ "1", [ [ "covariant" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
-                [ "2", [ [ "covariant" ], HOMALG_SHEAVES_PROJ.FunctorOn ] ],
+                [ "1", [ [ "covariant" ], HOMALG_SHEAVES.FunctorOn ] ],
+                [ "2", [ [ "covariant" ], HOMALG_SHEAVES.FunctorOn ] ],
                 [ "OnObjects", _Functor_DirectSum_OnCoherentSheafOnProj ],
                 [ "OnMorphismsHull", _Functor_DirectSum_OnMaps ]
                 )
