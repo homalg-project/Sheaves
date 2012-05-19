@@ -14,8 +14,6 @@
 #
 ####################################
 
-# three new GAP-categories:
-
 ##  <#GAPDoc Label="IsLinearSystem">
 ##  <ManSection>
 ##    <Filt Type="Category" Arg="L" Name="IsLinearSystem"/>

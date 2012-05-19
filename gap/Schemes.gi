@@ -314,4 +314,3 @@ InstallMethod( Display,
     Print( "\n\nProj of the above graded ring\n" );
     
 end );
-
