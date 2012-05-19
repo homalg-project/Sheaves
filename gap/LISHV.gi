@@ -316,8 +316,8 @@ InstallImmediateMethodToPullPropertiesOrAttributes(
 
 ##
 InstallImmediateMethodToPullPropertiesOrAttributes(
-        IsSheafOfRingsOnProjRep,
-        IsSheafOfRingsOnProjRep,
+        IsSheafOfRingsOnSchemeRep,
+        IsSheafOfRingsOnSchemeRep,
         LISHV.exchangeable_attributes_sheaf_of_rings,
         LISHV.exchangeable_attributes_sheaf_of_rings,
         AsModuleOverStructureSheafOfAmbientSpace );

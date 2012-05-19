@@ -19,8 +19,8 @@
 InstallValue( HOMALG_SHEAVES,
         rec(
             category := rec(
-                            description := "coherent sheaves of modules and their morphisms over a projective scheme",
-                            short_description := "_for_coherent_sheaves_on_proj",
+                            description := "coherent sheaves of modules and their morphisms over a scheme",
+                            short_description := "_for_coherent_sheaves",
                             MorphismConstructor := SheafMorphism,
                             InternalHom := SheafHom,
                             InternalExt := SheafExt,
@@ -37,9 +37,9 @@ InstallValue( HOMALG_SHEAVES,
 
 # a new representation for the GAP-category IsSheafOfRings
 
-##  <#GAPDoc Label="IsSheafOfRingsOnProjRep">
+##  <#GAPDoc Label="IsSheafOfRingsOnSchemeRep">
 ##  <ManSection>
-##    <Filt Type="Representation" Arg="M" Name="IsSheafOfRingsOnProjRep"/>
+##    <Filt Type="Representation" Arg="M" Name="IsSheafOfRingsOnSchemeRep"/>
 ##    <Returns>true or false</Returns>
 ##    <Description>
 ##      The &GAP; representation of &homalg; sheaves of rings. <P/>
@@ -50,7 +50,7 @@ InstallValue( HOMALG_SHEAVES,
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareRepresentation( "IsSheafOfRingsOnProjRep",
+DeclareRepresentation( "IsSheafOfRingsOnSchemeRep",
         IsSheafOfRings and
         IsStructureObjectOrFinitelyPresentedObjectRep,
         [ "graded_ring" ] );
@@ -145,7 +145,7 @@ BindGlobal( "TheFamilyOfSheavesOfRings",
 # a new type:
 BindGlobal( "TheTypeSheafOfRings",
         NewType( TheFamilyOfSheavesOfRings,
-                IsSheafOfRingsOnProjRep ) );
+                IsSheafOfRingsOnSchemeRep ) );
 
 # a new family:
 BindGlobal( "TheFamilyOfHomalgSheaves",
@@ -1109,7 +1109,7 @@ end );
 ##
 InstallMethod( ViewObj,
         "for sheaves of rings",
-        [ IsSheafOfRingsOnProjRep ],
+        [ IsSheafOfRingsOnSchemeRep ],
         
   function( O )
     local S, weights;
@@ -1491,7 +1491,7 @@ end );
 ##
 InstallMethod( Display,
         "for sheaves of rings",
-        [ IsSheafOfRingsOnProjRep ],
+        [ IsSheafOfRingsOnSchemeRep ],
         
   function( O )
     local S, weights;

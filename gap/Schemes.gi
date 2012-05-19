@@ -10,9 +10,9 @@
 
 # a new representation for the GAP-category IsScheme
 
-##  <#GAPDoc Label="IsProjSchemeRep">
+##  <#GAPDoc Label="IsSchemeRep">
 ##  <ManSection>
-##    <Filt Type="Representation" Arg="M" Name="IsProjSchemeRep"/>
+##    <Filt Type="Representation" Arg="M" Name="IsSchemeRep"/>
 ##    <Returns>true or false</Returns>
 ##    <Description>
 ##      The &GAP; representation of schemes. <P/>
@@ -21,8 +21,23 @@
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareRepresentation( "IsProjSchemeRep",
+DeclareRepresentation( "IsSchemeRep",
         IsScheme,
+        [  ] );
+
+##  <#GAPDoc Label="IsProjSchemeRep">
+##  <ManSection>
+##    <Filt Type="Representation" Arg="M" Name="IsProjSchemeRep"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      The &GAP; representation of projective schemes. <P/>
+##      (It is a representation of the &GAP; category <Ref Filt="IsScheme"/>.)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareRepresentation( "IsProjSchemeRep",
+        IsSchemeRep,
         [  ] );
 
 ####################################
@@ -31,13 +46,18 @@ DeclareRepresentation( "IsProjSchemeRep",
 #
 ####################################
 
-# a new family:
-BindGlobal( "TheFamilyOfProjSchemes",
-        NewFamily( "TheFamilyOfProjSchemes" ) );
+##
+BindGlobal( "TheFamilyOfSchemes",
+        NewFamily( "TheFamilyOfSchemes" ) );
 
-# a new type:
-BindGlobal( "TheTypeProjSchemes",
-        NewType( TheFamilyOfProjSchemes,
+##
+BindGlobal( "TheTypeScheme",
+        NewType( TheFamilyOfSchemes,
+                IsSchemeRep ) );
+
+##
+BindGlobal( "TheTypeProjectiveScheme",
+        NewType( TheFamilyOfSchemes,
                 IsProjSchemeRep ) );
 
 ####################################
@@ -157,7 +177,7 @@ InstallMethod( Proj,
         return S!.Proj;
     fi;
     
-    ## the ring carrying the weights
+    # the ring carrying the weights
     if HasAmbientRing( S ) then
         R := AmbientRing( S );
     else
@@ -169,7 +189,7 @@ InstallMethod( Proj,
     O := StructureSheafOfProj( S );
     
     ObjectifyWithAttributes(
-            X, TheTypeProjSchemes,
+            X, TheTypeProjectiveScheme,
             StructureSheaf, O,
             IsProjective, true
             );

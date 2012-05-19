@@ -522,7 +522,7 @@ InstallFunctor( Functor_GlobalSections_ForCoherentSheafOnProj );
 ComposeFunctors( Functor_GlobalSections_ForCoherentSheafOnProj, 1, Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj, "Hom", "Hom" );
 
 SetProcedureToReadjustGenerators(
-        Functor_Hom_for_coherent_sheaves_on_proj,
+        Functor_Hom_for_coherent_sheaves,
         function( arg )
           local mor, S, T;
           
@@ -556,7 +556,7 @@ SetProcedureToReadjustGenerators(
 ## Ext
 ##
 
-RightSatelliteOfCofunctor( Functor_Hom_for_coherent_sheaves_on_proj, "Ext" );
+RightSatelliteOfCofunctor( Functor_Hom_for_coherent_sheaves, "Ext" );
 
 ##
 ## TensorProduct

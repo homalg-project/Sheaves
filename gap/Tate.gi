@@ -28,7 +28,7 @@ end );
 ##
 InstallMethod( TateResolution,
         "for a sheaf of rings",
-        [ IsSheafOfRingsOnProjRep, IsInt, IsInt ],
+        [ IsSheafOfRingsOnSchemeRep, IsInt, IsInt ],
         
   function( OX, degree_lowest, degree_highest )
     
