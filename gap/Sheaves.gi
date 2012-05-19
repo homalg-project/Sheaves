@@ -784,7 +784,7 @@ InstallMethod( StructureSheafOfProj,
        SetDimension( O, KrullDimension( S ) - 1 );
     fi;
     
-    S!.StructureSheafOfProj := 0;
+    S!.StructureSheafOfProj := O;
     
     return O;
     
