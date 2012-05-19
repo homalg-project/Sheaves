@@ -211,9 +211,9 @@ InstallMethod( Scheme,
         "constructor for Proj schemes",
         [ IsGradedSubmoduleRep and ConstructedAsAnIdeal ],
         
-  function( J )
+  function( I )
     
-    return Proj( HomalgRing( J ) / J );
+    return Proj( HomalgRing( I ) / I );
     
 end );
 
