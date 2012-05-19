@@ -759,16 +759,23 @@ end );
 ##
 InstallMethod( StructureSheafOfProj,
         "constructor for structure sheaves",
-        [ IsHomalgGradedRingRep and ContainsAField ],
+        [ IsHomalgGradedRingRep ],
         
   function( S )
-    local O, J;
+    local O, T, J;
     
     if IsBound( S!.StructureSheafOfProj ) then
         return S!.StructureSheafOfProj;
     fi;
     
-    O := rec( graded_ring := S );
+    ## FIXME: CoefficientsRing
+    if HasCoefficientsRing( S ) then
+        T := CoefficientsRing( S );
+    else
+        T := S;
+    fi;
+    
+    O := rec( graded_ring := S, base_ring := T );
     
     ObjectifyWithAttributes(
             O, TheTypeSheafOfRings
@@ -780,8 +787,8 @@ InstallMethod( StructureSheafOfProj,
         SetAsModuleOverStructureSheafOfAmbientSpace( O, Sheafify( FactorObject( J ) ) );
     fi;
     
-    if HasKrullDimension( S ) then
-       SetDimension( O, KrullDimension( S ) - 1 );
+    if HasKrullDimension( S ) and HasKrullDimension( T ) then
+       SetDimension( O, KrullDimension( S ) - 1 - KrullDimension( T ) );
     fi;
     
     S!.StructureSheafOfProj := O;
