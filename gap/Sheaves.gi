@@ -757,6 +757,47 @@ InstallMethod( HomalgCategory,
 end );
 
 ##
+InstallMethod( StructureSheafOfSpec,
+        "constructor for structure sheaves",
+        [ IsHomalgRing ],
+        
+  function( R )
+    local T, O, J;
+    
+    if IsBound( R!.StructureSheafOfSpec ) then
+        return R!.StructureSheafOfSpec;
+    fi;
+    
+    ## FIXME: CoefficientsRing
+    if HasCoefficientsRing( R ) then
+        T := CoefficientsRing( R );
+    else
+        T := R;
+    fi;
+    
+    O := rec( ring := R, base_ring := T );
+    
+    ObjectifyWithAttributes(
+            O, TheTypeSheafOfRings
+            );
+    
+    if HasDefiningIdeal( R ) then
+        J := DefiningIdeal( R );
+        SetIdealSheaf( O, Sheafify( J ) );
+        SetAsModuleOverStructureSheafOfAmbientSpace( O, Sheafify( FactorObject( J ) ) );
+    fi;
+    
+    if HasKrullDimension( R ) and HasKrullDimension( T ) then
+       SetDimension( O, KrullDimension( R ) - KrullDimension( T ) );
+    fi;
+    
+    R!.StructureSheafOfSpec := O;
+    
+    return O;
+    
+end );
+
+##
 InstallMethod( StructureSheafOfProj,
         "constructor for structure sheaves",
         [ IsHomalgGradedRingRep ],

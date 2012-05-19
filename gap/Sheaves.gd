@@ -127,6 +127,19 @@ DeclareProperty( "FiniteLocallyFreeResolutionExists",
 #
 ####################################
 
+##  <#GAPDoc Label="StructureSheafOfSpec">
+##  <ManSection>
+##    <Attr Arg="R" Name="StructureSheafOfSpec"/>
+##    <Returns>a sheaf of rings</Returns>
+##    <Description>
+##      The structure sheaf of <M>Spec(</M><A>R</A><M>)</M> of the &homalg; ring <A>R</A>.
+##   </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "StructureSheafOfSpec",
+        IsHomalgRing );
+
 ##  <#GAPDoc Label="StructureSheafOfProj">
 ##  <ManSection>
 ##    <Attr Arg="S" Name="StructureSheafOfProj"/>
@@ -223,7 +236,10 @@ DeclareAttribute( "CastelnuovoMumfordRegularity",
 # constructors:
 
 DeclareOperation( "Sheafify",
-        [ IsHomalgGradedModule ] );
+        [ IsHomalgModule ] );
+
+DeclareOperation( "Spec",
+        [ IsHomalgModule ] );
 
 DeclareOperation( "Proj",
         [ IsHomalgGradedModule ] );

@@ -166,6 +166,56 @@ end );
 ####################################
 
 ##
+InstallMethod( Spec,
+        "constructor for affine schemes",
+        [ IsHomalgRing ],
+        
+  function( R )
+    local A, X, O, J;
+    
+    if IsBound( R!.Spec ) then
+        return R!.Spec;
+    fi;
+    
+    ## the ambient ring
+    #if HasAmbientRing( R ) then
+    #    A := AmbientRing( R );
+    #else
+    #    A := R;
+    #fi;
+    
+    X := rec( );
+    
+    O := StructureSheafOfSpec( R );
+    
+    ObjectifyWithAttributes(
+            X, TheTypeScheme,
+            StructureSheaf, O,
+            IsAffine, true
+            );
+    
+    if HasDefiningIdeal( R ) then
+        J := DefiningIdeal( R );
+        SetIdealSheaf( X, Sheafify( J ) );
+    fi;
+    
+    if IsBound( O!.base_ring ) then
+        SetBaseRing( X, O!.base_ring );
+    fi;
+    
+    if HasIsFreePolynomialRing( R ) and IsFreePolynomialRing( R ) and
+       not HasAmbientRing( R ) then
+        SetIsAffineSpace( X, true );
+    fi;
+    
+    ## save the afine scheme in the ring
+    R!.Spec := X;
+    
+    return X;
+    
+end );
+
+##
 InstallMethod( Proj,
         "constructor for Proj schemes",
         [ IsHomalgGradedRing ],
@@ -217,6 +267,17 @@ end );
 
 ##
 InstallMethod( Scheme,
+        "constructor for affine schemes",
+        [ IsFinitelyPresentedSubmoduleRep and ConstructedAsAnIdeal ],
+        
+  function( I )
+    
+    return Spec( HomalgRing( I ) / I );
+    
+end );
+
+##
+InstallMethod( Scheme,
         "constructor for Proj schemes",
         [ IsGradedSubmoduleRep and ConstructedAsAnIdeal ],
         
@@ -238,7 +299,7 @@ InstallMethod( ViewObj,
         [ IsScheme ],
         
   function( X )
-    local first_property, second_property, prop_attr, print_non_empty, dim;
+    local first_property, second_property, prop_attr, print_non_empty, dim, T;
     
     first_property := false;
     second_property := false;
@@ -309,7 +370,80 @@ InstallMethod( ViewObj,
         Print( " non-empty" );
     fi;
     
-    Print( prop_attr, " in P^", DimensionOfAmbientSpace( X ),">" );
+    if IsProjSchemeRep( X ) then
+        Print( prop_attr, " in P^", DimensionOfAmbientSpace( X ) );
+    elif HasIsAffine( X ) and IsAffine( X ) then
+        Print( prop_attr, " in A^", DimensionOfAmbientSpace( X ) );
+    fi;
+    
+    if HasBaseRing( X ) then
+        Print( " over " );
+        T := BaseRing( X );
+        if IsHomalgGradedRingRep( T ) then;
+            T := UnderlyingNonGradedRing( T );
+        fi;
+        ViewObj( T );
+    fi;
+    
+    Print( ">" );
+    
+end );
+
+##
+InstallMethod( ViewObj,
+        "for schemes",
+        [ IsScheme and IsAffineSpace ],
+        
+  function( X )
+    local R, T;
+    
+    R := StructureSheaf( X )!.ring;
+    
+    if HasAmbientRing( R ) then
+        TryNextMethod( );
+    fi;
+    
+    Print( "<An affine space A^", DimensionOfAmbientSpace( X ) );
+    
+    if HasBaseRing( X ) then
+        Print( " over " );
+        T := BaseRing( X );
+        if IsHomalgGradedRingRep( T ) then;
+            T := UnderlyingNonGradedRing( T );
+        fi;
+        ViewObj( T );
+    fi;
+    
+    Print( ">" );
+    
+end );
+
+##
+InstallMethod( ViewObj,
+        "for schemes",
+        [ IsScheme and IsProjectiveSpace ],
+        
+  function( X )
+    local R, T;
+    
+    R := StructureSheaf( X )!.graded_ring;
+    
+    if HasAmbientRing( R ) then
+        TryNextMethod( );
+    fi;
+    
+    Print( "<A projective space P^", DimensionOfAmbientSpace( X ) );
+    
+    if HasBaseRing( X ) then
+        Print( " over " );
+        T := BaseRing( X );
+        if IsHomalgGradedRingRep( T ) then;
+            T := UnderlyingNonGradedRing( T );
+        fi;
+        ViewObj( T );
+    fi;
+    
+    Print( ">" );
     
 end );
 

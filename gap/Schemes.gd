@@ -48,6 +48,33 @@ DeclareCategory( "IsScheme",
 DeclareProperty( "IsEmpty",
         IsScheme );
 
+##  <#GAPDoc Label="IsAffine:scheme">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsAffine" Label="for schemes"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the scheme <A>X</A> is affine. <Br/>
+##      (no method installed)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsAffine",
+        IsScheme );
+
+##  <#GAPDoc Label="IsAffineSpace">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsAffineSpace"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the scheme <A>X</A> is an affine space.
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsAffineSpace",
+        IsScheme );
+
 ##  <#GAPDoc Label="IsProjective:scheme">
 ##  <ManSection>
 ##    <Prop Arg="X" Name="IsProjective" Label="for schemes"/>
@@ -294,6 +321,9 @@ DeclareAttribute( "Dimension",
 
 DeclareOperation( "Proj",
         [ IsHomalgGradedRing ] );
+
+DeclareOperation( "Spec",
+        [ IsHomalgRing ] );
 
 DeclareOperation( "Scheme",
         [ IsHomalgModule ] );
