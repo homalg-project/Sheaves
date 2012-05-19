@@ -177,12 +177,12 @@ InstallMethod( Proj,
         return S!.Proj;
     fi;
     
-    # the ring carrying the weights
-    if HasAmbientRing( S ) then
-        R := AmbientRing( S );
-    else
-        R := S;
-    fi;
+    ## the ring carrying the weights
+    #if HasAmbientRing( S ) then
+    #    R := AmbientRing( S );
+    #else
+    #    R := S;
+    #fi;
     
     X := rec( );
     
