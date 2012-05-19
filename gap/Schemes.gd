@@ -62,6 +62,19 @@ DeclareProperty( "IsEmpty",
 DeclareProperty( "IsProjective",
         IsScheme );
 
+##  <#GAPDoc Label="IsProjectiveSpace">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsProjectiveSpace"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the scheme <A>X</A> is a projective space.
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsProjectiveSpace",
+        IsScheme );
+
 ##  <#GAPDoc Label="IsReduced">
 ##  <ManSection>
 ##    <Prop Arg="X" Name="IsReduced"/>

@@ -199,6 +199,15 @@ InstallMethod( Proj,
         SetIdealSheaf( X, Sheafify( J ) );
     fi;
     
+    if IsBound( O!.base_ring ) then
+        SetBaseRing( X, O!.base_ring );
+    fi;
+    
+    if HasIsFreePolynomialRing( S ) and IsFreePolynomialRing( S ) and
+       not HasAmbientRing( S ) then
+        SetIsProjectiveSpace( X, true );
+    fi;
+    
     ## save the proj scheme in the graded ring
     S!.Proj := X;
     
