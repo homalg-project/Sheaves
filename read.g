@@ -27,6 +27,9 @@ ReadPackage( "Sheaves", "gap/Subsheaves.gi" );
 ReadPackage( "Sheaves", "gap/Schemes.gi" );
 
 ##
+ReadPackage( "Sheaves", "gap/Divisors.gi" );
+
+##
 ReadPackage( "Sheaves", "gap/MorphismsOfSchemes.gi" );
 
 ##
@@ -48,6 +51,9 @@ ReadPackage( "Sheaves", "gap/LISHVMOR.gi" );
 ReadPackage( "Sheaves", "gap/LISCM.gi" );
 
 ##
+ReadPackage( "Sheaves", "gap/LIDIV.gi" );
+
+##
 ReadPackage( "Sheaves", "gap/UnderlyingMap.gi" );
 
 ##
@@ -62,3 +68,5 @@ ReadPackage( "Sheaves", "gap/ToolFunctors.gi" );
 ##
 ReadPackage( "Sheaves", "gap/OtherFunctors.gi" );
 
+##
+ReadPackage( "Sheaves", "gap/Tools.gi" );
