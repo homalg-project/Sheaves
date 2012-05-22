@@ -788,7 +788,7 @@ InstallMethod( StructureSheafOfSpec,
     fi;
     
     if HasKrullDimension( R ) and HasKrullDimension( T ) then
-       SetDimension( O, KrullDimension( R ) - KrullDimension( T ) );
+        SetDimension( O, KrullDimension( R ) - KrullDimension( T ) );
     fi;
     
     R!.StructureSheafOfSpec := O;
