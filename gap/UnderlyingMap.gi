@@ -70,7 +70,7 @@ InstallMethod( DecideZero,
         
   function( phi )
     
-    if IsZero( ImageObject( UnderlyingGradedMap( phi ) ) ) then
+    if IsArtinian( ImageObject( UnderlyingGradedMap( phi ) ) ) then
         SetIsZero( phi, true );
     else
         SetIsZero( phi, false );
