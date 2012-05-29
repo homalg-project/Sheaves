@@ -26,7 +26,7 @@ InstallMethod( IsQuasiHomogeneous,
     
     R := HomalgRing( f );
     
-    if not ( HasIsLocalRing( R ) and IsLocalRing( R ) ) then
+    if not ( HasIsLocal( R ) and IsLocal( R ) ) then
         Error( "the ring is not known to be local" );
     fi;
     
