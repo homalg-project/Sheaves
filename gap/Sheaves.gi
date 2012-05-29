@@ -791,6 +791,10 @@ InstallMethod( StructureSheafOfSpec,
         SetDimension( O, KrullDimension( R ) - KrullDimension( T ) );
     fi;
     
+    if HasIsLocal( R ) then
+        SetIsLocal( O, IsLocal( R ) );
+    fi;
+    
     R!.StructureSheafOfSpec := O;
     
     return O;

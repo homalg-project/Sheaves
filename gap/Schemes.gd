@@ -75,6 +75,20 @@ DeclareProperty( "IsAffine",
 DeclareProperty( "IsAffineSpace",
         IsScheme );
 
+##  <#GAPDoc Label="IsLocal:scheme">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsLocal" Label="for schemes"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the scheme <A>X</A> is local. <Br/>
+##      (no method installed)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsLocal",
+        IsScheme );
+
 ##  <#GAPDoc Label="IsProjective:scheme">
 ##  <ManSection>
 ##    <Prop Arg="X" Name="IsProjective" Label="for schemes"/>

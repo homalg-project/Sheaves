@@ -208,6 +208,10 @@ InstallMethod( Spec,
         SetIsAffineSpace( X, true );
     fi;
     
+    if HasIsLocal( R ) then
+        SetIsLocal( X, IsLocal( R ) );
+    fi;
+    
     ## save the afine scheme in the ring
     R!.Spec := X;
     
@@ -373,7 +377,11 @@ InstallMethod( ViewObj,
     if IsProjSchemeRep( X ) then
         Print( prop_attr, " in P^", DimensionOfAmbientSpace( X ) );
     elif HasIsAffine( X ) and IsAffine( X ) then
-        Print( prop_attr, " in A^", DimensionOfAmbientSpace( X ) );
+        if HasIsLocal( X ) and IsLocal( X ) then
+            Print( prop_attr, " in A_p^", DimensionOfAmbientSpace( X ) );
+        else
+            Print( prop_attr, " in A^", DimensionOfAmbientSpace( X ) );
+        fi;
     fi;
     
     if HasBaseRing( X ) then
@@ -403,7 +411,11 @@ InstallMethod( ViewObj,
         TryNextMethod( );
     fi;
     
-    Print( "<An affine space A^", DimensionOfAmbientSpace( X ) );
+    if HasIsLocal( X ) and IsLocal( X ) then
+        Print( "<An affine space A_p^", DimensionOfAmbientSpace( X ) );
+    else
+        Print( "<An affine space A^", DimensionOfAmbientSpace( X ) );
+    fi;
     
     if HasBaseRing( X ) then
         Print( " over " );
