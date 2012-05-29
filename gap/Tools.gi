@@ -9,19 +9,16 @@
 
 ##
 CommonHomalgTableForLocalizedRingsTools.Diff :=
-  function( M, N )
-    local R, diff;
+  function( D, N )
     
     if not IsOne( Denominator( N ) ) then
         Error( "the second matrix has a non-constant denominator" );
-    elif not IsOne( Denominator( M ) ) then
+    elif not IsOne( Denominator( D ) ) then
         Error( "the first matrix has a non-constant denominator" );
     fi;
     
-    R := HomalgRing( M );
-    
-    diff := Diff( Numerator( M ), Numerator( N ) );
-    
-    return diff;
+    return HomalgLocalMatrix(
+                   Diff( Numerator( D ), Numerator( N ) ),
+                   HomalgRing( D ) );
     
 end;
