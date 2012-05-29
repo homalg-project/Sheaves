@@ -286,6 +286,17 @@ InstallMethod( \+,
     
 end );
 
+##
+InstallMethod( \*,
+        "base change for divisors",
+        [ IsHomalgRing, IsDivisorRep ],
+        
+  function( R, D )
+    
+    return Divisor( DefiningPolynomial( D ) / R );
+    
+end );
+
 ####################################
 #
 # View, Print, and Display methods:

@@ -246,3 +246,6 @@ DeclareOperation( "Divisor",
 
 DeclareOperation( "Divisor",
         [ IsMatrix, IsHomalgRing ] );
+
+DeclareOperation( "*",
+        [ IsHomalgRing, IsDivisor ] );
