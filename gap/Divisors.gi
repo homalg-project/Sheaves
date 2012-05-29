@@ -139,25 +139,11 @@ InstallMethod( RingOfDerivations,
         [ IsDivisor ],
         
   function( D )
-    local der, R, var, An;
-    
-    if IsBound( D!.RingOfDerivations ) then
-        return D!.RingOfDerivations;
-    fi;
+    local R;
     
     R := HomalgRing( D );
     
-    if IsHomalgGradedRingRep( R ) then
-        R := UnderlyingNonGradedRing( R );
-    fi;
-    
-    var := Indeterminates( R );
-    
-    An := RingOfDerivations( R, List( var, x -> Concatenation( "D", Name( x ) ) ) );
-    
-    D!.RingOfDerivations := An;
-    
-    return An;
+    return RingOfDerivations( R );
     
 end );
 
