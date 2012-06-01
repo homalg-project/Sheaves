@@ -229,6 +229,8 @@ InstallMethod( Divisor,
     
     alpha := HomalgMatrix( A, k );
     
+    alpha := CertainRows( alpha, NonZeroRows( alpha ) );
+    
     m := NrRows( alpha );
     n := NrColumns( alpha );
     
