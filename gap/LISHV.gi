@@ -334,6 +334,38 @@ InstallImmediateMethodToPushPropertiesOrAttributes( Twitter,
 #
 ####################################
 
+##
+InstallMethod( IsLocallyFree,
+        "for coherent sheaves on Proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    local M, S, n, omega, i;
+    
+    M := UnderlyingGradedModule( F );
+    
+    S := HomalgRing( M );
+    
+    if not ( HasIsFreePolynomialRing( S ) and IsFreePolynomialRing( S ) and
+             Set( WeightsOfIndeterminates( S ) ) = [ 1 ] ) then
+        TryNextMethod( );
+    fi;
+    
+    n := Length( Indeterminates( S ) ) - 1;
+    
+    omega := S^-(n+1);
+    
+    ## Serre's duality
+    for i in [ 1 .. n ] do
+        if not IsArtinian( GradedExt( i, M, omega ) ) then
+            return false;
+        fi;
+    od;
+    
+    return true;
+    
+end );
+
 ####################################
 #
 # methods for attributes:
