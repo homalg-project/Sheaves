@@ -115,6 +115,32 @@ DeclareProperty( "IsAmple",
 DeclareProperty( "IsVeryAmple",
         IsDivisor );
 
+##  <#GAPDoc Label="IsFree:divisor">
+##  <ManSection>
+##    <Prop Arg="D" Name="IsFree" Label="for divisors"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the divisor <A>D</A> is free.
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsFree",
+        IsDivisor );
+
+##  <#GAPDoc Label="IsLocallyFree:divisor">
+##  <ManSection>
+##    <Prop Arg="D" Name="IsLocallyFree" Label="for divisors"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the divisor <A>D</A> is locally free.
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsLocallyFree",
+        IsDivisor );
+
 ####################################
 #
 # attributes:

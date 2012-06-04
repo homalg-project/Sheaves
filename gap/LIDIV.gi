@@ -43,3 +43,25 @@ InstallMethod( IsQuasiHomogeneous,
     return IsZero( DecideZeroRows( f, map ) );
     
 end );
+
+##
+InstallMethod( IsFree,
+        "for divisors",
+        [ IsDivisor ],
+        
+  function( D )
+    
+    return IsFree( DerMinusLog( D ) );
+    
+end );
+
+##
+InstallMethod( IsLocallyFree,
+        "for divisors",
+        [ IsDivisor ],
+        
+  function( D )
+    
+    return IsLocallyFree( Sheafify( DerMinusLog( D ) ) );
+    
+end );
