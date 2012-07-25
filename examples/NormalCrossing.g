@@ -1,7 +1,4 @@
-## Edelman-Reiner's counterexample to a conjecture of Orlik
-## it is not free but locally free on Proj
-
-A := Tuples( [ 0, 1 ], 4 );
+A := IdentityMat( 4 );
 
 LoadPackage( "Sheaves" );
 
@@ -12,8 +9,7 @@ LoadPackage( "D-Modules" );
 
 D := Divisor( A, QQ );
 
-Assert( 0, not IsFree( D ) );
-Assert( 0, IsLocallyFree( D ) );
+Assert( 0, IsFree( D ) );
 
 R := HomalgRing( D );
 R0 := LocalizeAtZero( R );
