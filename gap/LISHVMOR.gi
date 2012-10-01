@@ -131,7 +131,7 @@ InstallMethod( KernelSubobject,
     
     emb := SheafMorphism( emb, "create", Source( phi ) );
     
-    Assert( 1, IsMorphism( emb ) );
+    Assert( 3, IsMorphism( emb ) );
     SetIsMorphism( emb, true );
     
     ker := ImageSubobject( emb );

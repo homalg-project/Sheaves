@@ -20,4 +20,4 @@ MakeGAPDocDoc( "doc", "SheavesForHomalg", list, "SheavesForHomalg" );
 
 GAPDocManualLab( "Sheaves" );
 
-quit;
+QUIT;

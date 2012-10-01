@@ -432,7 +432,7 @@ InstallGlobalFunction( _Functor_SheafHomOnGlobalSections_OnMorphismsOfCoherentSh
     fi;
     
     if HasIsMorphism( phi ) and IsMorphism( phi ) then
-        Assert( 2, IsMorphism( psi ) );
+        Assert( 4, IsMorphism( psi ) );
         SetIsMorphism( psi, true );
     fi;
     
@@ -539,13 +539,13 @@ SetProcedureToReadjustGenerators(
           mor := GradedMap( mor, S, T );
           
           ## check assertion
-          Assert( 1, IsMorphism( mor ) );
+          Assert( 3, IsMorphism( mor ) );
           SetIsMorphism( mor, true );
           
           mor := SheafMorphism( mor, arg[2], arg[3] );
           
           ## check assertion
-          Assert( 1, IsMorphism( mor ) );
+          Assert( 3, IsMorphism( mor ) );
           SetIsMorphism( mor, true );
           
           return mor;
@@ -572,7 +572,7 @@ InstallGlobalFunction( _Functor_TensorProduct_OnCoherentSheafOnProj,
     
     alpha := SheafMorphism( alpha, "create", "create" );
     
-    Assert( 2, IsMorphism( alpha ) );
+    Assert( 4, IsMorphism( alpha ) );
     SetIsMorphism( alpha, true );
     
     T := Source( alpha );
@@ -601,7 +601,7 @@ InstallGlobalFunction( _Functor_TensorProduct_OnMorphismsOfCoherentSheafOnProj,
     fi;
     
     if HasIsMorphism( phi ) and IsMorphism( phi ) then
-        Assert( 2, IsMorphism( psi ) );
+        Assert( 4, IsMorphism( psi ) );
         SetIsMorphism( psi, true );
     fi;
     
