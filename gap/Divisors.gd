@@ -267,8 +267,8 @@ DeclareOperation( "DefiningPolynomialOverWeylAlgebra",
 
 # constructors:
 
-DeclareOperation( "Divisor",
-        [ IsHomalgRingElement ] );
+DeclareAttribute( "Divisor",
+        IsHomalgRingElement );
 
 DeclareOperation( "Divisor",
         [ IsMatrix, IsHomalgRing ] );
