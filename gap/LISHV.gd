@@ -4,7 +4,7 @@
 ##
 ##         LISHV = Logical Implications for homalg SHeaVes
 ##
-##  Copyright 2008-2009, Mohamed Barakat, Universität des Saarlandes
+##  Copyright 2008-2009, Mohamed Barakat, University of Kaiserslautern
 ##
 ##  Declaration stuff for the LISHV subpackage.
 ##

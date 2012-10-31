@@ -2,7 +2,7 @@
 ##
 ##  Sheaves.gi                  Sheaves package              Mohamed Barakat
 ##
-##  Copyright 2008-2009, Mohamed Barakat, Universität des Saarlandes
+##  Copyright 2008-2009, Mohamed Barakat, University of Kaiserslautern
 ##
 ##  Implementation stuff for sheaves.
 ##
