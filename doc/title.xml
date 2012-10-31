@@ -3,9 +3,11 @@
 <!-- 
 
   title.xml             Sheaves package documentation           Mohamed Barakat
+                                                              Sebastian Gutsche
+                                                         Markus Lange-Hegermann
                                                                Oleksandr Motsak
 
-         Copyright (C) 2008-2011, Mohamed Barakat, University of Kaiserslautern
+         Copyright (C) 2008-2012, Mohamed Barakat, University of Kaiserslautern
 
 -->
 <TitlePage>
@@ -50,10 +52,10 @@
     <Email>markus.lange.hegermann@rwth-aachen.de</Email>
     <Homepage>http://wwwb.math.rwth-aachen.de/~markus/</Homepage>
   </Author>
-  <Date>October 2011</Date>
+  <Date>October 2012</Date>
   
   <Copyright>
-    &copyright; 2008-2011 by Mohamed Barakat and Markus Lange-Hegermann<P/>
+    &copyright; 2008-2012 by Mohamed Barakat and Markus Lange-Hegermann<P/>
     
     This package may be distributed under the terms and conditions of the
     GNU Public License Version 2.

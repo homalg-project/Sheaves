@@ -159,6 +159,30 @@ DeclareProperty( "IsLocallyFree",
 DeclareAttribute( "DefiningPolynomial",
         IsDivisor );
 
+##  <#GAPDoc Label="AssociatedMatrix">
+##  <ManSection>
+##    <Attr Arg="D" Name="AssociatedMatrix"/>
+##    <Returns>a homalg ring element</Returns>
+##    <Description>
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "AssociatedMatrix",
+        IsDivisor );
+
+##  <#GAPDoc Label="AssociatedMatrixOverWeylAlgebra">
+##  <ManSection>
+##    <Attr Arg="D" Name="AssociatedMatrixOverWeylAlgebra"/>
+##    <Returns>a homalg ring element</Returns>
+##    <Description>
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "AssociatedMatrixOverWeylAlgebra",
+        IsDivisor );
+
 ##  <#GAPDoc Label="AmbientScheme">
 ##  <ManSection>
 ##    <Attr Arg="D" Name="AmbientScheme"/>
@@ -181,6 +205,18 @@ DeclareAttribute( "AmbientScheme",
 ##  <#/GAPDoc>
 ##
 DeclareAttribute( "PrimeDivisorsAttr",
+        IsDivisor );
+
+##  <#GAPDoc Label="JacobiMatrix">
+##  <ManSection>
+##    <Attr Arg="D" Name="JacobiMatrix"/>
+##    <Returns>a module map</Returns>
+##    <Description>
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "JacobiMatrix",
         IsDivisor );
 
 ##  <#GAPDoc Label="DerMinusLogMap">
@@ -231,6 +267,18 @@ DeclareAttribute( "DerMinusLogInWeylAlgebra",
 DeclareAttribute( "Annihilator1",
         IsDivisor );
 
+##  <#GAPDoc Label="Annihilator1Augmented">
+##  <ManSection>
+##    <Attr Arg="D" Name="Annihilator1Augmented"/>
+##    <Returns>a left ideal</Returns>
+##    <Description>
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "Annihilator1Augmented",
+        IsDivisor );
+
 ## intrinsic attributes:
 ##
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -248,6 +296,18 @@ DeclareAttribute( "Annihilator1",
 ##  <#/GAPDoc>
 ##
 DeclareAttribute( "DegreeOfDivisor",
+        IsDivisor );
+
+##  <#GAPDoc Label="FirstAffineDegree">
+##  <ManSection>
+##    <Attr Arg="D" Name="FirstAffineDegree"/>
+##    <Returns>a left ideal</Returns>
+##    <Description>
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "FirstAffineDegree",
         IsDivisor );
 
 ####################################
@@ -275,3 +335,27 @@ DeclareOperation( "Divisor",
 
 DeclareOperation( "*",
         [ IsHomalgRing, IsDivisor ] );
+
+DeclareOperation( "Annihilator1",
+        [ IsDivisor, IsRat ] );
+
+DeclareOperation( "Annihilator1Map",
+        [ IsDivisor, IsRat ] );
+
+DeclareOperation( "KernelSubobject",
+        [ IsDivisor, IsRat ] );
+
+DeclareOperation( "Annihilator1Augmented",
+        [ IsDivisor, IsRat ] );
+
+DeclareOperation( "Annihilator1Augmented",
+        [ IsDivisor, IsRat, IsHomalgModule ] );
+
+DeclareOperation( "Annihilator1Augmented",
+        [ IsDivisor, IsRat, IsList ] );
+
+DeclareOperation( "Annihilator1Augmented",
+        [ IsDivisor, IsRat, IsRingElement ] );
+
+DeclareOperation( "FirstAffineDegree",
+        [ IsDivisor, IsRat ] );

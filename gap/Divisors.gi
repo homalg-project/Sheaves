@@ -58,25 +58,39 @@ InstallMethod( HomalgRing,
 end );
 
 ##
-InstallMethod( DerMinusLogMap,
+InstallMethod( AssociatedMatrix,
         "for divisors",
         [ IsDivisor ],
         
   function( D )
-    local map, f, R, var, n, Rn, varvec;
     
-    if HasIsPrimeDivisor( D ) and not IsPrimeDivisor( D ) and
-       IsBound( D!.PreFactorization ) then
+    return HomalgMatrix( [ DefiningPolynomial( D ) ], 1, 1, HomalgRing( D ) );
         
-        map := List( D!.PreFactorization, DerMinusLogMap );
+end );
+
+##
+InstallMethod( AssociatedMatrixOverWeylAlgebra,
+        "for divisors",
+        [ IsDivisor ],
         
-        return Iterated( map, ProductMorphism );
-        
-    fi;
+  function( D )
+    local A;
     
-    f := DefiningPolynomial( D );
+    A := RingOfDerivations( D );
     
-    R := HomalgRing( f );
+    return A * AssociatedMatrix( D );
+    
+end );
+
+##
+InstallMethod( JacobiMatrix,
+        "for divisors",
+        [ IsDivisor ],
+        
+  function( D )
+    local R, var, n, Rn, varvec, f;
+
+    R := HomalgRing( D );
     
     var := Indeterminates( R );
     
@@ -90,9 +104,37 @@ InstallMethod( DerMinusLogMap,
     
     varvec := HomalgMatrix( var, 1, n, R );
     
-    f := HomalgMatrix( [ f ], 1, 1, R );
+    f := AssociatedMatrix( D );
     
-    map := Diff( Involution( varvec ), f );
+    return Diff( Involution( varvec ), f );
+    
+end );
+
+
+##
+InstallMethod( DerMinusLogMap,
+        "for divisors",
+        [ IsDivisor ],
+        
+  function( D )
+    local map, R, Rn, f;
+    
+    if HasIsPrimeDivisor( D ) and not IsPrimeDivisor( D ) and
+       IsBound( D!.PreFactorization ) then
+        
+        map := List( D!.PreFactorization, DerMinusLogMap );
+        
+        return Iterated( map, ProductMorphism );
+        
+    fi;
+    
+    map := JacobiMatrix( D );
+    
+    R := HomalgRing( D );
+    
+    Rn := R!.DerMinusLogModule;
+    
+    f := AssociatedMatrix( D );
     
     if IsHomalgGradedRing( R ) then
         map := GradedMap( map, Rn, LeftPresentationWithDegrees( f ) );
@@ -164,24 +206,203 @@ InstallMethod( DerMinusLogInWeylAlgebra,
         [ IsDivisor ],
         
   function( D )
-    local der, An, var;
+    local der, A, var;
     
     der := DerMinusLog( D );
     der := MatrixOfGenerators( der );
     
-    An := RingOfDerivations( D );
+    A := RingOfDerivations( D );
     
-    var := IndeterminateDerivationsOfRingOfDerivations( An );
+    var := IndeterminateDerivationsOfRingOfDerivations( A );
     
-    var := HomalgMatrix( var, Length( var ), 1, An );
+    var := HomalgMatrix( var, Length( var ), 1, A );
 
-    der := An * der;
-    
-    der := der * var;
+    der := ( A * der ) * var;
     
     der := LeftSubmodule( der );
     
     return der;
+    
+end );
+
+##
+InstallMethod( Annihilator1,
+        "for a divisor and a rational number",
+        [ IsDivisor, IsRat ],
+        
+  function( D, lambda )
+    local der, jac, f, A, var, a;
+    
+    if IsBound( D!.Annihilator1 ) then
+        if IsBound( D!.Annihilator1!.(String( lambda )) ) then
+            return D!.Annihilator1!.(String( lambda ));
+        fi;
+    else
+        D!.Annihilator1 := rec( );
+    fi;
+    
+    der := DerMinusLog( D );
+    der := MatrixOfGenerators( der );
+    
+    jac := JacobiMatrix( D );
+    
+    f := AssociatedMatrix( D );
+    
+    A := RingOfDerivations( D );
+    
+    a := A * RightDivide( der * jac, f );
+    
+    var := IndeterminateDerivationsOfRingOfDerivations( A );
+    
+    var := HomalgMatrix( var, Length( var ), 1, A );
+    
+    der := ( A * der ) * var - lambda * a;
+    
+    der := LeftSubmodule( der );
+    
+    D!.Annihilator1!.(String( lambda )) := der;
+    
+    return der;
+    
+end );
+
+##
+InstallMethod( Annihilator1,
+        "for a divisor",
+        [ IsDivisor ],
+        
+  function( D )
+    
+    return Annihilator1( D, -1 );
+    
+end );
+    
+##
+InstallMethod( Annihilator1Map,
+        "for a divisor and a rational number",
+        [ IsDivisor, IsRat ],
+        
+  function( D, lambda )
+    local Ann1, A, f;
+    
+    Ann1 := Annihilator1( D, lambda );
+    
+    A := HomalgRing( Ann1 );
+    
+    f := AssociatedMatrixOverWeylAlgebra( D );
+    
+    return HomalgMap( f, 1 * A, FactorObject( Ann1 ) );
+    
+end );
+
+##
+InstallMethod( KernelSubobject,
+        "for a divisor and a rational number",
+        [ IsDivisor, IsRat ],
+        
+  function( D, lambda )
+    
+    return KernelSubobject( Annihilator1Map( D, lambda ) );
+    
+end );
+
+##
+InstallMethod( Annihilator1Augmented,
+        "for a divisor and a rational number",
+        [ IsDivisor, IsRat ],
+        
+  function( D, lambda )
+    local f, Ann1f;
+    
+    if IsBound( D!.Annihilator1Augmented ) then
+        if IsBound( D!.Annihilator1Augmented!.(String( lambda )) ) then
+            return D!.Annihilator1Augmented!.(String( lambda ));
+        fi;
+    else
+        D!.Annihilator1Augmented := rec( );
+    fi;
+    
+    f := AssociatedMatrixOverWeylAlgebra( D );
+    
+    Ann1f := LeftSubmodule( f ) + Annihilator1( D, lambda );
+    
+    D!.Annihilator1Augmented!.(String( lambda )) := Ann1f;
+    
+    return Ann1f;
+    
+end );
+
+##
+InstallMethod( Annihilator1Augmented,
+        "for a divisor, a rational number, and an ideal",
+        [ IsDivisor, IsRat, IsHomalgModule and ConstructedAsAnIdeal ],
+        
+  function( D, lambda, J )
+    local Ann1, R;
+    
+    Ann1 := Annihilator1Augmented( D, lambda );
+    
+    R := HomalgRing( Ann1 );
+        
+    return Ann1 + R * J;
+    
+end );
+
+##
+InstallMethod( Annihilator1Augmented,
+        "for a divisor, a rational number, and a list of ring elements",
+        [ IsDivisor, IsRat, IsList ],
+        
+  function( D, lambda, J )
+    
+    return Annihilator1Augmented( D, lambda, LeftSubmodule( J ) );
+    
+end );
+
+##
+InstallMethod( Annihilator1Augmented,
+        "for a divisor, a rational number, and a ring element",
+        [ IsDivisor, IsRat, IsRingElement ],
+        
+  function( D, lambda, r )
+    
+    return Annihilator1Augmented( D, lambda, [ r ] );
+    
+end );
+
+##
+InstallMethod( Annihilator1Augmented,
+        "for a divisor",
+        [ IsDivisor ],
+        
+  function( D )
+    
+    return Annihilator1Augmented( D, -1 );
+    
+end );
+
+##
+InstallMethod( FirstAffineDegree,
+        "for a divisor and a rational number",
+        [ IsDivisor, IsRat ],
+        
+  function( D, lambda )
+    local I, d;
+    
+    I := Annihilator1Augmented( D, lambda );
+    
+    return AffineDegree( AssociatedGradedModule( I ) );
+    
+end );
+
+##
+InstallMethod( FirstAffineDegree,
+        "for a divisor",
+        [ IsDivisor ],
+        
+  function( D )
+    
+    return FirstAffineDegree( D, -1 );
     
 end );
 
