@@ -355,8 +355,9 @@ InstallMethod( IsLocallyFree,
     
     omega := S^-(n+1);
     
-    ## Serre's duality
+    ## Serre's vector bundle criterion
     for i in [ 1 .. n ] do
+        ## Serre's duality
         if not IsArtinian( GradedExt( i, M, omega ) ) then
             return false;
         fi;
