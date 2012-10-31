@@ -8,6 +8,41 @@
 ##
 #############################################################################
 
+##
+## take care that we distinguish between objects and subobjects:
+## some properties of a subobject might be those of the factor
+## and not of the underlying object
+##
+InstallValue( LogicalImplicationsForDivisors,
+        [ ## IsTorsionFree:
+          
+          [ IsZero,
+            "implies", IsFree ],
+          
+          [ IsFree,
+            "implies", IsStablyFree ],
+          
+          [ IsFree,
+            "implies", IsDirectSumOfLineBundles ],
+          
+          [ IsDirectSumOfLineBundles,
+            "implies", IsLocallyFree ],
+          
+          [ IsLocallyFree,
+            "implies", IsReflexive ],
+          
+          ## see homalg/LIOBJ.gi for more implications
+          
+          ] );
+
+####################################
+#
+# logical implications methods:
+#
+####################################
+
+InstallLogicalImplicationsForHomalgObjects( LogicalImplicationsForDivisors, IsDivisor );
+
 ####################################
 #
 # methods for properties:
@@ -63,5 +98,16 @@ InstallMethod( IsLocallyFree,
   function( D )
     
     return IsLocallyFree( Sheafify( DerMinusLog( D ) ) );
+    
+end );
+
+##
+InstallMethod( IsDirectSumOfLineBundles,
+        "for divisors",
+        [ IsDivisor ],
+        
+  function( D )
+    
+    return IsDirectSumOfLineBundles( Sheafify( DerMinusLog( D ) ) );
     
 end );

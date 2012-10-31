@@ -7,3 +7,18 @@
 ##  Logical Implications for DIVisors.
 ##
 #############################################################################
+
+# our info class:
+DeclareInfoClass( "InfoLIDIV" );
+SetInfoLevel( InfoLIDIV, 1 );
+
+# a central place for configurations:
+DeclareGlobalVariable( "LIDIV" );
+
+####################################
+#
+# global variables:
+#
+####################################
+
+DeclareGlobalVariable( "LogicalImplicationsForDivisors" );

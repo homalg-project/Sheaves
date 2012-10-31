@@ -141,6 +141,19 @@ DeclareProperty( "IsFree",
 DeclareProperty( "IsLocallyFree",
         IsDivisor );
 
+##  <#GAPDoc Label="IsDirectSumOfLineBundles:divisor">
+##  <ManSection>
+##    <Prop Arg="D" Name="IsDirectSumOfLineBundles" Label="for divisors"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the divisor <A>D</A> is a direct sum of line bundles.
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsDirectSumOfLineBundles",
+        IsDivisor );
+
 ####################################
 #
 # attributes:
