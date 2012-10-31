@@ -37,9 +37,9 @@ InstallValue( HOMALG_SHEAVES,
 
 # a new representation for the GAP-category IsSheafOfRings
 
-##  <#GAPDoc Label="IsSheafOfRingsOnSchemeRep">
+##  <#GAPDoc Label="IsSheafOfRingsOrSheafOrSubsheafOnSchemeRep">
 ##  <ManSection>
-##    <Filt Type="Representation" Arg="M" Name="IsSheafOfRingsOnSchemeRep"/>
+##    <Filt Type="Representation" Arg="M" Name="IsSheafOfRingsOrSheafOrSubsheafOnSchemeRep"/>
 ##    <Returns>true or false</Returns>
 ##    <Description>
 ##      The &GAP; representation of &homalg; sheaves of rings. <P/>
@@ -50,10 +50,44 @@ InstallValue( HOMALG_SHEAVES,
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
+DeclareRepresentation( "IsSheafOfRingsOrSheafOrSubsheafOnSchemeRep",
+        IsStructureObjectOrFinitelyPresentedObjectRep,
+        [ ] );
+
+##  <#GAPDoc Label="IsSheafOfRingsOrSheafOnSchemeRep">
+##  <ManSection>
+##    <Filt Type="Representation" Arg="M" Name="IsSheafOfRingsOrSheafOnSchemeRep"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      The &GAP; representation of &homalg; sheaves of rings. <P/>
+##      (It is a representation of the &GAP; category <Ref Filt="IsSheafOfRings"/>,
+##       which is a subrepresentation of the &GAP; representation
+##      <C>IsStructureObjectOrFinitelyPresentedObjectRep</C>.)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareRepresentation( "IsSheafOfRingsOrSheafOnSchemeRep",
+        IsSheafOfRingsOrSheafOrSubsheafOnSchemeRep,
+        [ ] );
+
+##  <#GAPDoc Label="IsSheafOfRingsOnSchemeRep">
+##  <ManSection>
+##    <Filt Type="Representation" Arg="M" Name="IsSheafOfRingsOnSchemeRep"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      The &GAP; representation of &homalg; sheaves of rings. <P/>
+##      (It is a representation of the &GAP; category <Ref Filt="IsSheafOfRings"/>,
+##       which is a subrepresentation of the &GAP; representation
+##      <C>IsSheafOfRingsOrSheafOnSchemeRep</C>.)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
 DeclareRepresentation( "IsSheafOfRingsOnSchemeRep",
         IsSheafOfRings and
-        IsStructureObjectOrFinitelyPresentedObjectRep,
-        [ "graded_ring" ] );
+        IsSheafOfRingsOrSheafOnSchemeRep,
+        [ ] );
 
 # new representations for the GAP-category IsSheafOfModules
 
@@ -65,7 +99,7 @@ DeclareRepresentation( "IsSheafOfRingsOnSchemeRep",
 ##      The &GAP; representation of coherent sheaves. <P/>
 ##      (It is a representation of the &GAP; category <Ref Filt="IsSheafOfModules"/>,
 ##       which is a subrepresentation of the &GAP; representation
-##      <C>IsStaticFinitelyPresentedObjectRep</C>.)
+##      <C>IsSheafOfRingsOrSheafOnSchemeRep</C>.)
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
@@ -90,6 +124,7 @@ DeclareRepresentation( "IsCoherentSheafOrSubsheafOnProjRep",
 ##
 DeclareRepresentation( "IsCoherentSheafOnProjRep",
         IsCoherentSheafOrSubsheafOnProjRep and
+        IsSheafOfRingsOrSheafOnSchemeRep and
         IsStaticFinitelyPresentedObjectRep,
         [
           "SetOfUnderlyingModules",
