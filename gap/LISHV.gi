@@ -367,6 +367,44 @@ InstallMethod( IsLocallyFree,
     
 end );
 
+##
+InstallMethod( IsDirectSumOfLineBundles,
+        "for coherent sheaves on Proj",
+        [ IsCoherentSheafOnProjRep ],
+        
+  function( F )
+    local M, S, n, omega, i;
+    
+    M := UnderlyingGradedModule( F );
+    
+    S := HomalgRing( M );
+    
+    if not ( HasIsFreePolynomialRing( S ) and IsFreePolynomialRing( S ) and
+             Set( WeightsOfIndeterminates( S ) ) = [ 1 ] ) then
+        TryNextMethod( );
+    fi;
+    
+    n := Length( Indeterminates( S ) ) - 1;
+    
+    omega := S^-(n+1);
+    
+    ## Horrocks' splitting
+    for i in [ 1 .. n - 1 ] do
+        ## Serre's duality
+        if not IsZero( GradedExt( i, M, omega ) ) then
+            return false;
+        fi;
+    od;
+    
+    ## Serre's duality
+    if not IsArtinian( GradedExt( n, M, omega ) ) then
+        return false;
+    fi;
+    
+    return true;
+    
+end );
+
 ####################################
 #
 # methods for attributes:
