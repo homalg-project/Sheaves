@@ -23,7 +23,7 @@
 ##
 DeclareRepresentation( "IsDivisorRep",
         IsDivisor,
-        [ "module", "HomalgRingOfUnderlyingGradedModule" ] );
+        [ ] );
 
 ####################################
 #
