@@ -103,14 +103,28 @@ end );
 ##
 InstallMethod( IsEmpty,
         "LISCM: for schemes",
-        [ IsScheme ],
+        [ IsScheme and IsAffine ],
         
   function( X )
     local J;
     
-    J := UnderlyingGradedModule( X );
+    J := VanishingIdeal( X );
     
     return J = HomalgRing( J );
+    
+end );
+
+##
+InstallMethod( IsEmpty,
+        "LISCM: for schemes",
+        [ IsProjSchemeRep ],
+        
+  function( X )
+    local J;
+    
+    J := VanishingIdeal( X );
+    
+    return AffineDimension( J ) = 0;
     
 end );
 
