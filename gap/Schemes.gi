@@ -340,6 +340,11 @@ InstallMethod( ViewObj,
         else
             Append( prop_attr,  Concatenation( " ", String( dim ), "-fold" ) );
         fi;
+        if dim < 0 then
+            print_non_empty := true;
+        else
+            print_non_empty := false;
+        fi;
     else
         Append( prop_attr, " scheme" );
     fi;
