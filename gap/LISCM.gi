@@ -142,6 +142,17 @@ InstallMethod( IsCohenMacaulay,
     
 end );
 
+##
+InstallMethod( IsSmooth,
+        "LISCM: for schemes",
+        [ IsScheme ],
+        
+  function( X )
+    
+    return IsEmpty( SingularLocus( X ) );
+    
+end );
+
 ####################################
 #
 # methods for attributes:
