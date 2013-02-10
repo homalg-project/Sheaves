@@ -323,6 +323,10 @@ DeclareAttribute( "DegreeOfDivisor",
 DeclareAttribute( "FirstAffineDegree",
         IsDivisor );
 
+##
+DeclareAttribute( "PoincarePolynomial",
+        IsDivisor );
+
 ####################################
 #
 # global functions and operations:
