@@ -532,7 +532,7 @@ InstallMethod( \+,
 end );
 
 ##
-InstallMethod( \*,
+InstallOtherMethod( \*,
         "base change for divisors",
         [ IsHomalgRing, IsDivisorRep ],
         
