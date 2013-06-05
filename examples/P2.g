@@ -47,6 +47,6 @@ N2 := SubmoduleGeneratedByHomogeneousPart( 2, M );
 
 tate := TateResolution( cotangent, -5, 5 );
 
-betti := BettiDiagram( tate );
+betti := BettiTable( tate );
 
 Display( betti );

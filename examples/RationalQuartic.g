@@ -71,7 +71,7 @@ ByASmallerPresentation( pb );
 
 Assert( 0, CastelnuovoMumfordRegularity( pb ) = 15 );
 
-betti := BettiDiagram( TateResolution( pb, 1, 10 ) );
+betti := BettiTable( TateResolution( pb, 1, 10 ) );
 
 Assert( 0, MatrixOfDiagram( betti ) =
         [ [ 12, 10, 8, 6, 4, 2, 0, 0, 0, 0 ],

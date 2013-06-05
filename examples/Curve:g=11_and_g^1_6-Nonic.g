@@ -68,7 +68,7 @@ imP2 := ImageScheme( f );
 #imOP2 := UnderlyingGradedModule( imP2 );
 
 ## its Betti diagram
-#bettiP2 := BettiDiagram( Resolution( Int( g / 2 ) - 1, imOP2 ) );
+#bettiP2 := BettiTable( Resolution( Int( g / 2 ) - 1, imOP2 ) );
 
 ## the canonical model of C
 imC := ImageScheme( f, C );
@@ -78,7 +78,7 @@ imC := ImageScheme( f, C );
 imOC := UnderlyingGradedModule( imC );
 
 ## its Betti diagram
-bettiC := BettiDiagram( Resolution( Int( g / 2 ) - 1, imOC ) );
+bettiC := BettiTable( Resolution( Int( g / 2 ) - 1, imOC ) );
 
 Display( bettiC );
 
