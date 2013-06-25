@@ -30,7 +30,7 @@ m := DerMinusLogMap( D0 );
 der := DerMinusLog( D0 );
 f := DefiningPolynomialOverWeylAlgebra( D0 );
 Der := DerMinusLogInWeylAlgebra( D0 );
-#ann2 := Annihilator( 1, DefiningPolynomialOverWeylAlgebra( D0 ), 2 );
+#ann2 := Annihilator( 2, 1, DefiningPolynomialOverWeylAlgebra( D0 ) );
 I := AssociatedOrderGradedModule( Der );
 S := HomalgRing( I );
 

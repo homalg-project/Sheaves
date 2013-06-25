@@ -15,7 +15,7 @@ D0 := D1 + D2;
 der := DerMinusLog( D0 );
 Der := DerMinusLogInWeylAlgebra( D0 );
 I := AssociatedOrderGradedModule( Der );
-#ann2 := Annihilator( 1, DefiningPolynomialOverWeylAlgebra( D0 ), 2 );
+#ann2 := Annihilator( 2, 1, DefiningPolynomialOverWeylAlgebra( D0 ) );
 #homalgIOMode( "D" );
 #I := AssociatedOrderGradedModule( ann2 );
 S := HomalgRing( I );
