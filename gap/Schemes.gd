@@ -369,10 +369,25 @@ DeclareOperation( "Spec",
 DeclareOperation( "Scheme",
         [ IsHomalgModule ] );
 
+DeclareOperation( "Union2",
+        [ IsScheme, IsScheme ] );
+
+DeclareOperation( "Intersect2",
+        [ IsScheme, IsScheme ] );
+
+DeclareOperation( "Difference",
+        [ IsScheme, IsScheme ] );
+
+DeclareOperation( "Complement",
+        [ IsScheme ] );
+
 # basic operations:
 
 DeclareOperation( "HomalgRing",
         [ IsScheme ] );
+
+DeclareOperation( "IsSubset",
+        [ IsScheme, IsScheme ] );
 
 DeclareOperation( "StructureSheafOfAmbientSpace",
         [ IsScheme ] );
