@@ -466,7 +466,7 @@ InstallMethod( ViewObj,
         [ IsScheme and IsEmpty ],
         
   function( X )
-    local dim;
+    local T;
     
     Print( "<An empty" );
     
@@ -474,7 +474,18 @@ InstallMethod( ViewObj,
         Print( " (projective)" );
     fi;
     
-    Print( "scheme>" );
+    Print( " scheme" );
+    
+    if HasBaseRing( X ) then
+        Print( " over " );
+        T := BaseRing( X );
+        if IsHomalgGradedRingRep( T ) then;
+            T := UnderlyingNonGradedRing( T );
+        fi;
+        ViewObj( T );
+    fi;
+    
+    Print( ">" );
     
 end );
 
