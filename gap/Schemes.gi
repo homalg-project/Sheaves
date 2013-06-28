@@ -381,6 +381,8 @@ InstallMethod( ViewObj,
         else
             Print( prop_attr, " in A^", DimensionOfAmbientSpace( X ) );
         fi;
+    else
+        Print( prop_attr );
     fi;
     
     if HasBaseRing( X ) then
