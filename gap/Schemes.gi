@@ -329,9 +329,7 @@ InstallMethod( ViewObj,
     
     if HasDimension( X ) then
         dim := Dimension( X );
-        if dim < 0 then
-            Append( prop_attr, " scheme" );
-        elif dim = 0 then
+        if dim = 0 then
             Append( prop_attr, " 0-dimensional scheme" );
         elif dim = 1 then
             Append( prop_attr, " curve" );
@@ -340,11 +338,7 @@ InstallMethod( ViewObj,
         else
             Append( prop_attr,  Concatenation( " ", String( dim ), "-fold" ) );
         fi;
-        if dim < 0 then
-            print_non_empty := true;
-        else
-            print_non_empty := false;
-        fi;
+        print_non_empty := false;
     else
         Append( prop_attr, " scheme" );
     fi;
