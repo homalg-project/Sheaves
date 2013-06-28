@@ -294,6 +294,19 @@ DeclareAttribute( "ReducedScheme",
 DeclareAttribute( "DegreeAsSubscheme",
         IsScheme );
 
+##  <#GAPDoc Label="Closure">
+##  <ManSection>
+##    <Attr Arg="X" Name="Closure"/>
+##    <Returns>a nonnegative integer</Returns>
+##    <Description>
+##      The closure of a subscheme <A>X</A> in its ambient scheme.
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "Closure",
+        IsScheme );
+
 ## intrinsic attributes:
 ##
 ## !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
