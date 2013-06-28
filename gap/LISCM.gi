@@ -37,6 +37,12 @@ InstallValue( LISCM,
 InstallValue( LogicalImplicationsForSchemes,
         [ 
           
+          [ IsAffine,
+            "implies", IsQuasiAffine ],
+          
+          [ IsEmpty,
+            "implies", IsAffine ],
+          
           
           ] );
 
@@ -46,7 +52,7 @@ InstallValue( LogicalImplicationsForSchemes,
 #
 ####################################
 
-#InstallLogicalImplicationsForHomalgObjects( LogicalImplicationsForSchemes, IsScheme );
+InstallLogicalImplicationsForHomalgObjects( LogicalImplicationsForSchemes, IsScheme );
 
 ####################################
 #
