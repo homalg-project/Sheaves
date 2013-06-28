@@ -62,6 +62,20 @@ DeclareProperty( "IsEmpty",
 DeclareProperty( "IsAffine",
         IsScheme );
 
+##  <#GAPDoc Label="IsQuasiAffine:scheme">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsQuasiAffine" Label="for schemes"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the scheme <A>X</A> is quasi-affine. <Br/>
+##      (no method installed)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsQuasiAffine",
+        IsScheme );
+
 ##  <#GAPDoc Label="IsAffineSpace">
 ##  <ManSection>
 ##    <Prop Arg="X" Name="IsAffineSpace"/>
