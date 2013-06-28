@@ -72,6 +72,16 @@ InstallImmediateMethod( IsEmpty,
 end );
 
 ##
+InstallImmediateMethod( IsEmpty,
+        IsScheme and HasDimension, 0,
+        
+  function( X )
+    
+    return Dimension( X ) < 0;
+    
+end );
+
+##
 InstallImmediateMethod( IsSmooth,
         IsScheme and HasSingularLocus, 0,
         
