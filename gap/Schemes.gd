@@ -48,6 +48,20 @@ DeclareCategory( "IsScheme",
 DeclareProperty( "IsEmpty",
         IsScheme );
 
+##  <#GAPDoc Label="IsAffineSubscheme:scheme">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsAffineSubscheme" Label="for schemes"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the scheme <A>X</A> is an affine subscheme of an ambient scheme. <Br/>
+##      (no method installed)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsAffineSubscheme",
+        IsScheme );
+
 ##  <#GAPDoc Label="IsAffine:scheme">
 ##  <ManSection>
 ##    <Prop Arg="X" Name="IsAffine" Label="for schemes"/>
@@ -60,6 +74,20 @@ DeclareProperty( "IsEmpty",
 ##  <#/GAPDoc>
 ##
 DeclareProperty( "IsAffine",
+        IsScheme );
+
+##  <#GAPDoc Label="IsQuasiAffineSubscheme:scheme">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsQuasiAffineSubscheme" Label="for schemes"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the scheme <A>X</A> is an quasi-affine subscheme of an ambient scheme. <Br/>
+##      (no method installed)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsQuasiAffineSubscheme",
         IsScheme );
 
 ##  <#GAPDoc Label="IsQuasiAffine:scheme">
@@ -117,6 +145,20 @@ DeclareProperty( "IsLocal",
 DeclareProperty( "IsProjective",
         IsScheme );
 
+##  <#GAPDoc Label="IsQuasiProjective:scheme">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsQuasiProjective" Label="for schemes"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if the scheme <A>X</A> is quasi-projective. <Br/>
+##      (no method installed)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareProperty( "IsQuasiProjective",
+        IsScheme );
+
 ##  <#GAPDoc Label="IsProjectiveSpace">
 ##  <ManSection>
 ##    <Prop Arg="X" Name="IsProjectiveSpace"/>
@@ -128,6 +170,20 @@ DeclareProperty( "IsProjective",
 ##  <#/GAPDoc>
 ##
 DeclareProperty( "IsProjectiveSpace",
+        IsScheme );
+
+##  <#GAPDoc Label="IsConstructibleSet:scheme">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsConstructibleSet" Label="for schemes"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if a subset <A>X</A> of an ambient scheme is a constructible set. <Br/>
+##      (no method installed)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##  FIXME: Define subsets of schemes to fix this
+DeclareProperty( "IsConstructibleSet",
         IsScheme );
 
 ##  <#GAPDoc Label="IsReduced">
