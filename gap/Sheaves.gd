@@ -127,6 +127,9 @@ DeclareProperty( "FiniteLocallyFreeResolutionExists",
 #
 ####################################
 
+DeclareAttribute( "StructureSheafOfAmbientSpace",
+        IsSheafOfModules );
+
 ##  <#GAPDoc Label="StructureSheafOfSpec">
 ##  <ManSection>
 ##    <Attr Arg="R" Name="StructureSheafOfSpec"/>
@@ -312,9 +315,6 @@ DeclareOperation( "CheckHasTruncatedModuleOfGlobalSections",
 
 DeclareOperation( "AddANewPresentation",
         [ IsSheafOfModules, IsHomalgGradedModule ] );
-
-DeclareOperation( "StructureSheafOfAmbientSpace",
-        [ IsSheafOfModules ] );
 
 DeclareOperation( "DimensionOfAmbientSpace",
         [ IsSheafOfModules ] );

@@ -171,36 +171,39 @@ InstallMethod( Spec,
         [ IsHomalgRing ],
         
   function( R )
-    local A, X, O, J;
+    local A, OA, OX, X, J;
     
     if IsBound( R!.Spec ) then
         return R!.Spec;
     fi;
     
-    ## the ambient ring
-    #if HasAmbientRing( R ) then
-    #    A := AmbientRing( R );
-    #else
-    #    A := R;
-    #fi;
+    # the ambient ring
+    if HasAmbientRing( R ) then
+        A := AmbientRing( R );
+    else
+        A := R;
+    fi;
+    
+    OA := StructureSheafOfSpec( A );
+    
+    OX := StructureSheafOfSpec( R );
     
     X := rec( );
     
-    O := StructureSheafOfSpec( R );
-    
     ObjectifyWithAttributes(
             X, TheTypeScheme,
-            StructureSheaf, O,
+            StructureSheafOfAmbientSpace, OA,
+            StructureSheaf, OX,
             IsAffine, true
             );
     
     if HasDefiningIdeal( R ) then
         J := DefiningIdeal( R );
-        SetIdealSheaf( X, Sheafify( J ) );
+        #SetIdealSheaf( X, Sheafify( J ) );
     fi;
     
-    if IsBound( O!.base_ring ) then
-        SetBaseRing( X, O!.base_ring );
+    if IsBound( OX!.base_ring ) then
+        SetBaseRing( X, OX!.base_ring );
     fi;
     
     if HasIsFreePolynomialRing( R ) and IsFreePolynomialRing( R ) and
@@ -225,26 +228,29 @@ InstallMethod( Proj,
         [ IsHomalgGradedRing ],
         
   function( S )
-    local R, X, O, J;
+    local R, OP, OX, X, J;
     
     if IsBound( S!.Proj ) then
         return S!.Proj;
     fi;
     
-    ## the ring carrying the weights
-    #if HasAmbientRing( S ) then
-    #    R := AmbientRing( S );
-    #else
-    #    R := S;
-    #fi;
+    # the ring carrying the weights
+    if HasAmbientRing( S ) then
+        R := AmbientRing( S );
+    else
+        R := S;
+    fi;
+    
+    OP := StructureSheafOfProj( R );
+    
+    OX := StructureSheafOfProj( S );
     
     X := rec( );
     
-    O := StructureSheafOfProj( S );
-    
     ObjectifyWithAttributes(
             X, TheTypeProjectiveScheme,
-            StructureSheaf, O,
+            StructureSheafOfAmbientSpace, OP,
+            StructureSheaf, OX,
             IsProjective, true
             );
     
@@ -253,8 +259,8 @@ InstallMethod( Proj,
         SetIdealSheaf( X, Sheafify( J ) );
     fi;
     
-    if IsBound( O!.base_ring ) then
-        SetBaseRing( X, O!.base_ring );
+    if IsBound( OX!.base_ring ) then
+        SetBaseRing( X, OX!.base_ring );
     fi;
     
     if HasIsFreePolynomialRing( S ) and IsFreePolynomialRing( S ) and

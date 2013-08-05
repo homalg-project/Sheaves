@@ -246,6 +246,9 @@ DeclareProperty( "IsGorenstein",
 #
 ####################################
 
+DeclareAttribute( "StructureSheafOfAmbientSpace",
+        IsScheme );
+
 ##  <#GAPDoc Label="IdealSheaf:scheme">
 ##  <ManSection>
 ##    <Attr Arg="X" Name="IdealSheaf" Label="for schemes"/>
@@ -444,9 +447,6 @@ DeclareOperation( "HomalgRing",
 
 DeclareOperation( "IsSubset",
         [ IsScheme, IsScheme ] );
-
-DeclareOperation( "StructureSheafOfAmbientSpace",
-        [ IsScheme ] );
 
 DeclareOperation( "DimensionOfAmbientSpace",
         [ IsScheme ] );

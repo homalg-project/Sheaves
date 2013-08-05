@@ -453,6 +453,8 @@ InstallMethod( HomalgRing,
     
     if IsBound(O!.graded_ring) then
         return O!.graded_ring;
+    elif IsBound(O!.ring) then
+        return O!.ring;
     fi;
     
     return fail;
@@ -818,8 +820,8 @@ InstallMethod( StructureSheafOfSpec,
     
     if HasDefiningIdeal( R ) then
         J := DefiningIdeal( R );
-        SetIdealSheaf( O, Sheafify( J ) );
-        SetAsModuleOverStructureSheafOfAmbientSpace( O, Sheafify( FactorObject( J ) ) );
+        #SetIdealSheaf( O, Sheafify( J ) );
+        #SetAsModuleOverStructureSheafOfAmbientSpace( O, Sheafify( FactorObject( J ) ) );
     fi;
     
     if HasKrullDimension( R ) and HasKrullDimension( T ) then
@@ -1209,19 +1211,29 @@ InstallMethod( ViewObj,
             
             Print( "<The structure sheaf of some ", Dimension( O ), "-dimensional " );
             
-            weights := WeightsOfIndeterminates( S );
-            
-            if Set( weights ) <> [ 1 ] then
+            if IsHomalgGradedRing( S ) then
                 
-                weights := String( weights );
+                weights := WeightsOfIndeterminates( S );
                 
-                RemoveCharacters( weights, "\[\] " );
+                if Set( weights ) <> [ 1 ] then
+                    
+                    weights := String( weights );
+                    
+                    RemoveCharacters( weights, "\[\] " );
+                    
+                    Print( "(", weights, ")-weighted " );
+                    
+                fi;
                 
-                Print( "(", weights, ")-weighted " );
+                Print( "projective" );
+                
+            else
+                
+                Print( "affine" );
                 
             fi;
             
-            Print( "projective space>" );
+            Print( " space>" );
             
         else
             
@@ -1593,7 +1605,8 @@ InstallMethod( Display,
             
         else
             
-            Print( "no display method found" );
+            Print( "the sheafification of the ring " );
+            ViewObj( S );
             
         fi;
         

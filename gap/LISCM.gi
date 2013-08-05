@@ -204,6 +204,24 @@ end );
 ##
 InstallMethod( Dimension,
         "for schemes",
+        [ IsSchemeRep ],
+        
+  function( X )
+    local R;
+    
+    R := HomalgRing( X );
+    
+    if HasDefiningIdeal( R ) then
+        return AffineDimension( DefiningIdeal( R ) );
+    fi;
+    
+    return KrullDimension( R );
+    
+end );
+
+##
+InstallMethod( Dimension,
+        "for projective schemes",
         [ IsProjSchemeRep ],
         
   function( X )
