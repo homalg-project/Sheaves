@@ -226,6 +226,11 @@ InstallMethod( Spec,
         SetBaseRing( X, OX!.base_ring );
     fi;
     
+    if HasIsFreePolynomialRing( A ) and IsFreePolynomialRing( A ) then
+        SetIsAffineSubscheme( X, true );
+        SetIsConstructibleSubsetOfAffineSpace( X, true );
+    fi;
+    
     if HasIsFreePolynomialRing( R ) and IsFreePolynomialRing( R ) and
        not HasAmbientRing( R ) then
         SetIsAffineSpace( X, true );
@@ -401,7 +406,7 @@ InstallMethod( ViewObj,
     
     if IsProjSchemeRep( X ) then
         Print( prop_attr, " in P^", DimensionOfAmbientSpace( X ) );
-    elif HasIsAffine( X ) and IsAffine( X ) then
+    elif HasIsConstructibleSubsetOfAffineSpace( X ) and IsConstructibleSubsetOfAffineSpace( X ) then
         if HasIsLocal( X ) and IsLocal( X ) then
             Print( prop_attr, " in A_p^", DimensionOfAmbientSpace( X ) );
         else
