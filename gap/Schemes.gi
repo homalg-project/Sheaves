@@ -40,6 +40,21 @@ DeclareRepresentation( "IsProjSchemeRep",
         IsSchemeRep,
         [  ] );
 
+##  <#GAPDoc Label="IsAffineSchemeRep">
+##  <ManSection>
+##    <Filt Type="Representation" Arg="M" Name="IsAffineSchemeRep"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      The &GAP; representation of affine schemes. <P/>
+##      (It is a representation of the &GAP; category <Ref Filt="IsScheme"/>.)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareRepresentation( "IsAffineSchemeRep",
+        IsSchemeRep,
+        [  ] );
+
 ####################################
 #
 # families and types:
@@ -59,6 +74,11 @@ BindGlobal( "TheTypeScheme",
 BindGlobal( "TheTypeProjectiveScheme",
         NewType( TheFamilyOfSchemes,
                 IsProjSchemeRep ) );
+
+##
+BindGlobal( "TheTypeAffineScheme",
+        NewType( TheFamilyOfSchemes,
+                IsAffineSchemeRep ) );
 
 ####################################
 #
@@ -191,7 +211,7 @@ InstallMethod( Spec,
     X := rec( );
     
     ObjectifyWithAttributes(
-            X, TheTypeScheme,
+            X, TheTypeAffineScheme,
             StructureSheafOfAmbientSpace, OA,
             StructureSheaf, OX,
             IsAffine, true
@@ -204,6 +224,11 @@ InstallMethod( Spec,
     
     if IsBound( OX!.base_ring ) then
         SetBaseRing( X, OX!.base_ring );
+    fi;
+    
+    if HasIsFreePolynomialRing( A ) and IsFreePolynomialRing( A ) then
+        SetIsAffineSubscheme( X, true );
+        SetIsConstructibleSubsetOfAffineSpace( X, true );
     fi;
     
     if HasIsFreePolynomialRing( R ) and IsFreePolynomialRing( R ) and
@@ -297,6 +322,17 @@ InstallMethod( Scheme,
     
 end );
 
+##
+InstallMethod( Complement,
+        "for a scheme",
+        [ IsScheme ],
+        
+  function( X )
+    
+    return ComplementAttr( X );
+    
+end );
+
 ####################################
 #
 # View, Print, and Display methods:
@@ -381,7 +417,7 @@ InstallMethod( ViewObj,
     
     if IsProjSchemeRep( X ) then
         Print( prop_attr, " in P^", DimensionOfAmbientSpace( X ) );
-    elif HasIsAffine( X ) and IsAffine( X ) then
+    elif HasIsConstructibleSubsetOfAffineSpace( X ) and IsConstructibleSubsetOfAffineSpace( X ) then
         if HasIsLocal( X ) and IsLocal( X ) then
             Print( prop_attr, " in A_p^", DimensionOfAmbientSpace( X ) );
         else
@@ -412,10 +448,12 @@ InstallMethod( ViewObj,
   function( X )
     local R, T;
     
-    R := StructureSheaf( X )!.ring;
-    
-    if HasAmbientRing( R ) then
-        TryNextMethod( );
+    if HasStructureSheaf( X ) then
+        R := StructureSheaf( X )!.ring;
+        
+        if HasAmbientRing( R ) then
+            TryNextMethod( );
+        fi;
     fi;
     
     if HasIsLocal( X ) and IsLocal( X ) then

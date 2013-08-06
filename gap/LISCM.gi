@@ -23,7 +23,7 @@ InstallValue( LISCM,
             color := "\033[4;30;46m",
             intrinsic_properties :=
             [ "IsProjective",
-	      "IsReduced",
+              "IsReduced",
               "IsSmooth" ],
             intrinsic_attributes :=
             [ "Genus",
@@ -43,6 +43,17 @@ InstallValue( LogicalImplicationsForSchemes,
           [ IsEmpty,
             "implies", IsAffine ],
           
+          [ IsAffineSubscheme,
+            "implies", IsAffine ],
+          
+          [ IsQuasiAffineSubscheme,
+            "implies", IsQuasiAffine ],
+          
+          [ IsAffineSubscheme,
+            "implies", IsQuasiAffineSubscheme ],
+          
+          [ IsConstructibleSubsetOfAffineSpace,
+            "implies", IsConstructibleSet ],
           
           ] );
 
