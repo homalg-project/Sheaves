@@ -186,6 +186,20 @@ DeclareProperty( "IsProjectiveSpace",
 DeclareProperty( "IsConstructibleSet",
         IsScheme );
 
+##  <#GAPDoc Label="IsConstructibleSubsetOfAffineSpace:scheme">
+##  <ManSection>
+##    <Prop Arg="X" Name="IsConstructibleSubsetOfAffineSpace" Label="for schemes"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      Check if a subset <A>X</A> of an ambient scheme is a constructible subset of affine n-space. <Br/>
+##      (no method installed)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##  FIXME: Define subsets of schemes to fix this
+DeclareProperty( "IsConstructibleSubsetOfAffineSpace",
+        IsScheme );
+
 ##  <#GAPDoc Label="IsReduced">
 ##  <ManSection>
 ##    <Prop Arg="X" Name="IsReduced"/>
