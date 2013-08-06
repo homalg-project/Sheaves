@@ -437,10 +437,12 @@ InstallMethod( ViewObj,
   function( X )
     local R, T;
     
-    R := StructureSheaf( X )!.ring;
-    
-    if HasAmbientRing( R ) then
-        TryNextMethod( );
+    if HasStructureSheaf( X ) then
+        R := StructureSheaf( X )!.ring;
+        
+        if HasAmbientRing( R ) then
+            TryNextMethod( );
+        fi;
     fi;
     
     if HasIsLocal( X ) and IsLocal( X ) then
