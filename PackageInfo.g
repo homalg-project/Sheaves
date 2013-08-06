@@ -32,6 +32,8 @@ Version := Maximum( [
   "2011.08.21", ## Markus' version
 ## this line prevents merge conflicts
   "2013.08.05", ## Mohamed's version
+## this line prevents merge conflicts
+  "2013.08.06", ## Thomas' version
 ] ),
 ##  Please adjust also the VERSION file in the package directory when
 ##  changing this.
@@ -124,6 +126,22 @@ ArchiveFormats := ".tar.gz",
 ##     )
 ##  
 Persons := [
+  rec(
+    LastName      := "Bächler",
+    FirstNames    := "Thomas",
+    IsAuthor      := true,
+    IsMaintainer  := true,
+    Email         := "thomas@momo.math.rwth-aachen.de",
+    WWWHome       := "http://wwwb.math.rwth-aachen.de/~thomas/",
+    PostalAddress := Concatenation( [
+                       "Thomas Bächler\n",
+                       "Lehrstuhl B fuer Mathematik, RWTH Aachen\n",
+                       "Templergraben 64\n",
+                       "52062 Aachen\n",
+                       "Germany" ] ),
+    Place         := "Aachen",
+    Institution   := "RWTH Aachen University"
+  ),
   rec(
     LastName      := "Barakat",
     FirstNames    := "Mohamed",

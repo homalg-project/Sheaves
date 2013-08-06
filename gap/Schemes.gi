@@ -40,6 +40,21 @@ DeclareRepresentation( "IsProjSchemeRep",
         IsSchemeRep,
         [  ] );
 
+##  <#GAPDoc Label="IsAffineSchemeRep">
+##  <ManSection>
+##    <Filt Type="Representation" Arg="M" Name="IsAffineSchemeRep"/>
+##    <Returns>true or false</Returns>
+##    <Description>
+##      The &GAP; representation of affine schemes. <P/>
+##      (It is a representation of the &GAP; category <Ref Filt="IsScheme"/>.)
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareRepresentation( "IsAffineSchemeRep",
+        IsSchemeRep,
+        [  ] );
+
 ####################################
 #
 # families and types:
@@ -59,6 +74,11 @@ BindGlobal( "TheTypeScheme",
 BindGlobal( "TheTypeProjectiveScheme",
         NewType( TheFamilyOfSchemes,
                 IsProjSchemeRep ) );
+
+##
+BindGlobal( "TheTypeAffineScheme",
+        NewType( TheFamilyOfSchemes,
+                IsAffineSchemeRep ) );
 
 ####################################
 #
@@ -191,7 +211,7 @@ InstallMethod( Spec,
     X := rec( );
     
     ObjectifyWithAttributes(
-            X, TheTypeScheme,
+            X, TheTypeAffineScheme,
             StructureSheafOfAmbientSpace, OA,
             StructureSheaf, OX,
             IsAffine, true
