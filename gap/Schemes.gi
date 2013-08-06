@@ -322,6 +322,17 @@ InstallMethod( Scheme,
     
 end );
 
+##
+InstallMethod( Complement,
+        "for a scheme",
+        [ IsScheme ],
+        
+  function( X )
+    
+    return ComplementAttr( X );
+    
+end );
+
 ####################################
 #
 # View, Print, and Display methods:

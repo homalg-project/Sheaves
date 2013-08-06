@@ -425,6 +425,9 @@ DeclareAttribute( "ArithmeticGenus",
 DeclareAttribute( "Dimension",
         IsScheme );
 
+DeclareAttribute( "ComplementAttr",
+        IsScheme );
+
 ####################################
 #
 # global functions and operations:
