@@ -327,11 +327,7 @@ InstallMethod( Complement,
         "for a scheme",
         [ IsScheme ],
         
-  function( X )
-    
-    return ComplementAttr( X );
-    
-end );
+  ComplementAttr );
 
 ####################################
 #
