@@ -276,7 +276,7 @@ InstallMethod( Annihilator1,
         [ IsDivisor, IsRat ],
         
   function( D, lambda )
-    local der, jac, f, A, var, a;
+    local ann1, A, var;
     
     if IsBound( D!.Annihilator1 ) then
         if IsBound( D!.Annihilator1!.(String( lambda )) ) then
@@ -286,28 +286,23 @@ InstallMethod( Annihilator1,
         D!.Annihilator1 := rec( );
     fi;
     
-    der := DerMinusLog( D );
-    der := MatrixOfGenerators( der );
-    
-    jac := JacobiMatrix( D );
-    
-    f := AssociatedMatrix( D );
+    ann1 := DerMinusLogTildeMatrix( D );
     
     A := RingOfDerivations( D );
     
-    a := A * RightDivide( der * jac, f );
-    
     var := IndeterminateDerivationsOfRingOfDerivations( A );
+    
+    var := Concatenation( [ lambda ], var );
     
     var := HomalgMatrix( var, Length( var ), 1, A );
     
-    der := ( A * der ) * var - lambda * a;
+    ann1 := ( A * ann1 ) * var;
     
-    der := LeftSubmodule( der );
+    ann1 := LeftSubmodule( ann1 );
     
-    D!.Annihilator1!.(String( lambda )) := der;
+    D!.Annihilator1!.(String( lambda )) := ann1;
     
-    return der;
+    return ann1;
     
 end );
 
