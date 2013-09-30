@@ -353,6 +353,9 @@ DeclareOperation( "Divisor",
 DeclareOperation( "*",
         [ IsHomalgRing, IsDivisor ] );
 
+DeclareOperation( "DerMinusLogMap",
+        [ IsDivisor, IsInt ] );
+
 DeclareOperation( "Annihilator1",
         [ IsDivisor, IsRat ] );
 

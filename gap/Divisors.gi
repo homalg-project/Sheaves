@@ -112,15 +112,15 @@ end );
 ##
 InstallMethod( DerMinusLogMap,
         "for divisors",
-        [ IsDivisor ],
+        [ IsDivisor, IsInt ],
         
-  function( D )
-    local map, R, Rn, f;
+  function( D, m )
+    local map, R, Rn, f, d;
     
     if HasIsPrimeDivisor( D ) and not IsPrimeDivisor( D ) and
        IsBound( D!.PreFactorization ) then
         
-        map := List( D!.PreFactorization, DerMinusLogMap );
+        map := List( D!.PreFactorization, P -> DerMinusLogMap( P, m ) );
         
         return Iterated( map, ProductMorphism );
         
@@ -135,12 +135,28 @@ InstallMethod( DerMinusLogMap,
     f := AssociatedMatrix( D );
     
     if IsHomalgGradedRing( R ) then
-        map := GradedMap( map, Rn, LeftPresentationWithDegrees( f ) );
+        ## the good convention is to give the partials degree -1,
+        ## but unfortunately in the theory of hyperplane arrangements
+        ## they are given degree 0;
+        ## for this we use -(d - 1) instead of the correct -d below:
+        d := Degree( DefiningPolynomial( D ) );
+        map := GradedMap( map, Rn, LeftPresentationWithDegrees( f^m, -(d - 1) ) );
     else
-        map := HomalgMap( map, Rn, LeftPresentation( f ) );
+        map := HomalgMap( map, Rn, LeftPresentation( f^m ) );
     fi;
     
     return map;
+    
+end );
+
+##
+InstallMethod( DerMinusLogMap,
+        "for divisors",
+        [ IsDivisor ],
+        
+  function( D )
+    
+    return DerMinusLogMap( D, 1 );
     
 end );
 
