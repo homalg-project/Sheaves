@@ -96,8 +96,8 @@ InstallMethod( JacobiMatrix,
     
     n := Length( var );
     
-    if not IsBound( R!.DerMinusLogModule ) then
-        R!.DerMinusLogModule := n * R;
+    if not IsBound( R!.DerModule ) then
+        R!.DerModule := n * R;
     fi;
     
     varvec := HomalgMatrix( var, 1, n, R );
@@ -130,7 +130,7 @@ InstallMethod( DerMinusLogMap,
     
     R := HomalgRing( D );
     
-    Rn := R!.DerMinusLogModule;
+    Rn := R!.DerModule;
     
     f := AssociatedMatrix( D );
     
@@ -466,7 +466,7 @@ InstallMethod( Divisor,
         "constructor for divisors",
         [ IsMatrix, IsHomalgRing ],
   function( A, k )
-    local alpha, n, m, R, var, Rn, varvec, alphas, alphaH, D;
+    local alpha, n, m, R, var, varvec, alphas, alphaH, D;
     
     alpha := HomalgMatrix( A, k );
     
@@ -484,10 +484,8 @@ InstallMethod( Divisor,
     
     var := Indeterminates( R );
     
-    Rn := n * R;
-    
-    if not IsBound( R!.DerMinusLogModule ) then
-        R!.DerMinusLogModule := Rn;
+    if not IsBound( R!.DerModule ) then
+        R!.DerModule := n * R;
     fi;
     
     varvec := HomalgMatrix( var, 1, n, R );
