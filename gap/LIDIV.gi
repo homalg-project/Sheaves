@@ -49,8 +49,9 @@ InstallLogicalImplicationsForHomalgObjects( LogicalImplicationsForDivisors, IsDi
 #
 ####################################
 
-## Saito's theorem
-InstallMethod( IsQuasiHomogeneous,
+## Saito's theorem states that for isolated singularities
+## IsEulerHomogeneous is equivalent to IsQuasiHomogeneous
+InstallMethod( IsEulerHomogeneous,
         "for divisors",
         [ IsDivisor ],
         

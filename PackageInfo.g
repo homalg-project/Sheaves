@@ -31,7 +31,7 @@ Subtitle := "A homalg based Package for Sheaf Algorithms",
 Version := Maximum( [
   "2011.08.21", ## Markus' version
 ## this line prevents merge conflicts
-  "2013.08.05", ## Mohamed's version
+  "2013.09.13", ## Mohamed's version
 ## this line prevents merge conflicts
   "2013.08.06", ## Thomas' version
 ] ),

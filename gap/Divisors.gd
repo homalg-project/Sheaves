@@ -50,17 +50,17 @@ DeclareCategory( "IsDivisor",
 DeclareProperty( "IsPrimeDivisor",
         IsDivisor );
 
-##  <#GAPDoc Label="IsQuasiHomogeneous:divisor">
+##  <#GAPDoc Label="IsEulerHomogeneous:divisor">
 ##  <ManSection>
-##    <Prop Arg="D" Name="IsQuasiHomogeneous" Label="for divisors"/>
+##    <Prop Arg="D" Name="IsEulerHomogeneous" Label="for divisors"/>
 ##    <Returns>true or false</Returns>
 ##    <Description>
-##      Check if the divisor <A>D</A> is effective.
+##      Check if the locall divisor <A>D</A> is Euler homogeneous.
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareProperty( "IsQuasiHomogeneous",
+DeclareProperty( "IsEulerHomogeneous",
         IsDivisor );
 
 ##  <#GAPDoc Label="IsEffective:divisor">
