@@ -108,7 +108,6 @@ InstallMethod( JacobiMatrix,
     
 end );
 
-
 ##
 InstallMethod( DerMinusLogMap,
         "for divisors",
