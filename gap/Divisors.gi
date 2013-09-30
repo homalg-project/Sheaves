@@ -526,10 +526,6 @@ InstallMethod( Divisor,
     
     var := Indeterminates( R );
     
-    if not IsBound( R!.DerModule ) then
-        R!.DerModule := n * R;
-    fi;
-    
     varvec := HomalgMatrix( var, 1, n, R );
     
     alphas := List( [ 1 .. m ], c -> CertainColumns( alpha, [ c ] ) );
