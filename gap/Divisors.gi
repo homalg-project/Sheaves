@@ -237,6 +237,40 @@ InstallMethod( DerMinusLogInWeylAlgebra,
 end );
 
 ##
+InstallMethod( DerMinusLogTildeMatrix,
+        "for a divisor",
+        [ IsDivisor ],
+        
+  function( D )
+    local der, jac, f, a;
+    
+    der := DerMinusLog( D );
+    der := MatrixOfGenerators( der );
+    
+    jac := JacobiMatrix( D );
+    
+    f := AssociatedMatrix( D );
+    
+    a := RightDivide( der * jac, f );
+    
+    return UnionOfColumns( -a, der );
+    
+end );
+
+InstallMethod( DerMinusLogTilde,
+        "for a divisor",
+        [ IsDivisor ],
+        
+  function( D )
+    local der;
+    
+    der := DerMinusLogTildeMatrix( D );
+    
+    return LeftSubmodule( der );
+    
+end );
+
+##
 InstallMethod( Annihilator1,
         "for a divisor and a rational number",
         [ IsDivisor, IsRat ],

@@ -268,6 +268,30 @@ DeclareAttribute( "DerMinusLog",
 DeclareAttribute( "DerMinusLogInWeylAlgebra",
         IsDivisor );
 
+##  <#GAPDoc Label="DerMinusLogTildeMatrix">
+##  <ManSection>
+##    <Attr Arg="D" Name="DerMinusLogTildeMatrix"/>
+##    <Returns>a matrix</Returns>
+##    <Description>
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "DerMinusLogTildeMatrix",
+        IsDivisor );
+
+##  <#GAPDoc Label="DerMinusLogTilde">
+##  <ManSection>
+##    <Attr Arg="D" Name="DerMinusLogTilde"/>
+##    <Returns>a left ideal</Returns>
+##    <Description>
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "DerMinusLogTilde",
+        IsDivisor );
+
 ##  <#GAPDoc Label="Annihilator1">
 ##  <ManSection>
 ##    <Attr Arg="D" Name="Annihilator1"/>
