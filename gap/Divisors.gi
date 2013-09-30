@@ -217,9 +217,7 @@ InstallMethod( DerMinusLogInWeylAlgebra,
 
     der := ( A * der ) * var;
     
-    der := LeftSubmodule( der );
-    
-    return der;
+    return LeftSubmodule( der );
     
 end );
 
