@@ -88,7 +88,7 @@ InstallMethod( JacobiMatrix,
         [ IsDivisor ],
         
   function( D )
-    local R, var, n, Rn, varvec, f;
+    local R, var, n, varvec, f;
 
     R := HomalgRing( D );
     
@@ -99,8 +99,6 @@ InstallMethod( JacobiMatrix,
     if not IsBound( R!.DerMinusLogModule ) then
         R!.DerMinusLogModule := n * R;
     fi;
-    
-    Rn := R!.DerMinusLogModule;
     
     varvec := HomalgMatrix( var, 1, n, R );
     
