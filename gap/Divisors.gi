@@ -98,6 +98,12 @@ InstallMethod( JacobiMatrix,
     
     if not IsBound( R!.DerModule ) then
         R!.DerModule := n * R;
+        if IsHomalgGradedRing( R ) then
+            ## the good convention below is to give the partials degree -1,
+            ## but unfortunately in the theory of hyperplane arrangements
+            ## they are given degree 0
+            R!.Der0Module := FreeLeftModuleWithDegrees( R, ListWithIdenticalEntries( n, -1 ) );
+        fi;
     fi;
     
     varvec := HomalgMatrix( var, 1, n, R );
@@ -185,6 +191,45 @@ InstallMethod( DerMinusLog,
   function( D )
     
     return KernelSubobject( DerMinusLogMap( D ) );
+    
+end );
+
+##
+InstallMethod( DerMinusLog0,
+        "for divisors",
+        [ IsDivisor ],
+        
+  function( D )
+    local Der, Jac, A, Theta, R, Rn;
+    
+    Der := DerMinusLog( D );
+    ## FIXME: this is dangerous
+    Der := MatrixOfSubobjectGenerators( Der );
+    
+    Jac := JacobiMatrix( D );
+    
+    A := Der * Jac;
+    
+    Theta := SyzygiesGeneratorsOfRows( A );
+    
+    Theta := Theta * Der;
+    
+    R := HomalgRing( D );
+    
+    Rn := R!.Der0Module;
+    
+    return Subobject( Theta, Rn );
+    
+end );
+
+##
+InstallMethod( Logarithmic1Forms,
+        "for divisors",
+        [ IsDivisor ],
+        
+  function( D )
+    
+    return InternalHom( DerMinusLog0( D ) );
     
 end );
 

@@ -283,3 +283,42 @@ InstallMethod( ReducedScheme,
     
 end );
 
+##
+InstallMethod( SingularLocus,
+        "for schemes",
+        [ IsScheme ],
+        
+  function( X )
+    local I, S, OX, Omega, r;
+    
+    I := VanishingIdeal( X );
+    
+    S := HomalgRing( I );
+    
+    OX := S / I;
+    
+    Omega := ModuleOfKaehlerDifferentials( OX );
+    
+    return FittingIdeal( Omega );
+    
+end );
+
+##
+InstallMethod( SingularLocus,
+        "for schemes",
+        [ IsProjSchemeRep ],
+        
+  function( X )
+    local I, S, OX, Omega, r;
+    
+    I := VanishingIdeal( X );
+    
+    S := HomalgRing( I );
+    
+    OX := S / I;
+    
+    Omega := ModuleOfKaehlerDifferentials( OX );
+    
+    return Saturate( FittingIdeal( Omega ) );
+    
+end );

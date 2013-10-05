@@ -256,6 +256,30 @@ DeclareAttribute( "DerMinusLogMap",
 DeclareAttribute( "DerMinusLog",
         IsDivisor );
 
+##  <#GAPDoc Label="DerMinusLog0">
+##  <ManSection>
+##    <Attr Arg="D" Name="DerMinusLog0"/>
+##    <Returns>a submodule</Returns>
+##    <Description>
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "DerMinusLog0",
+        IsDivisor );
+
+##  <#GAPDoc Label="Logarithmic1Forms">
+##  <ManSection>
+##    <Attr Arg="D" Name="Logarithmic1Forms"/>
+##    <Returns>a module</Returns>
+##    <Description>
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "Logarithmic1Forms",
+        IsDivisor );
+
 ##  <#GAPDoc Label="DerMinusLogInWeylAlgebra">
 ##  <ManSection>
 ##    <Attr Arg="D" Name="DerMinusLogInWeylAlgebra"/>
