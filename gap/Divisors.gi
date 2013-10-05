@@ -271,6 +271,41 @@ InstallMethod( DerMinusLogTilde,
 end );
 
 ##
+InstallMethod( SymmetricAlgebraOfJacobianIdeal,
+        "for a divisor and a list of strings",
+        [ IsDivisor, IsList ],
+        
+  function( D, gvar )
+    local ann1;
+    
+    ann1 := DerMinusLogTilde( D );
+    
+    return SymmetricAlgebraFromSyzygiesObject( ann1, gvar );
+    
+end );
+
+##
+InstallMethod( SymmetricAlgebraOfJacobianIdeal,
+        "for a divisor and a string",
+        [ IsDivisor, IsString ],
+        
+  function( D, str )
+    local n;
+    
+    n := Length( Indeterminates( HomalgRing( D ) ) );
+    
+    str := ParseListOfIndeterminates( SplitString( str, "," ) );
+    
+    if Length( str ) = 1 and not n = 0 then
+        str := str[1];
+        str := List( [ 0 .. n ], i -> Concatenation( str, String( i ) ) );
+    fi;
+    
+    return SymmetricAlgebraOfJacobianIdeal( D, str );
+    
+end );
+
+##
 InstallMethod( Annihilator1,
         "for a divisor and a rational number",
         [ IsDivisor, IsRat ],

@@ -393,6 +393,9 @@ DeclareOperation( "Annihilator1Map",
 DeclareOperation( "KernelSubobject",
         [ IsDivisor, IsRat ] );
 
+DeclareOperation( "SymmetricAlgebraOfJacobianIdeal",
+        [ IsDivisor, IsList ] );
+
 DeclareOperation( "Annihilator1Augmented",
         [ IsDivisor, IsRat ] );
 
