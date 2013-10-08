@@ -383,6 +383,21 @@ DeclareAttribute( "DegreeOfDivisor",
 DeclareAttribute( "FirstAffineDegree",
         IsDivisor );
 
+DeclareAttributeWithDocumentation( "CharacteristicPolynomial",
+        IsDivisor,
+        "Returns the characteristic polynomial of the arrangement divisor <A>D</A>.",
+        "a univariate polynomial in <M>t=</M><C>VariableForCharacteristicPolynomial()</C>.",
+        "D",
+        [ "Divisors", "Methods_for_divisors" ]
+        );
+
+DeclareAttributeWithDocumentation( "PoincarePolynomial",
+        IsDivisor,
+        "Returns the Poincare polynomial of the arrangement divisor <A>D</A>.",
+        "a univariate polynomial in <M>t=</M><C>VariableForCharacteristicPolynomial()</C>.",
+        "D",
+        [ "Divisors", "Methods_for_divisors" ]
+        );
 
 ####################################
 #
@@ -398,6 +413,30 @@ DeclareOperation( "RingOfDerivations",
 
 DeclareOperation( "DefiningPolynomialOverWeylAlgebra",
         [ IsDivisor ] );
+
+DeclareOperationWithDocumentation( "TuttePolynomial",
+        [ IsDivisor, IsRingElement, IsRingElement ],
+        "Returns the Tutte polynomial of the arrangement divisor <A>D</A>.",
+        "a bivariate polynomial in <A>x</A> and <A>y</A>",
+        "D, x, y",
+        [ "Divisors", "Methods_for_matroids" ]
+        );
+
+DeclareOperationWithDocumentation( "CharacteristicPolynomial",
+        [ IsDivisor, IsRingElement ],
+        "Returns the characteristic polynomial of the arrangement divisor <A>D</A>.",
+        "a univariate polynomial in <A>t</A>",
+        "D, t",
+        [ "Divisors", "Methods_for_matroids" ]
+        );
+
+DeclareOperationWithDocumentation( "PoincarePolynomial",
+        [ IsDivisor, IsRingElement ],
+        "Returns the Poincare polynomial of the arrangement divisor <A>D</A>.",
+        "a univariate polynomial in <A>t</A>",
+        "D, t",
+        [ "Divisors", "Methods_for_matroids" ]
+        );
 
 # constructors:
 

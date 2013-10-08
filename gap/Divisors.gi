@@ -42,6 +42,40 @@ BindGlobal( "TheTypeDivisor",
 
 ####################################
 #
+# methods for attributes:
+#
+####################################
+
+##
+InstallMethod( CharacteristicPolynomial,
+        "for a divisor",
+        [ IsDivisor ],
+        
+  function( D )
+    local t;
+    
+    t := VariableForCharacteristicPolynomial( );
+    
+    return CharacteristicPolynomial( D, t );
+    
+end );
+
+##
+InstallMethod( PoincarePolynomial,
+        "for a divisor",
+        [ IsDivisor ],
+        
+  function( D )
+    local t;
+    
+    t := VariableForCharacteristicPolynomial( );
+    
+    return PoincarePolynomial( D, t );
+    
+end );
+
+####################################
+#
 # methods for operations:
 #
 ####################################
@@ -523,6 +557,51 @@ InstallMethod( FirstAffineDegree,
   function( D )
     
     return FirstAffineDegree( D, -1 );
+    
+end );
+
+##
+InstallMethod( TuttePolynomial,
+        "for an arrangement divisor and a ring element",
+        [ IsDivisor and HasMatrixOfHyperplaneArrangement, IsRingElement, IsRingElement ],
+        
+  function( D, x, y )
+    local M;
+    
+    M := MatrixOfHyperplaneArrangement( D );
+    M := Involution( M );
+    
+    return TuttePolynomial( M, x, y );
+    
+end );
+
+##
+InstallMethod( CharacteristicPolynomial,
+        "for an arrangement divisor and a ring element",
+        [ IsDivisor and HasMatrixOfHyperplaneArrangement, IsRingElement ],
+        
+  function( D, t )
+    local M;
+    
+    M := MatrixOfHyperplaneArrangement( D );
+    M := Involution( M );
+    
+    return CharacteristicPolynomial( M, t );
+    
+end );
+
+##
+InstallMethod( PoincarePolynomial,
+        "for an arrangement divisor and a ring element",
+        [ IsDivisor and MatrixOfHyperplaneArrangement, IsRingElement ],
+        
+  function( D, t )
+    local M;
+    
+    M := MatrixOfHyperplaneArrangement( D );
+    M := Involution( M );
+    
+    return PoincarePolynomial( M, t );
     
 end );
 
