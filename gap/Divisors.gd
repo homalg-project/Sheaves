@@ -160,6 +160,18 @@ DeclareProperty( "IsDirectSumOfLineBundles",
 #
 ####################################
 
+##  <#GAPDoc Label="MatrixOfHyperplaneArrangement">
+##  <ManSection>
+##    <Attr Arg="D" Name="MatrixOfHyperplaneArrangement"/>
+##    <Returns>a homalg matrix</Returns>
+##    <Description>
+##    </Description>
+##  </ManSection>
+##  <#/GAPDoc>
+##
+DeclareAttribute( "MatrixOfHyperplaneArrangement",
+        IsDivisor );
+
 ##  <#GAPDoc Label="DefiningPolynomial">
 ##  <ManSection>
 ##    <Attr Arg="D" Name="DefiningPolynomial"/>

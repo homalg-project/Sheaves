@@ -566,7 +566,7 @@ InstallMethod( Divisor,
         "constructor for divisors",
         [ IsMatrix, IsHomalgRing ],
   function( A, k )
-    local alpha, n, m, R, var, varvec, alphas, alphaH, D;
+    local alpha, c, d, n, m, R, var, varvec, alphas, alphaH, D;
     
     alpha := HomalgMatrix( A, k );
     
@@ -574,6 +574,18 @@ InstallMethod( Divisor,
     
     m := NrRows( alpha );
     n := NrColumns( alpha );
+    
+    c := Characteristic( k );
+    d := DegreeOverPrimeField( k );
+    
+    if c = 0 then
+        if d > 1 then
+            Error( "degree > 1 is not supported yet\n" );
+        fi;
+        A := HOMALG_MATRICES.QQ * alpha;
+    else
+        A := HomalgRingOfIntegers( c, d );
+    fi;
     
     alpha := Involution( alpha );
     
@@ -596,6 +608,7 @@ InstallMethod( Divisor,
     
     D := Divisor( D );
     
+    SetMatrixOfHyperplaneArrangement( D, A );
     SetPrimeDivisorsAttr( D, List( alphaH, Divisor ) );
     
     return D;

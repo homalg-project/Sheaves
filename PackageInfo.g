@@ -31,7 +31,7 @@ Subtitle := "A homalg based Package for Sheaf Algorithms",
 Version := Maximum( [
   "2011.08.21", ## Markus' version
 ## this line prevents merge conflicts
-  "2013.09.18", ## Mohamed's version
+  "2013.09.23", ## Mohamed's version
 ## this line prevents merge conflicts
   "2013.08.06", ## Thomas' version
 ] ),
@@ -292,7 +292,8 @@ Dependencies := rec(
                    [ "RingsForHomalg", ">= 2011.10.05" ],
                    [ "Modules", ">= 2012.05.27" ],
                    [ "homalg", ">= 2013.06.03" ],
-                   [ "MatricesForHomalg", ">= 2012.05.27" ],
+                   [ "GaussForHomalg", ">= 2013.09.20" ],
+                   [ "MatricesForHomalg", ">= 2013.09.23" ],
                    [ "GAPDoc", ">= 1.0" ] ],
   # without these the package will issue a warning while loading
   # SuggestedOtherPackages := [],
