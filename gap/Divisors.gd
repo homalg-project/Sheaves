@@ -371,9 +371,6 @@ DeclareAttribute( "DegreeOfDivisor",
 DeclareAttribute( "FirstAffineDegree",
         IsDivisor );
 
-##
-DeclareAttribute( "PoincarePolynomial",
-        IsDivisor );
 
 ####################################
 #

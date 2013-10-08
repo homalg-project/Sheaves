@@ -526,28 +526,6 @@ InstallMethod( FirstAffineDegree,
     
 end );
 
-##
-InstallMethod( PoincarePolynomial,
-        "for a divisor",
-        [ IsDivisor ],
-        
-  function( D )
-    local der, cOmega, C1, c1, cOmega0;
-    
-    der := DerMinusLog( D );
-    
-    cOmega := Dual( ChernPolynomial( der ) );
-    
-    C1 := 1 + VariableForChernPolynomial( );
-    
-    c1 := CreateChernPolynomial( 0, C1, AmbientDimension( cOmega ) );
-    
-    cOmega0 := cOmega / c1;
-    
-    return ( TotalChernClass( cOmega0 )!.polynomial ) * C1;
-    
-end );
-
 ####################################
 #
 # constructor functions and methods:
