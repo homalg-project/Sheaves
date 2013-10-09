@@ -61,6 +61,20 @@ InstallMethod( CharacteristicPolynomial,
 end );
 
 ##
+InstallMethod( ProjectiveCharacteristicPolynomial,
+        "for a divisor",
+        [ IsDivisor ],
+        
+  function( D )
+    local t;
+    
+    t := VariableForCharacteristicPolynomial( );
+    
+    return CharacteristicPolynomial( D ) / (t - 1);
+    
+end );
+
+##
 InstallMethod( PoincarePolynomial,
         "for a divisor",
         [ IsDivisor ],
@@ -71,6 +85,20 @@ InstallMethod( PoincarePolynomial,
     t := VariableForCharacteristicPolynomial( );
     
     return PoincarePolynomial( D, t );
+    
+end );
+
+##
+InstallMethod( ProjectivePoincarePolynomial,
+        "for a divisor",
+        [ IsDivisor ],
+        
+  function( D )
+    local h;
+    
+    h := VariableForChernPolynomial( );
+    
+    return Value( PoincarePolynomial( D ), h ) / (1 + h);
     
 end );
 

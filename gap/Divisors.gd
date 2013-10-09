@@ -391,9 +391,25 @@ DeclareAttributeWithDocumentation( "CharacteristicPolynomial",
         [ "Divisors", "Methods_for_divisors" ]
         );
 
+DeclareAttributeWithDocumentation( "ProjectiveCharacteristicPolynomial",
+        IsDivisor,
+        "Returns the projective characteristic polynomial of the projective arrangement divisor <A>D</A>.",
+        "a univariate polynomial in <M>t=</M><C>VariableForCharacteristicPolynomial()</C>.",
+        "D",
+        [ "Divisors", "Methods_for_divisors" ]
+        );
+
 DeclareAttributeWithDocumentation( "PoincarePolynomial",
         IsDivisor,
         "Returns the Poincare polynomial of the arrangement divisor <A>D</A>.",
+        "a univariate polynomial in <M>t=</M><C>VariableForCharacteristicPolynomial()</C>.",
+        "D",
+        [ "Divisors", "Methods_for_divisors" ]
+        );
+
+DeclareAttributeWithDocumentation( "ProjectivePoincarePolynomial",
+        IsDivisor,
+        "Returns the projective Poincare polynomial of the projective arrangement divisor <A>D</A>.",
         "a univariate polynomial in <M>t=</M><C>VariableForCharacteristicPolynomial()</C>.",
         "D",
         [ "Divisors", "Methods_for_divisors" ]
