@@ -415,6 +415,15 @@ DeclareAttributeWithDocumentation( "ProjectivePoincarePolynomial",
         [ "Divisors", "Methods_for_divisors" ]
         );
 
+DeclareAttributeWithDocumentation( "ProjectiveChernSchwartzMacPhersonPolynomial",
+        IsDivisor,
+        "Returns the projective Chern–Schwartz–MacPherson classes",
+        "of the complement projective arrangement divisor <A>D</A>.",
+        "a univariate polynomial in <M>h=</M><C>VariableForChernPolynomial()</C>.",
+        "D",
+        [ "Divisors", "Methods_for_divisors" ]
+        );
+
 ####################################
 #
 # global functions and operations:

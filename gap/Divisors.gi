@@ -102,6 +102,25 @@ InstallMethod( ProjectivePoincarePolynomial,
     
 end );
 
+## <Cite Key="Alu13"/> Theorem 4.1: For a locally free arrangement
+## <M>c(\mathrm{Der}_{\mathbb{P}^n}(-\log \mathcal{A})) = c_{SM}(\mathbb{P}^n \setminus \mathcal{A})</M>
+InstallMethod( ProjectiveChernSchwartzMacPhersonPolynomial,
+        "for a divisor complement",
+        [ IsDivisor ],
+        
+  function( D )
+    local h, chi, n;
+    
+    h := VariableForChernPolynomial( );
+    
+    n := KrullDimension( HomalgRing( D ) ) - 1;
+    
+    chi := ProjectiveCharacteristicPolynomial( D );
+    
+    return h^n * Value( chi, 1 + h^-1 );
+    
+end );
+
 ####################################
 #
 # methods for operations:
