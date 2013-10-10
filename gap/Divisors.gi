@@ -117,6 +117,17 @@ InstallMethod( LeadingCoefficientOfPoincarePolynomial,
     
 end );
 
+##
+InstallMethod( LeadingCoefficientOfPoincarePolynomial,
+        "for a divisor",
+        [ IsDivisor and HasCharacteristicPolynomial ],
+        
+  function( D )
+    
+    return AbsInt( Value( CharacteristicPolynomial( D ), 0 ) );
+    
+end );
+
 ## <Cite Key="Alu13"/> Theorem 4.1: For a locally free arrangement
 ## <M>c(\mathrm{Der}_{\mathbb{P}^n}(-\log \mathcal{A})) = c_{SM}(\mathbb{P}^n \setminus \mathcal{A})</M>
 InstallMethod( ProjectiveChernSchwartzMacPhersonPolynomial,
