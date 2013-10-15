@@ -107,6 +107,21 @@ InstallMethod( ProjectivePoincarePolynomial,
 end );
 
 ##
+InstallMethod( LeadingCoefficientOfPoincarePolynomial,
+        "for a divisor",
+        [ IsDivisor and MatrixOfHyperplaneArrangement ],
+        
+  function( D )
+    local M;
+    
+    M := MatrixOfHyperplaneArrangement( D );
+    M := Involution( M );
+    
+    return LeadingCoefficientOfPoincarePolynomial( M );
+    
+end );
+
+##
 InstallMethod( MultiplicityOfConormalToTheOrigin,
         "for a divisor",
         [ IsDivisor and MatrixOfHyperplaneArrangement ],
@@ -123,7 +138,7 @@ InstallMethod( MultiplicityOfConormalToTheOrigin,
         return 0;
     fi;
     
-    return LeadingCoefficientOfPoincarePolynomial( M );
+    return LeadingCoefficientOfPoincarePolynomial( D );
     
 end );
 

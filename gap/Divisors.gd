@@ -415,6 +415,14 @@ DeclareAttributeWithDocumentation( "ProjectivePoincarePolynomial",
         [ "Divisors", "Methods_for_divisors" ]
         );
 
+DeclareAttributeWithDocumentation( "LeadingCoefficientOfPoincarePolynomial",
+        IsDivisor,
+        "Returns the leading coefficient of the Poincare polynomial of the arrangement divisor <A>D</A>.",
+        "a positive integer",
+        "D",
+        [ "Divisors", "Methods_for_divisors" ]
+        );
+
 DeclareAttributeWithDocumentation( "MultiplicityOfConormalToTheOrigin",
         IsDivisor,
         "Returns the multiplicity of the conormal to the origin of the central arrangement divisor <A>D</A>.",
