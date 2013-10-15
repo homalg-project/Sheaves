@@ -109,13 +109,19 @@ end );
 ##
 InstallMethod( LeadingCoefficientOfPoincarePolynomial,
         "for a divisor",
-        [ IsDivisor ],
+        [ IsDivisor and MatrixOfHyperplaneArrangement ],
         
   function( D )
-    local M;
+    local M, n;
     
     M := MatrixOfHyperplaneArrangement( D );
     M := Involution( M );
+    
+    n := KrullDimension( HomalgRing( D ) );
+    
+    if RowRankOfMatrix( M ) < n then
+        return 0;
+    fi;
     
     return LeadingCoefficientOfPoincarePolynomial( M );
     
