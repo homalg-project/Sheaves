@@ -52,11 +52,15 @@ InstallMethod( CharacteristicPolynomial,
         [ IsDivisor ],
         
   function( D )
-    local t;
+    local t, chi, n;
     
     t := VariableForCharacteristicPolynomial( );
     
-    return CharacteristicPolynomial( D, t );
+    chi := CharacteristicPolynomial( D, t );
+    
+    n := KrullDimension( HomalgRing( D ) );
+    
+    return t^(n - Degree( chi )) * chi;
     
 end );
 
