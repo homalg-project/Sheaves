@@ -107,7 +107,7 @@ InstallMethod( ProjectivePoincarePolynomial,
 end );
 
 ##
-InstallMethod( LeadingCoefficientOfPoincarePolynomial,
+InstallMethod( MultiplicityOfConormalToTheOrigin,
         "for a divisor",
         [ IsDivisor and MatrixOfHyperplaneArrangement ],
         
@@ -128,7 +128,7 @@ InstallMethod( LeadingCoefficientOfPoincarePolynomial,
 end );
 
 ##
-InstallMethod( LeadingCoefficientOfPoincarePolynomial,
+InstallMethod( MultiplicityOfConormalToTheOrigin,
         "for a divisor",
         [ IsDivisor and HasCharacteristicPolynomial ],
         
