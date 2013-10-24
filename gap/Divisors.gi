@@ -109,13 +109,12 @@ end );
 ##
 InstallMethod( LeadingCoefficientOfPoincarePolynomial,
         "for a divisor",
-        [ IsDivisor and MatrixOfHyperplaneArrangement ],
+        [ IsDivisor and UnderlyingMatroid ],
         
   function( D )
     local M;
     
-    M := MatrixOfHyperplaneArrangement( D );
-    M := Involution( M );
+    M := UnderlyingMatroid( D );
     
     return LeadingCoefficientOfPoincarePolynomial( M );
     
@@ -124,17 +123,16 @@ end );
 ##
 InstallMethod( MultiplicityOfConormalToTheOrigin,
         "for a divisor",
-        [ IsDivisor and MatrixOfHyperplaneArrangement ],
+        [ IsDivisor and UnderlyingMatroid ],
         
   function( D )
     local M, n;
     
-    M := MatrixOfHyperplaneArrangement( D );
-    M := Involution( M );
+    M := UnderlyingMatroid( D );
     
     n := KrullDimension( HomalgRing( D ) );
     
-    if RowRankOfMatrix( M ) < n then
+    if RankOfMatroid( M ) < n then
         return 0;
     fi;
     
@@ -661,13 +659,12 @@ end );
 ##
 InstallMethod( TuttePolynomial,
         "for an arrangement divisor and a ring element",
-        [ IsDivisor and HasMatrixOfHyperplaneArrangement, IsRingElement, IsRingElement ],
+        [ IsDivisor and HasUnderlyingMatroid, IsRingElement, IsRingElement ],
         
   function( D, x, y )
     local M;
     
-    M := MatrixOfHyperplaneArrangement( D );
-    M := Involution( M );
+    M := UnderlyingMatroid( D );
     
     return TuttePolynomial( M, x, y );
     
@@ -676,13 +673,12 @@ end );
 ##
 InstallMethod( CharacteristicPolynomial,
         "for an arrangement divisor and a ring element",
-        [ IsDivisor and HasMatrixOfHyperplaneArrangement, IsRingElement ],
+        [ IsDivisor and HasUnderlyingMatroid, IsRingElement ],
         
   function( D, t )
     local M;
     
-    M := MatrixOfHyperplaneArrangement( D );
-    M := Involution( M );
+    M := UnderlyingMatroid( D );
     
     return CharacteristicPolynomial( M, t );
     
@@ -691,13 +687,12 @@ end );
 ##
 InstallMethod( PoincarePolynomial,
         "for an arrangement divisor and a ring element",
-        [ IsDivisor and MatrixOfHyperplaneArrangement, IsRingElement ],
+        [ IsDivisor and UnderlyingMatroid, IsRingElement ],
         
   function( D, t )
     local M;
     
-    M := MatrixOfHyperplaneArrangement( D );
-    M := Involution( M );
+    M := UnderlyingMatroid( D );
     
     return PoincarePolynomial( M, t );
     
@@ -785,7 +780,7 @@ InstallMethod( Divisor,
     
     D := Divisor( D );
     
-    SetMatrixOfHyperplaneArrangement( D, A );
+    SetUnderlyingMatroid( D, Matroid( Involution( A ) ) );
     SetPrimeDivisorsAttr( D, List( alphaH, Divisor ) );
     
     return D;

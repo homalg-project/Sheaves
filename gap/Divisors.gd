@@ -160,16 +160,16 @@ DeclareProperty( "IsDirectSumOfLineBundles",
 #
 ####################################
 
-##  <#GAPDoc Label="MatrixOfHyperplaneArrangement">
+##  <#GAPDoc Label="UnderlyingMatroid">
 ##  <ManSection>
-##    <Attr Arg="D" Name="MatrixOfHyperplaneArrangement"/>
-##    <Returns>a homalg matrix</Returns>
+##    <Attr Arg="D" Name="UnderlyingMatroid"/>
+##    <Returns>a vector matroid</Returns>
 ##    <Description>
 ##    </Description>
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareAttribute( "MatrixOfHyperplaneArrangement",
+DeclareAttribute( "UnderlyingMatroid",
         IsDivisor );
 
 ##  <#GAPDoc Label="DefiningPolynomial">
