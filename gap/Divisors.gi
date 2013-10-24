@@ -54,7 +54,7 @@ InstallMethod( CharacteristicPolynomial,
   function( D )
     local t, chi, n;
     
-    t := VariableForCharacteristicPolynomial( );
+    t := IndeterminateOfCharacteristicPolynomial( );
     
     chi := CharacteristicPolynomial( D, t );
     
@@ -72,7 +72,7 @@ InstallMethod( ProjectiveCharacteristicPolynomial,
   function( D )
     local t;
     
-    t := VariableForCharacteristicPolynomial( );
+    t := IndeterminateOfCharacteristicPolynomial( );
     
     return CharacteristicPolynomial( D ) / (t - 1);
     
@@ -86,7 +86,7 @@ InstallMethod( PoincarePolynomial,
   function( D )
     local t;
     
-    t := VariableForCharacteristicPolynomial( );
+    t := IndeterminateOfCharacteristicPolynomial( );
     
     return PoincarePolynomial( D, t );
     

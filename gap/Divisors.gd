@@ -386,7 +386,7 @@ DeclareAttribute( "FirstAffineDegree",
 DeclareAttributeWithDocumentation( "CharacteristicPolynomial",
         IsDivisor,
         "Returns the characteristic polynomial of the arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <M>t=</M><C>VariableForCharacteristicPolynomial()</C>",
+        "a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>",
         "D",
         [ "Divisors", "Methods_for_divisors" ]
         );
@@ -394,7 +394,7 @@ DeclareAttributeWithDocumentation( "CharacteristicPolynomial",
 DeclareAttributeWithDocumentation( "ProjectiveCharacteristicPolynomial",
         IsDivisor,
         "Returns the projective characteristic polynomial of the projective arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <M>t=</M><C>VariableForCharacteristicPolynomial()</C>",
+        "a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>",
         "D",
         [ "Divisors", "Methods_for_divisors" ]
         );
@@ -402,7 +402,7 @@ DeclareAttributeWithDocumentation( "ProjectiveCharacteristicPolynomial",
 DeclareAttributeWithDocumentation( "PoincarePolynomial",
         IsDivisor,
         "Returns the Poincare polynomial of the arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <M>t=</M><C>VariableForCharacteristicPolynomial()</C>",
+        "a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>",
         "D",
         [ "Divisors", "Methods_for_divisors" ]
         );
@@ -410,7 +410,7 @@ DeclareAttributeWithDocumentation( "PoincarePolynomial",
 DeclareAttributeWithDocumentation( "ProjectivePoincarePolynomial",
         IsDivisor,
         "Returns the projective Poincare polynomial of the projective arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <M>t=</M><C>VariableForCharacteristicPolynomial()</C>",
+        "a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>",
         "D",
         [ "Divisors", "Methods_for_divisors" ]
         );

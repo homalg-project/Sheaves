@@ -31,7 +31,7 @@ Subtitle := "A homalg based Package for Sheaf Algorithms",
 Version := Maximum( [
   "2011.08.21", ## Markus' version
 ## this line prevents merge conflicts
-  "2013.10.01", ## Mohamed's version
+  "2013.10.19", ## Mohamed's version
 ## this line prevents merge conflicts
   "2013.08.06", ## Thomas' version
 ] ),
@@ -293,6 +293,7 @@ Dependencies := rec(
                    [ "Modules", ">= 2012.05.27" ],
                    [ "homalg", ">= 2013.06.03" ],
                    [ "CombinatoricsForHomalg", ">= 2013.09.21" ],
+                   [ "alcove", ">= 2013-10-19" ],
                    [ "GaussForHomalg", ">= 2013.09.20" ],
                    [ "MatricesForHomalg", ">= 2013.09.23" ],
                    [ "GAPDoc", ">= 1.0" ] ],
