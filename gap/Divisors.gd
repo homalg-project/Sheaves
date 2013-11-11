@@ -383,62 +383,63 @@ DeclareAttribute( "DegreeOfDivisor",
 DeclareAttribute( "FirstAffineDegree",
         IsDivisor );
 
-DeclareAttributeWithDocumentation( "CharacteristicPolynomial",
-        IsDivisor,
-        "Returns the characteristic polynomial of the arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>",
-        "D",
-        [ "Divisors", "Methods_for_divisors" ]
-        );
+#! @Description
+#!  Returns the characteristic polynomial of the arrangement divisor <A>D</A>.
+#! @Returns a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>
+#! @Arguments D
+#! @ChapterInfo Divisors, Methods for divisors
+DeclareAttribute( "CharacteristicPolynomial",
+                  IsDivisor );
 
-DeclareAttributeWithDocumentation( "ProjectiveCharacteristicPolynomial",
-        IsDivisor,
-        "Returns the projective characteristic polynomial of the projective arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>",
-        "D",
-        [ "Divisors", "Methods_for_divisors" ]
-        );
+#! @Description
+#!  Returns the projective characteristic polynomial of the projective arrangement divisor <A>D</A>.
+#! @Returns a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>
+#! @Arguments D
+#! @ChapterInfo Divisors, Methods for divisors
+DeclareAttribute( "ProjectiveCharacteristicPolynomial",
+                  IsDivisor );
 
-DeclareAttributeWithDocumentation( "PoincarePolynomial",
-        IsDivisor,
-        "Returns the Poincare polynomial of the arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>",
-        "D",
-        [ "Divisors", "Methods_for_divisors" ]
-        );
+#! @Description
+#!  Returns the Poincare polynomial of the arrangement divisor <A>D</A>.
+#! @Returns a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>
+#! @Arguments D
+#! @ChapterInfo Divisors, Methods for divisors
+DeclareAttribute( "PoincarePolynomial",
+                  IsDivisor );
 
-DeclareAttributeWithDocumentation( "ProjectivePoincarePolynomial",
-        IsDivisor,
-        "Returns the projective Poincare polynomial of the projective arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>",
-        "D",
-        [ "Divisors", "Methods_for_divisors" ]
-        );
+#! @Description
+#!  Returns the projective Poincare polynomial of the projective arrangement divisor <A>D</A>.
+#! @Returns a univariate polynomial in <M>t=</M><C>IndeterminateOfCharacteristicPolynomial()</C>
+#! @Arguments D
+#! @ChapterInfo Divisors, Methods for divisors
+DeclareAttribute( "ProjectivePoincarePolynomial",
+                  IsDivisor );
 
-DeclareAttributeWithDocumentation( "LeadingCoefficientOfPoincarePolynomial",
-        IsDivisor,
-        "Returns the leading coefficient of the Poincare polynomial of the arrangement divisor <A>D</A>.",
-        "a positive integer",
-        "D",
-        [ "Divisors", "Methods_for_divisors" ]
-        );
+#! @Description
+#!  Returns the leading coefficient of the Poincare polynomial of the arrangement divisor <A>D</A>.
+#! @Returns a positive integer
+#! @Arguments D
+#! @ChapterInfo Divisors, Methods for divisors
+DeclareAttribute( "LeadingCoefficientOfPoincarePolynomial",
+                  IsDivisor );
 
-DeclareAttributeWithDocumentation( "MultiplicityOfConormalToTheOrigin",
-        IsDivisor,
-        "Returns the multiplicity of the conormal to the origin of the central arrangement divisor <A>D</A>.",
-        "a nonnegative integer",
-        "D",
-        [ "Divisors", "Methods_for_divisors" ]
-        );
+#! @Description
+#!  Returns the multiplicity of the conormal to the origin of the central arrangement divisor <A>D</A>.
+#! @Returns a nonnegative integer
+#! @Arguments D
+#! @ChapterInfo Divisors, Methods for divisors
+DeclareAttribute( "MultiplicityOfConormalToTheOrigin",
+                  IsDivisor );
 
-DeclareAttributeWithDocumentation( "ProjectiveChernSchwartzMacPhersonPolynomial",
-        IsDivisor,
-        "Returns the projective Chern–Schwartz–MacPherson classes",
-        "of the complement projective arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <M>h=</M><C>VariableForChernPolynomial()</C>",
-        "D",
-        [ "Divisors", "Methods_for_divisors" ]
-        );
+#! @Description
+#!  Returns the projective Chern–Schwartz–MacPherson classes
+#!  of the complement projective arrangement divisor <A>D</A>.
+#! @Returns a univariate polynomial in <M>h=</M><C>VariableForChernPolynomial()</C>
+#! @Arguments D
+#! @ChapterInfo Divisors, Methods for divisors
+DeclareAttribute( "ProjectiveChernSchwartzMacPhersonPolynomial",
+                  IsDivisor );
+
 
 ####################################
 #
@@ -455,29 +456,30 @@ DeclareOperation( "RingOfDerivations",
 DeclareOperation( "DefiningPolynomialOverWeylAlgebra",
         [ IsDivisor ] );
 
-DeclareOperationWithDocumentation( "TuttePolynomial",
-        [ IsDivisor, IsRingElement, IsRingElement ],
-        "Returns the Tutte polynomial of the arrangement divisor <A>D</A>.",
-        "a bivariate polynomial in <A>x</A> and <A>y</A>",
-        "D, x, y",
-        [ "Divisors", "Methods_for_matroids" ]
-        );
+#! @Description
+#!  Returns the Tutte polynomial of the arrangement divisor <A>D</A>.
+#! @Returns a bivariate polynomial in <A>x</A> and <A>y</A>
+#! @Arguments D, x, y
+#! @ChapterInfo Divisors, Methods for matroids
+DeclareOperation( "TuttePolynomial",
+                  [ IsDivisor, IsRingElement, IsRingElement ] );
 
-DeclareOperationWithDocumentation( "CharacteristicPolynomial",
-        [ IsDivisor, IsRingElement ],
-        "Returns the characteristic polynomial of the arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <A>t</A>",
-        "D, t",
-        [ "Divisors", "Methods_for_matroids" ]
-        );
+#! @Description
+#!  Returns the characteristic polynomial of the arrangement divisor <A>D</A>.
+#! @Returns a univariate polynomial in <A>t</A>
+#! @Arguments D, t
+#! @ChapterInfo Divisors, Methods for matroids
+DeclareOperation( "CharacteristicPolynomial",
+                  [ IsDivisor, IsRingElement ] );
 
-DeclareOperationWithDocumentation( "PoincarePolynomial",
-        [ IsDivisor, IsRingElement ],
-        "Returns the Poincare polynomial of the arrangement divisor <A>D</A>.",
-        "a univariate polynomial in <A>t</A>",
-        "D, t",
-        [ "Divisors", "Methods_for_matroids" ]
-        );
+#! @Description
+#!  Returns the Poincare polynomial of the arrangement divisor <A>D</A>.
+#! @Returns a univariate polynomial in <A>t</A>
+#! @Arguments D, t
+#! @ChapterInfo Divisors, Methods for matroids
+DeclareOperation( "PoincarePolynomial",
+                  [ IsDivisor, IsRingElement ] );
+
 
 # constructors:
 
