@@ -1312,7 +1312,7 @@ InstallMethod( ViewObj,
             Append( properties, " non-free" );
             nz := true;
         fi;
-    elif HasIsDirectSumOfLineBundles( M ) and IsDirectSumOfLineBundles( M ) then
+    elif HasIsSplitVectorBundle( M ) and IsSplitVectorBundle( M ) then
         if HasRankOfObject( M ) and RankOfObject( M ) = 1 then
             Append( properties, " invertible" );
         else

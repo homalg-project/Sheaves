@@ -26,7 +26,7 @@ InstallValue( LISHV,
             intrinsic_properties_specific_shared_with_subobjects_and_ideals :=
             [ 
               "IsFree",
-              "IsDirectSumOfLineBundles",
+              "IsSplitVectorBundle",
               "IsLocallyFree",
               ],
             
@@ -179,9 +179,9 @@ InstallValue( LogicalImplicationsForHomalgSheaves,
             "implies", IsStablyFree ],
           
           [ IsFree,
-            "implies", IsDirectSumOfLineBundles ],
+            "implies", IsSplitVectorBundle ],
           
-          [ IsDirectSumOfLineBundles,
+          [ IsSplitVectorBundle,
             "implies", IsLocallyFree ],
           
           [ IsLocallyFree,
@@ -373,7 +373,7 @@ InstallMethod( IsLocallyFree,
 end );
 
 ##
-InstallMethod( IsDirectSumOfLineBundles,
+InstallMethod( IsSplitVectorBundle,
         "for coherent sheaves on Proj",
         [ IsCoherentSheafOnProjRep ],
         

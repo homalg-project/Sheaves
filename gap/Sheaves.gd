@@ -81,9 +81,9 @@ DeclareCategory( "IsCategoryOfSheaves",
 #
 ####################################
 
-##  <#GAPDoc Label="IsDirectSumOfLineBundles">
+##  <#GAPDoc Label="IsSplitVectorBundle">
 ##  <ManSection>
-##    <Prop Arg="E" Name="IsDirectSumOfLineBundles"/>
+##    <Prop Arg="E" Name="IsSplitVectorBundle"/>
 ##    <Returns>true or false</Returns>
 ##    <Description>
 ##      Check if the sheaf <A>E</A> is a direct sum of line bundles.
@@ -91,7 +91,7 @@ DeclareCategory( "IsCategoryOfSheaves",
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareProperty( "IsDirectSumOfLineBundles",
+DeclareProperty( "IsSplitVectorBundle",
         IsSheafOfModules );
 
 ##  <#GAPDoc Label="IsLocallyFree">

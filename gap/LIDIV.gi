@@ -23,9 +23,9 @@ InstallValue( LogicalImplicationsForDivisors,
             "implies", IsStablyFree ],
           
           [ IsFree,
-            "implies", IsDirectSumOfLineBundles ],
+            "implies", IsSplitVectorBundle ],
           
-          [ IsDirectSumOfLineBundles,
+          [ IsSplitVectorBundle,
             "implies", IsLocallyFree ],
           
           [ IsLocallyFree,
@@ -103,12 +103,12 @@ InstallMethod( IsLocallyFree,
 end );
 
 ##
-InstallMethod( IsDirectSumOfLineBundles,
+InstallMethod( IsSplitVectorBundle,
         "for divisors",
         [ IsDivisor ],
         
   function( D )
     
-    return IsDirectSumOfLineBundles( Sheafify( DerMinusLog( D ) ) );
+    return IsSplitVectorBundle( Sheafify( DerMinusLog( D ) ) );
     
 end );

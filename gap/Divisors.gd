@@ -141,9 +141,9 @@ DeclareProperty( "IsFree",
 DeclareProperty( "IsLocallyFree",
         IsDivisor );
 
-##  <#GAPDoc Label="IsDirectSumOfLineBundles:divisor">
+##  <#GAPDoc Label="IsSplitVectorBundle:divisor">
 ##  <ManSection>
-##    <Prop Arg="D" Name="IsDirectSumOfLineBundles" Label="for divisors"/>
+##    <Prop Arg="D" Name="IsSplitVectorBundle" Label="for divisors"/>
 ##    <Returns>true or false</Returns>
 ##    <Description>
 ##      Check if the divisor <A>D</A> is a direct sum of line bundles.
@@ -151,7 +151,7 @@ DeclareProperty( "IsLocallyFree",
 ##  </ManSection>
 ##  <#/GAPDoc>
 ##
-DeclareProperty( "IsDirectSumOfLineBundles",
+DeclareProperty( "IsSplitVectorBundle",
         IsDivisor );
 
 ####################################
