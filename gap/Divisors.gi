@@ -756,7 +756,7 @@ InstallMethod( Divisor,
         fi;
         A := HOMALG_MATRICES.QQ * alpha;
     else
-        A := HomalgRingOfIntegers( c, d );
+        A := HomalgRingOfIntegers( c, d ) * alpha;
     fi;
     
     alpha := Involution( alpha );
