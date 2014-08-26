@@ -222,7 +222,11 @@ InstallMethod( JacobiMatrix,
 
     R := HomalgRing( D );
     
-    var := Indeterminates( R );
+    if HasRelativeIndeterminatesOfPolynomialRing( R ) then
+        var := RelativeIndeterminatesOfPolynomialRing( R );
+    else
+        var := Indeterminates( R );
+    fi;
     
     n := Length( var );
     
@@ -728,6 +732,46 @@ InstallMethod( Divisor,
             DefiningPolynomial, f,
             IsZero, IsZero( f )
             );
+    
+    return D;
+    
+end );
+
+##
+InstallMethod( Divisor,
+        "constructor for divisors",
+        [ IsHomalgMatrix ],
+  function( alpha )
+    local n, m, k, R, var, varvec, alphas, alphaH, D;
+    
+    m := NrRows( alpha );
+    n := NrColumns( alpha );
+    
+    k := HomalgRing( alpha );
+    
+    alpha := Involution( alpha );
+    
+    ## will be graded if k is "graded"
+    R := k * List( [ 1 .. n ], i -> Concatenation( "x", String( i ) ) );
+    
+    alpha := R * alpha;
+    
+    var := RelativeIndeterminatesOfPolynomialRing( R );
+    
+    varvec := HomalgMatrix( var, 1, n, R );
+    
+    alphas := List( [ 1 .. m ], c -> CertainColumns( alpha, [ c ] ) );
+    
+    alphaH := List( alphas, a -> varvec * a );
+    
+    alphaH := List( alphaH, a -> EntriesOfHomalgMatrix( a )[ 1 ] );
+    
+    D := Product( alphaH );
+    
+    D := Divisor( D );
+    
+    SetUnderlyingMatroid( D, Matroid( Involution( alpha ) ) );
+    SetPrimeDivisorsAttr( D, List( alphaH, Divisor ) );
     
     return D;
     

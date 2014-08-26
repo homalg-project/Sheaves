@@ -486,6 +486,9 @@ DeclareOperation( "PoincarePolynomial",
 DeclareAttribute( "Divisor",
         IsHomalgRingElement );
 
+DeclareAttribute( "Divisor",
+        IsHomalgMatrix );
+
 DeclareOperation( "Divisor",
         [ IsMatrix, IsHomalgRing ] );
 
