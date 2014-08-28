@@ -756,7 +756,7 @@ InstallMethod( Divisor,
     
     alpha := R * alpha;
     
-    if HasRelativeIndeterminatesOfPolynomialRing( R ) then
+    if HasRelativeIndeterminatesOfPolynomialRing( R ) or HasAmbientRing( R ) then
         var := RelativeIndeterminatesOfPolynomialRing( R );
     else
         var := IndeterminatesOfPolynomialRing( R );
