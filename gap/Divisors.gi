@@ -756,7 +756,11 @@ InstallMethod( Divisor,
     
     alpha := R * alpha;
     
-    var := RelativeIndeterminatesOfPolynomialRing( R );
+    if HasRelativeIndeterminatesOfPolynomialRing( R ) then
+        var := RelativeIndeterminatesOfPolynomialRing( R );
+    else
+        var := IndeterminatesOfPolynomialRing( R );
+    fi;
     
     varvec := HomalgMatrix( var, 1, n, R );
     
