@@ -12,6 +12,11 @@ L := GradedRightSubmodule( "x, w", R );
 ## remove the line and obtain the twisted cubic
 C := Saturate( CL, L );
 
+## the *projective* twisted cubic C is a set-theoretic CI
+## but *not* an ideal-theoretic CI, contrary to the affine one
+J := RightSubmodule( "x^2-y*w, y*(y^2-x*z)+z*(z*w-x*y)", R );
+Assert( 0, C = RadicalSubobject( J ) );
+
 CL := Scheme( CL );
 C := Scheme( C );
 
