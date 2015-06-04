@@ -2,9 +2,9 @@ LoadPackage( "Sheaves" );
 
 R := GradedRing( HomalgFieldOfRationalsInDefaultCAS( ) * "x,y,z,w" );
 
-## the intersection of the two conics Q1 := y*w-x^2, Q2 := z*w^2-x^3
+## the intersection of the two conics Q1 := x*y-z*w, Q2 := x^2-y*w
 ## is the twisted cubic and a line
-CL := GradedRightSubmodule( "y*w-x^2, z*w^2-x^3", R );
+CL := GradedRightSubmodule( "x*y-z*w,x^2-y*w", R );
 
 ## the line
 L := GradedRightSubmodule( "x, w", R );
