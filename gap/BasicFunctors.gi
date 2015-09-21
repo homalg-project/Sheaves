@@ -33,7 +33,7 @@ InstallGlobalFunction( _Functor_Cokernel_OnCoherentSheafOnProj, ### defines: Cok
     ## the generalized inverse of the natural epimorphism
     ## (cf. [Bar, Cor. 4.8])
     gen_iso := GeneralizedMorphism(
-        SheafMorphism( GeneralizedInverse( CokernelEpi( psi ) ), "create", Range( phi ) ),
+        SheafMorphism( InverseOfGeneralizedMorphismWithFullDomain( CokernelEpi( psi ) ), "create", Range( phi ) ),
         phi );
     
     coker := Source( gen_iso );
@@ -48,7 +48,7 @@ InstallGlobalFunction( _Functor_Cokernel_OnCoherentSheafOnProj, ### defines: Cok
     SetCokernelEpi( phi, epi );
     
     ## set the generalized inverse of the natural epimorphism
-    SetGeneralizedInverse( epi, gen_iso );
+    SetInverseOfGeneralizedMorphismWithFullDomain( epi, gen_iso );
     
     #=====# end of the core procedure #=====#
     
