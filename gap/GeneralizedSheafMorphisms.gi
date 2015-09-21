@@ -66,7 +66,7 @@ InstallMethod( RemoveMorphismAid,
     fi;
     
     if HasIsZero( MorphismAid( phi ) ) and IsZero( MorphismAid( phi ) )
-       and HasIsGeneralizedMorphism( phi ) and IsGeneralizedMorphism( phi )
+       and HasIsGeneralizedMorphismWithFullDomain( phi ) and IsGeneralizedMorphismWithFullDomain( phi )
        then
         morphism := true;
     fi;
@@ -92,7 +92,7 @@ InstallMethod( OnALocallyFreeSource,
     
     psi := SheafMorphism( OnAFreeSource( UnderlyingGradedMap( phi ) ), "create", Range( phi ) );
     
-    if HasIsMorphism( phi ) and IsMorphism( phi ) or HasIsGeneralizedMorphism( phi ) and IsGeneralizedMorphism( phi ) then
+    if HasIsMorphism( phi ) and IsMorphism( phi ) or HasIsGeneralizedMorphismWithFullDomain( phi ) and IsGeneralizedMorphismWithFullDomain( phi ) then
         Assert( 3, IsMorphism( psi ) );
         SetIsMorphism( psi, true );
     fi;

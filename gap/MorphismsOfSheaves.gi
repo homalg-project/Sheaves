@@ -203,7 +203,7 @@ InstallMethod( homalgResetFilters,
         HOMALG.PropertiesOfMaps :=
           [ IsZero,
             IsMorphism,
-            IsGeneralizedMorphism,
+            IsGeneralizedMorphismWithFullDomain,
             IsSplitMonomorphism,
             IsMonomorphism,
             IsGeneralizedMonomorphism,
