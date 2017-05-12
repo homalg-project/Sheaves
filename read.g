@@ -70,3 +70,11 @@ ReadPackage( "Sheaves", "gap/OtherFunctors.gi" );
 
 ##
 ReadPackage( "Sheaves", "gap/Tools.gi" );
+
+if IsBound( MakeThreadLocal ) then
+    Perform(
+            [
+             "HOMALG_SHEAVES",
+             ],
+            MakeThreadLocal );
+fi;
