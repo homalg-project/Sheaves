@@ -742,7 +742,7 @@ InstallMethod( Divisor,
         "constructor for divisors",
         [ IsHomalgMatrix ],
   function( alpha )
-    local n, m, k, R, var, varvec, alphas, alphaH, D;
+    local n, m, k, matroid, R, var, varvec, alphas, alphaH, D;
     
     m := NrRows( alpha );
     n := NrColumns( alpha );
@@ -750,6 +750,8 @@ InstallMethod( Divisor,
     k := HomalgRing( alpha );
     
     alpha := Involution( alpha );
+    
+    matroid := Matroid( alpha );
     
     ## will be graded if k is "graded"
     R := k * List( [ 1 .. n ], i -> Concatenation( "x", String( i ) ) );
@@ -774,7 +776,7 @@ InstallMethod( Divisor,
     
     D := Divisor( D );
     
-    SetUnderlyingMatroid( D, Matroid( Involution( alpha ) ) );
+    SetUnderlyingMatroid( D, matroid );
     SetPrimeDivisorsAttr( D, List( alphaH, Divisor ) );
     
     return D;
