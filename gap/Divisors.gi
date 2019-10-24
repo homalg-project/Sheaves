@@ -109,7 +109,7 @@ end );
 ##
 InstallMethod( LeadingCoefficientOfPoincarePolynomial,
         "for a divisor",
-        [ IsDivisor and UnderlyingMatroid ],
+        [ IsDivisor and HasUnderlyingMatroid ],
         
   function( D )
     local M;
@@ -123,7 +123,7 @@ end );
 ##
 InstallMethod( MultiplicityOfConormalToTheOrigin,
         "for a divisor",
-        [ IsDivisor and UnderlyingMatroid ],
+        [ IsDivisor and HasUnderlyingMatroid ],
         
   function( D )
     local M, n;
@@ -691,7 +691,7 @@ end );
 ##
 InstallMethod( PoincarePolynomial,
         "for an arrangement divisor and a ring element",
-        [ IsDivisor and UnderlyingMatroid, IsRingElement ],
+        [ IsDivisor and HasUnderlyingMatroid, IsRingElement ],
         
   function( D, t )
     local M;
