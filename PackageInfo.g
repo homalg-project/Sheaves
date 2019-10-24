@@ -31,7 +31,7 @@ Subtitle := "A homalg based Package for Sheaf Algorithms",
 Version := Maximum( [
   "2011.08.21", ## Markus' version
 ## this line prevents merge conflicts
-  "2018.03.21", ## Mohamed's version
+  "2018.03.22", ## Mohamed's version
 ## this line prevents merge conflicts
   "2013.08.06", ## Thomas' version
 ## this line prevents merge conflicts
@@ -220,9 +220,7 @@ PackageInfoURL :=
 ##  Please, use '<span class="pkgname">GAP</span>' and
 ##  '<span class="pkgname">MyPKG</span>' for specifing package names.
 ##  
-# AbstractHTML := "This package provides  a collection of functions for \
-# computing the Smith normal form of integer matrices and some related \
-# utilities.",
+AbstractHTML := "A homalg based Package for Sheaf Algorithms",
 #AbstractHTML := 
 #  "The <span class=\"pkgname\">Example</span> package, as its name suggests, \
 #   is an example of how to create a <span class=\"pkgname\">GAP</span> \
