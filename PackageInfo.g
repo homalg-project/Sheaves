@@ -31,7 +31,7 @@ Subtitle := "A homalg based Package for Sheaf Algorithms",
 Version := Maximum( [
   "2011.08.21", ## Markus' version
 ## this line prevents merge conflicts
-  "2018.03.24", ## Mohamed's version
+  "2018.03.25", ## Mohamed's version
 ## this line prevents merge conflicts
   "2013.08.06", ## Thomas' version
 ## this line prevents merge conflicts
@@ -259,8 +259,6 @@ PackageDoc := rec(
   # use same as in GAP            
   BookName  := "Sheaves",
   # format/extension can be one of .zoo, .tar.gz, .tar.bz2, -win.zip
-  Archive := 
-    "http://homalg.math.rwth-aachen.de/~barakat/homalg-project/Sheaves/Sheaves.tar.gz",
   ArchiveURLSubset := ["doc"],
   HTMLStart := "doc/chap0.html",
   PDFFile   := "doc/manual.pdf",
