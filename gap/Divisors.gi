@@ -742,7 +742,7 @@ InstallMethod( Divisor,
         "constructor for divisors",
         [ IsHomalgMatrix ],
   function( alpha )
-    local n, m, k, matroid, R, var, varvec, alphas, alphaH, D;
+    local n, m, k, matroid, L, R, var, varvec, alphas, alphaH, D;
     
     m := NrRows( alpha );
     n := NrColumns( alpha );
@@ -753,8 +753,15 @@ InstallMethod( Divisor,
     
     matroid := Matroid( alpha );
     
+    L := List( [ 1 .. n ], i -> Concatenation( "x", String( i ) ) );
+    
     ## will be graded if k is "graded"
-    R := k * List( [ 1 .. n ], i -> Concatenation( "x", String( i ) ) );
+    if HasAmbientRing( k ) then
+        R := AmbientRing( k ) * L;
+        R := R / ( R * MatrixOfRelations( k ) );
+    else
+        R := k * L;
+    fi;
     
     alpha := R * alpha;
     
