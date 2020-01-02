@@ -27,20 +27,18 @@ Assert( 0, Dimension( imP1 ) = 1 );
 Assert( 0, Degree( imP1 ) = 4 );
 Assert( 0, ArithmeticGenus( imP1 ) = 0 );
 
-S := HomalgRing( imP1 );
-m := MaximalGradedLeftIdeal( S );
+T := HomalgRing( imP1 );
+m := MaximalGradedLeftIdeal( T );
 
-M := UnderlyingGradedModule( imP1 );
+O_X := UnderlyingGradedModule( imP1 );
 
 ## [Eis, pp. 466]:
 ## quite generally, the homogeneous coordinate ring of a variety
 ## in an incomplete embedding is never Cohen-Macaulay.
-Assert( 0, not IsCohenMacaulay( M ) );
+Assert( 0, not IsCohenMacaulay( O_X ) );
 Assert( 0, not IsCohenMacaulay( imP1 ) );
 
 tate := TateResolution( imP1, -3, 3 );
-
-T := HomalgRing( imP1 );
 
 S := AmbientRing( T );
 
@@ -50,8 +48,6 @@ k := 1 * S / m;
 phi := UnderlyingRingMap( f );
 
 I_X := DefiningIdeal( T );
-
-O_X := UnderlyingGradedModule( imP1 );
 
 cotangentPn := SyzygiesObject( 2, k );
 
