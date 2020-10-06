@@ -1,0 +1,11 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - "Tests"
+
+jobs:
+  test:
+    steps:
+      - run: exit 1
