@@ -498,8 +498,10 @@ DeclareOperation( "*",
 DeclareOperation( "DerMinusLogMap",
         [ IsDivisor, IsInt ] );
 
-## WARNING: the intersection trick does not work for multi-arrangements!
 DeclareOperation( "DerMinusLogMap",
+        [ IsDivisor, IsList ] );
+
+DeclareOperation( "DerMinusLog",
         [ IsDivisor, IsList ] );
 
 DeclareOperation( "Annihilator1",

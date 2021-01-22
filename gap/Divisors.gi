@@ -318,6 +318,31 @@ InstallMethod( DerMinusLogMap,
 end );
 
 ##
+InstallMethod( DerMinusLogMap,
+        "for divisors",
+        [ IsDivisor and HasPrimeDivisorsAttr, IsList ],
+        
+  function( D, mu )
+    local map;
+    
+    map := ListN( PrimeDivisorsAttr( D ), mu, {P,m} -> DerMinusLogMap( P, m ) );
+    
+    return Iterated( map, ProductMorphism );
+    
+end );
+
+##
+InstallMethod( DerMinusLog,
+        "for divisors",
+        [ IsDivisor and HasIsPrimeDivisor, IsList ],
+        
+  function( D, mu )
+    
+    return KernelSubobject( DerMinusLogMap( D, mu ) );
+    
+end );
+
+##
 InstallMethod( DerMinusLog,
         "for divisors",
         [ IsDivisor ],
