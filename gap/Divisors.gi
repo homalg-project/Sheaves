@@ -767,7 +767,7 @@ InstallMethod( Divisor,
         "constructor for divisors",
         [ IsHomalgMatrix ],
   function( alpha )
-    local n, m, k, matroid, L, R, var, varvec, alphas, alphaH, D;
+    local n, m, k, matroid, L, R, weights, var, varvec, alphas, alphaH, D;
     
     m := NrRows( alpha );
     n := NrColumns( alpha );
@@ -781,11 +781,19 @@ InstallMethod( Divisor,
     L := List( [ 1 .. n ], i -> Concatenation( "x", String( i ) ) );
     
     ## will be graded if k is "graded"
+    ## we assume all weights of k to be 0
     if HasAmbientRing( k ) then
         R := AmbientRing( k ) * L;
         R := R / ( R * MatrixOfRelations( k ) );
     else
         R := k * L;
+    fi;
+    
+    if IsHomalgGradedRing( k ) then
+        weights := WeightsOfIndeterminates( k );
+        weights := Concatenation( ListWithIdenticalEntries( Length( Indeterminates( k ) ), 0 ), ListWithIdenticalEntries( Length( L ), 1 ) );
+        SetWeightsOfIndeterminates( R, weights );
+        SetBaseRing( R, k );
     fi;
     
     alpha := R * alpha;
