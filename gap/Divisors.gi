@@ -788,6 +788,8 @@ InstallMethod( Divisor,
     else
         R := k * L;
     fi;
+
+    SetRelativeIndeterminatesOfPolynomialRing( R, List( L, x -> x / R ) );
     
     if IsHomalgGradedRing( k ) then
         weights := WeightsOfIndeterminates( k );

@@ -805,8 +805,9 @@ InstallMethod( StructureSheafOfSpec,
         return R!.StructureSheafOfSpec;
     fi;
     
-    ## FIXME: CoefficientsRing
-    if HasCoefficientsRing( R ) then
+    if HasBaseRing( R ) then
+        T := BaseRing( R );
+    elif HasCoefficientsRing( R ) then
         T := CoefficientsRing( R );
     else
         T := R;
@@ -850,8 +851,9 @@ InstallMethod( StructureSheafOfProj,
         return S!.StructureSheafOfProj;
     fi;
     
-    ## FIXME: CoefficientsRing
-    if HasCoefficientsRing( S ) then
+    if HasBaseRing( S ) then
+        T := BaseRing( S );
+    elif HasCoefficientsRing( S ) then
         T := CoefficientsRing( S );
     else
         T := S;
