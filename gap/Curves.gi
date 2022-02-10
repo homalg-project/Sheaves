@@ -145,7 +145,7 @@ InstallMethod( RandomProjectivePlaneCurve,
     curve := ProjectivePlaneCurve( base_locus, degmat );
     
     ## the expected genus of the curve
-    g := Binomial( d - 1, 2 ) - Iterated( List( [ 1 .. s ], i -> Binomial( mults[i], 2 ) ), SUM );
+    g := Binomial( d - 1, 2 ) - Sum( [ 1 .. s ], i -> Binomial( mults[i], 2 ) );
     
     ## the singular locus
     sing_pos := Filtered( [ 1 .. s ], i -> mults[i] > 1 );

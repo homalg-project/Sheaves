@@ -1170,7 +1170,7 @@ InstallMethod( DirectSumOfRightLineBundles,
 end );
 
 ##
-InstallMethod( POW,
+InstallMethod( \^,
         "constructor",
         [ IsSheafOfRings, IsInt ],
         
@@ -1181,7 +1181,7 @@ InstallMethod( POW,
 end );
 
 ##
-InstallMethod( POW,
+InstallMethod( \^,
         "constructor",
         [ IsSheafOfRings, IsList ],
         
