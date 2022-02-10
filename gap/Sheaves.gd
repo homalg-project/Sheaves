@@ -301,10 +301,10 @@ DeclareOperation( "DirectSumOfRightLineBundles",
 DeclareOperation( "DirectSumOfRightLineBundles",
         [ IsInt, IsHomalgGradedRing ] );
 
-DeclareOperation( "POW",
+DeclareOperation( "^",
         [ IsSheafOfRings, IsInt ] );
 
-DeclareOperation( "POW",
+DeclareOperation( "^",
         [ IsSheafOfRings, IsList ] );
 
 
