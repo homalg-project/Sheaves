@@ -13,7 +13,7 @@ SetPackageInfo( rec(
 PackageName := "Sheaves",
 Subtitle := "A homalg based Package for Sheaf Algorithms",
 
-Version := "2021.09-01",
+Version := "2022.10-01",
 Date := ~.Version{[ 1 .. 10 ]},
 Date := Concatenation( "01/", ~.Version{[ 6, 7 ]}, "/", ~.Version{[ 1 .. 4 ]} ),
 License := "GPL-2.0-or-later",
@@ -284,6 +284,20 @@ AvailabilityTest := ReturnTrue,
 ##  *Optional*: Here you can list some keyword related to the topic 
 ##  of the package.
 # Keywords := ["Smith normal form", "p-adic", "rational matrix inversion"]
-Keywords := ["schemes", "sheaves", "tate resolution", "sheaf cohomology", "direct image sheaf"]
+Keywords := ["schemes", "sheaves", "tate resolution", "sheaf cohomology", "direct image sheaf"],
+
+AutoDoc := rec(
+    TitlePage := rec(
+        Copyright := Concatenation(
+            "&copyright; 2008-2015 by Mohamed Barakat and Markus Lange-Hegermann<P/>\n\n",
+            "This package may be distributed under the terms and conditions of the ",
+            "GNU Public License Version 2.\n"
+            ),
+        Acknowledgements := Concatenation(
+            "The first author is very much indebted to Wolfram Decker and Frank-Olaf Schreyer ",
+            "for all their help and support.\n"
+            ),
+    )
+),
 
 ));

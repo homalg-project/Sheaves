@@ -1,73 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!DOCTYPE Book SYSTEM "gapdoc.dtd"
+	  [
+	  <!ENTITY see '<Alt Only="LaTeX">$\to$</Alt><Alt Not="LaTeX">--&gt;</Alt>'>
+	  <!ENTITY GAP4 '<Package>GAP4</Package>'>
+	  <!ENTITY Maple '<Package>Maple</Package>'>
+	  <!ENTITY Mathematica '<Package>Mathematica</Package>'>
+	  <!ENTITY Singular '<Package>Singular</Package>'>
+	  <!ENTITY Plural '<Package>Plural</Package>'>
+	  <!ENTITY Sage '<Package>Sage</Package>'>
+	  <!ENTITY python '<Package>python</Package>'>
+	  <!ENTITY cython '<Package>cython</Package>'>
+	  <!ENTITY C '<Package>C</Package>'>
+	  <!ENTITY MAGMA '<Package>MAGMA</Package>'>
+	  <!ENTITY IO '<Package>IO</Package>'>
+	  <!ENTITY homalg "<Package>homalg</Package>">
+	  <!ENTITY LIRNG "<Package>LIRNG</Package>">
+	  <!ENTITY LIMAP "<Package>LIMAP</Package>">
+	  <!ENTITY LIMAT "<Package>LIMAT</Package>">
+	  <!ENTITY COLEM "<Package>COLEM</Package>">
+	  <!ENTITY LIMOD "<Package>LIMOD</Package>">
+	  <!ENTITY LIMOR "<Package>LIMOR</Package>">
+	  <!ENTITY LICPX "<Package>LICPX</Package>">
+	  <!ENTITY LILIN "<Package>LILIN</Package>">
+	  <!ENTITY LISHV "<Package>LISHV</Package>">
+	  <!ENTITY LISCM "<Package>LISCM</Package>">
+	  <!ENTITY LIMOS "<Package>LIMOS</Package>">
+	  <!ENTITY ExamplesForHomalg "<Package>ExamplesForHomalg</Package>">
+	  <!ENTITY alexander "<Package>alexander</Package>">
+	  <!ENTITY Gauss "<Package>Gauss</Package>">
+	  <!ENTITY GaussForHomalg "<Package>GaussForHomalg</Package>">
+	  <!ENTITY IO_ForHomalg "<Package>IO_ForHomalg</Package>">
+	  <!ENTITY RingsForHomalg "<Package>RingsForHomalg</Package>">
+	  <!ENTITY LessGenerators "<Package>LessGenerators</Package>">
+	  <!ENTITY Yoneda "<Package>Yoneda</Package>">
+	  <!ENTITY Sheaves "<Package>Sheaves</Package>">
+	  <!ENTITY SCO "<Package>SCO</Package>">
+	  <!ENTITY GAPDoc "<Package>GAPDoc</Package>">
+	  ]
+	  >
+
 <!--
 
-  Sheaves.xml            Sheaves package documentation            Mohamed Barakat
+  SheavesForHomalg.xml          Sheaves package documentation              Mohamed Barakat
 
-         Copyright (C) 2008-2009, Mohamed Barakat, University of Kaiserslautern
+  Copyright (C) 2008-2009, Mohamed Barakat, University of Kaiserslautern
 
 -->
 
-<Chapter Label="Sheaves">
-<Heading>Sheaves</Heading>
+<Book Name="Sheaves">
 
-<Section Label="Sheaves:Category">
-<Heading>Sheaves: Category and Representations</Heading>
+<#Include SYSTEM "title.xml">
 
-<#Include label="IsHomalgSheafOrMorphismOfSheaves">
-<#Include Label="IsHomalgSheaf">
-<#Include Label="IsSheafOfRings">
-<#Include Label="IsSheafOfModules">
-<#Include Label="IsMorphismOfSheavesOfModules">
-<#Include Label="IsEndomorphismOfSheavesOfModules">
+<!--  TableOfContents  . . . . . .  generate a table of contents   -->
+<TableOfContents/>
 
-</Section>
+<!--  chapters of the book  -->
+<Body>
 
-<Section Label="Sheaves:Constructors">
-<Heading>Sheaves: Constructors</Heading>
+<Index>&Sheaves;</Index>
 
-</Section>
+<#Include SYSTEM "intro.xml">
+<#Include SYSTEM "install.xml">
+<#Include SYSTEM "QuickStart.xml">
+<#Include SYSTEM "Tate.xml">
+<#Include SYSTEM "LinearSystems.xml">
+<#Include SYSTEM "ChapterSheaves.xml">
+<#Include SYSTEM "Schemes.xml">
+<#Include SYSTEM "MorphismsOfSchemes.xml">
+<#Include SYSTEM "Curves.xml">
+</Body>
 
-<Section Label="Sheaves:Properties">
-<Heading>Sheaves: Properties</Heading>
+<#Include SYSTEM "appendix.xml">
 
-<#Include Label="IsSplitVectorBundle">
-<#Include Label="IsLocallyFree">
-<#Include Label="FiniteLocallyFreeResolutionExists">
+<Bibliography Databases="Sheaves.bib"/>
 
-For more properties see the corresponding section <Ref BookName="homalg"
-Sect="Objects: Properties"/>) in the documentation of the &homalg; package.
+<!--  And finally an index as well   -->
+<TheIndex/>
 
-</Section>
+</Book>
 
-<Section Label="Sheaves:Attributes">
-<Heading>Sheaves: Attributes</Heading>
-
-<#Include Label="StructureSheafOfProj">
-<#Include Label="IdealSheaf:sheaf">
-<#Include Label="AsModuleOverStructureSheafOfAmbientSpace">
-<#Include Label="TruncatedModuleOfGlobalSections:sheaves">
-<#Include Label="Support">
-
-<!-- the following attributes are intrinsic in the sense that
-     they can safely be attached to any copy of the sheaf -->
-
-<#Include Label="CastelnuovoMumfordRegularity">
-
-For more attributes see the corresponding section <Ref BookName="homalg"
-Sect="Objects: Attributes"/>) in the documentation of the &homalg; package.
-
-</Section>
-
-<Section Label="Sheaves:LISHV">
-<Heading>&LISHV;: Logical Implications for Sheaves</Heading>
-
-</Section>
-
-<Section Label="Sheaves:Operations">
-<Heading>Sheaves: Operations and Functions</Heading>
-
-</Section>
-<!-- ############################################################ -->
-
-</Chapter>

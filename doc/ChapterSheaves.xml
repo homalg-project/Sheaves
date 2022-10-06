@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+  Sheaves.xml            Sheaves package documentation            Mohamed Barakat
+
+         Copyright (C) 2008-2009, Mohamed Barakat, University of Kaiserslautern
+
+-->
+
+<Chapter Label="Sheaves">
+<Heading>Sheaves</Heading>
+
+<Section Label="Sheaves:Category">
+<Heading>Sheaves: Category and Representations</Heading>
+
+<#Include label="IsHomalgSheafOrMorphismOfSheaves">
+<#Include Label="IsHomalgSheaf">
+<#Include Label="IsSheafOfRings">
+<#Include Label="IsSheafOfModules">
+<#Include Label="IsMorphismOfSheavesOfModules">
+<#Include Label="IsEndomorphismOfSheavesOfModules">
+
+</Section>
+
+<Section Label="Sheaves:Constructors">
+<Heading>Sheaves: Constructors</Heading>
+
+</Section>
+
+<Section Label="Sheaves:Properties">
+<Heading>Sheaves: Properties</Heading>
+
+<#Include Label="IsSplitVectorBundle">
+<#Include Label="IsLocallyFree">
+<#Include Label="FiniteLocallyFreeResolutionExists">
+
+For more properties see the corresponding section <Ref BookName="homalg"
+Sect="Objects: Properties"/>) in the documentation of the &homalg; package.
+
+</Section>
+
+<Section Label="Sheaves:Attributes">
+<Heading>Sheaves: Attributes</Heading>
+
+<#Include Label="StructureSheafOfProj">
+<#Include Label="IdealSheaf:sheaf">
+<#Include Label="AsModuleOverStructureSheafOfAmbientSpace">
+<#Include Label="TruncatedModuleOfGlobalSections:sheaves">
+<#Include Label="Support">
+
+<!-- the following attributes are intrinsic in the sense that
+     they can safely be attached to any copy of the sheaf -->
+
+<#Include Label="CastelnuovoMumfordRegularity">
+
+For more attributes see the corresponding section <Ref BookName="homalg"
+Sect="Objects: Attributes"/>) in the documentation of the &homalg; package.
+
+</Section>
+
+<Section Label="Sheaves:LISHV">
+<Heading>&LISHV;: Logical Implications for Sheaves</Heading>
+
+</Section>
+
+<Section Label="Sheaves:Operations">
+<Heading>Sheaves: Operations and Functions</Heading>
+
+</Section>
+<!-- ############################################################ -->
+
+</Chapter>
