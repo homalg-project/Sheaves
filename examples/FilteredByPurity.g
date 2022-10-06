@@ -1,4 +1,4 @@
-Read( "Purity.g" );
+ReadPackage( "Sheaves", "examples/Purity.g" );
 
 SetAsOriginalPresentation( W );
 

@@ -1,4 +1,4 @@
-Read( "ProfileMainExample.g" );
+ReadPackage( "Sheaves", "examples/ProfileMainExample.g" );
 
 Res := Resolution( W );
 Res2 := ShortenResolution( W );

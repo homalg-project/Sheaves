@@ -1,5 +1,5 @@
 ## [Har, Exercise V.2.17(a)]
-Read( "d-uple_Embedding_of_P1.g" );
+ReadPackage( "Sheaves", "examples/d-uple_Embedding_of_P1.g" );
 
 pb := Pullback( phi, conormal );
 
