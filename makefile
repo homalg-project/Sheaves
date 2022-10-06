@@ -4,7 +4,7 @@ doc: doc/manual.six
 
 doc/manual.six: makedoc.g \
 		PackageInfo.g \
-		doc/Sheaves.bib doc/*.xml doc/*.css \
+		doc/Sheaves.bib doc/*.xml \
 		gap/*.gd gap/*.gi examples/*.g
 	        gap makedoc.g
 
