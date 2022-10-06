@@ -2,7 +2,7 @@ all: doc test
 
 doc: doc/manual.six
 
-doc/manual.six: makedoc.g maketest.g ListOfDocFiles.g \
+doc/manual.six: makedoc.g \
 		PackageInfo.g \
 		doc/Sheaves.bib doc/*.xml doc/*.css \
 		gap/*.gd gap/*.gi examples/*.g
@@ -12,10 +12,10 @@ clean:
 	(cd doc ; ./clean)
 
 test:	doc
-	gap maketest.g
+	gap tst/testall.g
 
 test-with-coverage: doc
-	OUTPUT=$$(/usr/bin/time --quiet --format="%U %S\n%e" --output=performance.out gap --banner --quitonbreak --cover stats maketest.g 2>&1); \
+	OUTPUT=$$(/usr/bin/time --quiet --format="%U %S\n%e" --output=performance.out gap --banner --quitonbreak --cover stats tst/testall.g 2>&1); \
 	echo "$$OUTPUT"; \
 	! echo "$$OUTPUT" | sed "s/\r//" | grep -v "Running list" | grep -v "^#I  " | grep "" > /dev/null
 	echo 'LoadPackage("profiling"); OutputJsonCoverage("stats", "coverage.json");' | gap

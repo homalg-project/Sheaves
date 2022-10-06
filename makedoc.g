@@ -1,23 +1,28 @@
-##  this creates the documentation, needs: GAPDoc package, latex, pdflatex,
-##  mkindex, dvips
-##  
-##  Call this with GAP.
-##
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Sheaves: A homalg based Package for Sheaf Algorithms
+#
+# This file is a script which compiles the package manual.
+#
+if fail = LoadPackage( "AutoDoc", "2019.05.20" ) then
+    
+    Error( "AutoDoc version 2019.05.20 or newer is required." );
+    
+fi;
 
-LoadPackage( "GAPDoc" );
-LoadPackage( "homalg" );
-
-SetGapDocLaTeXOptions( "utf8" );
-
-bib := ParseBibFiles( "doc/Sheaves.bib" );
-WriteBibXMLextFile( "doc/SheavesBib.xml", bib );
-
-Read( "ListOfDocFiles.g" );
-
-PrintTo( "VERSION", PackageInfo( "Sheaves" )[1].Version );
-
-MakeGAPDocDoc( "doc", "SheavesForHomalg", list, "SheavesForHomalg" );
-
-GAPDocManualLab( "Sheaves" );
+AutoDoc( rec(
+    extract_examples := rec(
+        units := "Single",
+    ),
+    gapdoc := rec(
+        LaTeXOptions := rec(
+            LateExtraPreamble := """
+            """,
+        ),
+    ),
+    scaffold := rec(
+        entities := [ "homalg", "CAP" ],
+        MainPage := false,
+    ),
+) );
 
 QUIT;
