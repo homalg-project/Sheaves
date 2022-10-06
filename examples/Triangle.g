@@ -1,4 +1,4 @@
-Read( "ReducedBasisOfModule.g" );
+ReadPackage( "Sheaves", "examples/ReducedBasisOfModule.g" );
 
 triangle := RSheafHom( C, T );
 lecs := LongSequence( triangle );
@@ -14,4 +14,4 @@ ByASmallerPresentation( lehs );
 homalgResetFilters( lehs );
 Assert( 0, IsExactSequence( lehs ) );
 
-Display( StringTime( homalgTime( S ) ) );
+#Display( StringTime( homalgTime( S ) ) );

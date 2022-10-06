@@ -1,4 +1,4 @@
-Read( "MainExample.g" );
+ReadPackage( "Sheaves", "examples/MainExample.g" );
 
 LoadPackage( "AbelianSystems" );
 

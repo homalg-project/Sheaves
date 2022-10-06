@@ -1,4 +1,4 @@
-Read( "RationalQuartic.g" );
+ReadPackage( "Sheaves", "examples/RationalQuartic.g" );
 
 ## [Har, Exercise V.2.17(b)]
 pb := Pullback( phi, conormal );

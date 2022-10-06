@@ -1,4 +1,4 @@
-Read( "ProfileSmallMainExample.g" );
+ReadPackage( "Sheaves", "examples/ProfileSmallMainExample.g" );
 
 filt := PurityFiltration( W );
 
