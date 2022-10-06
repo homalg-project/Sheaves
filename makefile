@@ -15,10 +15,8 @@ test:	doc
 	gap tst/testall.g
 
 test-with-coverage: doc
-	OUTPUT=$$(/usr/bin/time --quiet --format="%U %S\n%e" --output=performance.out gap --banner --quitonbreak --cover stats tst/testall.g 2>&1); \
-	echo "$$OUTPUT"; \
-	! echo "$$OUTPUT" | sed "s/\r//" | grep -v "Running list" | grep -v "^#I  " | grep "" > /dev/null
-	echo 'LoadPackage("profiling"); OutputJsonCoverage("stats", "coverage.json");' | gap
+	/usr/bin/time --quiet --format="%U %S\n%e" --output=performance.out gap --quitonbreak --cover stats tst/testall.g
+	gap --quitonbreak --norepl -c 'LoadPackage("profiling"); OutputJsonCoverage("stats", "coverage.json");'
 
 ci-test: test-with-coverage
 
