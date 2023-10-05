@@ -13,7 +13,7 @@ SetPackageInfo( rec(
 PackageName := "Sheaves",
 Subtitle := "A homalg based Package for Sheaf Algorithms",
 
-Version := "2022.10-04",
+Version := "2023.10-01",
 Date := ~.Version{[ 1 .. 10 ]},
 Date := Concatenation( "01/", ~.Version{[ 6, 7 ]}, "/", ~.Version{[ 1 .. 4 ]} ),
 License := "GPL-2.0-or-later",
@@ -259,7 +259,7 @@ Dependencies := rec(
                    [ "homalg", ">= 2013.06.03" ],
                    [ "alcove", ">= 2013-10-24" ],
                    [ "GaussForHomalg", ">= 2013.09.20" ],
-                   [ "MatricesForHomalg", ">= 2013.09.23" ],
+                   [ "MatricesForHomalg", ">= 2023.10-01" ],
                    [ "GAPDoc", ">= 1.0" ] ],
   # without these the package will issue a warning while loading
   # SuggestedOtherPackages := [],

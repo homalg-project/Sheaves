@@ -22,13 +22,13 @@ true
 gap> ReadPackage( "Sheaves", "examples/TwistedCubic.g" );
 true
 gap> ReadPackage( "Sheaves", "examples/FilteredByPurity.g" );
-[x^2   x*z   0   -z*t   0   0   1   0   0]
-[x*y   y*z   -z*t   0   0   0   0   0   0]
-[0   0   x   -y   0   1   0   0   0]
-[0   0   0   0   z*t^2   0   x   0   -1]
-[0   0   0   0   x^2 - t^2   y   0   0   0]
-[0   0   0   0   y*t   x   0   -1   0]
-[0   0   0   0   0   z*t   -y   0   0]
+[-z*t   0   x*z   x^2   1   0   0   0   0]
+[0   -z*t   y*z   x*y   0   0   0   0   0]
+[-y   x   0   0   0   1   0   0   0]
+[0   0   0   0   x   0   z*t^2   0   -1]
+[0   0   0   0   0   y   x^2 - t^2   0   0]
+[0   0   0   0   0   x   y*t   -1   0]
+[0   0   0   0   -y   z*t   0   0   0]
 [0   0   0   0   0   0   0   y - t   0]
 [0   0   0   0   0   0   0   z   0]
 [0   0   0   0   0   0   0   0   x]
@@ -41,7 +41,7 @@ R^(1x12) --> R^(1x9), ( for R := Q[x,y,z,t] )
 
 currently represented by the above matrix
 
-(graded, degrees of generators: [ 0, 0, 0, 0, 0, 1, 2, 2, 3 ])
+(graded, degrees of generators: [ 0, 0, 0, 0, 2, 1, 0, 2, 3 ])
 a sheaf modeled by the above graded module
 true
 gap> HOMALG_RINGS.RingOfIntegersDefaultCAS := "Singular";;
