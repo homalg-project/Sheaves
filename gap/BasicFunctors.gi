@@ -83,7 +83,7 @@ end );
 
 ##  <#GAPDoc Label="functor_Cokernel:code">
 ##      <Listing Type="Code"><![CDATA[
-InstallValue( functor_Cokernel_ForCoherentSheafOnProj,
+BindGlobal( "functor_Cokernel_ForCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "Cokernel" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -166,7 +166,7 @@ end );
 
 ##  <#GAPDoc Label="functor_ImageObject:code">
 ##      <Listing Type="Code"><![CDATA[
-InstallValue( functor_ImageObject_ForCoherentSheafOnProj,
+BindGlobal( "functor_ImageObject_ForCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "ImageObject" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -232,7 +232,7 @@ end );
 
 ##  <#GAPDoc Label="Functor_Hom:code">
 ##      <Listing Type="Code"><![CDATA[
-InstallValue( Functor_SheafHom_ForCoherentSheafOnProj,
+BindGlobal( "Functor_SheafHom_ForCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "SheafHom" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -446,7 +446,7 @@ end );
 
 ##  <#GAPDoc Label="Functor_Hom:code">
 ##      <Listing Type="Code"><![CDATA[
-InstallValue( Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj,
+BindGlobal( "Functor_SheafHomOnGlobalSections_ForCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "SheafHomOnGlobalSections" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -497,7 +497,7 @@ InstallGlobalFunction( _Functor_GlobalSections_ForMorphismsOfCoherentSheafOnProj
     
 end );
 
-InstallValue( Functor_GlobalSections_ForCoherentSheafOnProj,
+BindGlobal( "Functor_GlobalSections_ForCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "GlobalSections" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -612,7 +612,7 @@ end );
 if IsOperation( TensorProduct ) then
     
     ## GAP 4.4 style
-    InstallValue( Functor_TensorProduct_ForSheaves,
+    BindGlobal( "Functor_TensorProduct_ForSheaves",
             CreateHomalgFunctor(
                     [ "name", "TensorProduct" ],
                     [ "category", HOMALG_SHEAVES.category ],
@@ -631,7 +631,7 @@ else
     ## GAP 4.5 style
     ##  <#GAPDoc Label="Functor_TensorProduct:code">
     ##      <Listing Type="Code"><![CDATA[
-    InstallValue( Functor_TensorProduct_ForSheaves,
+    BindGlobal( "Functor_TensorProduct_ForSheaves",
             CreateHomalgFunctor(
                     [ "name", "TensorProduct" ],
                     [ "category", HOMALG_SHEAVES.category ],

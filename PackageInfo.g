@@ -13,7 +13,7 @@ SetPackageInfo( rec(
 PackageName := "Sheaves",
 Subtitle := "A homalg based Package for Sheaf Algorithms",
 
-Version := "2023.10-01",
+Version := "2025.11-01",
 Date := ~.Version{[ 1 .. 10 ]},
 Date := Concatenation( "01/", ~.Version{[ 6, 7 ]}, "/", ~.Version{[ 1 .. 4 ]} ),
 License := "GPL-2.0-or-later",

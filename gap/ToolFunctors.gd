@@ -18,34 +18,20 @@
 ## TheZeroMorphism
 DeclareGlobalFunction( "_Functor_TheZeroMorphism_OnCoherentSheafOnProj" );
 
-DeclareGlobalVariable( "functor_TheZeroMorphism_ForCoherentSheafOnProj" );
-
 ## AddMorphisms
 DeclareGlobalFunction( "_Functor_AddMorphisms_OnMorphismsOfCoherentSheafOnProj" );
-
-DeclareGlobalVariable( "functor_AddMorphisms_ForMorphismsOfCoherentSheafOnProj" );
 
 ## SubMorphisms
 DeclareGlobalFunction( "_Functor_SubMorphisms_OnMorphismsOfCoherentSheafOnProj" );
 
-DeclareGlobalVariable( "functor_SubMorphisms_ForMorphismsOfCoherentSheafOnProj" );
-
 ## Compose
 DeclareGlobalFunction( "_Functor_PreCompose_OnMorphismsOfCoherentSheafOnProj" );
-
-DeclareGlobalVariable( "functor_PreCompose_ForMorphismsOfCoherentSheafOnProj" );
 
 ## CoproductMorphism
 DeclareGlobalFunction( "_Functor_CoproductMorphism_OnMorphismsOfCoherentSheafOnProj" );
 
-DeclareGlobalVariable( "functor_CoproductMorphism_ForMorphismsOfCoherentSheafOnProj" );
-
 ## ProductMorphism
 DeclareGlobalFunction( "_Functor_ProductMorphism_OnMorphismsOfCoherentSheafOnProj" );
 
-DeclareGlobalVariable( "functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj" );
-
 ## PostDivide
 DeclareGlobalFunction( "_Functor_PostDivide_OnMorphismsOfCoherentSheafOnProj" );
-
-DeclareGlobalVariable( "functor_PostDivide_ForMorphismsOfCoherentSheafOnProj" );

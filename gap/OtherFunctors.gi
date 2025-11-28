@@ -40,7 +40,7 @@ InstallGlobalFunction( _Functor_DirectSum_OnCoherentSheafOnProj,  ### defines: D
     
 end );
 
-InstallValue( Functor_DirectSum_ForCoherentSheafOnProj,
+BindGlobal( "Functor_DirectSum_ForCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "DirectSum" ],
                 [ "category", HOMALG_SHEAVES.category ],

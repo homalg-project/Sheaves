@@ -24,7 +24,7 @@ InstallGlobalFunction( _Functor_TheZeroMorphism_OnCoherentSheafOnProj,  ### defi
     
 end );
 
-InstallValue( functor_TheZeroMorphism_ForCoherentSheafOnProj,
+BindGlobal( "functor_TheZeroMorphism_ForCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "TheZeroMorphism" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -63,7 +63,7 @@ InstallGlobalFunction( _Functor_AddMorphisms_OnMorphismsOfCoherentSheafOnProj,  
     
 end );
 
-InstallValue( functor_AddMorphisms_ForMorphismsOfCoherentSheafOnProj,
+BindGlobal( "functor_AddMorphisms_ForMorphismsOfCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "+" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -103,7 +103,7 @@ InstallGlobalFunction( _Functor_SubMorphisms_OnMorphismsOfCoherentSheafOnProj,  
     
 end );
 
-InstallValue( functor_SubMorphisms_ForMorphismsOfCoherentSheafOnProj,
+BindGlobal( "functor_SubMorphisms_ForMorphismsOfCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "-" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -148,7 +148,7 @@ InstallGlobalFunction( _Functor_PreCompose_OnMorphismsOfCoherentSheafOnProj,  ##
     
 end );
 
-InstallValue( functor_PreCompose_ForMorphismsOfCoherentSheafOnProj,
+BindGlobal( "functor_PreCompose_ForMorphismsOfCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "PreCompose" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -182,7 +182,7 @@ InstallGlobalFunction( _Functor_CoproductMorphism_OnMorphismsOfCoherentSheafOnPr
     
 end );
 
-InstallValue( functor_CoproductMorphism_ForMorphismsOfCoherentSheafOnProj,
+BindGlobal( "functor_CoproductMorphism_ForMorphismsOfCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "CoproductMorphism" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -216,7 +216,7 @@ InstallGlobalFunction( _Functor_ProductMorphism_OnMorphismsOfCoherentSheafOnProj
     
 end );
 
-InstallValue( functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj,
+BindGlobal( "functor_ProductMorphism_ForMorphismsOfCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "ProductMorphism" ],
                 [ "category", HOMALG_SHEAVES.category ],
@@ -304,7 +304,7 @@ InstallGlobalFunction( _Functor_PostDivide_OnMorphismsOfCoherentSheafOnProj,  ##
     
 end );
 
-InstallValue( functor_PostDivide_ForMorphismsOfCoherentSheafOnProj,
+BindGlobal( "functor_PostDivide_ForMorphismsOfCoherentSheafOnProj",
         CreateHomalgFunctor(
                 [ "name", "PostDivide" ],
                 [ "category", HOMALG_SHEAVES.category ],
